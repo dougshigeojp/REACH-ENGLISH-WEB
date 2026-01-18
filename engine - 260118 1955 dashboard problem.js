@@ -1,5 +1,5 @@
 /**
- * Master Engine v4.0 (FIXED - Home Mode Support)
+ * Master Engine v4.0 (FIXED)
  * Handles Navigation, Audio, Voice Recording, and Exercise Mechanics.
  */
 
@@ -19,84 +19,69 @@ window.initLesson = function(data) {
     }
 };
 
+// --- MODIFIED START ENGINE ---
 function startEngine() {
     console.log("Engine Started...");
-    const mainContainer = document.getElementById('lesson-content'); 
-
+    
     try {
-        if (!lessonData) throw new Error("No Lesson Data found. Did sample.js load?");
-        
-        // 1. Render Metadata (Basic Setup)
-        renderMetadata();
+        if (!lessonData) throw new Error("No Lesson Data found.");
 
-        // 2. CHECK: IS THIS THE HOME DASHBOARD?
+        // CHECK: IS THIS THE HOME DASHBOARD?
         if (lessonData.isHome) {
-            console.log("Starting in HOME DASHBOARD Mode...");
-            renderHomeMode(); // Use special Home renderer
+            renderHomeMode(); // <--- New Function
         } else {
-            // STANDARD LESSON MODE
-            console.log("Starting in STANDARD LESSON Mode...");
+            // STANDARD LESSON MODE (Your existing logic)
+            console.log("Loading Standard Lesson...");
+            renderMetadata();
             renderMenu();
             renderPages();
             setupGlossary();
             showPage(0);
+            attachExerciseListeners();
         }
-        
-        // 3. Attach Listeners (Runs for BOTH modes so menu always works)
-        attachExerciseListeners(); 
 
     } catch (error) {
         console.error(error);
-        document.body.innerHTML = `
-            <div style="padding: 40px; font-family: sans-serif; background: #fff0f0; height: 100vh;">
-                <h1 style="color: #d63384;">💥 ENGINE CRASHED</h1>
-                <p style="font-size: 1.2rem;">The lesson could not load.</p>
-                <div style="background: white; padding: 20px; border-left: 5px solid red; margin: 20px 0;">
-                    <strong>Error:</strong> <code style="color: red;">${error.message}</code>
-                </div>
-                <button onclick="location.reload()" style="padding: 10px 20px; cursor: pointer;">Try Again</button>
-            </div>
-        `;
+        // ... (Keep your existing error handling HTML here) ...
     }
 }
 
 // ========================================================
-// HOME DASHBOARD LOGIC
+// NEW: HOME DASHBOARD LOGIC
 // ========================================================
 
+let currentHomeGrade = null; // Tracks which grade is selected
+
 function renderHomeMode() {
-    // 1. Hide Standard UI Elements
+    // 1. Hide Standard UI Elements not needed for Home
     document.getElementById('prev-btn').style.display = 'none';
     document.getElementById('next-btn').style.display = 'none';
     document.getElementById('glossary-btn').style.display = 'none';
     
-    // 2. Clear Specific Header Info (Leave Title)
+    // 2. Clear Header Info
     document.getElementById('display-bimester').textContent = "";
     document.getElementById('display-chapter').textContent = "";
-    document.getElementById('menu-grade-label').textContent = "SELECT GRADE";
-    document.getElementById('menu-chapter-label').textContent = "Dashboard";
 
     // 3. Render the Home Menu (Grades List)
     const navList = document.getElementById('nav-list');
     navList.innerHTML = '';
     
-    lessonData.grades.forEach((grade) => {
+    lessonData.grades.forEach((grade, index) => {
         const li = document.createElement('li');
         const a = document.createElement('a');
         a.href = "#";
         a.className = "nav-sub-link";
         a.textContent = grade.label;
-        // Style to look like main buttons
         a.style.fontSize = "1.1rem";
         a.style.fontWeight = "700";
         a.style.padding = "15px";
         a.style.borderBottom = "1px solid #eee";
         
+        // Click to switch dashboard view
         a.onclick = (e) => { 
             e.preventDefault(); 
-            loadGradeDashboard(grade); // Load the specific grade content
-            
-            // Close menu after selection
+            loadGradeDashboard(grade);
+            // Close menu
             document.getElementById('slide-menu').classList.remove('active');
             document.getElementById('menu-toggle').classList.remove('open');
         };
@@ -105,27 +90,17 @@ function renderHomeMode() {
         navList.appendChild(li);
     });
 
-    // 4. Force Menu OPEN by default
-    setTimeout(() => {
-        document.getElementById('slide-menu').classList.add('active');
-        document.getElementById('menu-toggle').classList.add('open');
-    }, 100);
-
-    // 5. Show "Blank" Start Page
-    const container = document.getElementById('lesson-content');
-    container.innerHTML = `
-        <div style="text-align: center; margin-top: 100px; color: #888;">
-            <h2 style="color: var(--accent-orange); font-size: 2rem;">Welcome!</h2>
-            <p>Please select a grade from the menu to begin.</p>
-            <p style="font-size: 3rem;">👈</p>
-        </div>
-    `;
+    // 4. Load the first grade by default
+    loadGradeDashboard(lessonData.grades[0]);
 }
 
 function loadGradeDashboard(gradeObj) {
+    currentHomeGrade = gradeObj;
+    
     // Update Header
     document.getElementById('display-grade').textContent = gradeObj.label.toUpperCase();
-    document.getElementById('menu-grade-label').textContent = gradeObj.label;
+    document.getElementById('menu-grade-label').textContent = "SELECT GRADE";
+    document.getElementById('menu-chapter-label').textContent = gradeObj.label;
 
     const container = document.getElementById('lesson-content');
     
@@ -181,13 +156,21 @@ function buildBimesterBoxes(gradeObj) {
 }
 
 window.switchDashTab = function(tabName) {
+    // 1. Toggle Buttons
     document.querySelectorAll('.dash-tab-btn').forEach(btn => {
         if(btn.textContent.toLowerCase().includes(tabName)) btn.classList.add('active');
         else btn.classList.remove('active');
     });
+
+    // 2. Toggle Content
     document.querySelectorAll('.dashboard-container').forEach(div => div.classList.remove('active'));
     document.getElementById(`view-${tabName}`).classList.add('active');
 };
+
+
+
+
+
 
 
 // --- START OF TTS ENGINE (Google Network Hack) ---
@@ -233,18 +216,12 @@ window.speechSynthesis.getVoices();
 
 // 2. RENDER FUNCTIONS
 function renderMetadata() {
-    // If loading home, we might not have 'grade' or 'chapter' yet, so we handle safely
-    if (lessonData.isHome) {
-        document.getElementById('display-grade').textContent = "REACH DIGITAL";
-        // Bimester/Chapter cleared in renderHomeMode
-    } else {
-        document.getElementById('display-grade').textContent = lessonData.grade;
-        document.getElementById('display-bimester').textContent = `Bimester ${lessonData.bimester}`;
-        document.getElementById('display-chapter').textContent = `Chapter ${lessonData.chapter}`;
-        
-        document.getElementById('menu-grade-label').innerHTML = `<span style="color:var(--accent-orange)">${lessonData.grade.toUpperCase()}</span>`;
-        document.getElementById('menu-chapter-label').textContent = lessonData.chapterTitle;
-    }
+    document.getElementById('display-grade').textContent = lessonData.grade;
+    document.getElementById('display-bimester').textContent = `Bimester ${lessonData.bimester}`;
+    document.getElementById('display-chapter').textContent = `Chapter ${lessonData.chapter}`;
+    
+    document.getElementById('menu-grade-label').innerHTML = `<span style="color:var(--accent-orange)">${lessonData.grade.toUpperCase()}</span>`;
+    document.getElementById('menu-chapter-label').textContent = lessonData.chapterTitle;
 }
 
 function renderMenu() {
@@ -297,6 +274,7 @@ function renderPages() {
         section.innerHTML = buildStepHTML(index, step);
         mainContainer.appendChild(section);
     });
+    // REMOVED: attachExerciseListeners(); (This was causing the bug)
 }
 
 // 3. NAVIGATION LOGIC
@@ -385,11 +363,8 @@ window.stopRecording = function(btn) {
 // 5. EXERCISE MECHANICS (CORE ENGINE)
 function attachExerciseListeners() {
     // A. RESTORE BUTTON WIRING
-    const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
-    if(prevBtn) prevBtn.onclick = () => showPage(currentPageIndex - 1);
-    if(nextBtn) nextBtn.onclick = () => showPage(currentPageIndex + 1);
-
+    document.getElementById('prev-btn').onclick = () => showPage(currentPageIndex - 1);
+    document.getElementById('next-btn').onclick = () => showPage(currentPageIndex + 1);
     document.getElementById('menu-toggle').onclick = function() {
         this.classList.toggle('open');
         document.getElementById('slide-menu').classList.toggle('active');
@@ -413,8 +388,7 @@ function attachExerciseListeners() {
         if (!option) return;
         const parent = option.parentElement;
 
-        if (option.classList.contains('memory-card')) { window.handleMemoryClick(option); return; }
-        if (option.classList.contains('clickable-word')) { option.classList.toggle('selected'); return; }
+if (option.classList.contains('memory-card')) { window.handleMemoryClick(option); return; }        if (option.classList.contains('clickable-word')) { option.classList.toggle('selected'); return; }
 
         if (parent.classList.contains('multiple')) {
             option.classList.toggle('selected');

@@ -832,3 +832,98 @@ h2 { color: var(--primary-blue); margin-bottom: 1rem; }
 .step-page:not(.step-4) .card-header-audio {
     display: none !important;
 }
+
+
+
+
+
+
+
+
+
+/* --- HOME DASHBOARD STYLES --- */
+.dashboard-container {
+    display: none;
+    animation: fadeIn 0.4s;
+}
+.dashboard-container.active {
+    display: block;
+}
+
+/* Toggle Tabs (Top Right) */
+.dashboard-tabs {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--bg-alice-blue);
+    padding-bottom: 10px;
+}
+.dash-tab-btn {
+    background: transparent;
+    border: 2px solid var(--primary-blue);
+    color: var(--primary-blue);
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.dash-tab-btn.active {
+    background: var(--primary-blue);
+    color: white;
+}
+
+/* Bimester Grid */
+.bimester-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2x2 Grid */
+    gap: 20px;
+}
+
+.bimester-box {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    border-top: 5px solid var(--accent-orange);
+}
+
+.bimester-title {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--primary-blue);
+    font-weight: 900;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.chapter-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.chapter-btn {
+    flex: 1;
+    min-width: 45%;
+    padding: 10px;
+    background: var(--bg-alice-blue);
+    border: 1px solid var(--gray-light);
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 600;
+    transition: 0.2s;
+}
+.chapter-btn:hover {
+    background: var(--primary-blue);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Mobile: 1 column instead of 2 */
+@media (max-width: 768px) {
+    .bimester-grid { grid-template-columns: 1fr; }
+}
