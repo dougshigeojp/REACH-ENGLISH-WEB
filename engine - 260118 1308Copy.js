@@ -74,53 +74,79 @@ try {
 
 
 // --- START OF TTS ENGINE ---
-// --- START OF TTS ENGINE (Google Network Hack) ---
+// --- START OF TTS ENGINE (High Quality Priority) ---
 window.playTTS = function(text) {
-    console.log("Playing TTS:", text);
-
-    // 1. Stop any currently playing audio
+    // 1. Stop current audio
     window.speechSynthesis.cancel();
-    if (window.currentTTSAudio) {
-        window.currentTTSAudio.pause();
-        window.currentTTSAudio = null;
-    }
-    if (typeof globalAudio !== 'undefined' && globalAudio) globalAudio.pause();
+    if(typeof globalAudio !== 'undefined' && globalAudio) globalAudio.pause();
 
-    // 2. CLEAN TEXT (Remove [...] tooltips so they aren't read aloud)
-    const cleanText = text.replace(/\[(.*?)\]\(.*?\)/g, '$1').trim();
+    let attempts = 0;
+    const maxAttempts = 10; 
 
-    // 3. THE GOOGLE HACK
-    // Google Translate's API allows free TTS for sentences under ~200 characters.
-    // This sounds 100x better than the Windows Robot.
-    if (cleanText.length < 200) {
-        try {
-            console.log("Attempting High-Quality Online Voice...");
-            const url = `https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=en&q=${encodeURIComponent(cleanText)}`;
+    const attemptSpeak = () => {
+        const allVoices = window.speechSynthesis.getVoices();
+        
+        // Wait until voices are loaded
+        if (allVoices.length > 0 || attempts >= maxAttempts) {
             
-            const audio = new Audio(url);
-            window.currentTTSAudio = audio; // Save to variable so we can stop it later
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.rate = 0.9; // Speed (0.9 is slightly slower/clearer)
+            utterance.pitch = 1.0;
+
+            // --- PRIORITY SORTING ---
             
-            audio.play().catch(err => {
-                console.error("Online Voice Failed (Network block?), reverting to Robot.", err);
-                speakRobot(cleanText);
-            });
-        } catch (e) {
-            speakRobot(cleanText);
+            // Filter for English only
+            const englishVoices = allVoices.filter(v => v.lang.startsWith('en'));
+
+            // PRIORITY 1: Google Voices (Best quality on Chrome/Opera)
+            let chosenVoice = englishVoices.find(v => v.name.includes("Google US English"));
+            
+            // PRIORITY 2: Any Google Voice (UK, etc.)
+            if (!chosenVoice) {
+                chosenVoice = englishVoices.find(v => v.name.includes("Google"));
+            }
+
+            // PRIORITY 3: Microsoft "Natural" or "Online" (Rare, but good if available)
+            if (!chosenVoice) {
+                chosenVoice = englishVoices.find(v => v.name.includes("Natural") || v.name.includes("Online"));
+            }
+
+            // PRIORITY 4: Apple Voices (Samantha/Siri - Mac only)
+            if (!chosenVoice) {
+                chosenVoice = englishVoices.find(v => v.name.includes("Samantha") || v.name.includes("Siri"));
+            }
+
+            // PRIORITY 5: Windows "Mobile" Voices (Mark/Linda - better than David)
+            // Windows often hides these, but sometimes we can catch them.
+            if (!chosenVoice) {
+                chosenVoice = englishVoices.find(v => v.name.includes("Mark") || v.name.includes("Linda"));
+            }
+
+            // FALLBACK: Don't use David/Zira if possible
+            if (!chosenVoice) {
+                // Try to find one that isn't the robotic default
+                chosenVoice = englishVoices.find(v => !v.name.includes("David") && !v.name.includes("Zira"));
+            }
+
+            // Final Assignment
+            if (chosenVoice) {
+                console.log("Speaking with:", chosenVoice.name);
+                utterance.voice = chosenVoice;
+            } else {
+                console.log("Using system default voice.");
+            }
+
+            window.speechSynthesis.speak(utterance);
+            
+        } else {
+            // Voices array is empty. Wait 50ms and try again.
+            attempts++;
+            setTimeout(attemptSpeak, 50);
         }
-    } else {
-        console.log("Text too long for Online Voice (>200 chars). Using Robot.");
-        speakRobot(cleanText);
-    }
-};
+    };
 
-// Fallback Function: The standard "Robot" voice
-function speakRobot(text) {
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.rate = 0.9; 
-    utterance.lang = 'en-US';
-    window.speechSynthesis.speak(utterance);
+    attemptSpeak();
 };
-// --- END OF TTS ENGINE ---
 
 // Trigger voice loading immediately
 window.speechSynthesis.getVoices();
