@@ -1,0 +1,827 @@
+/* --- ROOT VARIABLES --- */
+:root {
+    --primary-blue: #0077b6;
+    --accent-orange: #FF8C42;
+    --bg-alice-blue: #f0f8ff;
+    --white: #ffffff;
+    --text-dark: #0D1B2A;
+    --gray-light: #dee2e6;
+    
+    --success-green: #28a745;
+    --error-red: #dc3545;
+    --selected-orange: #ffe0b2;
+    --paired-blue: #bbdefb;
+    
+    --shadow: 0 4px 12px rgba(0,0,0,0.08);
+    --header-height: 60px;
+    --menu-width: 280px;
+}
+
+/* --- GLOBAL STYLES --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Poppins', sans-serif; /* Body font */
+    background-color: var(--bg-alice-blue);
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, .menu-logo, .step-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+h2 { color: var(--primary-blue); margin-bottom: 1rem; }
+
+/* Visibility Padding as per Blueprint */
+#main-container {
+    padding-top: 80px;
+    padding-bottom: 120px;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 95%;
+}
+
+.orange-text { color: var(--accent-orange); font-weight: 900; }
+
+/* --- STICKY METADATA HEADER --- */
+#metadata-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-height);
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow);
+    z-index: 1000;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary-blue);
+}
+
+/* --- RETRACTABLE MENU --- */
+#menu-toggle {
+    position: fixed;
+    top: 12px;
+    left: 15px;
+    z-index: 1002;
+    width: 35px; /* Blueprint spec */
+    height: 35px;
+    background: var(--primary-blue);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 7px;
+}
+
+#menu-toggle .bar { width: 100%; height: 3px; background: white; transition: 0.3s; }
+
+#slide-menu {
+    position: fixed;
+    top: 0;
+    left: calc(-1 * var(--menu-width));
+    width: var(--menu-width);
+    height: 100%;
+    background: var(--white);
+    box-shadow: 4px 0 15px rgba(0,0,0,0.1);
+    z-index: 1001;
+    transition: 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+#slide-menu.active { left: 0; }
+
+.menu-header { margin-top: 50px; padding-bottom: 20px; border-bottom: 2px solid var(--bg-alice-blue); }
+.menu-logo {
+    font-size: 1.4rem; /* Slightly smaller to fit the longer name */
+    letter-spacing: -0.5px;
+    margin-bottom: 10px;
+    text-transform: uppercase; /* Optional: makes REACH ENGLISH look more like a brand */
+}
+#menu-grade-label { color: var(--accent-orange); font-weight: 900; font-size: 0.8rem; }
+
+#nav-list { list-style: none; margin-top: 20px; overflow-y: auto; flex-grow: 1; }
+.nav-step-item { font-weight: 700; color: #666; margin-top: 15px; display: block; }
+.nav-sub-link { 
+    display: block; 
+    padding: 8px 15px; 
+    text-decoration: none; 
+    color: var(--text-dark); 
+    font-size: 0.9rem;
+    border-radius: 5px;
+}
+.nav-sub-link:hover { background: var(--bg-alice-blue); color: var(--primary-blue); }
+.nav-sub-link.active { background: var(--selected-orange); border-left: 4px solid var(--accent-orange); }
+
+.home-link { text-decoration: none; color: var(--primary-blue); font-weight: 700; padding-top: 20px; }
+
+/* --- CARD SYSTEM --- */
+.lesson-page { display: none; animation: fadeIn 0.4s; }
+.lesson-page.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.area-box, .exercise-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow);
+    position: relative;
+}
+
+/* --- STEP 2 & 3 COMPONENTS --- */
+.card-header-audio {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+.learning-card {
+    border-bottom: 1px solid var(--bg-alice-blue);
+    padding: 10px 0;
+}
+.term-en { font-weight: 600; color: var(--primary-blue); }
+.term-pt { font-size: 0.85rem; color: #666; display: block; }
+
+/* --- TOOLTIPS --- */
+.tooltip {
+    color: var(--primary-blue);
+    text-decoration: underline dotted var(--accent-orange);
+    cursor: help;
+    position: relative;
+    font-weight: 600;
+}
+
+/* --- STEP 4: RECORDING --- */
+.shadow-box { display: flex; align-items: center; gap: 15px; margin-top: 10px; }
+.btn-circle {
+    width: 45px; height: 45px; border-radius: 50%; border: none;
+    display: flex; align-items: center; justify-content: center; cursor: pointer;
+    transition: 0.2s; font-size: 1.2rem;
+}
+.record-btn { background: var(--error-red); color: white; }
+.stop-btn { background: #333; color: white; display: none; }
+.play-rec-btn { background: var(--success-green); color: white; display: none; }
+
+/* --- STEP 7: INTERACTIVE DRILLS --- */
+.option {
+    padding: 12px 15px;
+    border: 2px solid var(--bg-alice-blue);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.option:hover { border-color: var(--primary-blue); }
+.option.selected { background-color: var(--selected-orange); border-color: var(--accent-orange); }
+.option.correct { background-color: #d4edda; border-color: var(--success-green); }
+.option.incorrect { background-color: #f8d7da; border-color: var(--error-red); }
+
+/* Matching */
+.matching-container { display: flex; gap: 20px; flex-wrap: wrap; }
+.match-column { flex: 1; min-width: 150px; display: flex; flex-direction: column; gap: 10px; }
+.match-item { 
+    padding: 15px; border: 2px solid var(--gray-light); border-radius: 8px; 
+    text-align: center; cursor: pointer; background: white;
+}
+.match-item.selected { background-color: var(--selected-orange); border-color: var(--accent-orange); }
+.match-item.paired { background-color: var(--paired-blue); border-color: var(--primary-blue); }
+
+/* Word Order */
+.word-bank, .drop-zone {
+    padding: 15px; border: 2px dashed var(--gray-light);
+    border-radius: 8px; min-height: 60px; display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;
+}
+.word-btn {
+    padding: 8px 12px; background: var(--white); border: 1px solid var(--primary-blue);
+    border-radius: 5px; cursor: pointer; font-size: 0.9rem;
+}
+/* --- Vertical Drop Zone (For Dialogue Scramble) --- */
+.drop-zone.vertical {
+    flex-direction: column;
+    align-items: stretch;
+    height: auto; /* Allows it to grow with content */
+}
+
+.drop-zone.vertical .word-btn {
+    text-align: left; /* Aligns text to the left for better reading */
+    width: 100%;      /* Makes the button fill the row */
+    margin-bottom: 5px;
+}
+/* --- STEP 9: FLASHCARDS (3D) --- */
+.flashcards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+.flashcard {
+    height: 150px; perspective: 1000px; cursor: pointer;
+}
+.flashcard-inner {
+    position: relative; width: 100%; height: 100%;
+    text-align: center; transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+.flashcard.flipped .flashcard-inner { transform: rotateY(180deg); }
+.flashcard-front, .flashcard-back {
+    position: absolute; width: 100%; height: 100%;
+    backface-visibility: hidden; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center; padding: 15px;
+    box-shadow: var(--shadow);
+}
+.flashcard-front { background: var(--primary-blue); color: white; font-weight: 700; }
+.flashcard-back { background: var(--white); transform: rotateY(180deg); border: 2px solid var(--primary-blue); }
+
+/* --- STICKY UI CLUSTER --- */
+#ui-cluster {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 1000;
+}
+
+#glossary-btn {
+    width: 60px; height: 60px; border-radius: 50%;
+    background: var(--accent-orange); border: none;
+    box-shadow: 0 4px 15px rgba(255, 140, 66, 0.4);
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem;
+}
+
+.nav-buttons {
+    display: flex; gap: 5px; background: var(--white);
+    padding: 5px; border-radius: 30px; box-shadow: var(--shadow);
+}
+.nav-arrow {
+    width: 50px; height: 50px; border-radius: 50%; border: none;
+    background: var(--primary-blue); color: white; font-size: 1.2rem;
+    cursor: pointer; transition: 0.2s;
+}
+.nav-arrow:disabled { background: var(--gray-light); cursor: not-allowed; }
+
+/* --- GLOSSARY MODAL --- */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5); z-index: 2000;
+    display: none; align-items: center; justify-content: center;
+}
+.modal-content {
+    background: white;
+    width: 90%;
+    max-width: 500px;
+    
+    /* Ensure these three lines exist: */
+    max-height: 75vh;    /* Limits height to 75% of the screen height */
+    overflow-y: auto;    /* Adds the scrollbar when content is too long */
+    padding: 25px;
+    
+    border-radius: 15px;
+    position: relative;
+}
+
+/* Optional: Make the glossary list look cleaner when scrolling */
+#glossary-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.modal-header { display: flex; justify-content: space-between; border-bottom: 2px solid var(--bg-alice-blue); padding-bottom: 10px; }
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 768px) {
+    #main-container { padding-top: 70px; padding-bottom: 150px; }
+    .flashcards-grid { grid-template-columns: 1fr; }
+    #ui-cluster { bottom: 10px; right: 10px; flex-direction: column-reverse; }
+}
+/* Sticky Sub-navigation for Steps 2 and 3 */
+.step-sub-nav {
+    position: sticky;
+    top: 60px; /* Right under the Metadata Header */
+    background: var(--white);
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    z-index: 900;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+    border-radius: 0 0 10px 10px;
+}
+
+.sub-nav-btn {
+    padding: 8px 15px;
+    border: none;
+    background: var(--bg-alice-blue);
+    color: var(--primary-blue);
+    border-radius: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.sub-nav-btn.active {
+    background: var(--accent-orange);
+    color: white;
+}
+
+/* Container for sub-pages */
+.sub-page-content { display: none; }
+.sub-page-content.active { 
+    display: flex; 
+    flex-direction: column; 
+}
+
+/* Tooltip styling */
+.tooltip {
+    color: var(--primary-blue);
+    text-decoration: underline dotted var(--accent-orange);
+    cursor: help;
+    position: relative;
+    font-weight: 600;
+}
+
+/* The Popup Box */
+.tooltip:hover::after {
+    content: attr(data-definition); /* Pulls text from the data-definition attribute */
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    white-space: normal;
+    width: 200px;
+    z-index: 2000;
+    box-shadow: var(--shadow);
+    text-align: center;
+    font-weight: 400;
+}
+
+/* Tooltip Arrow */
+.tooltip:hover::before {
+    content: "";
+    position: absolute;
+    bottom: 115%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 8px solid transparent;
+    border-top-color: #333;
+    z-index: 2000;
+}
+
+/* This ensures Dialogue Scramble and Ranking stack vertically */
+.drop-zone.vertical {
+    flex-direction: column;
+    align-items: stretch;
+}
+
+
+/* Memory Grid for Step 7 */
+.memory-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+    perspective: 1000px;
+}
+
+.memory-card {
+    height: 100px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+    cursor: pointer;
+}
+
+.memory-card.is-flipped {
+    transform: rotateY(180deg);
+}
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    border: 2px solid var(--primary-blue);
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-align: center;
+    padding: 5px;
+}
+
+.card-front {
+    background-color: var(--primary-blue);
+}
+
+.card-back {
+    background-color: white;
+    transform: rotateY(180deg);
+    color: var(--primary-blue);
+}
+
+.memory-card.is-matched .card-face {
+    border-color: var(--success-green);
+    background-color: #eafaf1;
+}
+
+/* Matching Shades - Selection (Orange) */
+.pair-orange-0 { background-color: #fff3e0 !important; border-color: #ffb74d !important; }
+.pair-orange-1 { background-color: #ffe0b2 !important; border-color: #ffa726 !important; }
+.pair-orange-2 { background-color: #ffcc80 !important; border-color: #fb8c00 !important; }
+.pair-orange-3 { background-color: #ffb74d !important; border-color: #f57c00 !important; }
+
+/* Matching Shades - Correct (Blue) */
+.pair-blue-0 { background-color: #e1f5fe !important; border-color: #4fc3f7 !important; }
+.pair-blue-1 { background-color: #b3e5fc !important; border-color: #29b6f6 !important; }
+.pair-blue-2 { background-color: #81d4fa !important; border-color: #03a9f4 !important; }
+.pair-blue-3 { background-color: #4fc3f7 !important; border-color: #039be5 !important; }
+
+/* Matching Shade - Error (Red) */
+.pair-red { background-color: #ffebee !important; border-color: #ef5350 !important; }
+
+
+
+
+
+
+
+/* MODERN CHECK/TRY AGAIN BUTTON */
+.btn {
+    display: block;
+    width: fit-content;
+    margin: 20px 0 0 auto; /* Aligns to the right of the card */
+    background: linear-gradient(135deg, #FF8C42 0%, #FF6B10 100%);
+    color: white;
+    border: none;
+    padding: 12px 35px;
+    border-radius: 50px; /* Pill shape */
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    box-shadow: 0 4px 15px rgba(255, 140, 66, 0.3);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hover Effect: Lifts the button and deepens shadow */
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 140, 66, 0.4);
+    background: linear-gradient(135deg, #FF9E64 0%, #FF8C42 100%);
+}
+
+/* Click Effect: Pushes the button down */
+.btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 10px rgba(255, 140, 66, 0.3);
+}
+
+/* Special state for "Try Again" to make it visually distinct */
+.btn.try-again-state {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, #005f91 100%);
+    box-shadow: 0 4px 15px rgba(0, 119, 182, 0.3);
+}
+
+
+
+
+
+/* MODERN TRUE/FALSE BUTTONS */
+.tf-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.tf-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #eee;
+    transition: 0.3s;
+}
+
+.tf-row:hover {
+    border-color: var(--primary-blue);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+}
+
+.tf-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.tf-btn {
+    padding: 8px 20px;
+    border: 2px solid var(--gray-light);
+    background: white;
+    color: var(--primary-blue);
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+.tf-btn:hover {
+    border-color: var(--accent-orange);
+    color: var(--accent-orange);
+}
+
+/* State: Selected (Vibrant Blue) */
+.tf-btn.selected {
+    background: var(--primary-blue);
+    border-color: var(--primary-blue);
+    color: white;
+}
+
+/* State: Correct (Green) */
+.tf-btn.correct {
+    background: var(--success-green) !important;
+    border-color: var(--success-green) !important;
+    color: white !important;
+}
+
+/* State: Incorrect (Red) */
+.tf-btn.incorrect {
+    background: var(--error-red) !important;
+    border-color: var(--error-red) !important;
+    color: white !important;
+}
+
+
+
+
+
+/* CLICKABLE ERROR STYLES */
+.mistake-text-container {
+    line-height: 2.5; /* Extra space for the hints to appear below */
+    font-family: 'Poppins', sans-serif;
+}
+
+.clickable-word {
+    padding: 2px 6px;
+    margin: 0 2px;
+    border-radius: 4px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    display: inline-block;
+    position: relative;
+}
+
+.clickable-word:hover {
+    background-color: var(--bg-alice-blue);
+    border-bottom-color: var(--primary-blue);
+}
+
+.clickable-word.selected {
+    background-color: var(--selected-orange);
+    border-bottom-color: var(--accent-orange);
+}
+
+.clickable-word.correct {
+    background-color: var(--success-green) !important;
+    color: white !important;
+}
+
+.clickable-word.incorrect {
+    background-color: var(--error-red) !important;
+    color: white !important;
+}
+
+/* The correction text that appears below the word */
+.error-correction-hint {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--success-green);
+    margin-top: -10px;
+    line-height: 1;
+    text-align: center;
+}
+
+/* Box for the full corrected sentence */
+.corrected-sentence-display {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #eafaf1; /* Light green */
+    border-left: 5px solid var(--success-green);
+    border-radius: 8px;
+    display: none; /* Hidden until Check is clicked */
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.corrected-sentence-display label {
+    display: block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: var(--success-green);
+    margin-bottom: 5px;
+}
+
+
+
+
+
+/* CATEGORIZATION FEEDBACK COLORS */
+.draggable.correct {
+    background-color: var(--success-green) !important;
+    border-color: var(--success-green) !important;
+    color: white !important;
+    cursor: default;
+}
+
+.draggable.incorrect {
+    background-color: var(--error-red) !important;
+    border-color: var(--error-red) !important;
+    color: white !important;
+}
+
+/* Optional: add a little animation when they turn colors */
+.draggable {
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+
+
+
+
+
+/* READING SPLIT VIEW LAYOUT */
+.reading-split-container {
+    display: flex;
+    gap: 20px;
+    height: 65vh; /* This sets the height to 65% of the screen */
+    margin-top: 20px;
+    align-items: stretch;
+}
+
+.reading-text-pane {
+    flex: 1.2;
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 12px;
+    overflow-y: auto; /* Independent scrolling */
+    border: 1px solid #dee2e6;
+    line-height: 1.8;
+    min-height: 0; /* Important: allows scrollbar to trigger */
+}
+
+.questions-pane {
+    flex: 1;
+    overflow-y: auto; /* Independent scrolling */
+    padding-right: 10px;
+    min-height: 0; /* Important: allows scrollbar to trigger */
+}
+
+/* Scrollbar Styling for Panes */
+.reading-text-pane::-webkit-scrollbar, 
+.questions-pane::-webkit-scrollbar {
+    width: 6px;
+}
+.reading-text-pane::-webkit-scrollbar-thumb, 
+.questions-pane::-webkit-scrollbar-thumb {
+    background: var(--gray-light);
+    border-radius: 10px;
+}
+
+/* MOBILE RESPONSIVE: Double Scroll Layout */
+@media (max-width: 768px) {
+    .reading-split-container {
+        flex-direction: column;
+        /* Force the container to take up most of the screen to enable internal scrolls */
+        height: 80vh; 
+        gap: 10px;
+    }
+    
+    .reading-text-pane {
+        /* Fix the text box to the top half */
+        flex: 0 0 40%; 
+        max-height: 40%;
+        margin-bottom: 0;
+        padding: 15px;
+        font-size: 0.9rem;
+        border: 2px solid var(--primary-blue); /* Visual distinction for the box */
+    }
+    
+    .questions-pane {
+        /* Fix the questions box to the bottom half */
+        flex: 0 0 58%;
+        max-height: 58%;
+        overflow-y: auto;
+        padding-top: 10px;
+        padding-bottom: 20px;
+    }
+
+    /* Make the Audio Header a bit more compact on mobile to save space */
+    .step-6 .audio-controller {
+        width: 100%;
+        position: static;
+        margin-bottom: 10px;
+    }
+}
+
+
+
+
+
+
+
+
+
+/* COMPACT MODERN AUDIO PLAYER */
+.audio-controller {
+    position: absolute;
+    top: -42px;
+    right: 0;
+    width: 33%; /* Restricted to 1/3 width */
+    height: 32px; /* Thinner height */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--white);
+    padding: 0 10px;
+    border-radius: 50px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border: 1px solid rgba(0, 119, 182, 0.1);
+    z-index: 100;
+}
+
+.play-pause-btn {
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    width: 24px; /* Smaller button */
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem; /* Smaller icon */
+    flex-shrink: 0;
+}
+
+.audio-scrubber {
+    height: 3px; /* Thinner line */
+}
+
+.audio-scrubber::-webkit-slider-thumb {
+    width: 10px; /* Smaller handle */
+    height: 10px;
+}
+
+.audio-time {
+    font-size: 0.55rem; /* Tiny font to fit the slim bar */
+    min-width: 55px;
+    letter-spacing: 0;
+}
+
+/* Mobile Fix */
+@media (max-width: 768px) {
+    .audio-controller { width: 50%; top: -36px; }
+}
+
+
+/* Hide the old buttons globally, but NOT in Step 4 */
+.step-page:not(.step-4) .card-header-audio {
+    display: none !important;
+}

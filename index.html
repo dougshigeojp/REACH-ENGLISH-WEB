@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REACH English| Digital Lesson</title>
+    
+    <!-- Fonts: Montserrat for headers, Poppins for body -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Link to external Stylesheet (Block 2) -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- STICKY METADATA HEADER -->
+    <header id="metadata-header">
+        <div class="header-content">
+            <span id="display-grade">GRADE</span> • 
+            <span id="display-bimester">BIMESTER</span> • 
+            <span id="display-chapter">CHAPTER</span>
+        </div>
+    </header>
+
+    <!-- RETRACTABLE MENU -->
+    <button id="menu-toggle" aria-label="Toggle Menu">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </button>
+
+    <nav id="slide-menu">
+        <div class="menu-header">
+            <div class="menu-logo"><span class="orange-text">REACH</span>English</div>
+            <div id="menu-grade-label">GRADE LEVEL</div>
+            <div id="menu-chapter-label">Chapter Title</div>
+        </div>
+        <ul id="nav-list">
+            <!-- Dynamic menu items will be injected here by engine.js -->
+        </ul>
+        <a href="#" class="home-link">🏠 HOME</a>
+    </nav>
+
+    <!-- MAIN CONTENT AREA -->
+    <main id="main-container">
+        <!-- Lessons pages (Step 0 to Step 9) will be injected here dynamically -->
+        <div id="lesson-content">
+            <!-- Loading State -->
+            <div class="loader">Loading Lesson...</div>
+        </div>
+    </main>
+
+    <!-- STICKY UI CLUSTER (Bottom-Right) -->
+    <div id="ui-cluster">
+        <button id="glossary-btn" title="Open Glossary">
+            <span class="glossary-icon">📖</span>
+        </button>
+        <div class="nav-buttons">
+            <button id="prev-btn" class="nav-arrow" disabled aria-label="Previous Page">←</button>
+            <button id="next-btn" class="nav-arrow" aria-label="Next Page">→</button>
+        </div>
+    </div>
+
+    <!-- GLOSSARY MODAL -->
+    <div id="glossary-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Unit Glossary</h3>
+                <button id="close-glossary">&times;</button>
+            </div>
+            <div id="glossary-list">
+                <!-- Terms will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- AUDIO ENGINE (Hidden) -->
+    <audio id="global-audio-player"></audio>
+
+    <!-- CORE SCRIPTS -->
+    <!-- Block 3: The Mechanical Logic -->
+    <script src="engine.js"></script>
+    
+   <!-- Block 4: The Content Data (With Error Reporting) -->
+    <script>
+        // 1. Check if URL has ?lesson=sample
+        const urlParams = new URLSearchParams(window.location.search);
+        const lessonId = urlParams.get('lesson');
+
+        const contentDiv = document.getElementById('lesson-content');
+
+        if (!lessonId) {
+            contentDiv.innerHTML = `
+                <div style="padding: 20px; text-align: center; color: #d63384; font-weight: bold;">
+                    ⚠️ SETUP REQUIRED<br><br>
+                    You are missing the lesson ID in the URL.<br>
+                    Add <code>?lesson=sample</code> to the end of the address bar above.<br>
+                    <br>Example: <i>.../index.html?lesson=sample</i>
+                </div>`;
+        } else {
+            // 2. Try to load the file
+            console.log("Attempting to load: data/" + lessonId + ".js");
+            
+            const dataScript = document.createElement('script');
+            dataScript.src = `data/${lessonId}.js`;
+            
+            // IF SUCCESSFUL
+            dataScript.onload = () => {
+                console.log("File loaded successfully. Initializing...");
+                if (typeof window.initLesson === 'function') {
+                    // Engine is ready, data is ready
+                } else {
+                    contentDiv.innerHTML = `<h3 style="color:red; text-align:center;">Error: Engine.js not loaded correctly.</h3>`;
+                }
+            };
+
+            // IF FAILED (The most likely cause)
+            dataScript.onerror = () => {
+                contentDiv.innerHTML = `
+                    <div style="padding: 20px; text-align: center; color: red;">
+                        <h3>❌ ERROR: File Not Found</h3>
+                        <p>The browser cannot find the file: <b>data/${lessonId}.js</b></p>
+                        <hr>
+                        <p style="text-align:left; max-width:500px; margin:0 auto;">
+                            <b>Common Solutions:</b><br>
+                            1. Did you create a folder named <b>data</b>?<br>
+                            2. Is <b>sample.js</b> inside that folder?<br>
+                            3. Does the filename match exactly? (Check for sample.js.txt)<br>
+                            4. Is your URL correct? (...index.html?lesson=sample)
+                        </p>
+                    </div>`;
+            };
+
+            document.head.appendChild(dataScript);
+        }
+
+        // Global Error Handler for Syntax Errors in sample.js
+        window.onerror = function(message, source, lineno, colno, error) {
+            if(message.includes("is not defined") || message.includes("SyntaxError")) {
+                contentDiv.innerHTML = `
+                    <div style="padding: 20px; text-align: center; color: red;">
+                        <h3>❌ JAVASCRIPT ERROR</h3>
+                        <p>There is a typo in your <b>sample.js</b> file.</p>
+                        <p style="background:#eee; padding:10px; border-radius:5px;">${message}</p>
+                        <p>Check line <b>${lineno}</b> in sample.js</p>
+                    </div>`;
+            }
+        };
+    </script>
+</body>
+</html>
