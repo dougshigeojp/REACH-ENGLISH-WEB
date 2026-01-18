@@ -318,6 +318,22 @@ function attachExerciseListeners() {
         this.classList.toggle('open');
         document.getElementById('slide-menu').classList.toggle('active');
     };
+// --- NEW CODE: Close menu when clicking outside ---
+    document.addEventListener('click', function(e) {
+        const menu = document.getElementById('slide-menu');
+        const toggle = document.getElementById('menu-toggle');
+
+        // Check if menu is currently open
+        if (menu.classList.contains('active')) {
+            // If the click is NOT inside the menu AND NOT on the button
+            if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+                menu.classList.remove('active');
+                toggle.classList.remove('open');
+            }
+        }
+    });
+
+
 
     // B. SELECTION LOGIC (Standard, TF, Clickable Word, Memory)
     document.addEventListener('click', e => {
