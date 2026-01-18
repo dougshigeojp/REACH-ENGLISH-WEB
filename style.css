@@ -101,7 +101,7 @@ h2 { color: var(--primary-blue); margin-bottom: 1rem; }
 
 #slide-menu.active { left: 0; }
 
-.menu-header { margin-top: 50px; padding-bottom: 20px; border-bottom: 2px solid var(--bg-alice-blue); }
+.menu-header { margin-top: 10px; padding-bottom: 20px; border-bottom: 2px solid var(--bg-alice-blue); }
 .menu-logo {
     font-size: 1.4rem; /* Slightly smaller to fit the longer name */
     letter-spacing: -0.5px;
@@ -123,8 +123,15 @@ h2 { color: var(--primary-blue); margin-bottom: 1rem; }
 .nav-sub-link:hover { background: var(--bg-alice-blue); color: var(--primary-blue); }
 .nav-sub-link.active { background: var(--selected-orange); border-left: 4px solid var(--accent-orange); }
 
-.home-link { text-decoration: none; color: var(--primary-blue); font-weight: 700; padding-top: 20px; }
-
+.home-link { 
+    display: block;              /* Ensures it sits on its own line */
+    margin-top: 60px;            /* Pushes it down so it doesn't overlap the X/Menu button */
+    margin-bottom: 10px;         /* Adds a little space before the Logo */
+    text-decoration: none; 
+    color: var(--primary-blue); 
+    font-weight: 700; 
+    font-size: 1.1rem;           /* Made slightly larger for visibility */
+}
 /* --- CARD SYSTEM --- */
 .lesson-page { display: none; animation: fadeIn 0.4s; }
 .lesson-page.active { display: block; }
