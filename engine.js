@@ -276,8 +276,7 @@ function attachExerciseListeners() {
         if (!option) return;
         const parent = option.parentElement;
 
-        if (option.classList.contains('memory-card')) { handleMemoryClick(option); return; }
-        if (option.classList.contains('clickable-word')) { option.classList.toggle('selected'); return; }
+if (option.classList.contains('memory-card')) { window.handleMemoryClick(option); return; }        if (option.classList.contains('clickable-word')) { option.classList.toggle('selected'); return; }
 
         if (parent.classList.contains('multiple')) {
             option.classList.toggle('selected');
@@ -905,7 +904,44 @@ window.switchSubPage = function(btn, subPageId) {
     btn.classList.add('active');
     document.getElementById(subPageId).classList.add('active');
 }
+// --- MEMORY GAME LOGIC ---
+// Define these variables globally so they remember the state
+let flippedCards = [];
+let isCheckingMemory = false;
 
+window.handleMemoryClick = function(card) {
+    // 1. Safety Checks
+    if (isCheckingMemory) return; // Wait for previous cards to flip back
+    if (card.classList.contains('is-flipped')) return; // Cannot click opened card
+    if (card.classList.contains('is-matched')) return; // Cannot click solved card
+    
+    // 2. Flip the card
+    card.classList.add('is-flipped');
+    flippedCards.push(card);
+
+    // 3. Check for Match (when 2 cards are open)
+    if (flippedCards.length === 2) {
+        isCheckingMemory = true;
+        const [card1, card2] = flippedCards;
+        
+        // Compare the "data-match" ID we set in the HTML
+        if (card1.dataset.match === card2.dataset.match) {
+            // MATCH!
+            card1.classList.add('is-matched');
+            card2.classList.add('is-matched');
+            flippedCards = [];
+            isCheckingMemory = false;
+        } else {
+            // NO MATCH - Wait 1 second then flip back
+            setTimeout(() => {
+                card1.classList.remove('is-flipped');
+                card2.classList.remove('is-flipped');
+                flippedCards = [];
+                isCheckingMemory = false;
+            }, 1000);
+        }
+    }
+};
 window.handleAudioPlayer = function(btn) {
     const player = document.getElementById('global-audio-player');
     const container = btn.closest('.audio-controller');
