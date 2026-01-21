@@ -691,80 +691,22 @@ function resetExercise(card) {
     }
 }
 
-// --- NEW GLOSSARY LOGIC ---
-let glossaryGroups = {};
-let glossaryTopics = [];
-
 function setupGlossary() {
-    // 1. Group items by Topic
-    glossaryGroups = {};
+    const list = document.getElementById('glossary-list');
     lessonData.glossary.forEach(item => {
-        // Default to "General" if no topic is provided
-        const topic = item.topic || "General Words"; 
-        if (!glossaryGroups[topic]) glossaryGroups[topic] = [];
-        glossaryGroups[topic].push(item);
+        const div = document.createElement('div');
+        div.className = 'glossary-item';
+        div.innerHTML = `<strong>${item.term}</strong>: ${item.definition}`;
+        list.appendChild(div);
     });
-    
-    glossaryTopics = Object.keys(glossaryGroups);
 
-    // 2. Render Pagination Buttons
-    const pagContainer = document.getElementById('glossary-pagination');
-    if (pagContainer) {
-        pagContainer.innerHTML = '';
-        glossaryTopics.forEach((topic, index) => {
-            const btn = document.createElement('button');
-            btn.textContent = index + 1; // Page numbers 1, 2, 3...
-            btn.className = 'glossary-page-btn';
-            btn.title = topic; // Hover to see topic name
-            btn.onclick = () => switchGlossaryPage(index);
-            pagContainer.appendChild(btn);
-        });
-    }
-
-    // 3. Event Listeners for Modal
-    document.getElementById('glossary-btn').onclick = () => {
-        document.getElementById('glossary-modal').style.display = 'flex';
-        // Open first page by default
-        if (glossaryTopics.length > 0) switchGlossaryPage(0);
-    };
-    
+    document.getElementById('glossary-btn').onclick = () => document.getElementById('glossary-modal').style.display = 'flex';
     document.getElementById('close-glossary').onclick = () => document.getElementById('glossary-modal').style.display = 'none';
     window.onclick = function(event) {
         const modal = document.getElementById('glossary-modal');
         if (event.target === modal) modal.style.display = 'none';
     };
 }
-
-window.switchGlossaryPage = function(index) {
-    const topic = glossaryTopics[index];
-    const items = glossaryGroups[topic];
-    const list = document.getElementById('glossary-list');
-    
-    // Update Topic Label
-    document.getElementById('glossary-topic-label').textContent = topic;
-
-    // Update Active Button
-    document.querySelectorAll('.glossary-page-btn').forEach((btn, i) => {
-        if(i === index) btn.classList.add('active');
-        else btn.classList.remove('active');
-    });
-
-    // Render Items
-    list.innerHTML = '';
-    items.forEach(item => {
-        const div = document.createElement('div');
-        div.className = 'glossary-item';
-        div.innerHTML = `
-            <div class="glossary-term">${item.term}</div>
-            <div class="glossary-def">${item.definition}</div>
-            <div class="glossary-trans">${item.translation}</div>
-        `;
-        list.appendChild(div);
-    });
-    
-    // Scroll to top of list
-    list.scrollTop = 0;
-};
 
 function shuffleFlashcards() {
     const grid = document.querySelector('.flashcards-grid');
@@ -791,8 +733,7 @@ function buildStepHTML(index, step) {
                         onclick="playAudio('${safePath}')">🔊 Listen</button>
                     </div>`;
         }
-        // Audio Player with positioning fix (Relative to container)
-        return `<div class="audio-controller" data-src="${audioPath.trim()}" style="position: relative; width: 100%; margin-bottom: 5px; top: 0; right: auto;">
+        return `<div class="audio-controller" data-src="${audioPath.trim()}" style="position: relative; width: 100%; margin-bottom: 5px;">
                     <button class="play-pause-btn" onclick="handleAudioPlayer(this)">▶</button>
                     <div class="audio-progress-container">
                         <input type="range" class="audio-scrubber" value="0" min="0" max="100" step="1" oninput="scrubAudio(this)">
@@ -808,12 +749,8 @@ function buildStepHTML(index, step) {
             return `<span class="tooltip" data-definition="${def}">${word}</span>`;
         });
     };
-
     let html = `<h2>Step ${index}: ${step.title}</h2>`;
 
-    // ======================================================
-    // STEP 0: COVER
-    // ======================================================
     if (index === 0) {
         html += `<p style="color:var(--accent-orange); font-weight:900; margin-top:-15px; margin-bottom:25px; font-size:1.4rem;">CHAPTER ${lessonData.chapter}: ${lessonData.chapterTitle.toUpperCase()}</p>`;
         html += `
@@ -829,9 +766,6 @@ function buildStepHTML(index, step) {
             </div>`;
     }
 
-    // ======================================================
-    // STEP 1: CONTEXT
-    // ======================================================
     if (index === 1) {
         html += `<div class="area-box" style="position:relative">
                 ${createAudioPlayer(step.contextAudio)}
@@ -840,158 +774,65 @@ function buildStepHTML(index, step) {
         </div>`;
     }
 
-    // ======================================================
-    // STEP 2: VOCABULARY (With Tabs)
-    // ======================================================
-    if (index === 2) {
-        // 1. Sub-Navigation (2A, 2B, 2C)
-        html += `<div class="step-sub-nav">${step.subPages.map((sub, i) => 
-            `<button class="sub-nav-btn ${i === 0 ? 'active' : ''}" onclick="switchSubPage(this, '${sub.id}')">${sub.label}</button>`
-        ).join('')}</div>`;
+    if (index === 2 || index === 3) {
+        html += `<div class="step-sub-nav">${step.subPages.map((sub, i) => `<button class="sub-nav-btn ${i === 0 ? 'active' : ''}" onclick="switchSubPage(this, '${sub.id}')">${sub.label}</button>`).join('')}</div>`;
 
-        // Helper: Internal Tabs Builder
-        const buildInternalTabs = (items, prefix, contentCallback) => {
-            const nav = items.map((item, i) => 
-                `<button class="internal-btn ${i === 0 ? 'active' : ''}" onclick="switchInternalTab('${prefix}', ${i})">${item.title}</button>`
-            ).join('');
-            
-            const content = items.map((item, i) => {
-                let audioHTML = '';
-                if (item.audio) {
-                    const tempPlayer = createAudioPlayer(item.audio);
-                    audioHTML = tempPlayer.replace('class="audio-controller"', 'class="audio-controller" style="position:relative; top:0; right:auto; margin: 0 auto 15px auto; width:100%;"');
-                }
-
-                return `
-                <div id="${prefix}-content-${i}" class="internal-content-group ${i === 0 ? 'active' : ''}">
-                    <div class="area-box" style="position:relative">
-                        <h4 style="color:var(--primary-blue); margin-bottom:15px; border-bottom:1px solid #eee; padding-bottom:5px;">${item.title}</h4>
-                        ${audioHTML}
-                        ${contentCallback(item)}
-                    </div>
-                </div>`;
-            }).join('');
-
-            return `<div class="internal-nav-container"><div id="${prefix}-nav" class="internal-nav">${nav}</div></div>${content}`;
-        };
-
-        // --- 2A: New Words (Tabbed) ---
-        let html2a = buildInternalTabs(step.areas, 's2a', (area) => 
-            area.items.map(item => `<div class="learning-card"><span class="term-en">${item.term}</span><span class="term-pt">${item.trans}</span></div>`).join('')
-        );
-
-        // --- 2B: Examples (Tabbed) ---
-        let html2b = '';
-        if (step.exampleGroups) {
-            html2b = buildInternalTabs(step.exampleGroups, 's2b', (group) => 
-                group.items.map(ex => `
-                    <div class="exercise-card" style="box-shadow:none; border-bottom:1px solid #eee; margin-bottom:0; padding: 10px 0;">
-                        <p><b class="term-en">${ex.term}:</b> ${ex.sent}</p>
-                        <p class="term-pt"><i>${ex.trans}</i></p>
-                    </div>`).join('')
-            );
-        } else if (step.examples) {
-            // Fallback for old data
-            html2b = `<div class="area-box">${step.audio2b ? createAudioPlayer(step.audio2b) : ''}${step.examples.map(ex => `<p><b>${ex.term}:</b> ${ex.sent}</p>`).join('')}</div>`;
-        }
-
-        // --- 2C: Practice ---
-        let html2c = step.drills.map(drill => `
-            <div class="exercise-card" data-type="mcq">
-                <p><b>${drill.q}</b></p>
-                <div class="options-container">${drill.options.map(opt => `<div class="option" data-correct="${opt.c}">${opt.t}</div>`).join('')}</div>
-                <button class="btn check-btn">Check</button>
-            </div>`).join('');
-
-        html += `<div id="step2a" class="sub-page-content active">${html2a}</div>`;
-        html += `<div id="step2b" class="sub-page-content">${html2b}</div>`;
-        html += `<div id="step2c" class="sub-page-content">${html2c}</div>`;
-    }
-
-    // ======================================================
-    // STEP 3: GRAMMAR (With Tabs)
-    // ======================================================
-    if (index === 3) {
-        // 1. Sub-Navigation (3A, 3B, 3C)
-        html += `<div class="step-sub-nav">${step.subPages.map((sub, i) => 
-            `<button class="sub-nav-btn ${i === 0 ? 'active' : ''}" onclick="switchSubPage(this, '${sub.id}')">${sub.label}</button>`
-        ).join('')}</div>`;
-
-        // Helper: Internal Tabs Builder
-        const buildInternalTabs = (items, prefix, contentCallback) => {
-            const nav = items.map((item, i) => 
-                `<button class="internal-btn ${i === 0 ? 'active' : ''}" onclick="switchInternalTab('${prefix}', ${i})">${item.title}</button>`
-            ).join('');
-            
-            const content = items.map((item, i) => {
-                let audioHTML = '';
-                if (item.audio) {
-                    const tempPlayer = createAudioPlayer(item.audio);
-                    audioHTML = tempPlayer.replace('class="audio-controller"', 'class="audio-controller" style="position:relative; top:0; right:auto; margin: 0 auto 15px auto; width:100%;"');
-                }
-
-                return `
-                <div id="${prefix}-content-${i}" class="internal-content-group ${i === 0 ? 'active' : ''}">
-                    <div class="area-box" style="position:relative">
-                        <h4 style="color:var(--primary-blue); margin-bottom:15px; border-bottom:1px solid #eee; padding-bottom:5px;">${item.title}</h4>
-                        ${audioHTML}
-                        ${contentCallback(item)}
-                    </div>
-                </div>`;
-            }).join('');
-
-            return `<div class="internal-nav-container"><div id="${prefix}-nav" class="internal-nav">${nav}</div></div>${content}`;
-        };
-
-        // --- 3A: Patterns (Tabbed) ---
-        let html3a = '';
-        if (step.patterns) {
-            html3a = buildInternalTabs(step.patterns, 's3a', (p) => `
-                <p>${p.explanation}</p>
-                <div class="example-box" style="margin-top:15px;">
-                    ${p.samples.map(s => `<p>• ${s.en} <br><small>${s.pt}</small></p>`).join('')}
-                </div>
-            `);
-        }
-
-        // --- 3B: Dialogues (Grouped in Boxes) ---
-        let html3b = '';
-        if (step.dialogueGroups) {
-            html3b = step.dialogueGroups.map(group => {
-                let audioHTML = createAudioPlayer(group.audio);
-                audioHTML = audioHTML.replace('class="audio-controller"', 'class="audio-controller" style="position:relative; top:0; right:auto; margin: 0 auto 15px auto; width:100%;"');
-                
-                return `
+        if (index === 2) {
+            let html2a = step.areas.map(area => `
                 <div class="area-box" style="position:relative">
-                    <h4 style="margin-bottom:15px; color:var(--primary-blue); border-bottom:1px solid #eee; padding-bottom:5px;">${group.title}</h4>
-                    ${audioHTML}
-                    ${group.lines.map(d => `<p><b>${d.speaker}:</b> ${d.text}</p><p class="term-pt"><i>${d.pt}</i></p><br>`).join('')}
+                    ${createAudioPlayer(area.audio)}
+                    <h3>${area.title}</h3>
+                    ${area.items.map(item => `<div class="learning-card"><span class="term-en">${item.term}</span><span class="term-pt">${item.trans}</span></div>`).join('')}
+                </div>`).join('');
+            
+            let html2b = `
+                <div class="area-box" style="position:relative">
+                    ${step.audio2b ? createAudioPlayer(step.audio2b) : ''}
+                    ${step.examples.map(ex => `
+                        <div class="exercise-card" style="box-shadow:none; border-bottom:1px solid #eee; margin-bottom:0; padding: 10px 0;">
+                            <p><b class="term-en">${ex.term}:</b> ${ex.sent}</p>
+                            <p class="term-pt"><i>${ex.trans}</i></p>
+                        </div>`).join('')}
                 </div>`;
-            }).join('');
-        } else if (step.dialogueExamples) {
-             // Fallback
-             html3b = `<div class="area-box" style="position:relative">
-                        ${step.audio3b ? createAudioPlayer(step.audio3b) : ''}
-                        ${step.dialogueExamples.map(d => `<p><b>${d.speaker}:</b> ${d.text}</p><p class="term-pt"><i>${d.pt}</i></p><br>`).join('')}
-                    </div>`;
+
+            let html2c = step.drills.map(drill => `
+                <div class="exercise-card" data-type="mcq">
+                    <p><b>${drill.q}</b></p>
+                    <div class="options-container">${drill.options.map(opt => `<div class="option" data-correct="${opt.c}">${opt.t}</div>`).join('')}</div>
+                    <button class="btn check-btn">Check</button>
+                </div>`).join('');
+
+            html += `<div id="step2a" class="sub-page-content active">${html2a}</div>`;
+            html += `<div id="step2b" class="sub-page-content">${html2b}</div>`;
+            html += `<div id="step2c" class="sub-page-content">${html2c}</div>`;
         }
 
-        // --- 3C: Practice ---
-        let html3c = step.grammarDrills.map(drill => `
-            <div class="exercise-card" data-type="mcq">
-                <p><b>${drill.q}</b></p>
-                <div class="options-container">${drill.options.map(opt => `<div class="option" data-correct="${opt.c}">${opt.t}</div>`).join('')}</div>
-                <button class="btn check-btn">Check</button>
-            </div>`).join('');
+        if (index === 3) {
+            let html3a = step.patterns.map(p => `
+                <div class="area-box">
+                    <h3>${p.title}</h3><p>${p.explanation}</p>
+                    <div class="example-box">${p.samples.map(s => `<p>• ${s.en} <i>(${s.pt})</i></p>`).join('')}</div>
+                </div>`).join('');
 
-        html += `<div id="step3a" class="sub-page-content active">${html3a}</div>`;
-        html += `<div id="step3b" class="sub-page-content">${html3b}</div>`;
-        html += `<div id="step3c" class="sub-page-content">${html3c}</div>`;
+            let html3b = `
+                <div class="area-box" style="position:relative">
+                    ${step.audio3b ? createAudioPlayer(step.audio3b) : ''}
+                    ${step.dialogueExamples.map(d => `<p><b>${d.speaker}:</b> ${d.text}</p><p class="term-pt"><i>${d.pt}</i></p><br>`).join('')}
+                </div>`;
+
+            let html3c = step.grammarDrills.map(drill => `
+                <div class="exercise-card" data-type="mcq">
+                    <p><b>${drill.q}</b></p>
+                    <div class="options-container">${drill.options.map(opt => `<div class="option" data-correct="${opt.c}">${opt.t}</div>`).join('')}</div>
+                    <button class="btn check-btn">Check</button>
+                </div>`).join('');
+
+            html += `<div id="step3a" class="sub-page-content active">${html3a}</div>`;
+            html += `<div id="step3b" class="sub-page-content">${html3b}</div>`;
+            html += `<div id="step3c" class="sub-page-content">${html3c}</div>`;
+        }
     }
     
-    // ======================================================
-    // STEP 4: SHADOWING
-    // ======================================================
     if (index === 4) { 
         html += `<p class="instruction">Listen, record, and compare your pronunciation. (Ouça, grave e compare sua pronúncia).</p>`;
         step.sentences.forEach((s, i) => {
@@ -1006,9 +847,6 @@ function buildStepHTML(index, step) {
         });
     }
 
-    // ======================================================
-    // STEP 5: LISTENING
-    // ======================================================
     if (index === 5) {
         step.drills.forEach(drill => {
             html += `<div class="exercise-card" data-type="${drill.type}">
@@ -1030,9 +868,6 @@ function buildStepHTML(index, step) {
         });
     }
 
-    // ======================================================
-    // STEP 6: READING
-    // ======================================================
     if (index === 6) {
         html += `<div class="step-sub-nav">
             ${step.texts.map((_, i) => `
@@ -1047,16 +882,16 @@ function buildStepHTML(index, step) {
 
             html += `
                 <div id="${subPageId}" class="sub-page-content ${textIndex === 0 ? 'active' : ''}">
-                    <div class="area-box" style="position:relative; margin-top: 50px; margin-bottom: 10px; padding: 15px;">
-                        ${createAudioPlayer(autoAudioPath)}
-                        <h3 style="color:var(--primary-blue); font-size: 1.1rem; margin-top: 10px;">${text.title}</h3>
-                    </div>
+    <div class="area-box" style="position:relative; margin-top: 50px; margin-bottom: 10px; padding: 15px;">
+         ${createAudioPlayer(autoAudioPath)}
+         <h3 style="color:var(--primary-blue); font-size: 1.1rem; margin-top: 10px;">${text.title}</h3>
+    </div>
 
-                    <div class="reading-split-container">
-                        <div class="reading-text-pane">
-                            <p>${text.body}</p>
-                        </div>
-                        <div class="questions-pane">
+    <div class="reading-split-container">
+        <div class="reading-text-pane">
+            <p>${text.body}</p>
+        </div>
+        <div class="questions-pane">
                             ${text.questions.map(q => `
                                 <div class="exercise-card" data-type="mcq" style="box-shadow:none; border:1px solid #eee; margin-top:0; margin-bottom:20px;">
                                     <p><b>${q.q}</b></p>
@@ -1071,9 +906,6 @@ function buildStepHTML(index, step) {
         });
     }
 
-    // ======================================================
-    // STEP 7: DRILLS
-    // ======================================================
     if (index === 7) {
         step.drills.forEach(drill => {
             html += `<div class="exercise-card" data-type="${drill.type}" style="position:relative">
@@ -1161,9 +993,6 @@ function buildStepHTML(index, step) {
         });
     }
 
-    // ======================================================
-    // STEP 8: WRITING
-    // ======================================================
     if (index === 8) {
         html += `<div class="area-box">
             <p><b>${step.instruction}</b></p>
@@ -1175,9 +1004,6 @@ function buildStepHTML(index, step) {
         </div>`;
     }
 
-    // ======================================================
-    // STEP 9: FLASHCARDS
-    // ======================================================
     if (index === 9) { 
         html += `<div class="flashcards-grid">`;
         step.items.forEach(item => {
@@ -1216,40 +1042,6 @@ window.switchSubPage = function(btn, subPageId) {
     btn.classList.add('active');
     document.getElementById(subPageId).classList.add('active');
 }
-
-
-
-
-
-window.switchInternalTab = function(prefix, index) {
-    // 1. Update Buttons
-    const navContainer = document.getElementById(`${prefix}-nav`);
-    const buttons = navContainer.querySelectorAll('.internal-btn');
-    buttons.forEach((btn, i) => {
-        if (i === index) btn.classList.add('active');
-        else btn.classList.remove('active');
-    });
-
-    // 2. Update Content visibility
-    // We select all elements that start with the prefix ID
-    const allContent = document.querySelectorAll(`[id^="${prefix}-content-"]`);
-    allContent.forEach(div => div.classList.remove('active'));
-    
-    const activeDiv = document.getElementById(`${prefix}-content-${index}`);
-    if (activeDiv) {
-        activeDiv.classList.add('active');
-        // Stop any audio playing in the previous tab
-        const prevAudio = document.querySelector('audio');
-        if(prevAudio) prevAudio.pause();
-    }
-};
-
-
-
-
-
-
-
 // --- MEMORY GAME LOGIC ---
 // Define these variables globally so they remember the state
 let flippedCards = [];
