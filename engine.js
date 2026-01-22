@@ -993,7 +993,7 @@ function buildStepHTML(index, step) {
     // STEP 4: SHADOWING
     // ======================================================
     if (index === 4) { 
-        html += `<p class="instruction">Listen, record, and compare your pronunciation. (Ouça, grave e compare sua pronúncia).</p>`;
+        html += `<p class="instruction">Listen, record, and compare your pronunciation.<br><small style='color:#0077b6'>(Ouça, grave e compare sua pronúncia.)</small></p>`;
         step.sentences.forEach((s, i) => {
             html += `
                 <div class="area-box shadow-box">
@@ -1333,3 +1333,28 @@ window.scrubAudio = function(rangeInput) {
         player.currentTime = seekTo;
     }
 }
+
+
+
+
+
+// ========================================================
+// BACK TO TOP LOGIC
+// ========================================================
+document.addEventListener('DOMContentLoaded', () => {
+    const topBtn = document.getElementById('back-to-top-btn');
+    
+    // 1. Scroll Functionality
+    topBtn.onclick = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    // 2. Visibility Logic (Show only after scrolling 300px)
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            topBtn.classList.add('visible');
+        } else {
+            topBtn.classList.remove('visible');
+        }
+    });
+});

@@ -967,27 +967,27 @@ audio2b: "TTS: I agree with your opinion. We must consider all options. Let's di
             title: "Can you say that again?",
             sentences: [
                 { 
-                    text: "I taught myself to speak English.", 
+                    text: "I taught myself to speak English.<br><small style='color:#0077b6'>(Eu ensinei a mim mesmo a falar inglês.)</small>", 
                     audio: "TTS: I taught myself to speak English.", 
                     arrow: "↘" 
                 },
                 { 
-                    text: "How important is learning a second language?", 
+                    text: "How important is learning a second language?<br><small style='color:#0077b6'>(Quão importante é aprender uma segunda língua?)</small>", 
                     audio: "TTS: How important is learning a second language?", 
                     arrow: "↗" 
                 },
                 { 
-                    text: "Whoever works hard can succeed.", 
+                    text: "Whoever works hard can succeed.<br><small style='color:#0077b6'>(Quem quer que trabalhe duro pode ter sucesso.)</small>", 
                     audio: "TTS: Whoever works hard can succeed.", 
                     arrow: "↘" 
                 },
                 { 
-                    text: "English is useful; therefore, we study it.", 
+                    text: "English is useful; therefore, we study it.<br><small style='color:#0077b6'>(Inglês é útil; portanto, nós o estudamos.)</small>", 
                     audio: "TTS: English is useful; therefore, we study it.", 
                     arrow: "↘" 
                 },
                 { 
-                    text: "We stayed inside due to the storm.", 
+                    text: "We stayed inside due to the storm.<br><small style='color:#0077b6'>(Nós ficamos dentro de casa devido à tempestade.)</small>", 
                     audio: "TTS: We stayed inside due to the storm.", 
                     arrow: "↘" 
                 }
@@ -1247,11 +1247,11 @@ audio2b: "TTS: I agree with your opinion. We must consider all options. Let's di
         // ======================================================
         {
             title: "Tell your story",
-            instruction: "Language Island - Topic: The Importance of English. Write a short text (3-4 sentences) about why English is important to you.",
-            example: "English is very important to me because I want to travel. How far can I go with English? Everywhere! I want to teach myself to speak fluently so I can work in a big company.",
+            instruction: "Language Island - Topic: The Importance of English. Write a short text (3-4 sentences) about why English is important to you.<br><small><span style='color:#0077b6'>(Ilha de Idiomas - Tópico: A Importância do Inglês. Escreva um pequeno texto (3-4 frases) sobre por que o inglês é importante para você.)</small></span>",
+            example: "English is very important to me because I want to travel. How far can I go with English? Everywhere! I want to teach myself to speak fluently so I can work in a big company.<br><small><span style='color:#0077b6'>(O inglês é muito importante para mim porque eu quero viajar. Quão longe posso ir com o inglês? A todo lugar! Quero aprender a falar fluentemente sozinho para poder trabalhar em uma grande empresa.)</small></span>",
             prompts: [
-                "Use at least one linking word (because, therefore, so, however).",
-                "Use one \"how + adjective\" phrase or a reflexive pronoun."
+                "Use at least one linking word (because, therefore, so, however). <br><span style='color:#0077b6'>(Use pelo menos uma palavra de ligação.)</span>",
+                "Use one \"how + adjective\" phrase or a reflexive pronoun. <br><span style='color:#0077b6'>(Use uma frase \"how + adjetivo\" ou um pronome reflexivo.)</span>"
             ]
         },
 

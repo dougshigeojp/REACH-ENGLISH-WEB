@@ -254,35 +254,7 @@ h2 { color: var(--primary-blue); margin-bottom: 1rem; }
 .flashcard-front { background: var(--primary-blue); color: white; font-weight: 700; }
 .flashcard-back { background: var(--white); transform: rotateY(180deg); border: 2px solid var(--primary-blue); }
 
-/* --- STICKY UI CLUSTER --- */
-#ui-cluster {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    z-index: 1000;
-}
 
-#glossary-btn {
-    width: 60px; height: 60px; border-radius: 50%;
-    background: var(--accent-orange); border: none;
-    box-shadow: 0 4px 15px rgba(255, 140, 66, 0.4);
-    cursor: pointer; display: flex; align-items: center; justify-content: center;
-    font-size: 1.8rem;
-}
-
-.nav-buttons {
-    display: flex; gap: 5px; background: var(--white);
-    padding: 5px; border-radius: 30px; box-shadow: var(--shadow);
-}
-.nav-arrow {
-    width: 50px; height: 50px; border-radius: 50%; border: none;
-    background: var(--primary-blue); color: white; font-size: 1.2rem;
-    cursor: pointer; transition: 0.2s;
-}
-.nav-arrow:disabled { background: var(--gray-light); cursor: not-allowed; }
 
 /* --- GLOSSARY MODAL --- */
 .modal-overlay {
@@ -1049,33 +1021,53 @@ h2 { color: var(--primary-blue); margin-bottom: 1rem; }
 
 
 
-/* --- INTERNAL TAB NAVIGATION (Compact & Wrapped) --- */
+/* --- INTERNAL TAB NAVIGATION (Sticky, Small, Compact) --- */
 .internal-nav-container {
     margin-bottom: 15px;
-    background: transparent;
-    padding: 0;
+    background: rgba(240, 248, 255, 0.95); /* Semi-transparent Alice Blue to match BG */
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    
+    /* STICKY LOGIC */
+    position: sticky;
+    /* 60px (Header) + approx 55px (SubNav height) = 115px */
+    top: 115px; 
+    z-index: 800; /* Layer below SubNav (900) but above content */
 }
 
 .internal-nav {
     display: flex;
-    flex-wrap: wrap; /* WRAPS buttons, no scrolling */
-    gap: 5px;        /* Small gap to save space */
-    justify-content: center; /* Centers the buttons */
+    flex-wrap: wrap; /* Wraps buttons */
+    gap: 3px;        /* Very tight gap */
+    justify-content: center;
 }
 
 .internal-btn {
-    padding: 5px 10px;       /* Compact padding */
+    padding: 3px 6px;        /* Very compact padding */
     border: 1px solid var(--primary-blue);
     background: white;
     color: var(--primary-blue);
-    border-radius: 5px;      /* Slightly rounded squares save more space than pills */
-    font-size: 0.75rem;      /* Small text */
+    border-radius: 4px;
+    font-size: 0.6rem;       /* Smaller font size as requested */
     font-weight: 700;
     cursor: pointer;
     transition: all 0.2s;
-    flex-grow: 1;            /* Buttons grow to fill lines evenly */
+    
+    /* Layout & Sizing */
+    flex-grow: 1;            
+    max-width: 110px;        /* Prevent wide buttons */
+    min-height: 28px;        /* Smaller minimum height */
+    
+    /* Text Wrapping */
+    white-space: normal;     
+    word-wrap: break-word;   
     text-align: center;
-    max-width: 150px;        /* Prevents them from getting too wide */
+    line-height: 1.1;        
+    
+    /* Flex Center */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .internal-btn:hover {
@@ -1085,14 +1077,181 @@ h2 { color: var(--primary-blue); margin-bottom: 1rem; }
 .internal-btn.active {
     background: var(--primary-blue);
     color: white;
-    box-shadow: 0 2px 5px rgba(0, 119, 182, 0.3);
+    box-shadow: 0 1px 3px rgba(0, 119, 182, 0.3);
 }
 
 .internal-content-group {
     display: none;
     animation: fadeIn 0.3s;
+    /* Add padding top so content doesn't jump behind sticky header */
+    scroll-margin-top: 160px; 
 }
 
 .internal-content-group.active {
     display: block;
+}
+
+
+
+
+
+
+
+/* --- STICKY UI CLUSTER (Bottom Right) --- */
+#ui-cluster {
+    position: fixed;
+    bottom: 20px;
+    right: 20px; /* Fixed to Right */
+    left: auto;  /* Ensure Left is unset */
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 1000;
+}
+
+#glossary-btn {
+    width: 60px; height: 60px; border-radius: 50%;
+    background: var(--accent-orange); border: none;
+    box-shadow: 0 4px 15px rgba(255, 140, 66, 0.4);
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem;
+}
+
+.nav-buttons {
+    display: flex; gap: 5px; background: var(--white);
+    padding: 5px; border-radius: 30px; box-shadow: var(--shadow);
+}
+
+.nav-arrow {
+    width: 50px; height: 50px; border-radius: 50%; border: none;
+    background: var(--primary-blue); color: white; font-size: 1.2rem;
+    cursor: pointer; transition: 0.2s;
+}
+.nav-arrow:disabled { background: var(--gray-light); cursor: not-allowed; }
+
+/* --- BACK TO TOP BUTTON (Bottom Center) --- */
+#back-to-top-btn {
+    position: fixed; /* Independent positioning */
+    bottom: 25px;
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%) translateY(100px); /* Centered and hidden (down) */
+    
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 2px solid var(--primary-blue);
+    color: var(--primary-blue);
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 1000;
+    
+    /* Content Alignment */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* State when visible */
+#back-to-top-btn.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0); /* Slide up to position */
+}
+
+#back-to-top-btn:hover {
+    background: var(--primary-blue);
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 119, 182, 0.4);
+    transform: translateX(-50%) translateY(-5px); /* Lift effect */
+}
+
+/* --- MOBILE RESPONSIVENESS UPDATES --- */
+@media (max-width: 768px) {
+    #main-container { padding-top: 70px; padding-bottom: 150px; }
+    .flashcards-grid { grid-template-columns: 1fr; }
+    
+    /* Adjust UI Cluster for Mobile */
+    #ui-cluster { 
+        bottom: 15px; 
+        right: 15px; /* Keep on right for mobile too */
+        gap: 10px;
+        flex-direction: row-reverse; /* Optional: Flips order if easier for thumb */
+    }
+    
+    #glossary-btn { width: 50px; height: 50px; font-size: 1.5rem; }
+    .nav-arrow { width: 45px; height: 45px; }
+    
+    #back-to-top-btn {
+        width: 45px;
+        height: 45px;
+        bottom: 20px;
+    }
+}
+
+
+
+
+
+
+
+
+/* --- BLUE SCROLLBARS CUSTOMIZATION --- */
+
+/* 1. Define the Scrollable Areas */
+#glossary-list,
+.reading-text-pane, 
+.questions-pane,
+.internal-nav,
+#nav-list {
+    /* For Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-blue) #e0e0e0;
+}
+
+/* 2. Webkit (Chrome, Edge, Safari) Styling */
+
+/* Width (Vertical) and Height (Horizontal) */
+#glossary-list::-webkit-scrollbar,
+.reading-text-pane::-webkit-scrollbar, 
+.questions-pane::-webkit-scrollbar,
+.internal-nav::-webkit-scrollbar,
+#nav-list::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+/* Track (Background) */
+#glossary-list::-webkit-scrollbar-track,
+.reading-text-pane::-webkit-scrollbar-track, 
+.questions-pane::-webkit-scrollbar-track,
+.internal-nav::-webkit-scrollbar-track,
+#nav-list::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
+
+/* Thumb (The moving part - NOW BLUE) */
+#glossary-list::-webkit-scrollbar-thumb,
+.reading-text-pane::-webkit-scrollbar-thumb, 
+.questions-pane::-webkit-scrollbar-thumb,
+.internal-nav::-webkit-scrollbar-thumb,
+#nav-list::-webkit-scrollbar-thumb {
+    background-color: var(--primary-blue);
+    border-radius: 10px;
+    border: 1px solid white; /* Adds a clean separation */
+}
+
+/* Hover State (Optional: Turns Orange when grabbed) */
+#glossary-list::-webkit-scrollbar-thumb:hover,
+.reading-text-pane::-webkit-scrollbar-thumb:hover, 
+.questions-pane::-webkit-scrollbar-thumb:hover,
+.internal-nav::-webkit-scrollbar-thumb:hover,
+#nav-list::-webkit-scrollbar-thumb:hover {
+    background-color: var(--accent-orange);
 }

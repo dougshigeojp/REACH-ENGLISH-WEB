@@ -1,6 +1,6 @@
 /**
- * REACH English - LESSON DATA TEMPLATE
- * 1. Rename this file to match your lesson ID (e.g., "6-1-2.js").
+ * REACH English - LESSON DATA TEMPLATE (Updated v2.0)
+ * 1. Rename this file to match your lesson ID (e.g., "em1-1-2.js").
  * 2. Update the "lessonId" field below to match the filename.
  * 3. Fill in the "INSERT_..." fields.
  */
@@ -8,10 +8,10 @@
 window.initLesson({
     // --- METADATA ---
     lessonId: "INSERT_FILENAME_HERE", // Must match filename exactly (no .js)
-    grade: "INSERT_GRADE_HERE",       // e.g., "6th Grade"
+    grade: "High School 1st Grade",   // e.g., "High School 1st Grade"
     bimester: "INSERT_NUMBER_HERE",   // e.g., "1"
     chapter: "INSERT_NUMBER_HERE",    // e.g., "2"
-    chapterTitle: "INSERT_CHAPTER_TITLE_HERE", // e.g., "My Family"
+    chapterTitle: "INSERT_CHAPTER_TITLE_HERE", // e.g., "Innovation"
     
     steps: [
         // ======================================================
@@ -19,13 +19,13 @@ window.initLesson({
         // ======================================================
         {
             title: "Unit Cover",
-            // You can use <br> for new lines
-            objectives: "• INSERT_OBJECTIVE_1_HERE <br>• INSERT_OBJECTIVE_2_HERE",
-            welcome: "INSERT_WELCOME_MESSAGE_HERE",
+            // Use <br> for line breaks
+            objectives: "• INSERT_OBJECTIVE_1 <br>• INSERT_OBJECTIVE_2",
+            welcome: "INSERT_WELCOME_MESSAGE",
             audio: {
-                // Use "TTS: Text..." OR "audio/folder/file.mp3"
-                objectives: "TTS: INSERT_OBJECTIVES_AUDIO_TEXT_HERE",
-                welcome: "TTS: INSERT_WELCOME_AUDIO_TEXT_HERE"
+                // Use "TTS: text..." for text-to-speech
+                objectives: "TTS: INSERT_OBJECTIVES_TEXT_HERE",
+                welcome: "TTS: INSERT_WELCOME_TEXT_HERE"
             }
         },
 
@@ -35,11 +35,17 @@ window.initLesson({
         {
             title: "What’s up today?",
             // Tooltip Syntax: [Word](tooltip:glossary-key)
-            context: "INSERT_CONTEXT_TEXT_HERE", 
-            contextAudio: "TTS: INSERT_CONTEXT_AUDIO_HERE",
+            context: "INSERT_CONTEXT_DESCRIPTION", 
+            contextAudio: "audio/INSERT_ID/step1.mp3",
             dialogue: [
-                { speaker: "INSERT_NAME_A", text: "INSERT_DIALOGUE_TEXT_HERE" },
-                { speaker: "INSERT_NAME_B", text: "INSERT_DIALOGUE_TEXT_HERE" }
+                { 
+                    speaker: "INSERT_NAME_A", 
+                    text: "Hello! [Word](tooltip:key) is highlighted." 
+                },
+                { 
+                    speaker: "INSERT_NAME_B", 
+                    text: "INSERT_DIALOGUE_TEXT" 
+                }
             ]
         },
 
@@ -48,34 +54,50 @@ window.initLesson({
         // ======================================================
         {
             title: "Say the word",
-            // Audio for the "Examples" page (2B)
-            audio2b: "TTS: INSERT_AUDIO_FOR_EXAMPLES_PAGE_HERE",
+            // Audio 2B is now inside the groups below, leave empty or remove if unused globally
+            audio2b: "", 
             
-            // DO NOT CHANGE THESE IDs
             subPages: [
                 { id: "step2a", label: "2A: New Words" },
                 { id: "step2b", label: "2B: Examples" },
                 { id: "step2c", label: "2C: Practice" }
             ],
 
-            // 2A: Vocabulary Lists
+            // 2A: Vocabulary Lists (Tabbed)
             areas: [
                 {
-                    title: "INSERT_GROUP_TITLE_HERE", // e.g., "Verbs"
-                    audio: "TTS: INSERT_AUDIO_HERE",
+                    title: "INSERT_TAB_TITLE_1", // e.g., "Verbs"
+                    audio: "TTS: INSERT_LIST_OF_WORDS_HERE",
                     items: [
-                        { term: "INSERT_WORD_HERE", trans: "INSERT_TRANSLATION_HERE" },
-                        { term: "INSERT_WORD_HERE", trans: "INSERT_TRANSLATION_HERE" }
+                        { term: "INSERT_WORD", trans: "INSERT_TRANSLATION" },
+                        { term: "INSERT_WORD", trans: "INSERT_TRANSLATION" }
                     ]
+                },
+                {
+                    title: "INSERT_TAB_TITLE_2",
+                    audio: "TTS: ...",
+                    items: []
                 }
             ],
 
-            // 2B: Context Examples
-            examples: [
-                { 
-                    term: "INSERT_WORD_HERE", 
-                    sent: "INSERT_SENTENCE_HERE", 
-                    trans: "INSERT_TRANSLATION_HERE" 
+            // 2B: Context Examples (Grouped & Tabbed)
+            // Use <span style='color:#0077b6'> for blue translations
+            exampleGroups: [
+                {
+                    title: "INSERT_TAB_TITLE_1", // Matches Area 1
+                    audio: "TTS: INSERT_SENTENCES_AUDIO_HERE",
+                    items: [
+                        { 
+                            term: "INSERT_WORD", 
+                            sent: "INSERT_SENTENCE_HERE", 
+                            trans: "<span style='color:#0077b6'>INSERT_TRANSLATION</span>" 
+                        }
+                    ]
+                },
+                {
+                    title: "INSERT_TAB_TITLE_2",
+                    audio: "TTS: ...",
+                    items: []
                 }
             ],
 
@@ -85,8 +107,8 @@ window.initLesson({
                     type: "mcq", 
                     q: "INSERT_QUESTION_HERE", 
                     options: [ 
-                        {t: "INSERT_WRONG_ANSWER", c: false}, 
-                        {t: "INSERT_RIGHT_ANSWER", c: true} 
+                        {t: "Wrong Answer", c: false}, 
+                        {t: "Right Answer", c: true} 
                     ] 
                 }
             ]
@@ -97,7 +119,7 @@ window.initLesson({
         // ======================================================
         {
             title: "Follow the Pattern",
-            audio3b: "TTS: INSERT_AUDIO_FOR_DIALOGUE_PAGE_HERE",
+            audio3b: "audio/INSERT_ID/step3.mp3", // General audio if needed
             
             subPages: [
                 { id: "step3a", label: "3A: Patterns" },
@@ -105,21 +127,39 @@ window.initLesson({
                 { id: "step3c", label: "3C: Practice" }
             ],
 
-            // 3A: Explanations
+            // 3A: Explanations (Tabbed)
             patterns: [
                 {
-                    title: "INSERT_GRAMMAR_TOPIC_HERE",
-                    explanation: "INSERT_EXPLANATION_HERE",
+                    title: "INSERT_GRAMMAR_TOPIC",
+                    // Use style='color:#0077b6; font-style:italic;' for translated explanation
+                    explanation: "English Explanation.<br><br><span style='color:#0077b6; font-style:italic;'>(Explicação em Português.)</span>",
                     samples: [
-                        { en: "INSERT_ENGLISH_EXAMPLE", pt: "INSERT_PORTUGUESE_EXAMPLE" }
+                        { 
+                            en: "English Example", 
+                            pt: "<span style='color:#0077b6'>Exemplo em Português</span>" 
+                        }
                     ]
                 }
             ],
 
-            // 3B: Short Dialogues
-            dialogueExamples: [
-                { speaker: "A", text: "INSERT_TEXT_HERE", pt: "INSERT_TRANSLATION_HERE" },
-                { speaker: "B", text: "INSERT_TEXT_HERE", pt: "INSERT_TRANSLATION_HERE" }
+            // 3B: Short Dialogues (Grouped in Boxes)
+            dialogueGroups: [
+                {
+                    title: "Dialogue 1: Title",
+                    audio: "audio/INSERT_ID/step3_dialogue1.mp3",
+                    lines: [
+                        { 
+                            speaker: "A", 
+                            text: "English Text", 
+                            pt: "<span style='color:#0077b6'>Texto em Português</span>" 
+                        }
+                    ]
+                },
+                {
+                    title: "Dialogue 2: Title",
+                    audio: "audio/INSERT_ID/step3_dialogue2.mp3",
+                    lines: []
+                }
             ],
 
             // 3C: Grammar MCQ
@@ -128,8 +168,8 @@ window.initLesson({
                     type: "mcq", 
                     q: "INSERT_QUESTION_HERE", 
                     options: [ 
-                        {t: "INSERT_RIGHT_ANSWER", c: true}, 
-                        {t: "INSERT_WRONG_ANSWER", c: false} 
+                        {t: "Right", c: true}, 
+                        {t: "Wrong", c: false} 
                     ] 
                 }
             ]
@@ -142,13 +182,14 @@ window.initLesson({
             title: "Can you say that again?",
             sentences: [
                 { 
-                    text: "INSERT_SENTENCE_HERE", 
-                    audio: "TTS: INSERT_SENTENCE_HERE", 
+                    // Add translation in small blue text
+                    text: "English Sentence.<br><small style='color:#0077b6'>(Frase em Português)</small>", 
+                    audio: "TTS: English Sentence.", 
                     arrow: "↘" // Use ↘ or ↗
                 },
                 { 
-                    text: "INSERT_SENTENCE_HERE", 
-                    audio: "TTS: INSERT_SENTENCE_HERE", 
+                    text: "Next Sentence.<br><small style='color:#0077b6'>(Próxima Frase)</small>", 
+                    audio: "TTS: Next Sentence.", 
                     arrow: "↗" 
                 }
             ]
@@ -160,22 +201,30 @@ window.initLesson({
         {
             title: "Are you following me?",
             drills: [
-                // TYPE: TYPING (Fill in the blank)
+                // TYPE: TYPING
                 {
                     type: "typing",
-                    instruction: "INSERT_INSTRUCTION_HERE",
-                    audio: "TTS: INSERT_FULL_SENTENCE_AUDIO_HERE",
-                    // The word in brackets [] is the answer
-                    text: "The sky is [blue] today."
+                    instruction: "Instruction text.",
+                    audio: "TTS: Full audio text.",
+                    text: "The sky is [blue] today." // [answer]
                 },
                 // TYPE: DROPDOWN
                 {
                     type: "dropdown",
-                    instruction: "INSERT_INSTRUCTION_HERE",
-                    audio: "TTS: INSERT_AUDIO_HERE",
+                    instruction: "Choose the correct option.",
+                    audio: "audio/INSERT_ID/step5.mp3",
                     questions: [
-                        // Options separated by | . 'a' is the correct answer.
                         { q: "Choose [Option A | Option B].", a: "Option A" }
+                    ]
+                },
+                // TYPE: AUDIO CHOICE
+                {
+                    type: "audio-choice",
+                    instruction: "Listen and choose.",
+                    audio: "TTS: Audio content.",
+                    options: [
+                        { t: "Option 1", c: true },
+                        { t: "Option 2", c: false }
                     ]
                 }
             ]
@@ -188,16 +237,14 @@ window.initLesson({
             title: "Get the story",
             texts: [
                 {
-                    title: "INSERT_TEXT_TITLE_HERE",
-                    // Use <br> for paragraphs
-                    body: "INSERT_LONG_TEXT_HERE",
+                    title: "INSERT_TITLE",
+                    // Use || to separate TTS backup from MP3 file if needed
+                    audio: "TTS: Text content... || audio/INSERT_ID/text1.mp3",
+                    body: "Long text goes here...",
                     questions: [
                         { 
-                            q: "INSERT_QUESTION_HERE", 
-                            options: [ 
-                                {t:"INSERT_ANSWER_A", c:true}, 
-                                {t:"INSERT_ANSWER_B", c:false} 
-                            ] 
+                            q: "Question?", 
+                            options: [ {t:"Yes", c:true}, {t:"No", c:false} ] 
                         }
                     ]
                 }
@@ -205,79 +252,37 @@ window.initLesson({
         },
 
         // ======================================================
-        // STEP 7: QUICK DRILLS (Mixed Types)
+        // STEP 7: QUICK DRILLS
         // ======================================================
         {
             title: "Monkey see, Monkey do",
             drills: [
-                // --- COPY AND PASTE DRILL BLOCKS BELOW AS NEEDED ---
-
-                // TYPE: MATCHING
-                /*
+                // Matching
                 {
                     type: "matching",
                     instruction: "Match the pairs.",
                     pairs: [
-                        { left: "INSERT_LEFT", right: "INSERT_RIGHT", val: "A" },
-                        { left: "INSERT_LEFT", right: "INSERT_RIGHT", val: "B" }
+                        { left: "Word", right: "Definition", val: "1" },
+                        { left: "Word2", right: "Def2", val: "2" }
                     ]
                 },
-                */
-
-                // TYPE: WORD ORDER
-                /*
+                // Word Order
                 {
                     type: "word-order",
-                    instruction: "Unscramble the sentence.",
+                    instruction: "Unscramble.",
                     sentence: "is / name / My / John",
                     correct: "My name is John"
                 },
-                */
-
-                // TYPE: CLICKABLE ERROR
-                /*
+                // Odd One Out
                 {
-                    type: "clickable-error",
-                    instruction: "Find the mistake.",
-                    // Syntax: [WrongWord](error:RightWord)
-                    sentence: "He [go](error:goes) to school."
-                },
-                */
-
-                // TYPE: TRUE OR FALSE
-                /*
-                {
-                    type: "true-false",
-                    instruction: "True or False?",
-                    questions: [
-                        { text: "INSERT_STATEMENT_HERE", correct: "true" },
-                        { text: "INSERT_STATEMENT_HERE", correct: "false" }
+                    type: "odd-one-out",
+                    instruction: "Choose the odd one.",
+                    options: [
+                        { t: "Apple", c: false },
+                        { t: "Banana", c: false },
+                        { t: "Car", c: true }
                     ]
-                },
-                */
-
-                // TYPE: DIALOGUE SCRAMBLE
-                /*
-                {
-                    type: "dialogue-scramble",
-                    instruction: "Order the conversation.",
-                    items: ["Line 2", "Line 1"],
-                    correctOrder: ["Line 1", "Line 2"]
-                },
-                */
-               
-               // TYPE: CATEGORIZE (Drag & Drop)
-               /*
-               {
-                    type: "categorize",
-                    instruction: "Sort the items.",
-                    categories: [{id: "cat1", name: "Category 1"}, {id: "cat2", name: "Category 2"}],
-                    items: [
-                        {text: "Item A", catId: "cat1"},
-                        {text: "Item B", catId: "cat2"}
-                    ]
-               }
-               */
+                }
             ]
         },
 
@@ -286,11 +291,11 @@ window.initLesson({
         // ======================================================
         {
             title: "Tell your story",
-            instruction: "INSERT_INSTRUCTION_HERE",
-            example: "INSERT_EXAMPLE_TEXT_HERE",
+            instruction: "English Instruction.<br><small><span style='color:#0077b6'>(Instrução em Português)</span></small>",
+            example: "English Example.<br><small><span style='color:#0077b6'>(Exemplo em Português)</span></small>",
             prompts: [
-                "INSERT_PROMPT_1_HERE",
-                "INSERT_PROMPT_2_HERE"
+                "Prompt 1. <br><span style='color:#0077b6'>(Dica 1)</span>",
+                "Prompt 2."
             ]
         },
 
@@ -301,24 +306,26 @@ window.initLesson({
             title: "Wrap it up",
             items: [
                 { 
-                    term: "INSERT_TERM_HERE", 
-                    definition: "INSERT_DEFINITION_HERE", 
-                    defTrans: "INSERT_DEF_TRANSLATION_HERE",
-                    example: "INSERT_EXAMPLE_SENTENCE_HERE", 
-                    exTrans: "INSERT_EX_TRANSLATION_HERE",
-                    // Use "TTS: text" or "audio/file.mp3"
-                    audioFront: "TTS: INSERT_TERM_HERE",
-                    audioBack: "TTS: INSERT_EXAMPLE_SENTENCE_HERE" 
-                },
-                // Copy block above for more cards
+                    term: "INSERT_TERM", 
+                    definition: "English Definition.", 
+                    defTrans: "Tradução da Definição", // Appears in italics on back
+                    example: "English Example sentence.", 
+                    audioFront: "TTS: Term",
+                    audioBack: "TTS: English Example sentence." 
+                }
             ]
         }
     ],
 
     // ======================================================
-    // GLOSSARY (For Tooltips)
+    // GLOSSARY (New Format)
     // ======================================================
     glossary: [
-        { term: "glossary-key", definition: "INSERT_DEFINITION_HERE" }
+        { 
+            topic: "Topic Name", // Used for pagination grouping
+            term: "word-key", 
+            definition: "English Definition.", 
+            translation: "Tradução" // Appears in glossary list
+        }
     ]
 });
