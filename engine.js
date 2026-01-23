@@ -472,6 +472,60 @@ function attachExerciseListeners() {
         const bank = btn.closest('.exercise-card').querySelector('.word-bank');
         if (btn.parentElement === bank) zone.appendChild(btn); else bank.appendChild(btn);
     };
+
+
+
+
+    // --- GLOBAL TOOLTIP LOGIC ---
+    const tooltipBox = document.getElementById('tooltip-container');
+
+    document.addEventListener('mouseover', e => {
+        const target = e.target.closest('.tooltip');
+        if (!target) return;
+
+        const def = target.dataset.def;
+        const trans = target.dataset.trans;
+
+        tooltipBox.innerHTML = `
+            <span class="tooltip-def">${def}</span>
+            <span class="tooltip-trans">${trans}</span>
+        `;
+        tooltipBox.style.display = 'block';
+
+        // POSITIONING LOGIC
+        const rect = target.getBoundingClientRect();
+        const boxRect = tooltipBox.getBoundingClientRect();
+
+        let top = rect.top - tooltipBox.offsetHeight - 10;
+        let left = rect.left + (rect.width / 2) - (tooltipBox.offsetWidth / 2);
+
+        // Check if hitting top edge
+        if (top < 10) top = rect.bottom + 10;
+        
+        // Check if hitting right edge
+        if (left + tooltipBox.offsetWidth > window.innerWidth - 10) {
+            left = window.innerWidth - tooltipBox.offsetWidth - 10;
+        }
+
+        // Check if hitting left edge
+        if (left < 10) left = 10;
+
+        tooltipBox.style.top = `${top}px`;
+        tooltipBox.style.left = `${left}px`;
+    });
+
+    document.addEventListener('mouseout', e => {
+        if (e.target.classList.contains('tooltip')) {
+            tooltipBox.style.display = 'none';
+        }
+    });
+
+
+
+
+
+
+
 }
 
 function validateExercise(card) {
@@ -805,7 +859,9 @@ function buildStepHTML(index, step) {
         return text.replace(/\[(.*?)\]\(tooltip:(.*?)\)/g, (match, word, key) => {
             const entry = lessonData.glossary.find(g => g.term.toLowerCase() === key.toLowerCase());
             const def = entry ? entry.definition : "Definition not found";
-            return `<span class="tooltip" data-definition="${def}">${word}</span>`;
+            const trans = entry ? entry.translation : "";
+            // We store both in data attributes
+            return `<span class="tooltip" data-def="${def}" data-trans="${trans}">${word}</span>`;
         });
     };
 
@@ -1018,11 +1074,36 @@ function buildStepHTML(index, step) {
             if (drill.type === 'typing') {
                 html += `<p style="margin-top:10px;">${drill.text.replace(/\[(.*?)\]/g, `<input type="text" data-answer="$1" class="drill-input">`)}</p>`;
             } else if (drill.type === 'dropdown') {
-                html += drill.questions.map(q => `
-                    <p>${q.q.replace(/\[(.*?)\]/g, `<select class="drill-select" data-answer="${q.a}">
-                        <option value="">...</option>
-                        ${q.q.match(/\[(.*?)\]/)[1].split('|').map(opt => `<option value="${opt.trim()}">${opt.trim()}</option>`).join('')}
-                    </select>`)}</p>`).join('');
+                html += drill.questions.map(q => {
+                    let dropdownCounter = 0; // for unique IDs if needed
+                    // Replace [option1|option2*|option3] with a select element
+                    const processedText = q.q.replace(/\[(.*?)\]/g, (match, optionsString) => {
+                        const options = optionsString.split('|').map(s => s.trim());
+                        let correctAnswer = '';
+                        
+                        // Find the correct answer marked with '*'
+                        const optionHTML = options.map(opt => {
+                            if (opt.includes('*')) {
+                                const cleanOpt = opt.replace('*', '');
+                                correctAnswer = cleanOpt;
+                                return `<option value="${cleanOpt}">${cleanOpt}</option>`;
+                            }
+                            return `<option value="${opt}">${opt}</option>`;
+                        }).join('');
+
+                        // If no '*' is found, fall back to the old 'a' property (for backward compatibility)
+                        if (!correctAnswer && q.a) {
+                            correctAnswer = q.a;
+                        }
+                        
+                        dropdownCounter++;
+                        return `<select class="drill-select" data-answer="${correctAnswer}">
+                                    <option value="">...</option>
+                                    ${optionHTML}
+                                </select>`;
+                    });
+                    return `<p>${processedText}</p>`;
+                }).join('');
             } else if (drill.type === 'audio-choice') {
                 html += `<div class="options-container">${drill.options.map(opt => `<div class="option" data-correct="${opt.c}">${opt.t}</div>`).join('')}</div>`;
             }

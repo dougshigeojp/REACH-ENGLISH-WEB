@@ -329,46 +329,50 @@ h2 { color: var(--primary-blue); margin-bottom: 1rem; }
     flex-direction: column; 
 }
 
-/* Tooltip styling */
+/* --- NEW TOOLTIP SYSTEM --- */
 .tooltip {
     color: var(--primary-blue);
     text-decoration: underline dotted var(--accent-orange);
     cursor: help;
-    position: relative;
     font-weight: 600;
 }
 
-/* The Popup Box */
-.tooltip:hover::after {
-    content: attr(data-definition); /* Pulls text from the data-definition attribute */
-    position: absolute;
-    bottom: 125%;
-    left: 50%;
-    transform: translateX(-50%);
+.tooltip-box {
+    position: fixed; /* Fixed so it stays relative to screen */
+    display: none;
     background: #333;
     color: #fff;
-    padding: 8px 12px;
-    border-radius: 6px;
-    font-size: 0.8rem;
-    white-space: normal;
-    width: 200px;
-    z-index: 2000;
-    box-shadow: var(--shadow);
-    text-align: center;
-    font-weight: 400;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    z-index: 3000;
+    max-width: 250px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    pointer-events: none; /* Prevents flickering when moving mouse */
+    line-height: 1.4;
 }
 
-/* Tooltip Arrow */
-.tooltip:hover::before {
-    content: "";
-    position: absolute;
-    bottom: 115%;
-    left: 50%;
-    transform: translateX(-50%);
-    border: 8px solid transparent;
-    border-top-color: #333;
-    z-index: 2000;
+/* Definition part */
+.tooltip-def {
+    display: block;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #555;
+    padding-bottom: 5px;
 }
+
+/* Translation part - Blue color as requested */
+.tooltip-trans {
+    display: block;
+    color: #4fc3f7; /* Light Blue for contrast on dark background */
+    font-style: italic;
+}
+
+
+
+
+
+
+
 
 /* This ensures Dialogue Scramble and Ranking stack vertically */
 .drop-zone.vertical {

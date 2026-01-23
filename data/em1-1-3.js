@@ -110,7 +110,7 @@ window.initLesson({
                         { term: "Lecture", trans: "Palestra (NOT leitura)" },
                         { term: "Prejudice", trans: "Preconceito (NOT prejuízo)" }
                     ]
-                }
+                },
                 {
                     title: "Verbs of Action & Change",
                     audio: "TTS: To spark. To discover. To innovate. To experiment. To think.",
@@ -673,15 +673,24 @@ window.initLesson({
                     audio: "TTS: I was reading about the telephone yesterday. Alexander Graham Bell invented it in 1876. Before that, people used to send telegrams. It was a huge breakthrough in communication. While he was working, he made the first call to his assistant.",
                     text: "I was reading about the telephone yesterday. Alexander Graham Bell [invented] it in 1876. Before that, people [used to] send telegrams. It was a huge [breakthrough] in communication. While he was working, he [made] the first call to his assistant."
                 },
-                // Drill 2: Dropdown (MP3)
+                // Drill 2: Listen and Complete (Dropdown) - COMPLETE VERSION
                 {
                     type: "dropdown",
-                    instruction: "Listen to the dialogue and choose the correct option.",
+                    instruction: "Listen to the dialogue and choose the correct option.<br><small style='color:#0077b6'>(Ouça o diálogo e escolha a opção correta.)</small>",
                     audio: "audio/em1-1-3/step5_drill2.mp3",
                     questions: [
-                        { q: "Mrs. Canales: It's beautiful. I love the [fabric | factory | fabrication]. Is it silk?", a: "fabric" },
-                        { q: "Celine: Yes. I [bought | buy | was buying] it yesterday.", a: "bought" },
-                        { q: "Celine: No, I [didn't use to | used to | use to] sew, but I stopped.", a: "didn't use to" }
+                        { 
+                            q: "Mrs. Canales: It's beautiful. I love the [fabric | factory | fabrication]. Is it silk?", 
+                            a: "fabric" 
+                        },
+                        { 
+                            q: "Celine: Yes. I [bought | buy | was buying] it yesterday.", 
+                            a: "bought" 
+                        },
+                        { 
+                            q: "Mrs. Canales: Did you make it yourself? <br> Celine: No, I [didn't use to | used to | use to] sew, but I stopped.", 
+                            a: "didn't use to" 
+                        }
                     ]
                 },
                 // Drill 3: Audio Choice (TTS)
@@ -1081,7 +1090,7 @@ window.initLesson({
                     example: "We must fight against prejudice.", 
                     audioFront: "TTS: Prejudice",
                     audioBack: "TTS: We must fight against prejudice." 
-                }
+                },
                 // --- Topic 3: Verbs ---
                 { 
                     term: "To spark", 
@@ -1185,6 +1194,12 @@ window.initLesson({
             term: "answer", 
             definition: "To respond to a phone call or a question.", 
             translation: "Atender / Responder" 
+        },
+        { 
+            topic: "Context", 
+            term: "create", 
+            definition: "To bring something into existence.", 
+            translation: "Criar" 
         },
         { 
             topic: "Context", 
@@ -1402,6 +1417,37 @@ window.initLesson({
             term: "while", 
             definition: "Used to indicate a period of time during which an action was happening.", 
             translation: "Enquanto" 
+        },
+        // --- TOPIC 6: GENERAL REFERENCE ---
+        { 
+            topic: "General", 
+            term: "brick", 
+            definition: "A small rectangular block used in building; also slang for a heavy old mobile phone.", 
+            translation: "Tijolo" 
+        },
+        { 
+            topic: "General", 
+            term: "factory", 
+            definition: "A building where goods are manufactured or assembled.", 
+            translation: "Fábrica" 
+        },
+        { 
+            topic: "General", 
+            term: "colleague", 
+            definition: "A person with whom one works in a profession or business.", 
+            translation: "Colega (de trabalho)" 
+        },
+        { 
+            topic: "General", 
+            term: "luck", 
+            definition: "Success or failure brought by chance rather than through one's own actions.", 
+            translation: "Sorte" 
+        },
+        { 
+            topic: "General", 
+            term: "mess", 
+            definition: "A dirty or untidy state of things or of a place.", 
+            translation: "Bagunça" 
         }
     ] // This closes the glossary array
 }); // This closes the initLesson object

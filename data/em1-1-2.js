@@ -710,15 +710,24 @@ window.initLesson({
                     audio: "TTS: I want to improve my English. I usually listen to music in the morning. It helps me with pronunciation. Currently, I am reading a book in English. I try to read two pages every day. My teacher says it is an effective method.",
                     text: "I want to improve my English. I usually [listen] to music in the morning. It helps me with pronunciation. Currently, I am [reading] a book in English. I try to read two pages [every] day. My teacher says it is an [effective] method."
                 },
-                // Drill 2: Dropdown (MP3)
+                // Drill 2: Listen and Complete (Dropdown) - FIXED VERSION
                 {
                     type: "dropdown",
-                    instruction: "Listen to the dialogue and choose the correct option.",
+                    instruction: "Listen to the dialogue and choose the correct option.<br><small style='color:#0077b6'>(Ouça o diálogo e escolha a opção correta.)</small>",
                     audio: "audio/em1-1-2/step5_drill2.mp3",
                     questions: [
-                        { q: "Albert: I am [writing | reading | listening] an essay for history class.", a: "writing" },
-                        { q: "Albert: Yes, I [always | never | currently] come here after school. It is quiet.", a: "always" },
-                        { q: "Mrs. Canales: That is a good habit. [Don't | Do | Please] stop!", a: "Don't" }
+                        { 
+                            q: "Mrs. Canales: Albert, what are you doing? <br> Albert: I am [writing | reading | listening] an essay for history class.", 
+                            a: "writing" 
+                        },
+                        { 
+                            q: "Mrs. Canales: Good. Do you often study here? <br> Albert: Yes, I [always | never | currently] come here after school.", 
+                            a: "always" 
+                        },
+                        { 
+                            q: "Mrs. Canales: That is a good habit. [Don't | Do | Please] stop!", 
+                            a: "Don't" 
+                        }
                     ]
                 },
                 // Drill 3: Audio Choice (TTS)

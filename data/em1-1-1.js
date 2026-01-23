@@ -28,40 +28,36 @@ window.initLesson({
         },
 
 // ======================================================
-        // STEP 1: WHAT'S UP TODAY? (Context)
+        // STEP 1: WHAT’S UP TODAY? (Context) - Character Fix
         // ======================================================
         {
             title: "What’s up today?",
-            context: "Sound of a school bell. Albert and Celine are talking to Mrs. Canales in the classroom holding some brochures.", 
+            context: "Mrs. Canales and Celine are talking in the classroom about their future plans and the role of English in the world.", 
             contextAudio: "audio/em1-1-1/step1.mp3",
             dialogue: [
                 { 
                     speaker: "Mrs. Canales", 
-                    text: "Hello, class! Today we are discussing [career](tooltip:career) paths. Albert, [how important is](tooltip:how-important-is) English for your future?" 
+                    text: "Hello, class! Today we are discussing [career](tooltip:career) paths. Celine, [how important is](tooltip:how-important-is) English for your future?" 
                 },
                 { 
-                    speaker: "Albert", 
+                    speaker: "Celine", 
                     text: "[In my opinion](tooltip:in-my-opinion), it is essential. [Whatever](tooltip:whatever) I decide to do, I will need it. I want to work in a global [company](tooltip:company)." 
                 },
                 { 
-                    speaker: "Celine", 
+                    speaker: "Mrs. Canales", 
                     text: "[That makes sense](tooltip:that-makes-sense). English is the [language](tooltip:language) of [communication](tooltip:communication) worldwide. [Wherever](tooltip:wherever) you go, you find someone who speaks it." 
                 },
                 { 
-                    speaker: "Mrs. Canales", 
-                    text: "Exactly. And [owing to](tooltip:owing-to) its [influence](tooltip:influence), it connects cultures." 
+                    speaker: "Celine", 
+                    text: "Exactly. And [owing to](tooltip:owing-to) its [influence](tooltip:influence), it connects cultures. I [taught myself](tooltip:taught-myself) to code using English tutorials." 
                 },
                 { 
-                    speaker: "Albert", 
-                    text: "I [taught myself](tooltip:taught-myself) to code using English tutorials. [Whoever](tooltip:whoever) creates technology uses English." 
+                    speaker: "Mrs. Canales", 
+                    text: "[Whoever](tooltip:whoever) creates technology uses English. [Consequently](tooltip:consequently), if you want to [improve](tooltip:improve) your skills, you need to [invest](tooltip:invest) in learning it." 
                 },
                 { 
                     speaker: "Celine", 
-                    text: "True. [Consequently](tooltip:consequently), if you want to [improve](tooltip:improve) your skills, you need to [invest](tooltip:invest) in learning it." 
-                },
-                { 
-                    speaker: "Mrs. Canales", 
-                    text: "You both [have a point](tooltip:have-a-point). [Therefore](tooltip:therefore), let's [practice](tooltip:practice) our [speech](tooltip:speech) today!" 
+                    text: "You [have a point](tooltip:have-a-point). [Therefore](tooltip:therefore), let's [practice](tooltip:practice) our [speech](tooltip:speech) today!" 
                 }
             ]
         },
@@ -1023,12 +1019,12 @@ audio2b: "TTS: I agree with your opinion. We must consider all options. Let's di
                 {
                     type: "audio-choice",
                     instruction: "Listen to the sentence and choose the correct reason.",
-                    audio: "TTS: The bus was late because of the heavy traffic.",
+                    audio: "TTS: The bus has stopped.",
                     options: [
-                        { t: "Because of the rain.", c: false },
+                        { t: "Because of the food.", c: false },
                         { t: "Because of the heavy traffic.", c: true },
-                        { t: "Because of the driver.", c: false },
-                        { t: "Because of the time.", c: false }
+                        { t: "Because of the content.", c: false },
+                        { t: "Because of the conference.", c: false }
                     ]
                 }
             ]
