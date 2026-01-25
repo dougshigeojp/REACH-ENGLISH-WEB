@@ -285,56 +285,16 @@ window.initLesson({
                     ]
                 },
 
-                // Replacement Exercise 3, Question 1 (I have just learned)
+                // Exercise 3: Expressions (Matching)
                 {
-                    type: "mcq",
-                    q: "Choose the correct meaning for: 'I have just learned' <br> <small><i>Example:</i> I have just learned about mutations.",
-                    options: [
-                        { t: "Algo que ainda vai acontecer.", c: false },
-                        { t: "Aconteceu recentemente.", c: true },
-                        { t: "Um longo período de tempo.", c: false },
-                        { t: "Baseado em fatos provados.", c: false }
-                    ],
-                    audio: "TTS: I have just learned about mutations."
-                },
-                
-                // Replacement Exercise 3, Question 2 (For millions of years)
-                {
-                    type: "mcq",
-                    q: "Choose the correct meaning for: 'For millions of years' <br> <small><i>Example:</i> Dinosaurs ruled for millions of years.",
-                    options: [
-                        { t: "Aconteceu recentemente.", c: false },
-                        { t: "Baseado em fatos provados.", c: false },
-                        { t: "Um longo período de tempo.", c: true },
-                        { t: "Algo que ainda vai acontecer.", c: false }
-                    ],
-                    audio: "TTS: Dinosaurs ruled for millions of years."
-                },
-                
-                // Replacement Exercise 3, Question 3 (Evidence shows that)
-                {
-                    type: "mcq",
-                    q: "Choose the correct meaning for: 'Evidence shows that' <br> <small><i>Example:</i> Evidence shows that climate is changing.",
-                    options: [
-                        { t: "Algo que ainda vai acontecer.", c: false },
-                        { t: "Um longo período de tempo.", c: false },
-                        { t: "Baseado em fatos provados.", c: true },
-                        { t: "Aconteceu recentemente.", c: false }
-                    ],
-                    audio: "TTS: Evidence shows that climate is changing."
-                },
-                
-                // Replacement Exercise 3, Question 4 (We have not... yet)
-                {
-                    type: "mcq",
-                    q: "Choose the correct meaning for: 'We have not... yet' <br> <small><i>Example:</i> We have not found a solution yet.",
-                    options: [
-                        { t: "Um longo período de tempo.", c: false },
-                        { t: "Baseado em fatos provados.", c: false },
-                        { t: "Algo que ainda vai acontecer.", c: true },
-                        { t: "Aconteceu recentemente.", c: false }
-                    ],
-                    audio: "TTS: We have not found a solution yet."
+                    type: "matching",
+                    instruction: "Match the phrase with its correct meaning.",
+                    pairs: [
+                        { left: "I have just learned", right: "Aconteceu recentemente", val: "1" },
+                        { left: "For millions of years", right: "Um longo período de tempo", val: "2" },
+                        { left: "Evidence shows that", right: "Baseado em fatos provados", val: "3" },
+                        { left: "We have not... yet", right: "Algo que ainda vai acontecer", val: "4" }
+                    ]
                 }
             ]
         },
@@ -883,6 +843,5 @@ window.initLesson({
         { topic: "Grammar", term: "Past Perfect", definition: "Grammar structure [had + P.P.] for an action finished before another past point.", translation: "Passado Perfeito" },
         { topic: "Grammar", term: "Future Perfect", definition: "Grammar structure [will have + P.P.] for actions finished before a future point.", translation: "Futuro Perfeito" },
         { topic: "Grammar", term: "Conditional Perfect", definition: "Grammar structure [would have + P.P.] for hypothetical past situations.", translation: "Condicional Perfeito" }
-       
     ]
 });

@@ -1,14 +1,14 @@
 /**
- * REACH English - LESSON DATA em2-1-2
+ * REACH English - LESSON DATA em2-1-1
  */
 
 window.initLesson({
     // --- METADATA ---
-    lessonId: "em2-1-2", 
+    lessonId: "em2-1-1", 
     grade: "High School 2nd Grade",       
     bimester: "1",   
-    chapter: "2",    
-    chapterTitle: "The Future, AI and Robotics", 
+    chapter: "1",    
+    chapterTitle: "DNA and Evolution", 
     
     steps: [
         // ======================================================
