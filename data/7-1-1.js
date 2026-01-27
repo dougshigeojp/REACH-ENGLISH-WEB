@@ -719,30 +719,35 @@ window.initLesson({
         {
             title: "Are you following me?",
             drills: [
-                // TYPE: TYPING
+                // Drill 1: Typing
                 {
                     type: "typing",
-                    instruction: "Instruction text.",
-                    audio: "TTS: Full audio text.",
-                    text: "The sky is [blue] today." // [answer]
+                    instruction: "Listen to Albert talking about his talents. Type the missing words.",
+                    audio: "TTS: I have many talents. I can swim very fast. I can also play the piano, but I can't dance.",
+                    text: "I have many talents. I [can] swim very [fast]. I [can] also [play] the piano, but I [can't] dance."
                 },
-                // TYPE: DROPDOWN
+                // Drill 2: Dropdown
                 {
                     type: "dropdown",
-                    instruction: "Choose the correct option.",
-                    audio: "audio/INSERT_ID/step5.mp3",
+                    instruction: "Listen to the conversation between Celine and a teacher. Choose the correct option.",
+                    audio: "audio/7-1-1/step5_drill2.mp3",
                     questions: [
-                        { q: "Choose [Option A | Option B].", a: "Option A" }
+                        { q: "Teacher: Celine, can you [draw | dance]?", a: "draw" },
+                        { q: "Celine: Yes, I can draw [well | badly].", a: "well" },
+                        { q: "Teacher: Can you [paint | cook]?", a: "paint" },
+                        { q: "Celine: No, I [can't | can] paint at all.", a: "can't" }
                     ]
                 },
-                // TYPE: AUDIO CHOICE
+                // Drill 3: Audio Choice
                 {
                     type: "audio-choice",
-                    instruction: "Listen and choose.",
-                    audio: "TTS: Audio content.",
+                    instruction: "Listen to the question and choose the correct answer.",
+                    audio: "TTS: How well does he play football?",
                     options: [
-                        { t: "Option 1", c: true },
-                        { t: "Option 2", c: false }
+                        { t: "He plays the guitar.", c: false },
+                        { t: "He plays very well.", c: true },
+                        { t: "Yes, he can.", c: false },
+                        { t: "No, he can't.", c: false }
                     ]
                 }
             ]
@@ -755,14 +760,59 @@ window.initLesson({
             title: "Get the story",
             texts: [
                 {
-                    title: "INSERT_TITLE",
-                    // Use || to separate TTS backup from MP3 file if needed
-                    audio: "TTS: Text content... || audio/INSERT_ID/text1.mp3",
-                    body: "Long text goes here...",
+                    title: "Narration: The School Talent Show",
+                    audio: "TTS: Today is the talent show at school. Many students are showing their skills. Sarah can sing beautifully. She is singing a pop song. Mike can play the drums very fast. Everyone is clapping. But poor Tom can't find his guitar. He wants to play rock music, but he can't without his instrument. The teacher helps him find it. Now, Tom can play too! || audio/7-1-1/p6_text1.mp3",
+                    body: "Today is the talent show at school. Many students are showing their skills. Sarah can sing beautifully. She is singing a pop song. Mike can play the drums very fast. Everyone is clapping. But poor Tom can't find his guitar. He wants to play rock music, but he can't without his instrument. The teacher helps him find it. Now, Tom can play too!",
                     questions: [
                         { 
-                            q: "Question?", 
-                            options: [ {t:"Yes", c:true}, {t:"No", c:false} ] 
+                            q: "How does Sarah sing?", 
+                            options: [ {t: "Badly", c: false}, {t: "Beautifully", c: true}, {t: "Fast", c: false}, {t: "Slowly", c: false} ] 
+                        },
+                        { 
+                            q: "What instrument does Mike play?", 
+                            options: [ {t: "The guitar", c: false}, {t: "The piano", c: false}, {t: "The drums", c: true}, {t: "The violin", c: false} ] 
+                        },
+                        { 
+                            q: "Why can't Tom play at first?", 
+                            options: [ {t: "He can't find his guitar.", c: true}, {t: "He can't play well.", c: false}, {t: "He is tired.", c: false}, {t: "He is sad.", c: false} ] 
+                        }
+                    ]
+                },
+                {
+                    title: "Dialogue: Forming a Band",
+                    audio: "audio/7-1-1/p6_text2.mp3",
+                    body: "<b>Albert:</b> Hey Celine, let's start a rock band!<br><b>Celine:</b> That sounds fun. I can play the bass. What can you do?<br><b>Albert:</b> I can play the electric guitar.<br><b>Celine:</b> Great. Can you sing?<br><b>Albert:</b> No, I can't sing well. Can you?<br><b>Celine:</b> Yes, I can sing! We need a drummer now.<br><b>Albert:</b> My brother can play the drums. Let's ask him.",
+                    questions: [
+                        { 
+                            q: "What instrument can Celine play?", 
+                            options: [ {t: "The electric guitar", c: false}, {t: "The drums", c: false}, {t: "The bass", c: true}, {t: "The piano", c: false} ] 
+                        },
+                        { 
+                            q: "Can Albert sing well?", 
+                            options: [ {t: "Yes, he can.", c: false}, {t: "No, he can't.", c: true}, {t: "He sings beautifully.", c: false}, {t: "He loves singing.", c: false} ] 
+                        },
+                        { 
+                            q: "Who can play the drums?", 
+                            options: [ {t: "Celine", c: false}, {t: "Albert", c: false}, {t: "Albert's brother", c: true}, {t: "The teacher", c: false} ] 
+                        }
+                    ]
+                },
+                {
+                    title: "Description: My Super Brother",
+                    audio: "TTS: My brother, Leo, is very talented. He loves sports. He can run very fast and he plays soccer well. He is also good at music. He can play the piano and the violin. But there is one thing he can't do. He can't cook! Last week, he tried to make pasta, but it was terrible. He cooks very badly. || audio/7-1-1/p6_text3.mp3",
+                    body: "My brother, Leo, is very talented. He loves sports. He can run very fast and he plays soccer well. He is also good at music. He can play the piano and the violin. But there is one thing he can't do. He can't cook! Last week, he tried to make pasta, but it was terrible. He cooks very badly.",
+                    questions: [
+                        { 
+                            q: "What sports can Leo do?", 
+                            options: [ {t: "Swim and tennis", c: false}, {t: "Run and soccer", c: true}, {t: "Volleyball and basketball", c: false}, {t: "Skateboarding and cycling", c: false} ] 
+                        },
+                        { 
+                            q: "What instruments can he play?", 
+                            options: [ {t: "Piano and violin", c: true}, {t: "Guitar and drums", c: false}, {t: "Flute and bass", c: false}, {t: "Keyboard and cello", c: false} ] 
+                        },
+                        { 
+                            q: "What does he do badly?", 
+                            options: [ {t: "Run", c: false}, {t: "Play soccer", c: false}, {t: "Cook", c: true}, {t: "Play music", c: false} ] 
                         }
                     ]
                 }
@@ -770,35 +820,97 @@ window.initLesson({
         },
 
         // ======================================================
-        // STEP 7: QUICK DRILLS
+        // STEP 7: QUICK DRILLS (Mixed Types)
         // ======================================================
         {
             title: "Monkey see, Monkey do",
             drills: [
-                // Matching
+                // Drill 1: Matching
                 {
                     type: "matching",
-                    instruction: "Match the pairs.",
+                    instruction: "Match the activity to its correct category.<br><small style='color:#0077b6'>(Combine a atividade com sua categoria correta.)</small>",
                     pairs: [
-                        { left: "Word", right: "Definition", val: "1" },
-                        { left: "Word2", right: "Def2", val: "2" }
+                        { left: "Football", right: "Sport", val: "1" },
+                        { left: "Violin", right: "Musical Instrument", val: "2" },
+                        { left: "French", right: "Language", val: "3" },
+                        { left: "Cooking", right: "Skill/Activity", val: "4" }
                     ]
                 },
-                // Word Order
+                // Drill 2: Word Order (Unscramble)
                 {
                     type: "word-order",
-                    instruction: "Unscramble.",
-                    sentence: "is / name / My / John",
-                    correct: "My name is John"
+                    instruction: "Put the words in the correct order to form a sentence.<br><small style='color:#0077b6'>(Coloque as palavras na ordem correta para formar uma frase.)</small>",
+                    sentence: "speak / I / Italian / can / .",
+                    correct: "I can speak Italian ."
                 },
-                // Odd One Out
+                {
+                    type: "word-order",
+                    instruction: "Put the words in the correct order.",
+                    sentence: "you / play / Can / tennis / ?",
+                    correct: "Can you play tennis ?"
+                },
+                {
+                    type: "word-order",
+                    instruction: "Put the words in the correct order.",
+                    sentence: "swim / well / She / very / can / .",
+                    correct: "She can swim very well ."
+                },
+                {
+                    type: "word-order",
+                    instruction: "Put the words in the correct order.",
+                    sentence: "can't / drive / We / car / a / .",
+                    correct: "We can't drive a car ."
+                },
+                // Drill 3: Odd One Out
                 {
                     type: "odd-one-out",
-                    instruction: "Choose the odd one.",
+                    instruction: "Choose the word that does not belong in the group.<br><small style='color:#0077b6'>(Escolha a palavra que não pertence ao grupo.)</small>",
                     options: [
-                        { t: "Apple", c: false },
-                        { t: "Banana", c: false },
-                        { t: "Car", c: true }
+                        { t: "Guitar", c: false },
+                        { t: "Piano", c: false },
+                        { t: "Soccer", c: true }, // Sport, others are instruments
+                        { t: "Drums", c: false }
+                    ]
+                },
+                {
+                    type: "odd-one-out",
+                    instruction: "Choose the word that does not belong in the group.",
+                    options: [
+                        { t: "Fast", c: false },
+                        { t: "Well", c: false },
+                        { t: "Badly", c: false },
+                        { t: "Run", c: true } // Verb, others are adverbs
+                    ]
+                },
+                {
+                    type: "odd-one-out",
+                    instruction: "Choose the word that does not belong in the group.",
+                    options: [
+                        { t: "Speak", c: false },
+                        { t: "Read", c: false },
+                        { t: "Write", c: false },
+                        { t: "Bike", c: true } // Noun, others are language skill verbs
+                    ]
+                },
+                {
+                    type: "odd-one-out",
+                    instruction: "Choose the word that does not belong in the group.",
+                    options: [
+                        { t: "Spanish", c: false },
+                        { t: "English", c: false },
+                        { t: "Japan", c: true }, // Country, others are languages
+                        { t: "German", c: false }
+                    ]
+                },
+                // Drill 4: Fill in the Blanks (Dropdown)
+                {
+                    type: "dropdown",
+                    instruction: "Select the correct word to complete the sentence.<br><small style='color:#0077b6'>(Selecione a palavra correta para completar a frase.)</small>",
+                    questions: [
+                        { q: "I [can | well | the | can't] swim. It is easy.", a: "can" },
+                        { q: "He plays [the | can | well | can't] guitar in a band.", a: "the" },
+                        { q: "She cooks very [well | the | can | can't]. Her food is delicious.", a: "well" },
+                        { q: "A fish [can't | can | well | the] fly.", a: "can't" }
                     ]
                 }
             ]
@@ -809,41 +921,964 @@ window.initLesson({
         // ======================================================
         {
             title: "Tell your story",
-            instruction: "English Instruction.<br><small><span style='color:#0077b6'>(Instrução em Português)</span></small>",
-            example: "English Example.<br><small><span style='color:#0077b6'>(Exemplo em Português)</span></small>",
+            instruction: "Language Island: Now it's your turn! Write about your talents and abilities.<br><br><small><span style='color:#0077b6'>(Ilha de Idiomas: Agora é a sua vez! Escreva sobre seus talentos e habilidades.)</span></small>",
+            example: "\"I can play basketball very well. I play on Saturdays. I can speak Portuguese and a little English. I can't play the piano, but I want to learn. I can also cook pasta.\"<br><br><small><span style='color:#0077b6'>(\"Eu consigo jogar basquete muito bem. Eu jogo aos sábados. Eu consigo falar português e um pouco de inglês. Eu não consigo tocar piano, mas eu quero aprender. Eu também consigo cozinhar macarrão.\")</span></small>",
             prompts: [
-                "Prompt 1. <br><span style='color:#0077b6'>(Dica 1)</span>",
-                "Prompt 2."
+                "What can you do well? (I can...) <br><span style='color:#0077b6'>(O que você consegue fazer bem?)</span>",
+                "What can't you do? (I can't...) <br><span style='color:#0077b6'>(O que você não consegue fazer?)</span>",
+                "Can you play an instrument or a sport? Which one? <br><span style='color:#0077b6'>(Você consegue tocar um instrumento ou praticar um esporte? Qual?)</span>",
+                "What languages can you speak? <br><span style='color:#0077b6'>(Quais idiomas você consegue falar?)</span>"
             ]
         },
-
         // ======================================================
-        // STEP 9: FLASHCARDS
+        // STEP 9: FLASHCARDS (Part 1: Verbs)
         // ======================================================
         {
             title: "Wrap it up",
             items: [
                 { 
-                    term: "INSERT_TERM", 
-                    definition: "English Definition.", 
-                    defTrans: "Tradução da Definição", // Appears in italics on back
-                    example: "English Example sentence.", 
-                    audioFront: "TTS: Term",
-                    audioBack: "TTS: English Example sentence." 
+                    term: "Can", 
+                    definition: "A modal verb used to express ability or possibility.", 
+                    defTrans: "Poder / Conseguir (habilidade)",
+                    example: "I can swim well.", 
+                    audioFront: "TTS: Can",
+                    audioBack: "TTS: I can swim well." 
+                },
+                { 
+                    term: "Sing", 
+                    definition: "To make musical sounds with the voice.", 
+                    defTrans: "Cantar",
+                    example: "She sings in a band.", 
+                    audioFront: "TTS: Sing",
+                    audioBack: "TTS: She sings in a band." 
+                },
+                { 
+                    term: "Dance", 
+                    definition: "To move rhythmically to music.", 
+                    defTrans: "Dançar",
+                    example: "Can you dance tango?", 
+                    audioFront: "TTS: Dance",
+                    audioBack: "TTS: Can you dance tango?" 
+                },
+                { 
+                    term: "Draw", 
+                    definition: "To produce a picture or diagram by making lines and marks on paper.", 
+                    defTrans: "Desenhar",
+                    example: "He draws funny cartoons.", 
+                    audioFront: "TTS: Draw",
+                    audioBack: "TTS: He draws funny cartoons." 
+                },
+                { 
+                    term: "Paint", 
+                    definition: "To produce a picture using paint.", 
+                    defTrans: "Pintar",
+                    example: "We paint pictures in art class.", 
+                    audioFront: "TTS: Paint",
+                    audioBack: "TTS: We paint pictures in art class." 
+                },
+                { 
+                    term: "Cook", 
+                    definition: "To prepare food by heating it.", 
+                    defTrans: "Cozinhar",
+                    example: "My dad cooks dinner.", 
+                    audioFront: "TTS: Cook",
+                    audioBack: "TTS: My dad cooks dinner." 
+                },
+                { 
+                    term: "Play", 
+                    definition: "To perform on a musical instrument.", 
+                    defTrans: "Tocar (instrumento)",
+                    example: "I play the guitar.", 
+                    audioFront: "TTS: Play",
+                    audioBack: "TTS: I play the guitar." 
+                },
+                { 
+                    term: "Read", 
+                    definition: "To look at and comprehend the meaning of written or printed matter.", 
+                    defTrans: "Ler",
+                    example: "I read books every day.", 
+                    audioFront: "TTS: Read",
+                    audioBack: "TTS: I read books every day." 
+                },
+                { 
+                    term: "Write", 
+                    definition: "To mark letters, words, or other symbols on a surface.", 
+                    defTrans: "Escrever",
+                    example: "Write your name here.", 
+                    audioFront: "TTS: Write",
+                    audioBack: "TTS: Write your name here." 
+                },
+                { 
+                    term: "Speak", 
+                    definition: "To say words in order to convey information or express a language.", 
+                    defTrans: "Falar (um idioma)",
+                    example: "Do you speak English?", 
+                    audioFront: "TTS: Speak",
+                    audioBack: "TTS: Do you speak English?" 
+                },
+                { 
+                    term: "Swim", 
+                    definition: "To propel the body through water using limbs.", 
+                    defTrans: "Nadar",
+                    example: "Ducks can swim.", 
+                    audioFront: "TTS: Swim",
+                    audioBack: "TTS: Ducks can swim." 
+                },
+                { 
+                    term: "Run", 
+                    definition: "To move at a speed faster than walking.", 
+                    defTrans: "Correr",
+                    example: "Run fast to win.", 
+                    audioFront: "TTS: Run",
+                    audioBack: "TTS: Run fast to win." 
+                },
+                { 
+                    term: "Ride", 
+                    definition: "To sit on and control the movement of a vehicle (like a bike).", 
+                    defTrans: "Andar (de bicicleta/moto/cavalo)",
+                    example: "I ride my bike to school.", 
+                    audioFront: "TTS: Ride",
+                    audioBack: "TTS: I ride my bike to school." 
+                },
+                { 
+                    term: "Use", 
+                    definition: "To take, hold, or deploy something as a means of accomplishing a purpose.", 
+                    defTrans: "Usar",
+                    example: "Use a pencil to draw.", 
+                    audioFront: "TTS: Use",
+                    audioBack: "TTS: Use a pencil to draw." 
+                },
+                { 
+                    term: "Help", 
+                    definition: "To make it easier for someone to do something.", 
+                    defTrans: "Ajudar",
+                    example: "Can you help me?", 
+                    audioFront: "TTS: Help",
+                    audioBack: "TTS: Can you help me?" 
+                },
+                { 
+                    term: "Give", 
+                    definition: "To freely transfer the possession of something to someone.", 
+                    defTrans: "Dar",
+                    example: "Please give me the ball.", 
+                    audioFront: "TTS: Give",
+                    audioBack: "TTS: Please give me the ball." 
+                },
+                { 
+                    term: "Solve", 
+                    definition: "To find an answer to, explanation for, or means of dealing with a problem.", 
+                    defTrans: "Resolver",
+                    example: "I can solve the problem.", 
+                    audioFront: "TTS: Solve",
+                    audioBack: "TTS: I can solve the problem." 
+                },
+                { 
+                    term: "Move", 
+                    definition: "To go in a specified direction or manner; change position.", 
+                    defTrans: "Mover / Mexer",
+                    example: "Don't move!", 
+                    audioFront: "TTS: Move",
+                    audioBack: "TTS: Don't move!" 
+                },
+                // --- Sports ---
+                { 
+                    term: "Football / Soccer", 
+                    definition: "A team game played with a ball between two teams of 11 players.", 
+                    defTrans: "Futebol",
+                    example: "Brazil loves soccer.", 
+                    audioFront: "TTS: Football Soccer",
+                    audioBack: "TTS: Brazil loves soccer." 
+                },
+                { 
+                    term: "Basketball", 
+                    definition: "A game played by two teams of five players who score points by throwing a ball through a netted hoop.", 
+                    defTrans: "Basquete",
+                    example: "He plays basketball at school.", 
+                    audioFront: "TTS: Basketball",
+                    audioBack: "TTS: He plays basketball at school." 
+                },
+                { 
+                    term: "Volleyball", 
+                    definition: "A game for two teams in which a large ball is hit by hand over a high net.", 
+                    defTrans: "Vôlei",
+                    example: "We play volleyball on the beach.", 
+                    audioFront: "TTS: Volleyball",
+                    audioBack: "TTS: We play volleyball on the beach." 
+                },
+                { 
+                    term: "Tennis", 
+                    definition: "A game in which two or four players strike a ball with rackets over a net.", 
+                    defTrans: "Tênis",
+                    example: "She needs a racket for tennis.", 
+                    audioFront: "TTS: Tennis",
+                    audioBack: "TTS: She needs a racket for tennis." 
+                },
+                { 
+                    term: "Swimming (Sport)", 
+                    definition: "The sport or activity of propelling oneself through water.", 
+                    defTrans: "Natação",
+                    example: "Swimming is good exercise.", 
+                    audioFront: "TTS: Swimming",
+                    audioBack: "TTS: Swimming is good exercise." 
+                },
+                { 
+                    term: "Running (Sport)", 
+                    definition: "The activity of running as a sport or for exercise.", 
+                    defTrans: "Corrida",
+                    example: "Usain Bolt is famous for running.", 
+                    audioFront: "TTS: Running",
+                    audioBack: "TTS: Usain Bolt is famous for running." 
+                },
+                { 
+                    term: "Cycling", 
+                    definition: "The sport or activity of riding a bicycle.", 
+                    defTrans: "Ciclismo",
+                    example: "Cycling is fun in the park.", 
+                    audioFront: "TTS: Cycling",
+                    audioBack: "TTS: Cycling is fun in the park." 
+                },
+                { 
+                    term: "Gymnastics", 
+                    definition: "Exercises developing or displaying physical agility and coordination.", 
+                    defTrans: "Ginástica",
+                    example: "She practices gymnastics.", 
+                    audioFront: "TTS: Gymnastics",
+                    audioBack: "TTS: She practices gymnastics." 
+                },
+                { 
+                    term: "Skateboarding", 
+                    definition: "The sport or pastime of riding on a skateboard.", 
+                    defTrans: "Skate",
+                    example: "He goes skateboarding with friends.", 
+                    audioFront: "TTS: Skateboarding",
+                    audioBack: "TTS: He goes skateboarding with friends." 
+                },
+                { 
+                    term: "Badminton", 
+                    definition: "A game with rackets in which a shuttlecock is played back and forth across a net.", 
+                    defTrans: "Badminton",
+                    example: "Let's play badminton.", 
+                    audioFront: "TTS: Badminton",
+                    audioBack: "TTS: Let's play badminton." 
+                },
+
+                // --- Musical Instruments ---
+                { 
+                    term: "Electric guitar", 
+                    definition: "A guitar with a built-in pickup requiring an amplifier to be heard.", 
+                    defTrans: "Guitarra elétrica",
+                    example: "Rock stars play the electric guitar.", 
+                    audioFront: "TTS: Electric guitar",
+                    audioBack: "TTS: Rock stars play the electric guitar." 
+                },
+                { 
+                    term: "Piano", 
+                    definition: "A large keyboard musical instrument with a wooden case and metal strings.", 
+                    defTrans: "Piano",
+                    example: "The piano has black and white keys.", 
+                    audioFront: "TTS: Piano",
+                    audioBack: "TTS: The piano has black and white keys." 
+                },
+                { 
+                    term: "Violin", 
+                    definition: "A stringed musical instrument played with a horsehair bow.", 
+                    defTrans: "Violino",
+                    example: "She plays the violin well.", 
+                    audioFront: "TTS: Violin",
+                    audioBack: "TTS: She plays the violin well." 
+                },
+                { 
+                    term: "Guitar", 
+                    definition: "A stringed musical instrument played by plucking or strumming (usually acoustic).", 
+                    defTrans: "Violão",
+                    example: "He sings and plays the guitar.", 
+                    audioFront: "TTS: Guitar",
+                    audioBack: "TTS: He sings and plays the guitar." 
+                },
+                { 
+                    term: "Drums", 
+                    definition: "Percussion instruments sounded by being struck with sticks or the hands.", 
+                    defTrans: "Bateria",
+                    example: "The drums are very loud.", 
+                    audioFront: "TTS: Drums",
+                    audioBack: "TTS: The drums are very loud." 
+                },
+                { 
+                    term: "Flute", 
+                    definition: "A high-pitched woodwind instrument.", 
+                    defTrans: "Flauta",
+                    example: "She plays the flute in the band.", 
+                    audioFront: "TTS: Flute",
+                    audioBack: "TTS: She plays the flute in the band." 
+                },
+                { 
+                    term: "Keyboard", 
+                    definition: "A set of keys on a piano or similar electronic musical instrument.", 
+                    defTrans: "Teclado",
+                    example: "I have a keyboard at home.", 
+                    audioFront: "TTS: Keyboard",
+                    audioBack: "TTS: I have a keyboard at home." 
+                },
+                { 
+                    term: "Bass", 
+                    definition: "A stringed instrument playing in the lowest range.", 
+                    defTrans: "Baixo",
+                    example: "He plays the bass guitar.", 
+                    audioFront: "TTS: Bass",
+                    audioBack: "TTS: He plays the bass guitar." 
+                },
+                // --- Languages ---
+                { 
+                    term: "English", 
+                    definition: "The language of England, the US, and many other countries.", 
+                    defTrans: "Inglês",
+                    example: "We are learning English.", 
+                    audioFront: "TTS: English",
+                    audioBack: "TTS: We are learning English." 
+                },
+                { 
+                    term: "Portuguese", 
+                    definition: "The language of Portugal and Brazil.", 
+                    defTrans: "Português",
+                    example: "I speak Portuguese.", 
+                    audioFront: "TTS: Portuguese",
+                    audioBack: "TTS: I speak Portuguese." 
+                },
+                { 
+                    term: "Spanish", 
+                    definition: "The language of Spain and much of Central and South America.", 
+                    defTrans: "Espanhol",
+                    example: "Hola is Spanish.", 
+                    audioFront: "TTS: Spanish",
+                    audioBack: "TTS: Hola is Spanish." 
+                },
+                { 
+                    term: "French", 
+                    definition: "The language of France.", 
+                    defTrans: "Francês",
+                    example: "She speaks French.", 
+                    audioFront: "TTS: French",
+                    audioBack: "TTS: She speaks French." 
+                },
+                { 
+                    term: "German", 
+                    definition: "The language of Germany, Austria, and parts of Switzerland.", 
+                    defTrans: "Alemão",
+                    example: "He is learning German.", 
+                    audioFront: "TTS: German",
+                    audioBack: "TTS: He is learning German." 
+                },
+                { 
+                    term: "Italian", 
+                    definition: "The language of Italy.", 
+                    defTrans: "Italiano",
+                    example: "Italian is similar to Portuguese.", 
+                    audioFront: "TTS: Italian",
+                    audioBack: "TTS: Italian is similar to Portuguese." 
+                },
+                { 
+                    term: "Japanese", 
+                    definition: "The language of Japan.", 
+                    defTrans: "Japonês",
+                    example: "Anime is in Japanese.", 
+                    audioFront: "TTS: Japanese",
+                    audioBack: "TTS: Anime is in Japanese." 
+                },
+                { 
+                    term: "Chinese", 
+                    definition: "The language of China.", 
+                    defTrans: "Chinês",
+                    example: "He speaks Chinese.", 
+                    audioFront: "TTS: Chinese",
+                    audioBack: "TTS: He speaks Chinese." 
+                },
+                { 
+                    term: "Korean", 
+                    definition: "The language of Korea.", 
+                    defTrans: "Coreano",
+                    example: "K-pop is in Korean.", 
+                    audioFront: "TTS: Korean",
+                    audioBack: "TTS: K-pop is in Korean." 
+                },
+
+                // --- Phrases & Adverbs ---
+                { 
+                    term: "I can...", 
+                    definition: "Statement used to express ability.", 
+                    defTrans: "Eu posso / Eu consigo...",
+                    example: "I can jump high.", 
+                    audioFront: "TTS: I can",
+                    audioBack: "TTS: I can jump high." 
+                },
+                { 
+                    term: "I can't...", 
+                    definition: "Statement used to express inability.", 
+                    defTrans: "Eu não posso / Eu não consigo...",
+                    example: "I can't speak Italian.", 
+                    audioFront: "TTS: I can't",
+                    audioBack: "TTS: I can't speak Italian." 
+                },
+                { 
+                    term: "Can you...?", 
+                    definition: "Question used to ask about someone's ability.", 
+                    defTrans: "Você pode / Você consegue...?",
+                    example: "Can you help me?", 
+                    audioFront: "TTS: Can you",
+                    audioBack: "TTS: Can you help me?" 
+                },
+                { 
+                    term: "How well...?", 
+                    definition: "Question used to ask about the degree of quality or skill.", 
+                    defTrans: "Quão bem...?",
+                    example: "How well do you cook?", 
+                    audioFront: "TTS: How well",
+                    audioBack: "TTS: How well do you cook?" 
+                },
+                { 
+                    term: "Very well", 
+                    definition: "In a very good or satisfactory way.", 
+                    defTrans: "Muito bem",
+                    example: "She sings very well.", 
+                    audioFront: "TTS: Very well",
+                    audioBack: "TTS: She sings very well." 
+                },
+                { 
+                    term: "Well", 
+                    definition: "In a good or satisfactory way.", 
+                    defTrans: "Bem",
+                    example: "He plays tennis well.", 
+                    audioFront: "TTS: Well",
+                    audioBack: "TTS: He plays tennis well." 
+                },
+                { 
+                    term: "Badly", 
+                    definition: "In an unsatisfactory, inadequate, or unsuccessful way.", 
+                    defTrans: "Mal",
+                    example: "I draw badly.", 
+                    audioFront: "TTS: Badly",
+                    audioBack: "TTS: I draw badly." 
+                },
+                { 
+                    term: "Fast", 
+                    definition: "At high speed.", 
+                    defTrans: "Rápido",
+                    example: "Don't run so fast.", 
+                    audioFront: "TTS: Fast",
+                    audioBack: "TTS: Don't run so fast." 
+                },
+                { 
+                    term: "Slowly", 
+                    definition: "At a slow speed; not quickly.", 
+                    defTrans: "Lentamente",
+                    example: "Please speak slowly.", 
+                    audioFront: "TTS: Slowly",
+                    audioBack: "TTS: Please speak slowly." 
+                },
+                { 
+                    term: "Easily", 
+                    definition: "Without difficulty or effort.", 
+                    defTrans: "Facilmente",
+                    example: "I can do it easily.", 
+                    audioFront: "TTS: Easily",
+                    audioBack: "TTS: I can do it easily." 
+                },
+                { 
+                    term: "Carefully", 
+                    definition: "In a way that avoids harm or errors; cautiously.", 
+                    defTrans: "Cuidadosamente",
+                    example: "Listen carefully.", 
+                    audioFront: "TTS: Carefully",
+                    audioBack: "TTS: Listen carefully." 
+                },
+                { 
+                    term: "At all", 
+                    definition: "In any way; to any extent (used with negatives).", 
+                    defTrans: "De jeito nenhum / nem um pouco",
+                    example: "I can't dance at all.", 
+                    audioFront: "TTS: At all",
+                    audioBack: "TTS: I can't dance at all." 
+                },
+                { 
+                    term: "CAN (Affirmative)", 
+                    definition: "Using the modal verb 'can' to state ability.", 
+                    defTrans: "Sujeito + CAN + Verbo (Base)",
+                    example: "She can swim.", 
+                    audioFront: "TTS: CAN Affirmative",
+                    audioBack: "TTS: She can swim." 
+                },
+                { 
+                    term: "CAN (Negative)", 
+                    definition: "Using 'cannot' or 'can't' to state lack of ability.", 
+                    defTrans: "Sujeito + CAN'T + Verbo (Base)",
+                    example: "He can't fly.", 
+                    audioFront: "TTS: CAN Negative",
+                    audioBack: "TTS: He can't fly." 
+                },
+                { 
+                    term: "CAN (Interrogative)", 
+                    definition: "Using 'can' at the start of a sentence to ask about ability.", 
+                    defTrans: "CAN + Sujeito + Verbo...?",
+                    example: "Can they play?", 
+                    audioFront: "TTS: CAN Interrogative",
+                    audioBack: "TTS: Can they play?" 
+                },
+                { 
+                    term: "Adverbs of Manner (-ly)", 
+                    definition: "Words that describe how an action is performed.", 
+                    defTrans: "Adjetivo + ly (Quick -> Quickly)",
+                    example: "He walks quickly.", 
+                    audioFront: "TTS: Adverbs of Manner",
+                    audioBack: "TTS: He walks quickly." 
+                },
+                { 
+                    term: "Irregular Adverbs (Good/Fast)", 
+                    definition: "Adverbs that do not follow the -ly rule.", 
+                    defTrans: "Good -> Well, Fast -> Fast",
+                    example: "She plays well.", 
+                    audioFront: "TTS: Irregular Adverbs",
+                    audioBack: "TTS: She plays well." 
+                },
+                { 
+                    term: "Play + THE + Instrument", 
+                    definition: "The rule of using 'the' before musical instruments.", 
+                    defTrans: "Usar 'THE' com instrumentos",
+                    example: "I play the piano.", 
+                    audioFront: "TTS: Play THE Instrument",
+                    audioBack: "TTS: I play the piano." 
                 }
             ]
         }
     ],
 
     // ======================================================
-    // GLOSSARY (New Format)
+    // GLOSSARY (Part 1: Context & Verbs A-L)
     // ======================================================
     glossary: [
+        // --- TOPIC 1: CONTEXT (Step 1 Tooltips) ---
         { 
-            topic: "Topic Name", // Used for pagination grouping
-            term: "word-key", 
-            definition: "English Definition.", 
-            translation: "Tradução" // Appears in glossary list
+            topic: "Context", 
+            term: "can", 
+            definition: "A modal verb used to express ability or possibility.", 
+            translation: "Poder / Conseguir" 
+        },
+        { 
+            topic: "Context", 
+            term: "play", 
+            definition: "To perform on a musical instrument or engage in a sport.", 
+            translation: "Tocar / Jogar" 
+        },
+        { 
+            topic: "Context", 
+            term: "guitar", 
+            definition: "A stringed musical instrument played with the fingers or a plectrum.", 
+            translation: "Violão" 
+        },
+        { 
+            topic: "Context", 
+            term: "cant", 
+            definition: "The negative form of can; used to show a lack of ability.", 
+            translation: "Não poder / Não conseguir" 
+        },
+        { 
+            topic: "Context", 
+            term: "well", 
+            definition: "In a good or satisfactory way.", 
+            translation: "Bem" 
+        },
+        { 
+            topic: "Context", 
+            term: "at-all", 
+            definition: "In any way; to any extent (used in negative sentences for emphasis).", 
+            translation: "De jeito nenhum / Nem um pouco" 
+        },
+        { 
+            topic: "Context", 
+            term: "do", 
+            definition: "To perform an action or activity.", 
+            translation: "Fazer" 
+        },
+        { 
+            topic: "Context", 
+            term: "skate", 
+            definition: "To move on roller skates or a skateboard.", 
+            translation: "Andar de skate / patinar" 
+        },
+        { 
+            topic: "Context", 
+            term: "fast", 
+            definition: "Moving or capable of moving at high speed.", 
+            translation: "Rápido / Veloz" 
+        },
+        { 
+            topic: "Context", 
+            term: "french", 
+            definition: "The language of France.", 
+            translation: "Francês" 
+        },
+        { 
+            topic: "Context", 
+            term: "help", 
+            definition: "To make it easier for someone to do something.", 
+            translation: "Ajudar" 
+        },
+        { 
+            topic: "Context", 
+            term: "homework", 
+            definition: "Schoolwork that a student is given to do at home.", 
+            translation: "Lição de casa" 
+        },
+        { 
+            topic: "Context", 
+            term: "teach", 
+            definition: "To impart knowledge or to show someone how to do something.", 
+            translation: "Ensinar" 
+        },
+        { 
+            topic: "Context", 
+            term: "learn", 
+            definition: "To gain or acquire knowledge or skill in something.", 
+            translation: "Aprender" 
+        },
+
+        // --- TOPIC 2: VERBS (A-L) ---
+        { 
+            topic: "Verbs (A-L)", 
+            term: "Cook", 
+            definition: "To prepare food by heating it.", 
+            translation: "Cozinhar" 
+        },
+        { 
+            topic: "Verbs (A-L)", 
+            term: "Dance", 
+            definition: "To move rhythmically to music, typically following a set steps.", 
+            translation: "Dançar" 
+        },
+        { 
+            topic: "Verbs (A-L)", 
+            term: "Draw", 
+            definition: "To produce a picture or diagram by making lines and marks on paper.", 
+            translation: "Desenhar" 
+        },
+        { 
+            topic: "Verbs (A-L)", 
+            term: "Give", 
+            definition: "To freely transfer the possession of something to someone.", 
+            translation: "Dar" 
+        },
+        { 
+            topic: "Verbs (A-L)", 
+            term: "Help", 
+            definition: "To provide someone with something that makes it easier to do a task.", 
+            translation: "Ajudar" 
+        },
+        // --- TOPIC 3: VERBS (M-W) ---
+        { 
+            topic: "Verbs (M-W)", 
+            term: "Move", 
+            definition: "To go in a specified direction or manner; change position.", 
+            translation: "Mover / Mexer" 
+        },
+        { 
+            topic: "Verbs (M-W)", 
+            term: "Paint", 
+            definition: "To produce a picture or decorate a surface using paint.", 
+            translation: "Pintar" 
+        },
+        { 
+            topic: "Verbs (M-W)", 
+            term: "Read", 
+            definition: "To look at and comprehend the meaning of written or printed matter.", 
+            translation: "Ler" 
+        },
+        { 
+            topic: "Verbs (M-W)", 
+            term: "Ride", 
+            definition: "To sit on and control the movement of an animal or a vehicle like a bicycle.", 
+            translation: "Andar (de bicicleta/moto/cavalo)" 
+        },
+        { 
+            topic: "Verbs (M-W)", 
+            term: "Sing", 
+            definition: "To make musical sounds with the voice, especially a tune with words.", 
+            translation: "Cantar" 
+        },
+        { 
+            topic: "Verbs (M-W)", 
+            term: "Solve", 
+            definition: "To find an answer to, explanation for, or means of dealing with a problem.", 
+            translation: "Resolver" 
+        },
+        { 
+            topic: "Verbs (M-W)", 
+            term: "Speak", 
+            definition: "To say words in order to convey information, an opinion, or a feeling.", 
+            translation: "Falar" 
+        },
+        { 
+            topic: "Verbs (M-W)", 
+            term: "Swim", 
+            definition: "To propel the body through water by using the limbs.", 
+            translation: "Nadar" 
+        },
+        { 
+            topic: "Verbs (M-W)", 
+            term: "Use", 
+            definition: "To take, hold, or deploy something as a means of accomplishing a purpose.", 
+            translation: "Usar" 
+        },
+        { 
+            topic: "Verbs (M-W)", 
+            term: "Write", 
+            definition: "To mark letters, words, or other symbols on a surface with a pen or pencil.", 
+            translation: "Escrever" 
+        },
+
+        // --- TOPIC 4: SPORTS ---
+        { 
+            topic: "Sports", 
+            term: "Football / Soccer", 
+            definition: "A team game played with a ball between two teams of 11 players.", 
+            translation: "Futebol" 
+        },
+        { 
+            topic: "Sports", 
+            term: "Basketball", 
+            definition: "A game played by two teams who score points by throwing a ball through a hoop.", 
+            translation: "Basquete" 
+        },
+        { 
+            topic: "Sports", 
+            term: "Volleyball", 
+            definition: "A game for two teams in which a large ball is hit by hand over a high net.", 
+            translation: "Vôlei" 
+        },
+        { 
+            topic: "Sports", 
+            term: "Tennis", 
+            definition: "A game in which players strike a ball with rackets over a net.", 
+            translation: "Tênis" 
+        },
+        { 
+            topic: "Sports", 
+            term: "Swimming", 
+            definition: "The sport or activity of propelling oneself through water.", 
+            translation: "Natação" 
+        },
+        { 
+            topic: "Sports", 
+            term: "Running", 
+            definition: "The activity of running as a sport or for exercise.", 
+            translation: "Corrida" 
+        },
+        { 
+            topic: "Sports", 
+            term: "Cycling", 
+            definition: "The sport or activity of riding a bicycle.", 
+            translation: "Ciclismo" 
+        },
+        { 
+            topic: "Sports", 
+            term: "Gymnastics", 
+            definition: "Exercises developing or displaying physical agility and coordination.", 
+            translation: "Ginástica" 
+        },
+        { 
+            topic: "Sports", 
+            term: "Skateboarding", 
+            definition: "The sport or pastime of riding on a skateboard.", 
+            translation: "Skate" 
+        },
+        { 
+            topic: "Sports", 
+            term: "Badminton", 
+            definition: "A game with rackets in which a shuttlecock is played across a net.", 
+            translation: "Badminton" 
+        },
+        // --- TOPIC 5: MUSICAL INSTRUMENTS ---
+        { 
+            topic: "Musical Instruments", 
+            term: "Electric guitar", 
+            definition: "A guitar with a built-in pickup requiring an amplifier to be heard.", 
+            translation: "Guitarra elétrica" 
+        },
+        { 
+            topic: "Musical Instruments", 
+            term: "Piano", 
+            definition: "A large keyboard musical instrument with a wooden case enclosing a soundboard and metal strings.", 
+            translation: "Piano" 
+        },
+        { 
+            topic: "Musical Instruments", 
+            term: "Violin", 
+            definition: "A stringed musical instrument of treble pitch, played with a horsehair bow.", 
+            translation: "Violino" 
+        },
+        { 
+            topic: "Musical Instruments", 
+            term: "Guitar", 
+            definition: "A stringed musical instrument played by plucking or strumming (usually acoustic).", 
+            translation: "Violão" 
+        },
+        { 
+            topic: "Musical Instruments", 
+            term: "Drums", 
+            definition: "Percussion instruments sounded by being struck with sticks or the hands.", 
+            translation: "Bateria" 
+        },
+        { 
+            topic: "Musical Instruments", 
+            term: "Flute", 
+            definition: "A high-pitched woodwind instrument.", 
+            translation: "Flauta" 
+        },
+        { 
+            topic: "Musical Instruments", 
+            term: "Keyboard", 
+            definition: "A set of keys on a piano or similar musical instrument; an electronic musical instrument.", 
+            translation: "Teclado" 
+        },
+        { 
+            topic: "Musical Instruments", 
+            term: "Bass", 
+            definition: "A stringed instrument playing in the lowest range.", 
+            translation: "Baixo" 
+        },
+
+        // --- TOPIC 6: LANGUAGES ---
+        { 
+            topic: "Languages", 
+            term: "English", 
+            definition: "The language of England, the US, and many other countries.", 
+            translation: "Inglês" 
+        },
+        { 
+            topic: "Languages", 
+            term: "Portuguese", 
+            definition: "The language of Portugal and Brazil.", 
+            translation: "Português" 
+        },
+        { 
+            topic: "Languages", 
+            term: "Spanish", 
+            definition: "The language of Spain and much of Central and South America.", 
+            translation: "Espanhol" 
+        },
+        { 
+            topic: "Languages", 
+            term: "French", 
+            definition: "The language of France.", 
+            translation: "Francês" 
+        },
+        { 
+            topic: "Languages", 
+            term: "German", 
+            definition: "The language of Germany, Austria, and parts of Switzerland.", 
+            translation: "Alemão" 
+        },
+        { 
+            topic: "Languages", 
+            term: "Italian", 
+            definition: "The language of Italy.", 
+            translation: "Italiano" 
+        },
+        { 
+            topic: "Languages", 
+            term: "Japanese", 
+            definition: "The language of Japan.", 
+            translation: "Japonês" 
+        },
+        { 
+            topic: "Languages", 
+            term: "Chinese", 
+            definition: "The language of China.", 
+            translation: "Chinês" 
+        },
+        { 
+            topic: "Languages", 
+            term: "Korean", 
+            definition: "The language of Korea.", 
+            translation: "Coreano" 
+        },
+        // --- TOPIC 7: PHRASES & ADVERBS ---
+        { 
+            topic: "Phrases & Adverbs", 
+            term: "Slowly", 
+            definition: "At a slow speed; not quickly.", 
+            translation: "Lentamente" 
+        },
+        { 
+            topic: "Phrases & Adverbs", 
+            term: "Easily", 
+            definition: "Without difficulty or effort.", 
+            translation: "Facilmente" 
+        },
+        { 
+            topic: "Phrases & Adverbs", 
+            term: "Carefully", 
+            definition: "In a way that avoids harm or errors; cautiously.", 
+            translation: "Cuidadosamente" 
+        },
+        { 
+            topic: "Phrases & Adverbs", 
+            term: "Badly", 
+            definition: "In an unsatisfactory, inadequate, or unsuccessful way.", 
+            translation: "Mal" 
+        },
+        { 
+            topic: "Phrases & Adverbs", 
+            term: "Fast", 
+            definition: "At high speed.", 
+            translation: "Rápido / Rapidamente" 
+        },
+        { 
+            topic: "Phrases & Adverbs", 
+            term: "Well", 
+            definition: "In a good or satisfactory way.", 
+            translation: "Bem" 
+        },
+        { 
+            topic: "Phrases & Adverbs", 
+            term: "Very well", 
+            definition: "In a very good or satisfactory way.", 
+            translation: "Muito bem" 
+        },
+        { 
+            topic: "Phrases & Adverbs", 
+            term: "At all", 
+            definition: "In any way; to any extent (used with negatives).", 
+            translation: "De jeito nenhum / Nem um pouco" 
+        },
+
+        // --- TOPIC 8: GRAMMAR POINTS ---
+        { 
+            topic: "Grammar Summary", 
+            term: "CAN (Affirmative)", 
+            definition: "Using the modal verb 'can' to state ability.", 
+            translation: "CAN (Afirmativa - Poder/Conseguir)" 
+        },
+        { 
+            topic: "Grammar Summary", 
+            term: "CAN (Negative)", 
+            definition: "Using 'cannot' or 'can't' to state lack of ability.", 
+            translation: "CAN (Negativa - Não poder/conseguir)" 
+        },
+        { 
+            topic: "Grammar Summary", 
+            term: "CAN (Interrogative)", 
+            definition: "Using 'can' at the start of a sentence to ask about ability.", 
+            translation: "CAN (Interrogativa)" 
+        },
+        { 
+            topic: "Grammar Summary", 
+            term: "Adverbs of Manner", 
+            definition: "Words that describe how an action is performed (usually ending in -ly).", 
+            translation: "Advérbios de Modo" 
+        },
+        { 
+            topic: "Grammar Summary", 
+            term: "Play + THE + Instrument", 
+            definition: "The rule of using 'the' before the names of musical instruments.", 
+            translation: "Tocar + THE + Instrumento" 
         }
-    ]
-});
+    ] // Closes glossary array
+}); // Closes initLesson object
