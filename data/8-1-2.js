@@ -727,7 +727,7 @@ window.initLesson({
             texts: [
                 {
                     title: "Narration: The Cyberbullying Incident",
-                    audio: "TTS: Lucas is a student at REACH school. Usually, he is happy and outgoing. But this week, he is feeling lonely and sad. Some students are posting mean comments on his photos. It is cyberbullying. Lucas knows this is dangerous. He is not going to hide. Tomorrow, he is going to report the comments to the school counselor. He knows that he must stop this behavior. || audio/8-1-2/p6_text1.mp3",
+                    audio: "TTS: Lucas is a student at REACH school. Usually, he is happy and outgoing. But this week, he is feeling lonely and sad. Some students are posting mean comments on his photos. It is cyberbullying. Lucas knows this is dangerous. He is not going to hide. Tomorrow, he is going to report the comments to the school counselor. He knows that he must stop this behavior.",
                     body: "Lucas is a student at REACH school. Usually, he is happy and outgoing. But this week, he is feeling lonely and sad. Some students are posting mean comments on his photos. It is cyberbullying. Lucas knows this is dangerous. He is not going to hide. Tomorrow, he is going to report the comments to the school counselor. He knows that he must stop this behavior.",
                     questions: [
                         { 
@@ -795,7 +795,7 @@ window.initLesson({
                 },
                 {
                     title: "Description: Our Anti-Bullying Campaign",
-                    audio: "TTS: Next month, our school is going to start a new campaign called Kindness First. We are going to have special classes about respect and empathy. We usually have assembly on Mondays, but next week, we are meeting on Tuesday to launch the project. The principal is going to speak about internet safety. We are feeling hopeful that this campaign will help everyone feel safe at school. || audio/8-1-2/p6_text3.mp3",
+                    audio: "TTS: Next month, our school is going to start a new campaign called Kindness First. We are going to have special classes about respect and empathy. We usually have assembly on Mondays, but next week, we are meeting on Tuesday to launch the project. The principal is going to speak about internet safety. We are feeling hopeful that this campaign will help everyone feel safe at school.",
                     body: "Next month, our school is going to start a new campaign called \"Kindness First\". We are going to have special classes about respect and empathy. We usually have assembly on Mondays, but next week, we are meeting on Tuesday to launch the project. The principal is going to speak about internet safety. We are feeling hopeful that this campaign will help everyone feel safe at school.",
                     questions: [
                         { 

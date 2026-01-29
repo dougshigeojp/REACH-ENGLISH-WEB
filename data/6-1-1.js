@@ -681,7 +681,7 @@ window.initLesson({
                 {
                     type: "dropdown",
                     instruction: "Listen to the conversation between Mrs. Canales and Celine. Choose the correct option.<br><small style='color:#0077b6'>(Ouça a conversa entre a Sra. Canales e Celine. Escolha a opção correta.)</small>",
-                    audio: "TTS: Mrs. Canales: Hello, Celine. Celine: Good morning, teacher. Mrs. Canales: Are you ready for the class? Celine: Yes, I am.",
+                    audio: "audio/6-1-1/p5_text2.mp3",
                     questions: [
                         { q: "Mrs. Canales: Hello, [Celine | Albert].", a: "Celine" },
                         { q: "Celine: [Good morning | Goodbye], teacher.", a: "Good morning" },
@@ -713,7 +713,7 @@ window.initLesson({
                 // Text 1: Narration
                 {
                     title: "The New School Year",
-                    audio: "TTS: Today is the first day at REACH school. Albert is a student. He is fourteen years old. He is from Canada. He is very happy. He meets a new friend. Her name is Celine. She is from Australia. She is fifteen years old. Mrs. Canales is the teacher. She is American. Everyone is ready for a great year! || audio/6-1-1/p6_text1.mp3",
+                    audio: "TTS: Today is the first day at REACH school. Albert is a student. He is fourteen years old. He is from Canada. He is very happy. He meets a new friend. Her name is Celine. She is from Australia. She is fifteen years old. Mrs. Canales is the teacher. She is American. Everyone is ready for a great year!",
                     body: "Today is the first day at REACH school. Albert is a student. He is fourteen years old. He is from Canada. He is very happy. He meets a new friend. Her name is Celine. She is from Australia. She is fifteen years old. Mrs. Canales is the teacher. She is American. Everyone is ready for a great year!",
                     questions: [
                         { 
@@ -783,7 +783,7 @@ window.initLesson({
                 // Text 3: Description
                 {
                     title: "My Friend John",
-                    audio: "TTS: This is my friend. His name is John. He is a good student. He is twelve years old. John is from England. He is English. His favorite book is blue. He is not sad; he is very excited today. We are in the same class. || audio/6-1-1/p6_text3.mp3",
+                    audio: "TTS: This is my friend. His name is John. He is a good student. He is twelve years old. John is from England. He is English. His favorite book is blue. He is not sad; he is very excited today. We are in the same class.",
                     body: "This is my friend. His name is John. He is a good student. He is twelve years old. John is from England. He is English. His favorite book is blue. He is not sad; he is very excited today. We are in the same class.",
                     questions: [
                         { 

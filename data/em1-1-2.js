@@ -753,7 +753,7 @@ window.initLesson({
             texts: [
                 {
                     title: "Narration (The Flashcard Method)",
-                    audio: "TTS: Lucas wants to learn new vocabulary. He has a specific method. He writes a word on one side of a card and the translation on the other. He reviews these cards every day. He thinks this technique is very efficient. Right now, he is making new cards for his biology class. He is writing the definitions carefully. He rarely forgets the words because he practices so often. He believes that memorizing is a key skill. || audio/em1-1-2/p6_text1.mp3",
+                    audio: "TTS: Lucas wants to learn new vocabulary. He has a specific method. He writes a word on one side of a card and the translation on the other. He reviews these cards every day. He thinks this technique is very efficient. Right now, he is making new cards for his biology class. He is writing the definitions carefully. He rarely forgets the words because he practices so often. He believes that memorizing is a key skill.",
                     body: "Lucas wants to learn new vocabulary. He has a specific method. He writes a word on one side of a card and the translation on the other. He reviews these cards every day. He thinks this technique is very efficient. Right now, he is making new cards for his biology class. He is writing the definitions carefully. He rarely forgets the words because he practices so often. He believes that memorizing is a key skill.",
                     questions: [
                         { 
@@ -821,7 +821,7 @@ window.initLesson({
                 },
                 {
                     title: "Description (The Visual Learner)",
-                    audio: "TTS: Ana is a visual learner. She understands things better when she sees images or diagrams. She always uses colorful pens to take notes. She rarely reads long texts without pictures. Currently, she is studying for a geography test. She is drawing a map of the world to help her memorize the countries. She finds it helpful to create charts and graphs. For her, watching a video is more effective than listening to a lecture. || audio/em1-1-2/p6_text3.mp3",
+                    audio: "TTS: Ana is a visual learner. She understands things better when she sees images or diagrams. She always uses colorful pens to take notes. She rarely reads long texts without pictures. Currently, she is studying for a geography test. She is drawing a map of the world to help her memorize the countries. She finds it helpful to create charts and graphs. For her, watching a video is more effective than listening to a lecture.",
                     body: "Ana is a visual learner. She understands things better when she sees images or diagrams. She always uses colorful pens to take notes. She rarely reads long texts without pictures. Currently, she is studying for a geography test. She is drawing a map of the world to help her memorize the countries. She finds it helpful to create charts and graphs. For her, watching a video is more effective than listening to a lecture.",
                     questions: [
                         { 

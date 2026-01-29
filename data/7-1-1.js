@@ -761,7 +761,7 @@ window.initLesson({
             texts: [
                 {
                     title: "Narration: The School Talent Show",
-                    audio: "TTS: Today is the talent show at school. Many students are showing their skills. Sarah can sing beautifully. She is singing a pop song. Mike can play the drums very fast. Everyone is clapping. But poor Tom can't find his guitar. He wants to play rock music, but he can't without his instrument. The teacher helps him find it. Now, Tom can play too! || audio/7-1-1/p6_text1.mp3",
+                    audio: "TTS: Today is the talent show at school. Many students are showing their skills. Sarah can sing beautifully. She is singing a pop song. Mike can play the drums very fast. Everyone is clapping. But poor Tom can't find his guitar. He wants to play rock music, but he can't without his instrument. The teacher helps him find it. Now, Tom can play too!",
                     body: "Today is the talent show at school. Many students are showing their skills. Sarah can sing beautifully. She is singing a pop song. Mike can play the drums very fast. Everyone is clapping. But poor Tom can't find his guitar. He wants to play rock music, but he can't without his instrument. The teacher helps him find it. Now, Tom can play too!",
                     questions: [
                         { 
@@ -799,7 +799,7 @@ window.initLesson({
                 },
                 {
                     title: "Description: My Super Brother",
-                    audio: "TTS: My brother, Leo, is very talented. He loves sports. He can run very fast and he plays soccer well. He is also good at music. He can play the piano and the violin. But there is one thing he can't do. He can't cook! Last week, he tried to make pasta, but it was terrible. He cooks very badly. || audio/7-1-1/p6_text3.mp3",
+                    audio: "TTS: My brother, Leo, is very talented. He loves sports. He can run very fast and he plays soccer well. He is also good at music. He can play the piano and the violin. But there is one thing he can't do. He can't cook! Last week, he tried to make pasta, but it was terrible. He cooks very badly.",
                     body: "My brother, Leo, is very talented. He loves sports. He can run very fast and he plays soccer well. He is also good at music. He can play the piano and the violin. But there is one thing he can't do. He can't cook! Last week, he tried to make pasta, but it was terrible. He cooks very badly.",
                     questions: [
                         { 

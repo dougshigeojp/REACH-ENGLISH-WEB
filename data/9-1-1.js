@@ -740,7 +740,7 @@ window.initLesson({
             texts: [
                 {
                     title: "Narration: The Race for Flight",
-                    audio: "TTS: For centuries, humans had dreamed of flying. Many inventors had tried to build flying machines, but they failed. Then, in 1903, the Wright Brothers changed history. They had been experimenting with gliders for years before they built the Flyer. On a cold December day, Orville Wright flew the plane for 12 seconds. It was a short flight, but it proved that humans could fly. || audio/9-1-1/p6_text1.mp3",
+                    audio: "TTS: For centuries, humans had dreamed of flying. Many inventors had tried to build flying machines, but they failed. Then, in 1903, the Wright Brothers changed history. They had been experimenting with gliders for years before they built the Flyer. On a cold December day, Orville Wright flew the plane for 12 seconds. It was a short flight, but it proved that humans could fly.",
                     body: "For centuries, humans had dreamed of flying. Many inventors had tried to build flying machines, but they failed. Then, in 1903, the Wright Brothers changed history. They had been experimenting with gliders for years before they built the \"Flyer\". On a cold December day, Orville Wright flew the plane for 12 seconds. It was a short flight, but it proved that humans could fly.",
                     questions: [
                         { 
@@ -808,7 +808,7 @@ window.initLesson({
                 },
                 {
                     title: "Description: The Evolution of Communication",
-                    audio: "TTS: Communication has changed a lot. Before we had smartphones, people had used letters to communicate for centuries. Then, Alexander Graham Bell invented the telephone. It was a revolution. People could talk to each other from long distances. Now, we have been using the internet for a few decades. We can send messages instantly. It is amazing to see how far we have come. || audio/9-1-1/p6_text3.mp3",
+                    audio: "TTS: Communication has changed a lot. Before we had smartphones, people had used letters to communicate for centuries. Then, Alexander Graham Bell invented the telephone. It was a revolution. People could talk to each other from long distances. Now, we have been using the internet for a few decades. We can send messages instantly. It is amazing to see how far we have come.",
                     body: "Communication has changed a lot. Before we had smartphones, people had used letters to communicate for centuries. Then, Alexander Graham Bell invented the telephone. It was a revolution. People could talk to each other from long distances. Now, we have been using the internet for a few decades. We can send messages instantly. It is amazing to see how far we have come.",
                     questions: [
                         { 

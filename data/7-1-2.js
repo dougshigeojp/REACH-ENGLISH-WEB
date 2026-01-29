@@ -754,7 +754,7 @@ window.initLesson({
             texts: [
                 {
                     title: "Narration: A Digital Day",
-                    audio: "TTS: My name is Sarah. I am a digital native. I wake up at 7 AM and check my notifications immediately. I usually have breakfast with my smartphone in my hand. I like to scroll through my feed and like photos. I go to school in the morning, so I am offline then. But in the afternoon, I am always online. I chat with my best friend and we share funny memes. I love technology! || audio/7-1-2/p6_text1.mp3",
+                    audio: "TTS: My name is Sarah. I am a digital native. I wake up at 7 AM and check my notifications immediately. I usually have breakfast with my smartphone in my hand. I like to scroll through my feed and like photos. I go to school in the morning, so I am offline then. But in the afternoon, I am always online. I chat with my best friend and we share funny memes. I love technology!",
                     body: "My name is Sarah. I am a digital native. I wake up at 7 AM and check my notifications immediately. I usually have breakfast with my smartphone in my hand. I like to scroll through my feed and like photos. I go to school in the morning, so I am offline then. But in the afternoon, I am always online. I chat with my best friend and we share funny memes. I love technology!",
                     questions: [
                         { 
@@ -822,7 +822,7 @@ window.initLesson({
                 },
                 {
                     title: "Description: My Favorite App",
-                    audio: "TTS: My favorite app is called PhotoShare. It is very popular. I use it to edit my pictures. It has many filters that make the photos look beautiful. I can also tag my friends and add a location. I usually post one photo on Saturdays. My friends comment nice things. It makes me happy. I don't like negative comments, so I block rude people. || audio/7-1-2/p6_text3.mp3",
+                    audio: "TTS: My favorite app is called PhotoShare. It is very popular. I use it to edit my pictures. It has many filters that make the photos look beautiful. I can also tag my friends and add a location. I usually post one photo on Saturdays. My friends comment nice things. It makes me happy. I don't like negative comments, so I block rude people.",
                     body: "My favorite app is called \"PhotoShare\". It is very popular. I use it to edit my pictures. It has many filters that make the photos look beautiful. I can also tag my friends and add a location. I usually post one photo on Saturdays. My friends comment nice things. It makes me happy. I don't like negative comments, so I block rude people.",
                     questions: [
                         { 

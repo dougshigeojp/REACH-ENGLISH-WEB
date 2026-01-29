@@ -522,12 +522,12 @@ window.initLesson({
                     lines: [
                         { 
                             speaker: "Albert", 
-                            text: "Celine, I read that the new dam was [built](tooltip:built) last year.", 
+                            text: "Celine, I read that the new dam was built last year.", 
                             pt: "<span style='color:#0077b6'>Celine, eu li que a nova barragem foi construída no ano passado.</span>" 
                         },
                         { 
                             speaker: "Celine", 
-                            text: "Yes! Energy [is generated](tooltip:generated) through the water flow. [Because of](tooltip:because of) this project, our community is safer.", 
+                            text: "Yes! Energy is generated through the water flow. Because of this project, our community is safer.", 
                             pt: "<span style='color:#0077b6'>Sim! A energia é gerada através do fluxo de água. Por causa deste projeto, nossa comunidade é mais segura.</span>" 
                         }
                     ]
@@ -538,12 +538,12 @@ window.initLesson({
                     lines: [
                         { 
                             speaker: "Celine", 
-                            text: "[Solar panels](tooltip:solar panels) [have been installed](tooltip:have been installed) in the neighborhood recently.", 
+                            text: "Solar panels have been installed in the neighborhood recently.", 
                             pt: "<span style='color:#0077b6'>Painéis solares foram instalados no bairro recentemente.</span>" 
                         },
                         { 
                             speaker: "Albert", 
-                            text: "That's great! [Therefore](tooltip:therefore), our reliance on [oil](tooltip:oil) will [diminish](tooltip:diminish). We must [act](tooltip:act) for the Earth!", 
+                            text: "That's great! Therefore, our reliance on oil will diminish. We must act for the Earth!", 
                             pt: "<span style='color:#0077b6'>Que ótimo! Portanto, nossa dependência de petróleo vai diminuir. Devemos agir pela Terra!</span>" 
                         }
                     ]
@@ -737,7 +737,7 @@ window.initLesson({
             texts: [
                 {
                     title: "6a: Narration - The Island of El Hierro",
-                    audio: "TTS: El Hierro is a small island where sustainability is a reality. For several years, a project has been developed to make the island 100% green. Electricity is generated through a combination of wind power and hydropower. Due to this system, the use of petroleum was almost entirely abandoned. Therefore, the local environment is much cleaner now. This successful model is being seriously discussed by other islands. It is believed that a zero-carbon future can be achieved by small communities first. || audio/em2-1-3/p6_text1.mp3",
+                    audio: "TTS: El Hierro is a small island where sustainability is a reality. For several years, a project has been developed to make the island 100% green. Electricity is generated through a combination of wind power and hydropower. Due to this system, the use of petroleum was almost entirely abandoned. Therefore, the local environment is much cleaner now. This successful model is being seriously discussed by other islands. It is believed that a zero-carbon future can be achieved by small communities first.",
                     body: "El Hierro is a small island where sustainability is a reality. For several years, a project has been developed to make the island 100% green. Electricity is generated through a combination of wind power and hydropower. Due to this system, the use of petroleum was almost entirely abandoned. Therefore, the local environment is much cleaner now. This successful model is being seriously discussed by other islands. It is believed that a zero-carbon future can be achieved by small communities first.",
                     questions: [
                         { q: "How is electricity produced on El Hierro?", options: [ {t:"Using only solar panels.", c:false}, {t:"Through wind and hydropower.", c:true}, {t:"By burning organic waste.", c:false} ] },
@@ -757,7 +757,7 @@ window.initLesson({
                 },
                 {
                     title: "6c: Description - A Sustainable Startup",
-                    audio: "TTS: 'GreenFuture' is a startup that was created to solve problems related to waste. Their main product is produced using 100% recycled plastic. As a result of their innovation, thousands of tons of waste are being transformed into durable furniture. Every year, new methods are implemented to improve efficiency. The founders believe that sustainability must be prioritized by every business. Since they started, their carbon footprint has been kept very low. || audio/em2-1-3/p6_text3.mp3",
+                    audio: "TTS: 'GreenFuture' is a startup that was created to solve problems related to waste. Their main product is produced using 100% recycled plastic. As a result of their innovation, thousands of tons of waste are being transformed into durable furniture. Every year, new methods are implemented to improve efficiency. The founders believe that sustainability must be prioritized by every business. Since they started, their carbon footprint has been kept very low.",
                     body: "'GreenFuture' is a startup that was created to solve problems related to waste. Their main product is produced using 100% recycled plastic. As a result of their innovation, thousands of tons of waste are being transformed into durable furniture. Every year, new methods are implemented to improve efficiency. The founders believe that sustainability must be prioritized by every business. Since they started, their carbon footprint has been kept very low.",
                     questions: [
                         { q: "What is the goal of the startup 'GreenFuture'?", options: [ {t:"To produce more petroleum.", c:false}, {t:"To solve waste-related problems.", c:true}, {t:"To build a new hospital.", c:false} ] },

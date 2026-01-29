@@ -688,7 +688,7 @@ window.initLesson({
                             a: "bought" 
                         },
                         { 
-                            q: "Mrs. Canales: Did you make it yourself? <br> Celine: No, I [didn't use to | used to | use to] sew, but I stopped.", 
+                            q: "Mrs. Canales: Didn't you make it yourself? <br> Celine: No, I [didn't use to | used to | use to] sew, but I stopped.", 
                             a: "didn't use to" 
                         }
                     ]
@@ -716,7 +716,7 @@ window.initLesson({
             texts: [
                 {
                     title: "Narration (The Accidental Discovery)",
-                    audio: "TTS: Many great inventions happened by accident. In 1928, Alexander Fleming was experimenting with bacteria in his laboratory. He went on vacation and left a dish of bacteria open. When he returned, he noticed something strange. Mold was growing in the dish, and it was killing the bacteria. He discovered penicillin! This breakthrough changed medicine forever. Before this, people used to die from simple infections. Fleming's creativity and observation saved millions of lives. || audio/em1-1-3/p6_text1.mp3",
+                    audio: "TTS: Many great inventions happened by accident. In 1928, Alexander Fleming was experimenting with bacteria in his laboratory. He went on vacation and left a dish of bacteria open. When he returned, he noticed something strange. Mold was growing in the dish, and it was killing the bacteria. He discovered penicillin! This breakthrough changed medicine forever. Before this, people used to die from simple infections. Fleming's creativity and observation saved millions of lives.",
                     body: "Many great inventions happened by accident. In 1928, Alexander Fleming was experimenting with bacteria in his laboratory. He went on vacation and left a dish of bacteria open. When he returned, he noticed something strange. Mold (fungo) was growing in the dish, and it was killing the bacteria. He discovered penicillin! This breakthrough changed medicine forever. Before this, people used to die from simple infections. Fleming's creativity and observation saved millions of lives.",
                     questions: [
                         { 
@@ -784,7 +784,7 @@ window.initLesson({
                 },
                 {
                     title: "Description (The Creative Mind)",
-                    audio: "TTS: Leonardo da Vinci was a true genius. He lived during the Renaissance. He was not only a painter but also an inventor and scientist. He used to draw sketches of machines that didn't exist yet, like helicopters and tanks. He had a very vivid imagination. While others were painting portraits, Leonardo was studying anatomy and flight. He believed that art and science were connected. His designs were centuries ahead of his time. He shows us that innovation comes from curiosity. || audio/em1-1-3/p6_text3.mp3",
+                    audio: "TTS: Leonardo da Vinci was a true genius. He lived during the Renaissance. He was not only a painter but also an inventor and scientist. He used to draw sketches of machines that didn't exist yet, like helicopters and tanks. He had a very vivid imagination. While others were painting portraits, Leonardo was studying anatomy and flight. He believed that art and science were connected. His designs were centuries ahead of his time. He shows us that innovation comes from curiosity.",
                     body: "Leonardo da Vinci was a true genius. He lived during the Renaissance. He was not only a painter but also an inventor and scientist. He used to draw sketches of machines that didn't exist yet, like helicopters and tanks. He had a very vivid imagination. While others were painting portraits, Leonardo was studying anatomy and flight. He believed that art and science were connected. His designs were centuries ahead of his time. He shows us that innovation comes from curiosity.",
                     questions: [
                         { 

@@ -587,7 +587,7 @@ window.initLesson({
                 {
                     type: "dropdown",
                     instruction: "Listen to the conversation between Celine and Albert. Choose the correct option.<br><small style='color:#0077b6'>(Ouça a conversa entre Celine e Albert. Escolha a opção correta.)</small>",
-                    audio: "TTS: Celine: Who is that? Albert: That is my uncle. His name is Bob. Celine: What does he do? Albert: He is a farmer.",
+                    audio: "audio/6-1-2/p5_text2.mp3",
                     questions: [
                         { q: "Celine: Who is [that | this]?", a: "that" },
                         { q: "Albert: That is my [uncle | aunt]. [His | Her] name is Bob.", a: "uncle" },
@@ -619,7 +619,7 @@ window.initLesson({
                 // Text 1: Narration
                 {
                     title: "Albert's Amazing Family",
-                    audio: "TTS: Albert has a very interesting family. His father, Arthur, is a firefighter. He helps people every day. His mother, Mary, is a manager at a big company. Albert also has a brother. His brother is a gamer; he plays video games very well. Albert loves his family. They are very happy together. || audio/6-1-2/p6_text1.mp3",
+                    audio: "TTS: Albert has a very interesting family. His father, Arthur, is a firefighter. He helps people every day. His mother, Mary, is a manager at a big company. Albert also has a brother. His brother is a gamer; he plays video games very well. Albert loves his family. They are very happy together.",
                     body: "Albert has a very interesting family. His father, Arthur, is a firefighter. He helps people every day. His mother, Mary, is a manager at a big company. Albert also has a brother. His brother is a gamer; he plays video games very well. Albert loves his family. They are very happy together.",
                     questions: [
                         { 
@@ -689,7 +689,7 @@ window.initLesson({
                 // Text 3: Description
                 {
                     title: "My Grandparents",
-                    audio: "TTS: Hello, I am Celine. I want to tell you about my grandparents. Their names are Rose and Peter. They are very nice. Peter is my grandfather. He was a bus driver, but now he is at home. Rose is my grandmother. She is an artist. She paints beautiful pictures. I love my grandparents very much. || audio/6-1-2/p6_text3.mp3",
+                    audio: "TTS: Hello, I am Celine. I want to tell you about my grandparents. Their names are Rose and Peter. They are very nice. Peter is my grandfather. He was a bus driver, but now he is at home. Rose is my grandmother. She is an artist. She paints beautiful pictures. I love my grandparents very much.",
                     body: "Hello, I am Celine. I want to tell you about my grandparents. Their names are Rose and Peter. They are very nice. Peter is my grandfather. He was a bus driver, but now he is at home. Rose is my grandmother. She is an artist. She paints beautiful pictures. I love my grandparents very much.",
                     questions: [
                         { 

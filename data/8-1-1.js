@@ -734,7 +734,7 @@ window.initLesson({
             texts: [
                 {
                     title: "Narration: Shopping for a Gift",
-                    audio: "TTS: Tomorrow is my sister's birthday. I went to the mall to buy a gift. I looked at a smartwatch, but it was the most expensive item in the store. Then, I saw some headphones. They were cheaper than the watch and looked very stylish. Finally, I found a beautiful necklace. It was smaller than the headphones, but I think it is the best gift for her. || audio/8-1-1/p6_text1.mp3",
+                    audio: "TTS: Tomorrow is my sister's birthday. I went to the mall to buy a gift. I looked at a smartwatch, but it was the most expensive item in the store. Then, I saw some headphones. They were cheaper than the watch and looked very stylish. Finally, I found a beautiful necklace. It was smaller than the headphones, but I think it is the best gift for her.",
                     body: "Tomorrow is my sister's birthday. I went to the mall to buy a gift. I looked at a smartwatch, but it was the most expensive item in the store. Then, I saw some headphones. They were cheaper than the watch and looked very stylish. Finally, I found a beautiful necklace. It was smaller than the headphones, but I think it is the best gift for her.",
                     questions: [
                         { 
@@ -802,7 +802,7 @@ window.initLesson({
                 },
                 {
                     title: "Description: My New Laptop",
-                    audio: "TTS: I bought a new laptop yesterday. My old laptop was very slow and heavy. The new one is much faster. It is also thinner and lighter, so I can carry it in my backpack easily. The screen is bigger, which is better for watching movies. It was more expensive than a tablet, but it is more useful for my homework. It is the best computer I have ever had. || audio/8-1-1/p6_text3.mp3",
+                    audio: "TTS: I bought a new laptop yesterday. My old laptop was very slow and heavy. The new one is much faster. It is also thinner and lighter, so I can carry it in my backpack easily. The screen is bigger, which is better for watching movies. It was more expensive than a tablet, but it is more useful for my homework. It is the best computer I have ever had.",
                     body: "I bought a new laptop yesterday. My old laptop was very slow and heavy. The new one is much faster. It is also thinner and lighter, so I can carry it in my backpack easily. The screen is bigger, which is better for watching movies. It was more expensive than a tablet, but it is more useful for my homework. It is the best computer I have ever had.",
                     questions: [
                         { 

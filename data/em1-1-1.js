@@ -1038,7 +1038,7 @@ audio2b: "TTS: I agree with your opinion. We must consider all options. Let's di
             texts: [
                 {
                     title: "Narration (The Exchange Student)",
-                    audio: "TTS: Lucas decided to become an exchange student. He wanted to learn English; therefore, he traveled to the USA. When he arrived, he introduced himself to his host family. Hello, my name is Lucas, he said. The family welcomed him warmly. At school, Lucas noticed that English was spoken wherever he went. He studied hard every day. As a result, his English improved quickly. He learned that whoever tries hard can achieve their goals. || audio/em1-1-1/p6_text1.mp3",
+                    audio: "TTS: Lucas decided to become an exchange student. He wanted to learn English; therefore, he traveled to the USA. When he arrived, he introduced himself to his host family. Hello, my name is Lucas, he said. The family welcomed him warmly. At school, Lucas noticed that English was spoken wherever he went. He studied hard every day. As a result, his English improved quickly. He learned that whoever tries hard can achieve their goals.",
                     body: "Lucas decided to become an exchange student. He wanted to learn English; therefore, he traveled to the USA. When he arrived, he introduced himself to his host family. \"Hello, my name is Lucas,\" he said. The family welcomed him warmly. At school, Lucas noticed that English was spoken wherever he went. He studied hard every day. As a result, his English improved quickly. He learned that whoever tries hard can achieve their goals.",
                     questions: [
                         {
@@ -1106,7 +1106,7 @@ audio2b: "TTS: I agree with your opinion. We must consider all options. Let's di
                 },
                 {
                     title: "Description (English in the World)",
-                    audio: "TTS: English is often called a global language. It is used in business, science, and travel. Owing to its popularity, millions of people study it. It connects people from different cultures. For example, a person from Japan can communicate with a person from Brazil using English. Thus, it removes barriers. Technology also relies on English. Most coding languages use English words. Consequently, knowing English opens many doors for your career. It creates opportunities for whoever speaks it. || audio/em1-1-1/p6_text3.mp3",
+                    audio: "TTS: English is often called a global language. It is used in business, science, and travel. Owing to its popularity, millions of people study it. It connects people from different cultures. For example, a person from Japan can communicate with a person from Brazil using English. Thus, it removes barriers. Technology also relies on English. Most coding languages use English words. Consequently, knowing English opens many doors for your career. It creates opportunities for whoever speaks it.",
                     body: "English is often called a global language. It is used in business, science, and travel. Owing to its popularity, millions of people study it. It connects people from different cultures. For example, a person from Japan can communicate with a person from Brazil using English. Thus, it removes barriers. Technology also relies on English. Most coding languages use English words. Consequently, knowing English opens many doors for your career. It creates opportunities for whoever speaks it.",
                     questions: [
                         {

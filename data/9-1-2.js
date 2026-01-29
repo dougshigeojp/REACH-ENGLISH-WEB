@@ -682,7 +682,7 @@ window.initLesson({
             texts: [
                 {
                     title: "Narration: Finding a New Home",
-                    audio: "TTS: Layla is a refugee. Last year, she had to leave her home because of a war. It was very dangerous, so she couldn't stay. She crossed the border with her family to seek asylum. The journey was long and difficult. Now, she lives in a new country. She feels safe, but she misses her friends. She wishes she could see them again. She is learning the new language to adapt. || audio/9-1-2/p6_text1.mp3",
+                    audio: "TTS: Layla is a refugee. Last year, she had to leave her home because of a war. It was very dangerous, so she couldn't stay. She crossed the border with her family to seek asylum. The journey was long and difficult. Now, she lives in a new country. She feels safe, but she misses her friends. She wishes she could see them again. She is learning the new language to adapt.",
                     body: "Layla is a refugee. Last year, she had to leave her home because of a war. It was very dangerous, so she couldn't stay. She crossed the border with her family to seek asylum. The journey was long and difficult. Now, she lives in a new country. She feels safe, but she misses her friends. She wishes she could see them again. She is learning the new language to adapt.",
                     questions: [
                         { 
@@ -750,7 +750,7 @@ window.initLesson({
                 },
                 {
                     title: "Description: The Dream Job",
-                    audio: "TTS: Maria is an engineer. She wants to work abroad to find better opportunities. She believes she must improve her skills to compete in the global market. She is seeking a job in Canada. However, the process is not easy. There is a lot of bureaucracy and she has to get a visa. She wishes the process were simpler. She is determined to overcome these obstacles for a better life. || audio/9-1-2/p6_text3.mp3",
+                    audio: "TTS: Maria is an engineer. She wants to work abroad to find better opportunities. She believes she must improve her skills to compete in the global market. She is seeking a job in Canada. However, the process is not easy. There is a lot of bureaucracy and she has to get a visa. She wishes the process were simpler. She is determined to overcome these obstacles for a better life.",
                     body: "Maria is an engineer. She wants to work abroad to find better opportunities. She believes she must improve her skills to compete in the global market. She is seeking a job in Canada. However, the process is not easy. There is a lot of bureaucracy and she has to get a visa. She wishes the process were simpler. She is determined to overcome these obstacles for a better life.",
                     questions: [
                         { 
