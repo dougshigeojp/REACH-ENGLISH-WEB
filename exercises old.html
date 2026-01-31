@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REACH English | Practice Mode</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Extra Styles for Exercise UI -->
+    <style>
+        body { background-color: #e3f2fd; } /* Slightly darker blue for differentiation */
+        
+        /* Sticky Score Header */
+        #exercise-header {
+            position: fixed; top: 0; left: 0; width: 100%; height: 70px;
+            background: white; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 5%; z-index: 1000;
+        }
+
+        .progress-track {
+            flex-grow: 1; height: 10px; background: #eee; border-radius: 5px; margin: 0 20px;
+            overflow: hidden;
+        }
+        .progress-fill { height: 100%; background: var(--success-green); width: 0%; transition: 0.3s; }
+
+        .score-badge {
+            font-family: 'Montserrat', sans-serif; font-weight: 900;
+            color: var(--primary-blue); font-size: 1.2rem;
+        }
+
+        #quiz-container {
+            max-width: 800px; margin: 100px auto 50px auto; padding: 20px;
+        }
+
+        /* Question Card Animation */
+        .q-card {
+            background: white; padding: 30px; border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 20px;
+            display: none; animation: slideUp 0.4s ease-out;
+        }
+        .q-card.active { display: block; }
+        
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        .feedback-msg {
+            margin-top: 15px; font-weight: 700; display: none; padding: 10px; border-radius: 8px; text-align: center;
+        }
+        .feedback-msg.correct { background: #d4edda; color: #155724; }
+        .feedback-msg.incorrect { background: #f8d7da; color: #721c24; }
+
+        /* Results Modal */
+        #result-screen {
+            display: none; text-align: center; padding: 40px; background: white;
+            border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .score-circle {
+            width: 120px; height: 120px; border-radius: 50%;
+            background: var(--primary-blue); color: white;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.5rem; font-weight: 900; margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header id="exercise-header">
+        <a href="index.html" style="text-decoration:none; font-size:1.5rem;">🏠</a>
+        
+        <div class="progress-track">
+            <div id="progress-bar" class="progress-fill"></div>
+        </div>
+        
+        <div class="score-badge">Score: <span id="current-score">0</span></div>
+    </header>
+
+    <!-- MAIN GAME AREA -->
+    <main id="quiz-container">
+        <!-- Loader -->
+        <div id="loader" style="text-align:center; margin-top:50px;">Loading Exercises...</div>
+        
+        <!-- Questions will be injected here -->
+        <div id="question-stream"></div>
+
+        <!-- Result Screen (Hidden by default) -->
+        <div id="result-screen">
+            <h2 style="color:var(--primary-blue)">EXERCISE COMPLETE!</h2>
+            <div class="score-circle" id="final-score-display">0%</div>
+            <p id="final-msg">Good Job!</p>
+            <button class="btn" onclick="location.reload()">Try Again</button>
+            <br><br>
+            <a href="index.html" style="color:var(--text-dark); text-decoration:underline;">Back to Menu</a>
+        </div>
+    </main>
+
+    <!-- EXERCISE ENGINE -->
+    <script src="engine-exercises.js"></script>
+
+    <!-- LOAD DATA SCRIPT -->
+    <script>
+        // 1. Get ID from URL (e.g., exercises.html?id=ex-sample)
+        const urlParams = new URLSearchParams(window.location.search);
+        const exId = urlParams.get('id');
+
+        if(exId) {
+            const script = document.createElement('script');
+            script.src = `data/exercises/${exId}.js`; // Loads from specific folder
+            script.onload = () => console.log("Data loaded");
+            script.onerror = () => document.getElementById('loader').innerHTML = "❌ Error: Exercise file not found.";
+            document.body.appendChild(script);
+        } else {
+            document.getElementById('loader').innerHTML = "⚠️ No exercise ID provided in URL.";
+        }
+    </script>
+
+</body>
+</html>

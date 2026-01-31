@@ -192,34 +192,82 @@ window.switchDashTab = function(tabName) {
 
 // --- START OF TTS ENGINE (Google Network Hack) ---
 window.playTTS = function(text) {
-    console.log("Playing TTS:", text);
+    console.log("Initializing Smart TTS Engine...");
 
+    // 1. Stop all current sounds/voices
     window.speechSynthesis.cancel();
-    if (window.currentTTSAudio) {
-        window.currentTTSAudio.pause();
-        window.currentTTSAudio = null;
-    }
+    if (window.currentTTSAudio) { window.currentTTSAudio.pause(); window.currentTTSAudio = null; }
     if (typeof globalAudio !== 'undefined' && globalAudio) globalAudio.pause();
 
-    const cleanText = text.replace(/\[(.*?)\]\(.*?\)/g, '$1').trim();
+    // 2. The 1-Second Delay (Prevents word clipping)
+    setTimeout(() => {
+        // Prepare Clean Text
+        const cleanText = text.replace("TTS: ", "").replace(/\[(.*?)\]\(.*?\)/g, '$1').trim();
+        
+        // --- TIER 1: HIGH-QUALITY SYSTEM VOICES ---
+        const highQualityNames = [
+            "Microsoft Aria Online", 
+            "Google US English",      
+            "Samantha",               
+            "Microsoft Jenny Online", 
+            "Microsoft Guy Online",   
+            "Alex",                   
+            "Google UK English"
+        ];
 
-    if (cleanText.length < 200) {
-        try {
-            const url = `https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=en&q=${encodeURIComponent(cleanText)}`;
-            const audio = new Audio(url);
-            window.currentTTSAudio = audio; 
-            
-            audio.play().catch(err => {
-                console.error("Online Voice Failed, reverting to Robot.", err);
-                speakRobot(cleanText);
-            });
-        } catch (e) {
-            speakRobot(cleanText);
+        const availableVoices = window.speechSynthesis.getVoices();
+        let bestSystemVoice = null;
+
+        for (let name of highQualityNames) {
+            bestSystemVoice = availableVoices.find(v => v.name.includes(name));
+            if (bestSystemVoice) break;
         }
-    } else {
-        speakRobot(cleanText);
-    }
+
+        // If a High-Quality voice is found, use it immediately
+        if (bestSystemVoice) {
+            console.log("Tier 1 - High Quality System Voice:", bestSystemVoice.name);
+            const msg = new SpeechSynthesisUtterance(cleanText);
+            msg.voice = bestSystemVoice;
+            msg.rate = 0.88;
+            window.speechSynthesis.speak(msg);
+        } 
+        // --- TIER 2: GOOGLE TRANSLATE HACK (Fallback for short texts) ---
+        else if (cleanText.length < 200) {
+            console.log("Tier 2 - High Quality Online Fallback (Google Translate)");
+            try {
+                const url = `https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=en&q=${encodeURIComponent(cleanText)}`;
+                const audio = new Audio(url);
+                window.currentTTSAudio = audio;
+                audio.play().catch(err => {
+                    console.warn("Online Fallback failed, moving to Tier 3.");
+                    speakTier3(cleanText, availableVoices);
+                });
+            } catch (e) {
+                speakTier3(cleanText, availableVoices);
+            }
+        } 
+        // --- TIER 3: BASIC SYSTEM VOICES (The last resort) ---
+        else {
+            speakTier3(cleanText, availableVoices);
+        }
+    }, 1000); 
 };
+
+// Helper for Tier 3 logic
+function speakTier3(text, voices) {
+    console.log("Tier 3 - Basic System Voice Fallback");
+    const msg = new SpeechSynthesisUtterance(text);
+    
+    // Just find ANY English voice available on the device
+    const fallback = voices.find(v => v.lang.startsWith('en')) || voices[0];
+    if (fallback) msg.voice = fallback;
+    
+    msg.rate = 0.85;
+    window.speechSynthesis.speak(msg);
+}
+
+// Ensures voices are loaded in the background
+window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
 
 function speakRobot(text) {
     const utterance = new SpeechSynthesisUtterance(text);
@@ -330,18 +378,17 @@ function jumpToStep(index, subId = null) {
 }
 
 // 4. AUDIO & RECORDING SYSTEM
+// 4. AUDIO & RECORDING SYSTEM
 window.playAudio = function(path) {
     const player = document.getElementById('global-audio-player');
     player.pause();
-    window.speechSynthesis.cancel();
-
+    
+    // REDIRECT TO SMART TTS:
+    // If the path starts with TTS, we use our high-quality logic instead of manual speech
     if (path && path.startsWith('TTS:')) {
-        const text = path.replace('TTS:', '').trim();
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'en-US'; 
-        utterance.rate = 0.9;
-        window.speechSynthesis.speak(utterance);
+        window.playTTS(path); 
     } else if (path) {
+        // Standard MP3 playback
         player.src = path;
         player.play();
     }

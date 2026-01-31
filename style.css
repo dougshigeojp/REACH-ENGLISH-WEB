@@ -84,22 +84,25 @@ h2 { color: var(--primary-blue); margin-bottom: 1rem; }
 
 #menu-toggle .bar { width: 100%; height: 3px; background: white; transition: 0.3s; }
 
+/* --- RETRACTABLE MENU (Default for index.html) --- */
 #slide-menu {
     position: fixed;
     top: 0;
-    left: calc(-1 * var(--menu-width));
+    left: -280px; /* Hidden off-screen by default */
     width: var(--menu-width);
     height: 100%;
     background: var(--white);
     box-shadow: 4px 0 15px rgba(0,0,0,0.1);
     z-index: 1001;
-    transition: 0.3s ease-in-out;
+    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
     padding: 20px;
 }
 
-#slide-menu.active { left: 0; }
+#slide-menu.active {
+    left: 0; /* Slides in only when active */
+}
 
 .menu-header { margin-top: 10px; padding-bottom: 20px; border-bottom: 2px solid var(--bg-alice-blue); }
 .menu-logo {
@@ -132,6 +135,150 @@ h2 { color: var(--primary-blue); margin-bottom: 1rem; }
     font-weight: 700; 
     font-size: 1.1rem;           /* Made slightly larger for visibility */
 }
+
+
+
+
+
+
+/* ============================================================
+   EXERCISE MODE OVERRIDES (Only for exercises.html)
+   ============================================================ */
+
+/* 1. Mini-Sidebar / Dock Behavior */
+body.exercise-mode #slide-menu {
+    left: 0 !important;
+    width: 60px;
+    padding: 0;
+    transition: width 0.3s ease;
+    overflow-x: hidden;
+    z-index: 1100;
+}
+
+body.exercise-mode #slide-menu.active {
+    width: 280px;
+}
+
+/* 2. Push content to the right */
+body.exercise-mode #main-container {
+    padding-left: 80px;
+    margin-left: 0;
+    width: 100%;
+    transition: padding-left 0.3s ease;
+}
+
+/* 3. Hide text when collapsed */
+body.exercise-mode .menu-header,
+body.exercise-mode .home-link,
+body.exercise-mode #menu-close-btn {
+    opacity: 0;
+    transition: 0.2s;
+    pointer-events: none;
+}
+
+body.exercise-mode #slide-menu.active .menu-header,
+body.exercise-mode #slide-menu.active .home-link,
+body.exercise-mode #slide-menu.active #menu-close-btn {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* 4. Navigation Items (Numbers) */
+body.exercise-mode .nav-step-item {
+    display: flex;
+    align-items: center;
+    height: 40px; /* Tight height */
+    padding: 0;
+    border-left: 4px solid transparent;
+    transition: background 0.2s;
+    margin-top: 0;
+}
+
+body.exercise-mode .nav-step-item.active-page {
+    background-color: var(--selected-orange);
+    border-left-color: var(--accent-orange);
+}
+
+.nav-num {
+    min-width: 60px;
+    text-align: center;
+    font-weight: 900;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    color: var(--primary-blue);
+    flex-shrink: 0;
+}
+
+.nav-label {
+    white-space: nowrap;
+    opacity: 0;
+    transition: 0.2s;
+    font-weight: 600;
+    color: #444;
+}
+
+body.exercise-mode #slide-menu.active .nav-label {
+    opacity: 1;
+}
+
+/* 5. FORCE TOGGLE BUTTON VISIBILITY & DOCK POSITION */
+body.exercise-mode #menu-toggle {
+    display: flex !important; 
+    position: fixed;
+    top: 10px;
+    left: 12px;
+    z-index: 1200;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* 6. MOVE CONTENT UP (Spacing adjustments) */
+body.exercise-mode .home-link {
+    margin-top: 50px !important; 
+    margin-bottom: 5px;
+    padding: 5px 15px;
+}
+
+body.exercise-mode .menu-header {
+    margin-top: 0;
+    padding: 5px 15px 5px 15px;
+    border-bottom: 1px solid var(--bg-alice-blue);
+}
+
+body.exercise-mode #nav-list {
+    margin-top: 5px; 
+}
+
+/* Align numbers with the toggle button when collapsed */
+body.exercise-mode #slide-menu:not(.active) #nav-list {
+    margin-top: 50px; 
+}
+
+/* Header spacing for Title */
+body.exercise-mode #ex-header {
+    padding-left: 70px;
+    z-index: 1000;
+}
+
+/* 7. RESPONSIVE FIXES (Un-nested) */
+@media (min-width: 769px) {
+    body.exercise-mode #menu-close-btn { display: none; }
+}
+
+@media (max-width: 768px) {
+    body.exercise-mode #slide-menu.active { width: 80%; }
+    body.exercise-mode #main-container { padding-left: 70px; }
+    body.exercise-mode .nav-label { display: none; }
+    body.exercise-mode #slide-menu.active .nav-label { display: inline; }
+}
+
+
+
+
+
+
+
+
 /* --- CARD SYSTEM --- */
 .lesson-page { display: none; animation: fadeIn 0.4s; }
 .lesson-page.active { display: block; }
@@ -1258,4 +1405,267 @@ h2 { color: var(--primary-blue); margin-bottom: 1rem; }
 .internal-nav::-webkit-scrollbar-thumb:hover,
 #nav-list::-webkit-scrollbar-thumb:hover {
     background-color: var(--accent-orange);
+}
+
+
+
+
+
+
+
+
+
+
+
+/* --- EXERCISE MODE SPECIFICS --- */
+
+/* Sidebar "Completed" state */
+.nav-step-item.completed {
+    color: var(--success-green) !important;
+    text-decoration: line-through;
+    opacity: 0.8;
+}
+
+/* Disabled Mode (After Checking) */
+.disabled-mode {
+    pointer-events: none; /* Prevents clicking */
+    opacity: 0.9;
+}
+
+.disabled-mode input, 
+.disabled-mode select, 
+.disabled-mode button {
+    background-color: #f0f0f0;
+    color: #555;
+    border-color: #ccc;
+}
+
+/* Correct/Incorrect Input Highlighting (Applied by JS) */
+input.correct-field, select.correct-field {
+    border: 2px solid var(--success-green) !important;
+    background-color: #e8f5e9 !important;
+    color: var(--success-green) !important;
+    font-weight: bold;
+}
+
+input.incorrect-field, select.incorrect-field {
+    border: 2px solid var(--error-red) !important;
+    background-color: #ffebee !important;
+    color: var(--error-red) !important;
+    text-decoration: line-through;
+}
+
+/* Specific Exercise Layouts */
+.question-block {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.word-bank-container {
+    display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 10px;
+}
+
+.match-row {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;
+}
+.match-input {
+    width: 50px; text-align: center; border: 2px solid var(--primary-blue); border-radius: 5px;
+}
+
+
+
+/* --- EXERCISE SPECIFIC STYLES --- */
+
+/* Sidebar Completed Checkmark */
+.nav-step-item.completed::after {
+    content: ' ✓';
+    color: var(--success-green);
+    font-weight: bold;
+}
+
+/* Result Page Stats */
+.stat-box {
+    display: inline-block;
+    width: 45%;
+    background: white;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+.stat-num {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--primary-blue);
+}
+
+/* Disabled Input Styles (After Checking) */
+.disabled-mode { pointer-events: none; opacity: 0.95; }
+/* Hide UI buttons, but keep the word buttons visible */
+.disabled-mode button:not(.nav-arrow):not(.word-btn) { 
+    display: none; 
+}
+
+/* Ensure word buttons look like static text when finished */
+.disabled-mode .word-btn {
+    cursor: default;
+    opacity: 1;
+}
+.disabled-mode .check-btn { display: none !important; }
+
+/* Feedback Colors */
+.correct-field { 
+    background-color: #d4edda !important; 
+    border-color: #28a745 !important; 
+    color: #155724 !important;
+}
+.incorrect-field { 
+    background-color: #f8d7da !important; 
+    border-color: #dc3545 !important;
+    color: #721c24 !important;
+}
+
+/* Type 1 & 2 Styles */
+.word-bank { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; min-height: 40px; padding: 10px; background: #f9f9f9; border-radius: 8px; }
+.drop-zone { min-height: 40px; border: 2px dashed #ccc; border-radius: 8px; padding: 10px; display: flex; flex-wrap: wrap; gap: 8px; background: white; margin-bottom: 10px; }
+.word-btn { padding: 6px 12px; background: white; border: 1px solid var(--primary-blue); border-radius: 4px; cursor: pointer; }
+
+/* Match Grid */
+.matching-grid { display: flex; flex-direction: column; gap: 10px; }
+.match-row { display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 10px; border: 1px solid #eee; border-radius: 5px; }
+.col-a { font-weight: 600; width: 45%; }
+.match-select { width: 50%; padding: 5px; }
+
+/* Reset Link */
+.reset-link { background: none; border: none; color: #666; text-decoration: underline; cursor: pointer; font-size: 0.8rem; float: right; }
+
+
+
+
+
+
+
+
+
+/* --- GRANULAR CHECK BUTTONS --- */
+.item-check-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 25px;
+    background: linear-gradient(135deg, var(--primary-blue) 0%, #005f91 100%);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    transition: 0.2s;
+}
+
+.item-check-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(0,0,0,0.15);
+}
+
+.item-check-btn:active {
+    transform: translateY(0);
+}
+
+/* Auto-hide the original big "Check Page" button when using granular buttons */
+.granular-mode > .check-btn {
+    display: none !important;
+}
+
+/* Visual state for completed question blocks */
+.question-block.disabled-mode {
+    border-left: 3px solid var(--success-green);
+    background-color: rgba(40, 167, 69, 0.02);
+    padding-left: 10px;
+}
+
+
+
+
+
+
+/* Sticky Header for Context Exercises */
+.sticky-ctx-header {
+    position: sticky;
+    top: 60px; /* Sits right under the Metadata Header */
+    background: white;
+    z-index: 100;
+    padding: 15px 0;
+    border-bottom: 2px solid var(--bg-alice-blue);
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px -4px rgba(0,0,0,0.1);
+}
+
+.reading-box.sticky-scroll {
+    max-height: 200px;
+    overflow-y: auto;
+    background: #f8f9fa;
+    border-left: 5px solid var(--primary-blue);
+    padding: 15px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* TTS Button Style */
+.tts-btn {
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    transition: 0.2s;
+}
+
+.tts-btn:hover {
+    background: var(--accent-orange);
+    transform: scale(1.05);
+}
+
+.tts-btn i { font-style: normal; }
+
+
+
+
+
+
+
+
+
+.dash-tab-btn {
+    padding: 10px 20px;
+    border: none;
+    background: var(--gray-light);
+    color: var(--text-dark);
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.dash-tab-btn.active {
+    background: var(--primary-blue);
+    color: white;
+}
+
+.chapter-btn:hover {
+    border-color: var(--primary-blue) !important;
+    background: var(--paired-blue) !important;
+    transform: translateY(-2px);
+    transition: 0.2s;
 }
