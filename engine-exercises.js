@@ -125,10 +125,14 @@ window.initExercise = function(data) {
     
     // Check if we are in Dashboard Mode
     if (data.isDashboard) {
+        document.body.classList.remove('exercise-mode');
+        document.body.classList.add('dashboard-view'); 
+        
+        // EXPLICITLY HIDE NAVIGATION CLUSTER
+        const uiCluster = document.getElementById('ui-cluster');
+        if (uiCluster) uiCluster.style.display = 'none';
+
         renderExerciseDashboard();
-        // Hide standard exercise UI
-        document.getElementById('metadata-header').style.display = 'none';
-        document.querySelector('body').classList.remove('exercise-mode');
         return;
     }
 
@@ -997,7 +1001,7 @@ function renderResultPage() {
 
             <div style="display:flex; flex-direction:column; align-items:center; gap:15px;">
                 <button class="btn" style="margin:0; width:220px;" onclick="location.reload()">RESTART REVIEW</button>
-                <a href="index.html?lesson=home" style="color: var(--primary-blue); font-weight: bold; text-decoration: none; font-size: 0.9rem;">🏠 BACK TO DASHBOARD</a>
+                <a href="exercises.html?id=ex-home" style="color: var(--primary-blue); font-weight: bold; text-decoration: none; font-size: 0.9rem;">🏠 BACK TO EXERCISES DASHBOARD</a>
             </div>
         </div>
     `;
@@ -1017,23 +1021,24 @@ function renderExerciseDashboard() {
     const container = document.getElementById('lesson-content');
     
     let html = `
-        <div class="area-box" style="margin-top:20px;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-                <h2 style="margin:0;">Exercise Review Portal</h2>
-                <a href="index.html?lesson=home" class="btn" style="background:var(--text-dark); margin:0; font-size:0.7rem;">⬅ Back to Lessons</a>
+        <div class="dashboard-intro" style="padding-top: 15px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+                <h2 style="margin:0; color:var(--primary-blue); font-size:1.2rem;">Practice Portal</h2>
+                <a href="index.html?lesson=home" class="btn" style="background:var(--text-dark); margin:0; font-size:0.7rem; padding: 6px 12px;">⬅ Exit</a>
             </div>
+        </div>
 
-            <!-- Grade Tabs -->
-            <div class="dashboard-tabs" style="display:flex; gap:5px; flex-wrap:wrap; margin-bottom:20px; border-bottom:2px solid var(--bg-alice-blue); padding-bottom:10px;">
+        <!-- STICKY WRAPPING TABS -->
+        <div class="sticky-tabs-wrapper">
+            <div class="dashboard-tabs">
                 ${exData.grades.map((g, i) => `
                     <button class="dash-tab-btn ${i===0?'active':''}" onclick="switchGradeTab(this, '${g.id}')">${g.label}</button>
                 `).join('')}
             </div>
+        </div>
 
-            <!-- Content Area -->
-            <div id="grade-content">
-                ${renderGradeBimesters(exData.grades[0])}
-            </div>
+        <div id="grade-content" class="area-box" style="margin-top: 15px;">
+            ${renderGradeBimesters(exData.grades[0])}
         </div>
     `;
     container.innerHTML = html;
@@ -1044,7 +1049,15 @@ window.switchGradeTab = function(btn, gradeId) {
     btn.classList.add('active');
     
     const grade = exData.grades.find(g => g.id === gradeId);
-    document.getElementById('grade-content').innerHTML = renderGradeBimesters(grade);
+    const grid = document.getElementById('grade-content');
+    grid.innerHTML = renderGradeBimesters(grade);
+
+    // Scroll slightly so the user sees the top of the grid after switching
+    const wrapper = document.querySelector('.sticky-tabs-wrapper');
+    window.scrollTo({
+        top: grid.offsetTop - wrapper.offsetHeight - 10,
+        behavior: 'smooth'
+    });
 };
 
 function renderGradeBimesters(grade) {
@@ -1059,8 +1072,13 @@ function renderGradeBimesters(grade) {
         `;
 
         for (let c = 1; c <= chaptersPerBim; c++) {
-            // URL pattern: exercises.html?lesson=ex-6-1-1
-            const link = `exercises.html?lesson=ex-${grade.id}-${b}-${c}`;
+            // NEW NAMING CONVENTION:
+            // This produces strings like "6-1-2" or "em1-2-5"
+            const fileId = `${grade.id}-${b}-${c}`;
+            
+            // Note: Using 'id' as the URL parameter to match your exercises.html loader
+            const link = `exercises.html?id=${fileId}`;
+            
             html += `<a href="${link}" class="chapter-btn" style="text-decoration:none; background:white; padding:10px; border-radius:5px; border:1px solid var(--gray-light); color:var(--text-dark); font-weight:700; font-size:0.85rem; text-align:center;">Chapter ${c}</a>`;
         }
 

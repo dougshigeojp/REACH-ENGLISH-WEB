@@ -1512,6 +1512,7 @@ input.incorrect-field, select.incorrect-field {
 .disabled-mode .word-btn {
     cursor: default;
     opacity: 1;
+    border-style: solid;
 }
 .disabled-mode .check-btn { display: none !important; }
 
@@ -1668,4 +1669,158 @@ input.incorrect-field, select.incorrect-field {
     background: var(--paired-blue) !important;
     transform: translateY(-2px);
     transition: 0.2s;
+}
+
+
+
+
+/* Sticky Tabs Container */
+.sticky-tabs-wrapper {
+    position: sticky;
+    top: 60px; /* Height of the #ex-header */
+    background: var(--bg-alice-blue);
+    z-index: 990;
+    padding: 10px 0;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--gray-light);
+}
+
+.dashboard-tabs {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto; /* Allows horizontal swipe on mobile */
+    padding: 5px 2px;
+    white-space: nowrap;
+    scrollbar-width: none; /* Hides scrollbar on Firefox */
+}
+
+.dashboard-tabs::-webkit-scrollbar {
+    display: none; /* Hides scrollbar on Chrome/Safari */
+}
+
+.dash-tab-btn {
+    flex: 0 0 auto; /* Prevents buttons from shrinking */
+    padding: 10px 20px;
+    border: 2px solid var(--primary-blue);
+    background: white;
+    color: var(--primary-blue);
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.dash-tab-btn.active {
+    background: var(--primary-blue);
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 119, 182, 0.2);
+}
+
+
+
+
+
+/* --- DASHBOARD VIEW (HOME) OVERRIDES --- */
+
+/* Completely hide sidebar and toggle in dashboard mode */
+body.dashboard-view #slide-menu,
+body.dashboard-view #menu-toggle,
+body.dashboard-view #menu-overlay {
+    display: none !important;
+}
+
+/* Reset the main container to take up full width (no sidebar space) */
+body.dashboard-view #main-container {
+    padding-left: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 95%;
+    max-width: 1000px; /* Slightly wider for the dashboard grid */
+}
+
+/* Adjust sticky tabs to stay at the very top since the header is hidden */
+body.dashboard-view .sticky-tabs-wrapper {
+    top: 0; /* Moves to very top of screen since we hid the header */
+    padding-top: 15px;
+    z-index: 1000;
+}
+
+/* Optional: Add a bit more top padding to the intro so it doesn't touch the browser edge */
+body.dashboard-view .dashboard-intro {
+    padding-top: 20px;
+}
+
+
+
+
+
+/* --- COMPACT WRAPPING TABS (DASHBOARD) --- */
+
+/* 1. Hide Sidebar/Toggle in Dashboard Mode */
+body.dashboard-view #slide-menu,
+body.dashboard-view #menu-toggle,
+body.dashboard-view #menu-overlay {
+    display: none !important;
+}
+
+/* 2. Reset Main Container for full width usage */
+body.dashboard-view #main-container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* 3. Sticky Wrapper for Tabs */
+.sticky-tabs-wrapper {
+    position: sticky;
+    top: 0;
+    background: var(--bg-alice-blue);
+    z-index: 1000;
+    padding: 10px 5%; /* Side padding for narrow screens */
+    border-bottom: 1px solid var(--gray-light);
+}
+
+/* 4. Tabs Container - Wraps to multiple rows */
+.dashboard-tabs {
+    display: flex;
+    flex-wrap: wrap;       /* ALLOWS MULTIPLE ROWS */
+    justify-content: center; /* Center tabs if they wrap */
+    gap: 6px;              /* Tight gap between buttons */
+}
+
+/* 5. Compact Tab Buttons */
+.dash-tab-btn {
+    padding: 5px 12px;     /* Smaller padding */
+    font-size: 0.75rem;    /* Smaller text */
+    font-weight: 700;
+    border: 1.5px solid var(--primary-blue);
+    background: white;
+    color: var(--primary-blue);
+    border-radius: 4px;    /* Rectangular/Soft-square look */
+    cursor: pointer;
+    transition: 0.2s;
+    white-space: nowrap;
+}
+
+.dash-tab-btn.active {
+    background: var(--primary-blue);
+    color: white;
+}
+
+/* 6. Dashboard Content Spacing */
+body.dashboard-view #grade-content,
+body.dashboard-view .dashboard-intro {
+    width: 92%;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+
+/* Hide Navigation Arrows and Glossary button on the Exercise Home Dashboard */
+body.dashboard-view #ui-cluster {
+    display: none !important;
 }
