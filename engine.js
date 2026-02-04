@@ -1228,6 +1228,8 @@ function buildStepHTML(index, step) {
                          <div class="drop-zone" data-answer="${drill.correct}"></div>`;
             } else if (drill.type === 'odd-one-out') {
                 html += `<div class="options-container">${drill.options.map(opt => `<div class="option" data-correct="${opt.c}">${opt.t}</div>`).join('')}</div>`;
+            } else if (drill.type === 'mcq') {
+                html += `<div class="options-container">${drill.options.map(opt => `<div class="option" data-correct="${opt.c}">${opt.t}</div>`).join('')}</div>`;
             } else if (drill.type === 'memory-game') {
                 const shuffledCards = [...drill.cards].sort(() => Math.random() - 0.5);
                 html += `<div class="memory-grid">

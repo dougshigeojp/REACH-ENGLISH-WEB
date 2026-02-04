@@ -706,7 +706,7 @@ window.initLesson({
                 // Drill 3: Multiple Choice (Grammar/Adverbs)
                 {
                     type: "mcq",
-                    q: "I _______ the documentary about evolution yet.",
+                    instruction: "Choose correct alternative.<br><small>I _______ the documentary about evolution yet.</small>",
                     options: [
                         { t: "had seen", c: false },
                         { t: "haven't seen", c: true }
@@ -714,7 +714,7 @@ window.initLesson({
                 },
                 {
                     type: "mcq",
-                    q: "By 2040, we _______ new ways to prevent extinction.",
+                    instruction: "Choose correct alternative.<br><small>They _______ the ancient fossils before the rain started.</small>",
                     options: [
                         { t: "a) have developed", c: false },
                         { t: "b) will have developed", c: true }
@@ -723,7 +723,7 @@ window.initLesson({
                 // Drill 4: Odd One Out
                 {
                     type: "odd-one-out",
-                    instruction: "Choose the word that does NOT belong.<br><small>(Fossil is a physical remain; the others are microscopic genetic components.)</small>",
+                    instruction: "Choose the word that does NOT belong.<br><small>(Escolha a palavra que não faz parte.)</small>",
                     options: [
                         { t: "DNA", c: false },
                         { t: "Gene", c: false },
@@ -733,7 +733,7 @@ window.initLesson({
                 },
                 {
                     type: "odd-one-out",
-                    instruction: "Choose the word that does NOT belong.<br><small>(Fail is negative; the others describe progress/growth.)</small>",
+                    instruction: "Choose the word that does NOT belong.<br><small>(Escolha a palavra que não faz parte.)</small>",
                     options: [
                         { t: "Evolve", c: false },
                         { t: "Develop", c: false },

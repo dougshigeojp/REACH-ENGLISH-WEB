@@ -752,8 +752,7 @@ window.initLesson({
                 // Drill 1: Multiple Choice (Linking Words)
                 {
                     type: "mcq",
-                    instruction: "Choose the best linking word to complete the logic.",
-                    q: "AI can help us save energy. _______, it can optimize traffic in big cities.",
+                    instruction: "Choose the best linking word to complete the logic.<br><small>AI can help us save energy. _______, it can optimize traffic in big cities.</small>",
                     options: [
                         { t: "However", c: false },
                         { t: "Moreover", c: true },
@@ -762,8 +761,7 @@ window.initLesson({
                 },
                 {
                     type: "mcq",
-                    instruction: "Choose the best linking word.",
-                    q: "The robot's battery died; _______, it stopped moving in the middle of the hall.",
+                    instruction: "Choose the best linking word.<br><small>The robot's battery died; _______, it stopped moving in the middle of the hall.</small>",
                     options: [
                         { t: "Therefore", c: true },
                         { t: "Nevertheless", c: false },
@@ -792,7 +790,7 @@ window.initLesson({
                 {
                     type: "clickable-error",
                     instruction: "Find the mistake.",
-                    sentence: "We would have succeeded if we [train](error:had trained) the algorithm better."
+                    sentence: "We would have succeeded if we [train](error:_had_trained_) the algorithm better."
                 },
                 // Drill 4: Dialogue Scramble
                 {

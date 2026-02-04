@@ -822,13 +822,13 @@ window.initLesson({
                 // Drill 4: Clickable Error (Discourse Markers & Verbs)
                 {
                     type: "clickable-error",
-                    instruction: "Identify the incorrect word in bold and choose the correct option.",
-                    sentence: "The project failed [therefore](error:due to) the lack of invest."
+                    instruction: "Identify the incorrect words.",
+                    sentence: "The project failed [therefore](error:_due_to_) the lack of invest."
                 },
                 {
                     type: "clickable-error",
-                    instruction: "Identify the incorrect word in bold and choose the correct option.",
-                    sentence: "We recycle often [as a result](error:so) we save the Earth."
+                    instruction: "Identify the incorrect words.",
+                    sentence: "We recycle often [as](error:_) [a](error:so) [result](error:_) we save the Earth."
                 }
             ]
         },
