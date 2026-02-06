@@ -34,6 +34,16 @@ const MATCH_BLUES = [
 ];
 
 
+
+// Helper to join words and fix punctuation spacing
+window.cleanSentence = function(arr) {
+    if (!arr || arr.length === 0) return "";
+    // Join with spaces, then remove spaces before punctuation
+    return arr.join(' ').replace(/\s+([.,!?;:])/g, '$1').trim();
+};
+
+
+
 /**
  * IMPROVED TTS FOR EXERCISES
  * Includes 1s delay and natural voice selection
@@ -270,9 +280,12 @@ function renderType1(item, idx, isDone) {
     let boxStyle = "min-height:50px; padding:10px; border: 2px dashed #ccc; border-radius: 8px; display: flex; flex-wrap: wrap; gap: 8px; background: white; margin-bottom: 10px;";
     
     if (isDone) {
-        const isCorrect = dropWords.join(' ').trim() === item.correct.trim();
+        // USE THE CLEANER HERE
+        const userSentence = window.cleanSentence(dropWords);
+        const isCorrect = userSentence === item.correct.trim();
         boxStyle += isCorrect ? "border: 2px solid #28a745; background-color: #d4edda;" : "border: 2px solid #dc3545; background-color: #f8d7da;";
     }
+
 
     return `<div class="word-bank" id="wb-1-${idx}">${bankWords.map(w => `<button class="word-btn" onclick="moveWord(this, 'drop-1-${idx}')">${w}</button>`).join('')}</div>
             <div class="drop-zone" id="drop-1-${idx}" data-answer="${item.correct}" style="${boxStyle}">${dropWords.map(w => `<button class="word-btn" onclick="moveWord(this, 'drop-1-${idx}')">${w}</button>`).join('')}</div>
@@ -581,9 +594,14 @@ window.checkIndividualItem = function(page, idx) {
 
     if(page === 1) { 
         const zone = block.querySelector('.drop-zone');
-        const dropped = Array.from(zone.querySelectorAll('.word-btn')).map(b => b.innerText).join(' ').trim();
-        userState[page][idx] = { dropped: dropped.split(' '), bank: [] };
-        isCorrect = (dropped === item.correct.trim());
+        const wordsArray = Array.from(zone.querySelectorAll('.word-btn')).map(b => b.innerText.trim());
+        
+        // Save the array of words to state
+        userState[page][idx] = { dropped: wordsArray, bank: [] };
+        
+        // USE THE CLEANER HERE
+        const userSentence = window.cleanSentence(wordsArray);
+        isCorrect = (userSentence === item.correct.trim());
     }
     else if(page === 2) {
         const zone = block.querySelector('.drop-zone');
@@ -770,10 +788,13 @@ function getFeedbackHTML(page, idx, item) {
     if (!state) return '';
 
     // FEEDBACK FOR PAGE 1 (Sentences)
-    if (page === 1 && state.dropped.join(' ').trim() !== item.correct.trim()) {
-        return `<div style="color:red; background:#ffebee; padding:5px; margin-top:5px; border-radius:4px;">
-                    Correct: <b>${item.correct}</b>
-                </div>`;
+    if (page === 1) {
+        const userSentence = window.cleanSentence(state.dropped);
+        if (userSentence !== item.correct.trim()) {
+            return `<div style="color:red; background:#ffebee; padding:5px; margin-top:5px; border-radius:4px;">
+                        Correct: <b>${item.correct}</b>
+                    </div>`;
+        }
     }
 
     // FEEDBACK FOR PAGE 2 (Dialogues)
@@ -808,11 +829,11 @@ function renderSidebar() {
     list.innerHTML = '';
     
     const labels = [
-        "Unscramble Sentences", "Unscramble Dialogues", "Quick Questions", 
-        "Find Meaning", "Correct Sentences", "Match Sentences", 
-        "Best Answer", "Incorrect Vocabulary", "Listen & Answer", 
-        "Complete Sentences", "Complete Dialogue", "Read & Answer", 
-        "Listen & Answer (Ctx)", "Complete Text", "Listen & Complete"
+        "Unscramble the Sentences", "Unscramble the Dialogues", "Quick Questions", 
+        "Find the Meaning", "Correct the Sentences", "Match the Pairs", 
+        "Choose the Best Answer", "Replace the Incorrect Vocabulary", "Listen & Answer", 
+        "Complete the Sentences", "Complete the Dialogue", "Read & Answer", 
+        "Listen & Answer (Context)", "Complete the Text", "Listen & Complete"
     ];
 
     labels.forEach((label, idx) => {
@@ -1007,7 +1028,7 @@ function renderResultPage() {
     `;
 }
 
-function getExerciseTitle(n) { const t = ["Unscramble Sentences", "Unscramble Dialogues", "Quick Questions", "Find Meaning", "Correct Sentences", "Match Sentences", "Best Answer", "Incorrect Vocabulary", "Listen & Answer", "Complete Sentences", "Complete Dialogue", "Read & Answer", "Listen & Answer (Ctx)", "Complete Text", "Listen & Complete"]; return t[n-1]; }
+function getExerciseTitle(n) { const t = ["Unscramble the Sentences", "Unscramble the Dialogues", "Quick Questions", "Find the Meaning", "Correct the Sentences", "Match the Pairs", "Choose the Best Answer", "Replace the Incorrect Vocabulary", "Listen & Answer", "Complete the Sentences", "Complete the Dialogue", "Read & Answer", "Listen & Answer (Context)", "Complete the Text", "Listen & Complete"]; return t[n-1]; }
 
 
 
