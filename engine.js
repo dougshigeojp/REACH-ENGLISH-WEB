@@ -47,17 +47,23 @@ function startEngine() {
 
     } catch (error) {
         console.error(error);
+        // CRASH SCREEN WITH BACK BUTTON
         document.body.innerHTML = `
-            <div style="padding: 40px; font-family: sans-serif; background: #fff0f0; height: 100vh;">
+            <div style="padding: 40px; font-family: sans-serif; background: #fff0f0; height: 100vh; text-align:center;">
                 <h1 style="color: #d63384;">💥 ENGINE CRASHED</h1>
-                <p style="font-size: 1.2rem;">The lesson could not load.</p>
-                <div style="background: white; padding: 20px; border-left: 5px solid red; margin: 20px 0;">
+                <p style="font-size: 1.2rem;">The lesson data could not be processed.</p>
+                <div style="background: white; padding: 20px; border-left: 5px solid red; margin: 20px auto; max-width:600px; text-align:left;">
                     <strong>Error:</strong> <code style="color: red;">${error.message}</code>
                 </div>
-                <button onclick="location.reload()" style="padding: 10px 20px; cursor: pointer;">Try Again</button>
+                
+                <div style="margin-top:30px;">
+                    <button onclick="location.reload()" style="padding: 10px 20px; cursor: pointer; margin-right:10px;">🔄 Try Again</button>
+                    <a href="index.html?lesson=home" style="padding: 10px 20px; background:#333; color:white; text-decoration:none; border-radius:4px;">🏠 Home</a>
+                </div>
             </div>
         `;
     }
+
 }
 
 // ========================================================

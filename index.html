@@ -47,10 +47,17 @@
 
     <!-- MAIN CONTENT AREA -->
     <main id="main-container">
-        <!-- Lessons pages (Step 0 to Step 9) will be injected here dynamically -->
+        <!-- Lessons pages will be injected here -->
         <div id="lesson-content">
-            <!-- Loading State -->
-            <div class="loader">Loading Lesson...</div>
+            <!-- 1. LOADING STATE WITH SAFETY BUTTON -->
+            <div class="loader-container" style="text-align: center; padding-top: 50px;">
+                <div class="loader">Loading Lesson...</div>
+                <br>
+                <!-- This button is visible while loading. If it hangs, user can click this. -->
+                <a href="index.html?lesson=home" style="display:inline-block; margin-top:20px; text-decoration:none; color:#666; font-size:0.9rem; border:1px solid #ccc; padding:8px 15px; border-radius:20px;">
+                    ✖ Cancel / Return Home
+                </a>
+            </div>
         </div>
     </main>
 
@@ -102,79 +109,72 @@
     <!-- Block 3: The Mechanical Logic -->
     <script src="engine.js"></script>
     
-   <!-- Block 4: The Content Data (With Error Reporting) -->
+    <!-- Block 4: The Content Data (With Updated Error Buttons) -->
     <script>
-        // 1. Check if URL has ?lesson=sample
         const urlParams = new URLSearchParams(window.location.search);
         const lessonId = urlParams.get('lesson');
-
         const contentDiv = document.getElementById('lesson-content');
+
+        // Helper to generate the error button HTML
+        const getBackHomeBtn = () => `
+            <div style="margin-top:20px;">
+                <a href="index.html?lesson=home" style="background:#333; color:white; text-decoration:none; padding:10px 20px; border-radius:5px; font-weight:bold;">
+                    🏠 RETURN TO DASHBOARD
+                </a>
+            </div>`;
 
         if (!lessonId) {
             contentDiv.innerHTML = `
                 <div style="padding: 20px; text-align: center; color: #d63384; font-weight: bold;">
                     ⚠️ SETUP REQUIRED<br><br>
-                    You are missing the lesson ID in the URL.<br>
-                    Add <code>?lesson=sample</code> to the end of the address bar above.<br>
-                    <br>Example: <i>.../index.html?lesson=sample</i>
+                    You are missing the lesson ID in the URL.
+                    ${getBackHomeBtn()}
                 </div>`;
         } else {
-            // 2. Try to load the file
             console.log("Attempting to load: data/" + lessonId + ".js");
             
             const dataScript = document.createElement('script');
             dataScript.src = `data/${lessonId}.js`;
             
-            // IF SUCCESSFUL
             dataScript.onload = () => {
-                console.log("File loaded successfully. Initializing...");
-                if (typeof window.initLesson === 'function') {
-                    // Engine is ready, data is ready
-                } else {
-                    contentDiv.innerHTML = `<h3 style="color:red; text-align:center;">Error: Engine.js not loaded correctly.</h3>`;
+                console.log("File loaded. Initializing...");
+                if (typeof window.initLesson !== 'function') {
+                     contentDiv.innerHTML = `<div style="text-align:center; padding:20px; color:red;">
+                        <h3>Error: Engine not ready.</h3>
+                        ${getBackHomeBtn()}
+                     </div>`;
                 }
             };
 
-            // IF FAILED (The most likely cause)
+            // 2. FILE NOT FOUND ERROR
             dataScript.onerror = () => {
                 contentDiv.innerHTML = `
                     <div style="padding: 20px; text-align: center; color: red;">
                         <h3>❌ ERROR: File Not Found</h3>
-                        <p>The browser cannot find the file: <b>data/${lessonId}.js</b></p>
+                        <p>Could not find: <b>data/${lessonId}.js</b></p>
                         <hr>
-                        <p style="text-align:left; max-width:500px; margin:0 auto;">
-                            <b>Common Solutions:</b><br>
-                            1. Did you create a folder named <b>data</b>?<br>
-                            2. Is <b>sample.js</b> inside that folder?<br>
-                            3. Does the filename match exactly? (Check for sample.js.txt)<br>
-                            4. Is your URL correct? (...index.html?lesson=sample)
-                        </p>
+                        <p>Check the filename and URL.</p>
+                        ${getBackHomeBtn()}
                     </div>`;
             };
 
             document.head.appendChild(dataScript);
         }
 
-        // Global Error Handler for Syntax Errors in sample.js
+        // 3. SYNTAX ERROR (TYPO IN JS FILE)
         window.onerror = function(message, source, lineno, colno, error) {
             if(message.includes("is not defined") || message.includes("SyntaxError")) {
                 contentDiv.innerHTML = `
                     <div style="padding: 20px; text-align: center; color: red;">
                         <h3>❌ JAVASCRIPT ERROR</h3>
-                        <p>There is a typo in your <b>sample.js</b> file.</p>
+                        <p>There is a typo in your <b>${lessonId}.js</b> file.</p>
                         <p style="background:#eee; padding:10px; border-radius:5px;">${message}</p>
-                        <p>Check line <b>${lineno}</b> in sample.js</p>
+                        <p>Line: <b>${lineno}</b></p>
+                        ${getBackHomeBtn()}
                     </div>`;
             }
         };
-
-
-
-
-    
-
-
-
     </script>
+
 </body>
 </html>

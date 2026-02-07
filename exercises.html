@@ -96,23 +96,42 @@
     <!-- SCRIPTS -->
     <script src="engine-exercises.js"></script>
 
-    <!-- DATA LOADER -->
+<!-- DATA LOADER -->
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const lessonId = urlParams.get('id');
+        const contentDiv = document.getElementById('lesson-content');
+
+        const getExBackBtn = () => `
+            <div style="margin-top:20px;">
+                <a href="exercises.html?id=ex-home" style="background:var(--primary-blue); color:white; text-decoration:none; padding:10px 20px; border-radius:5px; font-weight:bold;">
+                    ⬅ BACK TO EXERCISES
+                </a>
+            </div>`;
 
         if (!lessonId) {
-            // If no ID, we should redirect to a selection home or show error
-            // For now, we show a basic error
-            document.getElementById('lesson-content').innerHTML = `
+            contentDiv.innerHTML = `
                 <div style="text-align:center; padding:50px;">
                     <h2>No Exercise ID Found</h2>
                     <p>Please select an exercise list from the dashboard.</p>
+                    ${getExBackBtn()}
                 </div>`;
         } else {
             const dataScript = document.createElement('script');
             dataScript.src = `data/exercises/${lessonId}.js`;
+            
             dataScript.onload = () => console.log("Exercise Data Loaded");
+            
+            // EXERCISE FILE NOT FOUND
+            dataScript.onerror = () => {
+                contentDiv.innerHTML = `
+                    <div style="text-align:center; padding:50px; color: red;">
+                        <h2>❌ Exercise File Not Found</h2>
+                        <p>Could not load: <b>data/exercises/${lessonId}.js</b></p>
+                        ${getExBackBtn()}
+                    </div>`;
+            };
+
             document.body.appendChild(dataScript);
         }
     </script>
