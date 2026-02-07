@@ -143,11 +143,17 @@ function loadGradeDashboard(gradeObj) {
             </div>
         </div>
 
-        <!-- EXERCISES VIEW (Placeholder) -->
+        <!-- EXERCISES VIEW (UPDATED) -->
         <div id="view-exercises" class="dashboard-container">
-            <div class="area-box">
-                <h3>Extra Exercises</h3>
-                <p>Additional practice material for ${gradeObj.label} will appear here.</p>
+            <div class="area-box" style="text-align: center; padding: 40px 20px;">
+                <div style="font-size: 3rem; margin-bottom: 15px;">🏋️</div>
+                <h3 style="color: var(--primary-blue); margin-bottom: 10px;">${gradeObj.label} Exercises</h3>
+                <p style="color: #666; margin-bottom: 25px;">
+                    Access the dedicated practice area for extra grammar drills, vocabulary matching, and listening activities.
+                </p>
+                <a href="exercises.html?id=ex-home" class="btn" style="text-decoration: none; display: inline-block;">
+                    OPEN EXERCISE PORTAL ➜
+                </a>
             </div>
         </div>
     `;

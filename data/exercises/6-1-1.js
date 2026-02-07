@@ -1270,52 +1270,52 @@ window.initExercise({
         14: [
             {
                 title: "My Profile",
-                text: "Hello! My [1] (name / nationality / world) is Sara. I [2] (is / are / am) a student. I am fourteen years [3] (old / age / new). I am from [4] (English / England / Londoner). My favorite number [5] (am / are / is) ten.",
+                text: "Hello! My [1] (name/nationality/world) is Sara. I [2] (is/are/am) a student. I am fourteen years [3] (old/age/new). I am from [4] (English/England/Londoner). My favorite number [5] (am/are/is) ten.",
                 answers: ["name", "am", "old", "England", "is"]
             },
             {
                 title: "The New Girl",
-                text: "Celine is a [1] (old / new / bad) student. She is from [2] (Australian / Australia / Australias). She is [3] (Australian / Australia / Japan). Today, she [4] (are / am / is) in the hallway. She is happy to [5] (meet / chat / look) Albert.",
+                text: "Celine is a [1] (old/new/bad) student. She is from [2] (Australian/Australia/Australias). She is [3] (Australian/Australia/Japan). Today, she [4] (are/am/is) in the hallway. She is happy to [5] (meet/chat/look) Albert.",
                 answers: ["new", "Australia", "Australian", "is", "meet"]
             },
             {
                 title: "Class Objects",
-                text: "In my [1] (hallway / classroom / locker), there are many things. On the wall, I see a [2] (map / cat / student). On the teacher's desk, there is a [3] (globe / mirror / bell). It is a model of the world. My [4] (book / name / cat) is blue. I am [5] (ready / late / sad) for class.",
+                text: "In my [1] (hallway/classroom/locker), there are many things. On the wall, I see a [2] (map/cat/student). On the teacher's desk, there is a [3] (globe/mirror/bell). It is a model of the world. My [4] (book/name/cat) is blue. I am [5] (ready/late/sad) for class.",
                 answers: ["classroom", "map", "globe", "book", "ready"]
             },
             {
                 title: "Friendship",
-                text: "Albert [1] (are / is / am) my friend. He is from Canada, so he is [2] (Canada / Canadian / Canadas). We [3] (is / am / are) fourteen years old. We are in the [4] (park / hallway / house) near the lockers. We [5] (is / am / are) happy students.",
+                text: "Albert [1] (are/is/am) my friend. He is from Canada, so he is [2] (Canada/Canadian/Canadas). We [3] (is/am/are) fourteen years old. We are in the [4] (park/hallway/house) near the lockers. We [5] (is/am/are) happy students.",
                 answers: ["is", "Canadian", "are", "hallway", "are"]
             },
             {
                 title: "The Teacher",
-                text: "Mrs. Canales [1] (am / are / is) our teacher. She is very [2] (nice / sad / noisy). She is from [3] (Spain / Spanish / Spains). She is [4] (Spain / Spanish / Italian). She is in the [5] (hallway / classroom / locker) now.",
+                text: "Mrs. Canales [1] (am/are/is) our teacher. She is very [2] (nice/sad/noisy). She is from [3] (Spain/Spanish/Spains). She is [4] (Spain/Spanish/Italian). She is in the [5] (hallway/classroom/locker) now.",
                 answers: ["is", "nice", "Spain", "Spanish", "classroom"]
             },
             {
                 title: "Numbers and People",
-                text: "Look! There [1] (is / am / are) one hundred people. They are in the [2] (hallway / book / cat). I can [3] (count / meet / ready) them. One, two, three... ten! The students are [4] (chatting / ringing / sleeping). They are [5] (not / no / none) sad.",
+                text: "Look! There [1] (is/am/are) one hundred people. They are in the [2] (hallway/book/cat). I can [3] (count/meet/ready) them. One, two, three... ten! The students are [4] (chatting/ringing/sleeping). They are [5] (not/no/none) sad.",
                 answers: ["are", "hallway", "count", "chatting", "not"]
             },
             {
                 title: "Nationalities",
-                text: "The world is [1] (big / small / old). My friends are from different countries. Sara is from [2] (Japanese / Japan / Japans). Mario is [3] (Italy / Italian / Italies). Pierre is from France; he is [4] (French / France / Frances). We [5] (is / am / are) friends of the world.",
+                text: "The world is [1] (big/small/old). My friends are from different countries. Sara is from [2] (Japanese/Japan/Japans). Mario is [3] (Italy/Italian/Italies). Pierre is from France; he is [4] (French/France/Frances). We [5] (is/am/are) friends of the world.",
                 answers: ["big", "Japan", "Italian", "French", "are"]
             },
             {
                 title: "Mr. D's Adventure",
-                text: "Welcome [1] (to / at / for) the English adventure! I [2] (is / am / are) Mr. D. Today, we [3] (am / are / is) ready to learn. [4] (What / How / Who) old are you? Say [5] (where / who / what) you are from. Let's go!",
+                text: "Welcome [1] (to/at/for) the English adventure! I [2] (is/am/are) Mr. D. Today, we [3] (am/are/is) ready to learn. [4] (What/How/Who) old are you? Say [5] (where/who/what) you are from. Let's go!",
                 answers: ["to", "am", "are", "How", "where"]
             },
             {
                 title: "School Morning",
-                text: "It is 8:00 AM. The [1] (bell / map / cat) is ringing. Albert is [2] (not / no / is) late. He is [3] (at / on / in) school. He is [4] (ready / small / big) for class. His [5] (book / name / desk) is colorful.",
+                text: "It is 8:00 AM. The [1] (bell/map/cat) is ringing. Albert is [2] (not/no/is) late. He is [3] (at/on/in) school. He is [4] (ready/small/big) for class. His [5] (book/name/desk) is colorful.",
                 answers: ["bell", "not", "at", "ready", "book"]
             },
             {
                 title: "A Small Pet",
-                text: "I have a [1] (cat / dog / bird). Its [2] (name / old / from) is Fluffy. It is [3] (very / many / are) small. It is [4] (happy / sad / late) on the sofa. It [5] (is / am / are) a nice pet.",
+                text: "I have a [1] (cat/dog/bird). Its [2] (name/old/from) is Fluffy. It is [3] (very/many/are) small. It is [4] (happy/sad/late) on the sofa. It [5] (is/am/are) a nice pet.",
                 answers: ["cat", "name", "very", "happy", "is"]
             }
         ],

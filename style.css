@@ -1824,3 +1824,31 @@ body.dashboard-view .dashboard-intro {
 body.dashboard-view #ui-cluster {
     display: none !important;
 }
+
+
+
+
+
+
+/* Add to style.css */
+
+.compact-nav-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px; /* Tiny space between the two buttons */
+    padding: 10px 15px; /* Adjust spacing from the edges of the menu */
+}
+
+.compact-nav-row .home-link {
+    flex: 1; /* Forces both buttons to have equal width (50/50) */
+    margin: 0; /* Removes any default outside spacing */
+    text-align: center; /* Centers the text/icon inside */
+    justify-content: center; /* Ensures flex alignment is centered */
+    
+    /* Compact Visuals */
+    font-size: 0.8rem;       /* Slightly smaller text */
+    padding: 8px 5px;        /* Thinner buttons */
+    white-space: nowrap;     /* Prevents text from breaking lines */
+    display: flex;
+    align-items: center;
+}
