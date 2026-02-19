@@ -42,7 +42,7 @@ window.initLesson({
                 },
                 { 
                     speaker: "Mrs. Canales", 
-                    text: "Yes. There is a [green](tooltip:green) [sofa](tooltip:sofa) and a [TV](tooltip:tv)." 
+                    text: "Yes. There is a [green](tooltip:green) sofa and a TV." 
                 },
                 { 
                     speaker: "Albert", 

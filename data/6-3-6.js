@@ -38,7 +38,7 @@ window.initLesson({
                 },
                 { 
                     speaker: "Celine", 
-                    text: "It is [half past three](tooltip:half-past-three). I [go home](tooltip:go-home) now. I [always](tooltip:always) [have a snack](tooltip:have-breakfast) at [4 PM](tooltip:pm)." 
+                    text: "It is [half past](tooltip:half-past) three. I [go home](tooltip:go-home) now. I [always](tooltip:always) [have a snack](tooltip:have-breakfast) at 4 [PM](tooltip:AM-PM)." 
                 },
                 { 
                     speaker: "Albert", 
@@ -46,7 +46,7 @@ window.initLesson({
                 },
                 { 
                     speaker: "Celine", 
-                    text: "I have [piano classes](tooltip:guitar-piano). I [never](tooltip:never) [watch TV](tooltip:watch-tv) on [Fridays](tooltip:friday)." 
+                    text: "I have [piano classes](tooltip:piano-class). I [never](tooltip:never) [watch TV](tooltip:watch-tv) on [Fridays](tooltip:friday)." 
                 },
                 { 
                     speaker: "Albert", 
@@ -1668,6 +1668,18 @@ window.initLesson({
             definition: "To assist with household chores.", 
             translation: "ajudar em casa" 
         },
+        {
+            topic: "Activities",
+            term: "relax",
+            definition: "To rest and enjoy leisure time, often after work or stress.",
+            translation: "relaxar"
+        },
+        {
+            topic: "Activities",
+            term: "piano-class",
+            definition: "A lesson where you learn to play the piano.",
+            translation: "aula de piano"
+        },
         // --- TOPIC 2: DAYS OF THE WEEK & TIME ---
         { 
             topic: "Time & Days", 
@@ -1845,6 +1857,18 @@ window.initLesson({
             term: "telling-time-at", 
             definition: "Rule: Use the preposition 'at' for specific clock times.", 
             translation: "Dizendo as horas (às)" 
+        },
+        {
+            topic: "Frequency & Grammar",
+            term: "half-past-grammar",
+            definition: "Rule: Use 'half past' to indicate 30 minutes after the hour.",
+            translation: "Meia hora (e meia)"
+        },
+        {
+            topic: "Frequency & Grammar",
+            term: "AM-PM",
+            definition: "AM (ante meridiem) is used for times from midnight to noon, while PM (post meridiem) is used for times from noon to midnight.",
+            translation: "AM(00:00-11:59) e PM(12:00-23:59)"
         },
         { 
             topic: "Frequency & Grammar", 

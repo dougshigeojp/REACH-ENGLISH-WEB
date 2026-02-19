@@ -50,7 +50,7 @@ window.initLesson({
                 },
                 { 
                     speaker: "Celine", 
-                    text: "Cool! What [does he do](tooltip:what-do-you-do) in his [free time](tooltip:free-time)?" 
+                    text: "Cool! [What does he do](tooltip:what-do-you-do) in his [free time](tooltip:free-time)?" 
                 },
                 { 
                     speaker: "Albert", 

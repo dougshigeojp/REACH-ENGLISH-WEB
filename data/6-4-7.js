@@ -54,11 +54,11 @@ window.initLesson({
                 },
                 { 
                     speaker: "Celine", 
-                    text: "[Are you coming](tooltip:coming)? We are [making a difference](tooltip:make-difference) today!" 
+                    text: "Are you [coming](tooltip:coming)? We are [making a difference](tooltip:make-difference) today!" 
                 },
                 { 
                     speaker: "Albert", 
-                    text: "Yes, I [am coming](tooltip:coming)! Let's go." 
+                    text: "Yes, I am [coming](tooltip:coming)! Let's go." 
                 }
             ]
         },
@@ -1533,9 +1533,9 @@ window.initLesson({
         },
         { 
             topic: "Context", 
-            term: "collecting", 
+            term: "collect", 
             definition: "Gathering things together from different places.", 
-            translation: "Coletando / Recolhendo" 
+            translation: "Coletar / Recolher" 
         },
         { 
             topic: "Context", 

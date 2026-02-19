@@ -349,6 +349,13 @@ body.exercise-mode #ex-header {
 /* Matching */
 .matching-container { display: flex; gap: 20px; flex-wrap: wrap; }
 .match-column { flex: 1; min-width: 150px; display: flex; flex-direction: column; gap: 10px; }
+/* START: ADD THIS CODE BLOCK */
+.match-column:nth-child(2) {
+    background-color: #adc9e4; /* Light gray background */
+    padding: 10px;
+    border-radius: 12px;
+}
+/* END: ADD THIS CODE BLOCK */
 .match-item { 
     padding: 15px; border: 2px solid var(--gray-light); border-radius: 8px; 
     text-align: center; cursor: pointer; background: white;
