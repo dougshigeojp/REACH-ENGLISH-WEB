@@ -328,6 +328,39 @@ body.exercise-mode #ex-header {
     display: flex; align-items: center; justify-content: center; cursor: pointer;
     transition: 0.2s; font-size: 1.2rem;
 }
+
+/* START: ADD THIS ENTIRE CODE BLOCK */
+/* This makes the button smaller when needed */
+.btn-circle.compact {
+    width: 32px;
+    height: 32px;
+    font-size: 0.9rem;
+    border: 1px solid var(--primary-blue);
+    background-color: transparent;
+    color: var(--primary-blue);
+}
+.btn-circle.compact:hover {
+    background-color: var(--bg-alice-blue);
+}
+
+/* This adds the play button to the vocabulary list */
+.learning-card.with-tts {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+/* This positions the play button in the examples */
+.exercise-card .btn-circle {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+}
+/* END: ADD THIS ENTIRE CODE BLOCK */
+
+
 .record-btn { background: var(--error-red); color: white; }
 .stop-btn { background: #333; color: white; display: none; }
 .play-rec-btn { background: var(--success-green); color: white; display: none; }

@@ -122,9 +122,9 @@ window.initLesson({
                     title: "Numbers (1-100)",
                     audio: "TTS: One. Two. Three. Four. Five. Six. Seven. Eight. Nine. Ten. Eleven. Twelve. Thirteen. Fourteen. Fifteen. Sixteen. Seventeen. Eighteen. Nineteen. Twenty. Thirty. Forty. Fifty. Sixty. Seventy. Eighty. Ninety. One hundred.",
                     items: [
-                        { term: "1-10", trans: "One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten" },
-                        { term: "11-20", trans: "Eleven, Twelve, Thirteen, Fourteen, Fifteen, Sixteen, Seventeen, Eighteen, Nineteen, Twenty" },
-                        { term: "Tens (30-90)", trans: "Thirty, Forty, Fifty, Sixty, Seventy, Eighty, Ninety" },
+                        { term: "1-10: One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten", trans: "Um, Dois, Três, Quatro, Cinco, Seis, Sete, Oito, Nove, Dez" },
+                        { term: "11-19: Eleven, Twelve, Thirteen, Fourteen, Fifteen, Sixteen, Seventeen, Eighteen, Nineteen", trans: "Onze, Doze, Treze, Quatorze, Quinze, Dezesseis, Dezessete, Dezoito, Dezenove" },
+                        { term: "Tens (20-90): Twenty, Thirty, Forty, Fifty, Sixty, Seventy, Eighty, Ninety", trans: "Vinte, Trinta, Quarenta, Cinquenta, Sessenta, Setenta, Oitenta, Noventa" },
                         { term: "100", trans: "One hundred" }
                     ]
                 },

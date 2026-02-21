@@ -172,25 +172,65 @@ function renderHeaderInfo() {
 
 // 3. RANDOMIZER
 function generateRandomSet() {
-    const seed = Math.floor(Date.now() / 15000) % 480; 
-    let localSeed = seed;
-    const random = () => { const x = Math.sin(localSeed++) * 10000; return x - Math.floor(x); };
-    const shuffle = (arr) => [...arr].sort(() => random() - 0.5);
+    // True Randomization (Fisher-Yates Shuffle)
+    const shuffle = (array) => {
+        let arr = [...array];
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+    };
 
     for (let i = 1; i <= 15; i++) {
         let pool = (i <= 10) ? exData.simplePool[i] : exData.contextPool[i];
-        if (!pool) continue;
+        if (!pool || pool.length === 0) continue;
 
         let count = (i > 10 || i === 6) ? 1 : (i === 4 ? 6 : 3);
+        
+        // Randomly select 'count' items from the 40 (or 10) available in the pool
         let rawSelection = shuffle(pool).slice(0, count);
 
         activeSet[i] = rawSelection.map(item => {
-            let processed = { ...item };
+            // Deep clone so we don't accidentally mutate the original data
+            let processed = JSON.parse(JSON.stringify(item));
+
+            // Standard Pool Shuffles
             if (i === 1) processed.shuffledWords = shuffle(item.words);
             else if (i === 2) processed.shuffledLines = shuffle(item.lines);
             else if ([3, 4, 7, 8, 9].includes(i)) processed.shuffledOptions = shuffle(item.options);
             else if (i === 6) processed.shuffledRight = shuffle(item.pairs.map(p => p.b));
             
+            // --- CONTEXT POOL SHUFFLES (Pages 11-15) ---
+            
+            // Page 11: Shuffle dropdown options for each dialogue line
+            else if (i === 11 && processed.lines) {
+                processed.lines = processed.lines.map(line => {
+                    if (line.options) line.options = shuffle(line.options);
+                    return line;
+                });
+            }
+            
+            // Pages 12 & 13: Shuffle MCQ options for each question
+            else if ((i === 12 || i === 13) && processed.questions) {
+                processed.questions = processed.questions.map(q => {
+                    if (q.options) q.options = shuffle(q.options);
+                    return q;
+                });
+            }
+            
+            // Page 14: Shuffle the inline dropdown options hidden in the text (and trim spaces!)
+            else if (i === 14 && processed.text) {
+                processed.text = processed.text.replace(/\[(\d+)\] \((.*?)\)/g, (match, n, opts) => {
+                    // Split by '/', trim spaces to fix scoring bugs, shuffle, and rejoin with '/'
+                    let shuffledOpts = shuffle(opts.split('/').map(opt => opt.trim())).join('/');
+                    return `[${n}] (${shuffledOpts})`;
+                });
+            }
+            
+            // Note: Page 15 is entirely fill-in-the-blank (no options to shuffle), 
+            // but the outer shuffle ensures the text selected is 1 of 10 different possibilities.
+
             // Score Calc
             if(i === 6) maxPageScores[i] = 5;
             else if(i === 10) maxPageScores[i] = 2;

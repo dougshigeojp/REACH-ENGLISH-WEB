@@ -6,8 +6,6 @@
 // GLOBAL VARIABLES
 let currentPageIndex = 0;
 let lessonData = null; // Store data globally
-let currentTTSText = null; // KEEPS TRACK OF CURRENTLY PLAYING TTS
-let currentTTSButton = null; // KEEPS TRACK OF THE BUTTON THAT STARTED TTS
 
 // 1. INITIALIZATION
 window.initLesson = function(data) {
@@ -204,68 +202,31 @@ window.switchDashTab = function(tabName) {
 };
 
 
-// --- START OF NEW TTS ENGINE (With Pause/Resume) ---
+// --- START OF TTS ENGINE (Google Network Hack) ---
+window.playTTS = function(text) {
+    console.log("Initializing Smart TTS Engine...");
 
-// This is the NEW main function called by buttons.
-window.toggleTTS = function(text, button) {
-    const cleanText = text.replace("TTS: ", "").trim();
+    // 1. Stop all current sounds/voices
+    window.speechSynthesis.cancel();
+    if (window.currentTTSAudio) { window.currentTTSAudio.pause(); window.currentTTSAudio = null; }
+    if (typeof globalAudio !== 'undefined' && globalAudio) globalAudio.pause();
 
-    // CASE 1: A NEW speech request is made (or nothing is active)
-    if (cleanText !== currentTTSText) {
-        // Stop any previous speech
-        window.speechSynthesis.cancel();
-        if (window.currentTTSAudio) {
-            window.currentTTSAudio.pause();
-            window.currentTTSAudio = null;
-        }
-        // Reset the old button's text if it exists
-        if (currentTTSButton) {
-            currentTTSButton.innerHTML = '🔊 Listen';
-        }
-
-        // Set the new state
-        currentTTSText = cleanText;
-        currentTTSButton = button;
-        
-        // Start the new playback
-        startNewTTS(cleanText);
-        return;
-    }
-
-    // CASE 2: The SAME button is clicked, so we toggle pause/resume.
-    
-    // If the Web Speech API is active
-    if (window.speechSynthesis.speaking) {
-        if (window.speechSynthesis.paused) {
-            window.speechSynthesis.resume();
-            button.innerHTML = '⏸️ Pause';
-        } else {
-            window.speechSynthesis.pause();
-            button.innerHTML = '▶️ Resume';
-        }
-    }
-    // If the audio element fallback is active
-    else if (window.currentTTSAudio) {
-        if (window.currentTTSAudio.paused) {
-            window.currentTTSAudio.play();
-            button.innerHTML = '⏸️ Pause';
-        } else {
-            window.currentTTSAudio.pause();
-            button.innerHTML = '▶️ Resume';
-        }
-    }
-}
-
-// This function contains the logic to start a fresh playback.
-function startNewTTS(cleanText) {
-    // 1. Prepare for playback
-    const button = currentTTSButton;
-    if (!button) return;
-    
-    // The 1-Second Delay (Prevents word clipping)
+    // 2. The 1-Second Delay (Prevents word clipping)
     setTimeout(() => {
-        // TIER 1: HIGH-QUALITY SYSTEM VOICES
-        const highQualityNames = ["Microsoft Aria Online", "Google US English", "Samantha", "Microsoft Jenny Online", "Microsoft Guy Online", "Alex", "Google UK English"];
+        // Prepare Clean Text
+        const cleanText = text.replace("TTS: ", "").replace(/\[(.*?)\]\(.*?\)/g, '$1').trim();
+        
+        // --- TIER 1: HIGH-QUALITY SYSTEM VOICES ---
+        const highQualityNames = [
+            "Microsoft Aria Online", 
+            "Google US English",      
+            "Samantha",               
+            "Microsoft Jenny Online", 
+            "Microsoft Guy Online",   
+            "Alex",                   
+            "Google UK English"
+        ];
+
         const availableVoices = window.speechSynthesis.getVoices();
         let bestSystemVoice = null;
 
@@ -274,65 +235,60 @@ function startNewTTS(cleanText) {
             if (bestSystemVoice) break;
         }
 
-        const resetState = () => {
-            if (currentTTSButton) currentTTSButton.innerHTML = '🔊 Listen';
-            currentTTSText = null;
-            currentTTSButton = null;
-            window.currentTTSAudio = null;
-        };
-
+        // If a High-Quality voice is found, use it immediately
         if (bestSystemVoice) {
             console.log("Tier 1 - High Quality System Voice:", bestSystemVoice.name);
             const msg = new SpeechSynthesisUtterance(cleanText);
             msg.voice = bestSystemVoice;
             msg.rate = 0.88;
-            msg.onend = resetState;
             window.speechSynthesis.speak(msg);
-            button.innerHTML = '⏸️ Pause';
         } 
-        // TIER 2: GOOGLE TRANSLATE HACK (Fallback for short texts)
+        // --- TIER 2: GOOGLE TRANSLATE HACK (Fallback for short texts) ---
         else if (cleanText.length < 200) {
             console.log("Tier 2 - High Quality Online Fallback (Google Translate)");
             try {
                 const url = `https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=en&q=${encodeURIComponent(cleanText)}`;
                 const audio = new Audio(url);
                 window.currentTTSAudio = audio;
-                audio.onended = resetState;
                 audio.play().catch(err => {
                     console.warn("Online Fallback failed, moving to Tier 3.");
                     speakTier3(cleanText, availableVoices);
                 });
-                button.innerHTML = '⏸️ Pause';
             } catch (e) {
                 speakTier3(cleanText, availableVoices);
             }
         } 
-        // TIER 3: BASIC SYSTEM VOICES (The last resort)
+        // --- TIER 3: BASIC SYSTEM VOICES (The last resort) ---
         else {
             speakTier3(cleanText, availableVoices);
         }
-    }, 500); // Reduced delay to 500ms
+    }, 1000); 
 };
 
-// Helper for Tier 3 logic (updated)
+// Helper for Tier 3 logic
 function speakTier3(text, voices) {
     console.log("Tier 3 - Basic System Voice Fallback");
     const msg = new SpeechSynthesisUtterance(text);
+    
+    // Just find ANY English voice available on the device
     const fallback = voices.find(v => v.lang.startsWith('en')) || voices[0];
     if (fallback) msg.voice = fallback;
+    
     msg.rate = 0.85;
-    msg.onend = () => {
-        if (currentTTSButton) currentTTSButton.innerHTML = '🔊 Listen';
-        currentTTSText = null;
-        currentTTSButton = null;
-    };
     window.speechSynthesis.speak(msg);
-    if (currentTTSButton) currentTTSButton.innerHTML = '⏸️ Pause';
 }
 
 // Ensures voices are loaded in the background
 window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
-// --- END OF NEW TTS ENGINE ---
+
+function speakRobot(text) {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = 0.9; 
+    utterance.lang = 'en-US';
+    window.speechSynthesis.speak(utterance);
+}
+window.speechSynthesis.getVoices();
+// --- END OF TTS ENGINE ---
 
 
 // 2. RENDER FUNCTIONS
@@ -434,96 +390,21 @@ function jumpToStep(index, subId = null) {
 }
 
 // 4. AUDIO & RECORDING SYSTEM
-// ========================================================
-// REPLACEMENT AUDIO LOGIC - START
-// ========================================================
-
-// REPLACE your current playAudio function with this one:
-
-window.playAudio = function(path, btnElement = null) {
-    // 1. THE MISSING LINK: Redirect to the new TTS engine if the path is text!
-    if (path && path.trim().startsWith('TTS:')) {
-        // Create a dummy button if one isn't passed to avoid crashes
-        const targetBtn = btnElement || document.createElement('button');
-        window.toggleTTS(path, targetBtn);
-        return; // EXIT EARLY so we don't try to play text as an MP3 file!
-    }
-
-    // 2. Standard MP3 Playback Logic
-    window.speechSynthesis.cancel();
-    if (window.currentTTSAudio) {
-        window.currentTTSAudio.pause();
-    }
-
+window.playAudio = function(path) {
     const player = document.getElementById('global-audio-player');
     player.pause();
     
-    // Detach any event listeners left by other players.
-    player.onended = null;
-    player.ontimeupdate = null;
-
-    if (path) {
+    // REDIRECT TO SMART TTS:
+    // If the path starts with TTS, we use our high-quality logic instead of manual speech
+    if (path && path.startsWith('TTS:')) {
+        window.playTTS(path); 
+    } else if (path) {
+        // Standard MP3 playback
         player.src = path;
-        player.currentTime = 0;
-        player.play().catch(e => console.error("Audio playback failed:", e));
-    }
-};
-
-// This function handles the UI for the more complex player (with the progress bar).
-window.handleAudioPlayer = function(btn) {
-    const player = document.getElementById('global-audio-player');
-    const container = btn.closest('.audio-controller');
-    const audioSrc = container.dataset.src;
-    const scrubber = container.querySelector('.audio-scrubber');
-    const timeDisplay = container.querySelector('.audio-time');
-
-    const isDifferentAudio = !player.src.endsWith(audioSrc);
-
-    // If the player is paused OR we are clicking a new audio file
-    if (player.paused || isDifferentAudio) {
-        // If it's a new file, we must stop and reset everything first.
-        if (isDifferentAudio) {
-            player.pause();
-            player.onended = null;
-            player.ontimeupdate = null;
-            document.querySelectorAll('.audio-controller .play-pause-btn').forEach(b => b.textContent = '▶');
-            player.src = audioSrc;
-        }
-        
         player.play();
-        btn.textContent = '||';
-
-        // Attach listeners for the scrubber and time display.
-        player.ontimeupdate = () => {
-            if (!player.duration || isNaN(player.duration)) return;
-            const pct = (player.currentTime / player.duration) * 100;
-            scrubber.value = pct;
-            const formatTime = (t) => {
-                const m = Math.floor(t / 60);
-                const s = Math.floor(t % 60);
-                return `${m}:${s < 10 ? '0' : ''}${s}`;
-            };
-            timeDisplay.textContent = `${formatTime(player.currentTime)} / ${formatTime(player.duration)}`;
-        };
-
-        // When the audio finishes, detach the listeners to clean up.
-        player.onended = () => {
-            btn.textContent = '▶';
-            scrubber.value = 0;
-            player.onended = null;
-            player.ontimeupdate = null;
-        };
-
-    } else {
-        // If the audio is already playing, just pause it and clean up.
-        player.pause();
-        btn.textContent = '▶';
-        player.onended = null;
-        player.ontimeupdate = null;
     }
 };
 
-// --- Voice Recording Logic (Unchanged) ---
 let mediaRecorder;
 let audioChunks = [];
 
@@ -1019,7 +900,7 @@ function buildStepHTML(index, step) {
             const safePath = audioPath.trim().replace(/'/g, "\\'");
             return `<div class="audio-controller" style="justify-content: center; width: auto; min-width: 120px; border-color: var(--brand-orange); position: relative;">
                         <button class="play-pause-btn" style="background: var(--accent-orange); width: 100%; border-radius: 20px; padding: 0 15px; font-size: 0.8rem;" 
-                        onclick="toggleTTS('${safePath}', this)">🔊 Listen</button>
+                        onclick="playAudio('${safePath}')">🔊 Listen</button>
                     </div>`;
         }
         // Audio Player with positioning fix (Relative to container)
@@ -1069,11 +950,9 @@ function buildStepHTML(index, step) {
         html += `<div class="area-box" style="position:relative">
                 ${createAudioPlayer(step.contextAudio)}
             <p><i>${step.context}</i></p><br>
-            ${step.dialogue.map(line => `<p><b>${line.speaker}:</b> ${line.text}</p>`).join('')}
+            ${step.dialogue.map(line => `<p><b>${line.speaker}:</b> ${parseTooltips(line.text)}</p>`).join('')}
         </div>`;
     }
-
-    // REPLACE the existing "if (index === 2)" block with this one:
 
     // ======================================================
     // STEP 2: VOCABULARY (With Tabs)
@@ -1112,31 +991,18 @@ function buildStepHTML(index, step) {
 
         // --- 2A: New Words (Tabbed) ---
         let html2a = buildInternalTabs(step.areas, 's2a', (area) => 
-            area.items.map(item => {
-                const safeTerm = item.term.replace(/'/g, "\\'");
-                // Using the Step 4 button style with our new 'compact' class
-                return `<div class="learning-card with-tts">
-                            <div>
-                                <span class="term-en">${item.term}</span>
-                                <span class="term-pt">${item.trans}</span>
-                            </div>
-                            <button class="btn-circle compact" onclick="toggleTTS('TTS: ${safeTerm}', this)">▶️</button>
-                        </div>`;
-            }).join('')
+            area.items.map(item => `<div class="learning-card"><span class="term-en">${item.term}</span><span class="term-pt">${item.trans}</span></div>`).join('')
         );
 
         // --- 2B: Examples (Tabbed) ---
         let html2b = '';
         if (step.exampleGroups) {
             html2b = buildInternalTabs(step.exampleGroups, 's2b', (group) => 
-                group.items.map(ex => {
-                    const safeSent = ex.sent.replace(/'/g, "\\'");
-                    return `<div class="exercise-card" style="box-shadow:none; border-bottom:1px solid #eee; margin-bottom:0; padding: 15px 60px 15px 0; position: relative;">
-                        <button class="btn-circle compact" onclick="toggleTTS('TTS: ${safeSent}', this)">▶️</button>
+                group.items.map(ex => `
+                    <div class="exercise-card" style="box-shadow:none; border-bottom:1px solid #eee; margin-bottom:0; padding: 10px 0;">
                         <p><b class="term-en">${ex.term}:</b> ${ex.sent}</p>
                         <p class="term-pt"><i>${ex.trans}</i></p>
-                    </div>`;
-                }).join('')
+                    </div>`).join('')
             );
         } else if (step.examples) {
             // Fallback for old data
@@ -1164,7 +1030,6 @@ function buildStepHTML(index, step) {
                     <button class="btn check-btn">Check</button>
                 </div>`).join('');
         }
-
 
         html += `<div id="step2a" class="sub-page-content active">${html2a}</div>`;
         html += `<div id="step2b" class="sub-page-content">${html2b}</div>`;
@@ -1258,16 +1123,10 @@ function buildStepHTML(index, step) {
     if (index === 4) { 
         html += `<p class="instruction">Listen, record, and compare your pronunciation.<br><small style='color:#0077b6'>(Ouça, grave e compare sua pronúncia.)</small></p>`;
         step.sentences.forEach((s, i) => {
-            
-            // Route TTS properly, otherwise fallback to standard MP3 playAudio
-            const safeAudio = s.audio ? s.audio.replace(/'/g, "\\'") : '';
-            const isTTS = safeAudio.startsWith('TTS:');
-            const onClickLogic = isTTS ? `toggleTTS('${safeAudio}', this)` : `playAudio('${safeAudio}', this)`;
-
             html += `
                 <div class="area-box shadow-box">
-                    <button class="btn-circle" onclick="${onClickLogic}">▶️</button>
-                    <p>${s.text} ${s.arrow ? s.arrow : ''}</p>
+                    <button class="btn-circle" onclick="playAudio('${s.audio}')">▶️</button>
+                    <p>${s.text} ${s.arrow}</p>
                     <button class="btn-circle record-btn" onclick="toggleRecording(this, ${i})">🎤</button>
                     <button class="btn-circle stop-btn" onclick="stopRecording(this)">⏹️</button>
                     <button class="btn-circle play-rec-btn">🎧</button>
@@ -1502,7 +1361,7 @@ function buildStepHTML(index, step) {
         html += `</div>`;
     }
 
-    return parseTooltips(html);
+    return html;
 }
 
 window.switchSubPage = function(btn, subPageId) {
@@ -1584,8 +1443,6 @@ window.handleMemoryClick = function(card) {
         }
     }
 };
-// REPLACE your current handleAudioPlayer function with this corrected version:
-
 window.handleAudioPlayer = function(btn) {
     const player = document.getElementById('global-audio-player');
     const container = btn.closest('.audio-controller');
@@ -1593,22 +1450,15 @@ window.handleAudioPlayer = function(btn) {
     const scrubber = container.querySelector('.audio-scrubber');
     const timeDisplay = container.querySelector('.audio-time');
 
-    // If we are clicking a button for a DIFFERENT audio file
-    if (!player.src.endsWith(audioSrc)) {
-        player.pause();
-        // Clear any old listeners from other players
-        player.onended = null;
-        player.ontimeupdate = null;
-        // Reset all other play buttons on the page to 'play'
-        document.querySelectorAll('.play-pause-btn').forEach(b => b.textContent = '▶');
+    if (player.src.indexOf(audioSrc) === -1) {
         player.src = audioSrc;
+        document.querySelectorAll('.play-pause-btn').forEach(b => b.textContent = '▶');
+        document.querySelectorAll('.audio-scrubber').forEach(s => s.value = 0);
     }
 
     if (player.paused) {
         player.play();
-        btn.textContent = '||'; // Set button to 'pause' icon
-
-        // When the audio is playing, update the scrubber and time
+        btn.textContent = '||';
         player.ontimeupdate = () => {
             if (!player.duration) return;
             const pct = (player.currentTime / player.duration) * 100;
@@ -1620,23 +1470,13 @@ window.handleAudioPlayer = function(btn) {
             };
             timeDisplay.textContent = `${formatTime(player.currentTime)} / ${formatTime(player.duration)}`;
         };
-
-        // When the audio finishes, reset everything
         player.onended = () => {
             btn.textContent = '▶';
             scrubber.value = 0;
-            player.onended = null;
-            player.ontimeupdate = null;
         };
     } else {
-        // If the player is active, pause it
         player.pause();
-        btn.textContent = '▶'; // Set button to 'play' icon
-        
-        // **THE CRITICAL FIX IS HERE:**
-        // When pausing, we MUST detach the listeners so they don't conflict with Step 4.
-        player.onended = null;
-        player.ontimeupdate = null;
+        btn.textContent = '▶';
     }
 };
 
