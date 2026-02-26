@@ -1239,13 +1239,27 @@ function buildStepHTML(index, step) {
                     </div>`;
         }
 
-        // --- 3C: Practice ---
-        let html3c = step.grammarDrills.map(drill => `
-            <div class="exercise-card" data-type="mcq">
-                <p><b>${drill.q}</b></p>
-                <div class="options-container">${drill.options.map(opt => `<div class="option" data-correct="${opt.c}">${opt.t}</div>`).join('')}</div>
-                <button class="btn check-btn">Check</button>
-            </div>`).join('');
+        // --- 3C: Practice (Tabbed Fix) ---
+        let html3c = '';
+        if (step.grammarDrillGroups) {
+            // NEW MODE: Use the same tabbed builder as 2C
+            html3c = buildInternalTabs(step.grammarDrillGroups, 's3c', (group) => 
+                group.drills.map(drill => `
+                    <div class="exercise-card" data-type="mcq" style="box-shadow:none; border:1px solid #eee;">
+                        <p><b>${drill.q}</b></p>
+                        <div class="options-container">${drill.options.map(opt => `<div class="option" data-correct="${opt.c}">${opt.t}</div>`).join('')}</div>
+                        <button class="btn check-btn">Check</button>
+                    </div>`).join('')
+            );
+        } else if (step.grammarDrills) {
+            // OLD MODE: Fallback for single list
+            html3c = step.grammarDrills.map(drill => `
+                <div class="exercise-card" data-type="mcq">
+                    <p><b>${drill.q}</b></p>
+                    <div class="options-container">${drill.options.map(opt => `<div class="option" data-correct="${opt.c}">${opt.t}</div>`).join('')}</div>
+                    <button class="btn check-btn">Check</button>
+                </div>`).join('');
+        }
 
         html += `<div id="step3a" class="sub-page-content active">${html3a}</div>`;
         html += `<div id="step3b" class="sub-page-content">${html3b}</div>`;

@@ -15,7 +15,7 @@ window.initLesson({
     
     steps: [
         // ======================================================
-        // STEP 0: UNIT COVER (No tooltips per request)
+        // STEP 0: UNIT COVER 
         // ======================================================
         {
             title: "Unit Cover",
@@ -1644,7 +1644,7 @@ window.initLesson({
                 },
                 {
                     type: "word-order",
-                    instruction: "Unscramble the sentence.",
+                    instruction: "Put the words in order to form a correct sentence with a Relative Clause.<br><small style='color:#0077b6'>(Coloque as palavras em ordem para formar uma frase correta com uma Oração Relativa.)</small>",
                     sentence: "the / is / This / where / we / place / met / .",
                     correct: "This is the place where we met ."
                 },
@@ -1661,7 +1661,7 @@ window.initLesson({
                 },
                 {
                     type: "odd-one-out",
-                    instruction: "Choose the word that doesn't belong (Financial security vs. Difficulty).",
+                    instruction: "Choose the word that doesn't belong (Financial security vs. Difficulty).<br><small style='color:#0077b6'>(Escolha a palavra que não pertence ao grupo.)</small>",
                     options: [
                         { t: "Salary", c: false },
                         { t: "Income", c: false },
@@ -1678,7 +1678,7 @@ window.initLesson({
                 },
                 {
                     type: "clickable-error",
-                    instruction: "Find the mistake.",
+                    instruction: "Find the grammatical mistake in each sentence.<br><small style='color:#0077b6'>(Encontre o erro gramatical em cada frase.)</small>",
                     // Original: "She is the most brave person I know."
                     sentence: "She is the [most](error:) [brave](error:bravest) person I know.",
                 }
