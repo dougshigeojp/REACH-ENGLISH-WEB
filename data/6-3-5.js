@@ -1122,19 +1122,19 @@ window.initLesson({
                 },
                 {
                     type: "word-order",
-                    instruction: "Unscramble the sentence.",
+                    instruction: "Put the words in the correct order to form a sentence or question. <br><small style='color:#0077b6'>(Coloque as palavras na ordem correta.)</small>",
                     sentence: "has / eyes / He / green / .",
                     correct: "He has green eyes ."
                 },
                 {
                     type: "word-order",
-                    instruction: "Unscramble the sentence.",
+                    instruction: "Put the words in the correct order to form a sentence or question. <br><small style='color:#0077b6'>(Coloque as palavras na ordem correta.)</small>",
                     sentence: "play / don't / I / soccer / .",
                     correct: "I don't play soccer ."
                 },
                 {
                     type: "word-order",
-                    instruction: "Unscramble the question.",
+                    instruction: "Put the words in the correct order to form a sentence or question. <br><small style='color:#0077b6'>(Coloque as palavras na ordem correta.)</small>",
                     sentence: "you / Do / comics / read / ?",
                     correct: "Do you read comics ?"
                 },
@@ -1151,7 +1151,7 @@ window.initLesson({
                 },
                 {
                     type: "odd-one-out",
-                    instruction: "Choose the word that does not belong in the group.",
+                    instruction: "Choose the word that does not belong in the group. <br><small style='color:#0077b6'>(Escolha a palavra que não pertence ao grupo.)</small>",
                     options: [
                         { t: "Tall", c: false },
                         { t: "Short", c: false },
@@ -1161,7 +1161,7 @@ window.initLesson({
                 },
                 {
                     type: "odd-one-out",
-                    instruction: "Choose the word that does not belong in the group.",
+                    instruction: "Choose the word that does not belong in the group. <br><small style='color:#0077b6'>(Escolha a palavra que não pertence ao grupo.)</small>",
                     options: [
                         { t: "Soccer", c: false },
                         { t: "Tennis", c: false },
@@ -1171,7 +1171,7 @@ window.initLesson({
                 },
                 {
                     type: "odd-one-out",
-                    instruction: "Choose the word that does not belong in the group.",
+                    instruction: "Choose the word that does not belong in the group. <br><small style='color:#0077b6'>(Escolha a palavra que não pertence ao grupo.)</small>",
                     options: [
                         { t: "Play", c: false },
                         { t: "Read", c: false },

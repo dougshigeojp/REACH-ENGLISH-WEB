@@ -1145,19 +1145,19 @@ window.initLesson({
                 },
                 {
                     type: "word-order",
-                    instruction: "Unscramble the question.",
+                    instruction: "Put the words in the correct order to form a sentence. <br><small style='color:#0077b6'>(Coloque as palavras na ordem correta para formar uma frase.)</small>",
                     sentence: "yours / Is / this / gift / ?",
                     correct: "Is this gift yours ?"
                 },
                 {
                     type: "word-order",
-                    instruction: "Unscramble the sentence.",
+                    instruction: "Put the words in the correct order to form a sentence. <br><small style='color:#0077b6'>(Coloque as palavras na ordem correta para formar uma frase.)</small>",
                     sentence: "in / We / celebrate / winter / don't / .",
                     correct: "We don't celebrate in winter ."
                 },
                 {
                     type: "word-order",
-                    instruction: "Unscramble the question.",
+                    instruction: "Put the words in the correct order to form a sentence. <br><small style='color:#0077b6'>(Coloque as palavras na ordem correta para formar uma frase.)</small>",
                     sentence: "favorite / is / season / What / your / ?",
                     correct: "What is your favorite season ?"
                 },
@@ -1174,7 +1174,7 @@ window.initLesson({
                 },
                 {
                     type: "odd-one-out",
-                    instruction: "Choose the word that does not belong in the group.",
+                    instruction: "Choose the word that does not belong in the group. <br><small style='color:#0077b6'>(Escolha a palavra que não pertence ao grupo.)</small>",
                     options: [
                         { t: "First", c: false },
                         { t: "Second", c: false },
@@ -1184,7 +1184,7 @@ window.initLesson({
                 },
                 {
                     type: "odd-one-out",
-                    instruction: "Choose the word that does not belong in the group.",
+                    instruction: "Choose the word that does not belong in the group. <br><small style='color:#0077b6'>(Escolha a palavra que não pertence ao grupo.)</small>",
                     options: [
                         { t: "Mine", c: false },
                         { t: "Yours", c: false },
@@ -1194,7 +1194,7 @@ window.initLesson({
                 },
                 {
                     type: "odd-one-out",
-                    instruction: "Choose the word that does not belong in the group.",
+                    instruction: "Choose the word that does not belong in the group. <br><small style='color:#0077b6'>(Escolha a palavra que não pertence ao grupo.)</small>",
                     options: [
                         { t: "Christmas", c: false },
                         { t: "Party", c: true }, // Event type vs Holiday Name

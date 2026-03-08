@@ -1350,7 +1350,9 @@ function buildStepHTML(index, step) {
         </div>`;
 
         step.texts.forEach((text, textIndex) => {
-            const autoAudioPath = `audio/${lessonData.lessonId}/p6_text${textIndex + 1}.mp3`;
+            // FIX: Read the 'text.audio' property if it exists. 
+            // If it doesn't, fall back to the old MP3 naming system automatically.
+            const autoAudioPath = text.audio ? text.audio : `audio/${lessonData.lessonId}/p6_text${textIndex + 1}.mp3`;
             const subPageId = `step6-t${textIndex + 1}`;
 
             html += `

@@ -1108,19 +1108,19 @@ window.initLesson({
                 },
                 {
                     type: "word-order",
-                    instruction: "Unscramble the question.",
+                    instruction: "Put the words in the correct order. <br><small style='color:#0077b6'>(Coloque as palavras na ordem correta.)</small>",
                     sentence: "many / are / How / there / chairs / ?",
                     correct: "How many chairs are there ?"
                 },
                 {
                     type: "word-order",
-                    instruction: "Unscramble the sentence.",
+                    instruction: "Put the words in the correct order. <br><small style='color:#0077b6'>(Coloque as palavras na ordem correta.)</small>",
                     sentence: "are / There / two / in / windows / house / the",
                     correct: "There are two windows in the house"
                 },
                 {
                     type: "word-order",
-                    instruction: "Unscramble the negative sentence.",
+                    instruction: "Put the words in the correct order. <br><small style='color:#0077b6'>(Coloque as palavras na ordem correta.)</small>",
                     sentence: "isn't / a / There / garage",
                     correct: "There isn't a garage"
                 },
@@ -1140,6 +1140,7 @@ window.initLesson({
                 // Drill 4: Multiple Choice (Completion)
                 {
                     type: "mcq",
+                    instruction: "Complete<br>There are three _______ in the house.",
                     q: "There are three _______ in the house.",
                     options: [
                         { t: "child", c: false },
@@ -1150,6 +1151,7 @@ window.initLesson({
                 },
                 {
                     type: "mcq",
+                    instruction: "Complete<br>I see _______ orange lamp.",
                     q: "I see _______ orange lamp.",
                     options: [
                         { t: "a", c: false },
@@ -1160,6 +1162,7 @@ window.initLesson({
                 },
                 {
                     type: "mcq",
+                    instruction: "Complete<br>Where is the garden? It is _______ the kitchen.",
                     q: "Where is the garden? It is _______ the kitchen.",
                     options: [
                         { t: "under", c: false },
