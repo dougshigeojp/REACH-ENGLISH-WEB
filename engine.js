@@ -1191,13 +1191,12 @@ function buildStepHTML(index, step) {
         });
         
         html += `
-            </div>
-            
-            <div style="margin-top:20px; display:flex; gap:10px; justify-content:center;">
-                 <button class="btn" style="background:var(--success-green);" onclick="playAllRecordings(this)">🎧 Play All My Recordings</button>
-                 <button class="btn" style="background:var(--primary-blue);" onclick="downloadAllRecordings(this)">⬇️ Download All</button>
-            </div>
-        </div>`;
+    <div style="margin-top:20px; display:flex; flex-wrap:wrap; gap:10px; justify-content:center;">
+         <button class="btn" style="background:var(--success-green);" onclick="playAllRecordings(this)">🎧 Play All</button>
+         <button class="btn" style="background:var(--primary-blue);" onclick="downloadAllRecordings(this)">⬇️ Download All (ZIP)</button>
+         <button class="btn" style="background:var(--accent-orange);" onclick="shareAllRecordings(this)">📲 Share All</button>
+    </div>
+</div>`;
     }
 
     // REPLACE the existing "if (index === 2)" block with this one:
@@ -1257,8 +1256,11 @@ let html2a = buildInternalTabs(step.areas, 's2a', (area) => {
     }).join('');
 
     return listHtml + `
-        <button class="btn" style="margin-top:15px; width:100%; background:var(--success-green); font-size:0.9rem;" 
-        onclick="playAllRecordings(this)">🎧 Play All Tab Recordings</button>`;
+    <div style="margin-top:15px; display:flex; flex-wrap:wrap; gap:8px;">
+        <button class="btn" style="flex:1; background:var(--success-green); font-size:0.8rem;" onclick="playAllRecordings(this)">🎧 Play All</button>
+        <button class="btn" style="flex:1; background:var(--primary-blue); font-size:0.8rem;" onclick="downloadAllRecordings(this)">⬇️ Download</button>
+        <button class="btn" style="flex:1; background:var(--accent-orange); font-size:0.8rem;" onclick="shareAllRecordings(this)">📲 Share</button>
+    </div>`;
 });
 
         // --- 2B: Examples (Tabbed) ---
@@ -1284,8 +1286,11 @@ if (step.exampleGroups) {
         }).join('');
 
         return listHtml + `
-            <button class="btn" style="margin-top:15px; width:100%; background:var(--success-green); font-size:0.9rem;" 
-            onclick="playAllRecordings(this)">🎧 Play All Example Recordings</button>`;
+    <div style="margin-top:15px; display:flex; flex-wrap:wrap; gap:8px;">
+        <button class="btn" style="flex:1; background:var(--success-green); font-size:0.8rem;" onclick="playAllRecordings(this)">🎧 Play All</button>
+        <button class="btn" style="flex:1; background:var(--primary-blue); font-size:0.8rem;" onclick="downloadAllRecordings(this)">⬇️ Download</button>
+        <button class="btn" style="flex:1; background:var(--accent-orange); font-size:0.8rem;" onclick="shareAllRecordings(this)">📲 Share</button>
+    </div>`;
     });
 }
 
@@ -1406,8 +1411,12 @@ if (step.dialogueGroups) {
             </div>
 
             <!-- 3. Play All Recordings Button -->
-            <button class="btn" style="margin-top:15px; width:100%; background:var(--success-green); font-size:0.85rem;" 
-            onclick="playAllRecordings(this)">🎧 Play All My Recordings</button>
+            // Inside Step 3B...
+<div style="margin-top:15px; display:flex; flex-wrap:wrap; gap:8px;">
+    <button class="btn" style="flex:1; background:var(--success-green); font-size:0.8rem;" onclick="playAllRecordings(this)">🎧 Play All</button>
+    <button class="btn" style="flex:1; background:var(--primary-blue); font-size:0.8rem;" onclick="downloadAllRecordings(this)">⬇️ Download</button>
+    <button class="btn" style="flex:1; background:var(--accent-orange); font-size:0.8rem;" onclick="shareAllRecordings(this)">📲 Share</button>
+</div>
         </div>`;
     }).join('');
 }
@@ -1647,40 +1656,38 @@ if (step.dialogueGroups) {
     }
 
     // ======================================================
-    // STEP 8: WRITING (Fixed Recording Version)
+    // STEP 8: WRITING (Download & Share Version)
     // ======================================================
     if (index === 8) {
         html += `
         <div class="area-box">
-        <p style="margin-top:20px;"><b>*ATTENTION! - The student MUST HAND IN the answer in paper to the teacher.<br><span style='color:#0077b6'>(ATENÇÃO - o aluno DEVE ENTREGAR A RESPOSTA EM PAPEL AO PROFESSOR)</b><br></span></p>
-        
-            <p><br><b>${step.instruction}</b></p>
+            <p><b>${step.instruction}</b></p>
             <div class="example-box" style="background:#f9f9f9; padding:10px; border-left:4px solid var(--primary-blue); margin-bottom:15px;">
                 <p><i>Example: ${step.example}</i></p>
             </div>
 
-            <!-- Writing Box -->
             <textarea placeholder="Write your text here..." style="width:100%; height:150px; padding:15px; border-radius:10px; border:1px solid #ddd; font-family:inherit;"></textarea>
             
-            <!-- Controls Container -->
             <div style="margin-top:20px; padding:15px; background:var(--bg-alice-blue); border-radius:10px; display:flex; flex-wrap:wrap; gap:15px; align-items:center; justify-content:center;">
                 
-                <!-- 1. TTS Button -->
                 <button class="btn" style="background:var(--accent-orange); font-size:0.85rem;" onclick="listenToWriting(this)">🔊 Listen to my Writing</button>
 
-                <!-- 2. Recording Interface (NOW WITH shadow-box CLASS) -->
                 <div class="shadow-box" style="display:flex; align-items:center; gap:8px; border-left:1px solid #ccc; padding-left:15px;">
-                    <span style="font-size:0.8rem; font-weight:bold; color:#666;">PRACTICE SPEAKING:</span>
+                    <span style="font-size:0.8rem; font-weight:bold; color:#666;">SPEAK:</span>
                     <button class="btn-circle record-btn" onclick="toggleRecording(this, 'step8-writing')">🎤</button>
                     <button class="btn-circle stop-btn" onclick="stopRecording(this)" style="display:none;">⏹️</button>
                     <button class="btn-circle play-rec-btn" style="display:none;">🎧</button>
                     
-                    <!-- 3. Download Button -->
-                    <button class="btn download-btn-step8" style="background:var(--primary-blue); font-size:0.8rem; display:none;" onclick="downloadStep8Recording(this)">⬇️ Download My Voice</button>
+                    <!-- NEW: Action Buttons (Hidden until recording is done) -->
+                  
+<div class="step8-actions" style="display:none; gap:8px;">
+    <button class="btn" style="background:var(--primary-blue); font-size:0.75rem;" onclick="downloadStep8Recording(this)">⬇️ Download</button>
+    <button class="btn" style="background:var(--success-green); font-size:0.75rem;" onclick="shareSingleRecording(this, 'My-Writing.mp3')">📲 Share</button>
+</div>
                 </div>
             </div>
 
-            <p style="margin-top:20px;"><small>* The student MUST HAND IN the answer in paper to the teacher.<br><small><span style='color:#0077b6'>(O aluno DEVE ENTREGAR A RESPOSTA EM PAPEL AO PROFESSOR)</span></small></small></p>
+            <p style="margin-top:20px;"><small>* The student MUST HAND IN the answer in paper to the teacher.</small></p>
         </div>`;
     }
 
@@ -1897,6 +1904,67 @@ window.downloadStep8Recording = function(btn) {
     link.click();
     document.body.removeChild(link);
 };
+
+
+
+
+// --- UNIVERSAL SHARE SYSTEM ---
+
+// 1. Share a Single Audio File (Used for Step 8 or individual lines)
+window.shareSingleRecording = async function(btn, fileName = "My-Recording.mp3") {
+    const playBtn = btn.closest('.shadow-box').querySelector('.play-rec-btn');
+    const audioUrl = playBtn.dataset.audioUrl;
+    if (!audioUrl) return;
+
+    try {
+        const response = await fetch(audioUrl);
+        const blob = await response.blob();
+        const file = new File([blob], fileName, { type: "audio/mpeg" });
+
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+            await navigator.share({
+                files: [file],
+                title: 'English Practice',
+                text: 'Listen to my voice recording!'
+            });
+        } else {
+            alert("Share not supported on this browser. Please use Download.");
+        }
+    } catch (e) { console.error("Share failed", e); }
+};
+
+// 2. Share a ZIP of all recordings (Used for Step 1, 2A, 3B, etc.)
+window.shareAllRecordings = async function(btn) {
+    if (typeof JSZip === 'undefined') return alert("JSZip not loaded");
+
+    const container = btn.closest('.area-box') || btn.closest('.sub-page-content');
+    const playBtns = container.querySelectorAll('.play-rec-btn');
+    const zip = new JSZip();
+    let count = 0;
+
+    for (const pb of playBtns) {
+        if (pb.style.display !== 'none' && pb.dataset.audioUrl) {
+            count++;
+            const resp = await fetch(pb.dataset.audioUrl);
+            const blob = await resp.blob();
+            zip.file(`Recording-${count}.mp3`, blob);
+        }
+    }
+
+    if (count > 0) {
+        const content = await zip.generateAsync({ type: "blob" });
+        const file = new File([content], "My-English-Lessons.zip", { type: "application/zip" });
+
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+            await navigator.share({ files: [file], title: 'My Recordings' });
+        } else {
+            alert("Share not supported. Please use Download.");
+        }
+    } else {
+        alert("No recordings to share!");
+    }
+};
+
 
 
 

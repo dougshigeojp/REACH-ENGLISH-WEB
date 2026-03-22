@@ -1937,6 +1937,8 @@ body.dashboard-view #ui-cluster {
 
 
 /* Show the download button in Step 8 only when the play button becomes visible */
-.play-rec-btn[style*="display: flex"] + .download-btn-step8 {
-    display: inline-block !important;
+/* Show BOTH the Download and Share buttons when the play button appears */
+.shadow-box .play-rec-btn[style*="flex"] + .step8-actions,
+.shadow-box .play-rec-btn[style*="block"] + .step8-actions {
+    display: flex !important;
 }
