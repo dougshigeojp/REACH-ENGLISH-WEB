@@ -1133,15 +1133,15 @@ function renderGradeBimesters(grade) {
         `;
 
         for (let c = 1; c <= chaptersPerBim; c++) {
-            // NEW NAMING CONVENTION:
-            // This produces strings like "6-1-2" or "em1-2-5"
-            const fileId = `${grade.id}-${b}-${c}`;
-            
-            // Note: Using 'id' as the URL parameter to match your exercises.html loader
-            const link = `exercises.html?id=${fileId}`;
-            
-            html += `<a href="${link}" class="chapter-btn" style="text-decoration:none; background:white; padding:10px; border-radius:5px; border:1px solid var(--gray-light); color:var(--text-dark); font-weight:700; font-size:0.85rem; text-align:center;">Chapter ${c}</a>`;
-        }
+    // 1. ADD THIS LINE: This calculates the continuous number (1, 2, 3, 4...)
+    const displayNum = (b - 1) * chaptersPerBim + c;
+
+    const fileId = `${grade.id}-${b}-${c}`;
+    const link = `exercises.html?id=${fileId}`;
+    
+    // 2. CHANGE THIS LINE: Replace "Chapter ${c}" with "Chapter ${displayNum}"
+    html += `<a href="${link}" class="chapter-btn" style="text-decoration:none; background:white; padding:10px; border-radius:5px; border:1px solid var(--gray-light); color:var(--text-dark); font-weight:700; font-size:0.85rem; text-align:center;">Chapter ${displayNum}</a>`;
+}
 
         html += `</div></div>`;
     }
