@@ -1411,7 +1411,6 @@ if (step.dialogueGroups) {
             </div>
 
             <!-- 3. Play All Recordings Button -->
-            // Inside Step 3B...
 <div style="margin-top:15px; display:flex; flex-wrap:wrap; gap:8px;">
     <button class="btn" style="flex:1; background:var(--success-green); font-size:0.8rem;" onclick="playAllRecordings(this)">🎧 Play All</button>
     <button class="btn" style="flex:1; background:var(--primary-blue); font-size:0.8rem;" onclick="downloadAllRecordings(this)">⬇️ Download</button>
@@ -1661,6 +1660,8 @@ if (step.dialogueGroups) {
     if (index === 8) {
         html += `
         <div class="area-box">
+
+<b>* The student MUST HAND IN the answer in paper to the teacher.<br><large style='color:#0077b6'>(O aluno DEVE ENTREGAR a resposta em papel ao professor.)</b><br>*</large>
             <p><b>${step.instruction}</b></p>
             <div class="example-box" style="background:#f9f9f9; padding:10px; border-left:4px solid var(--primary-blue); margin-bottom:15px;">
                 <p><i>Example: ${step.example}</i></p>
@@ -1687,7 +1688,7 @@ if (step.dialogueGroups) {
                 </div>
             </div>
 
-            <p style="margin-top:20px;"><small>* The student MUST HAND IN the answer in paper to the teacher.</small></p>
+            <p style="margin-top:20px;"><small>* The student MUST HAND IN the answer in paper to the teacher.<br><small style='color:#0077b6'>(O aluno DEVE ENTREGAR a resposta em papel ao professor.)</small></small></p>
         </div>`;
     }
 
@@ -1934,37 +1935,92 @@ window.shareSingleRecording = async function(btn, fileName = "My-Recording.mp3")
 };
 
 // 2. Share a ZIP of all recordings (Used for Step 1, 2A, 3B, etc.)
+// --- NEW: DIRECT MULTI-FILE SHARE (Bypasses ZIP restrictions) ---
 window.shareAllRecordings = async function(btn) {
-    if (typeof JSZip === 'undefined') return alert("JSZip not loaded");
-
     const container = btn.closest('.area-box') || btn.closest('.sub-page-content');
     const playBtns = container.querySelectorAll('.play-rec-btn');
-    const zip = new JSZip();
-    let count = 0;
-
-    for (const pb of playBtns) {
-        if (pb.style.display !== 'none' && pb.dataset.audioUrl) {
-            count++;
-            const resp = await fetch(pb.dataset.audioUrl);
-            const blob = await resp.blob();
-            zip.file(`Recording-${count}.mp3`, blob);
-        }
+    
+    // Find only the lines where the student actually recorded something
+    const activeRecordings = Array.from(playBtns).filter(pb => pb.style.display !== 'none' && pb.dataset.audioUrl);
+    
+    if (activeRecordings.length === 0) {
+        alert("No recordings found! Please record some lines first.");
+        return;
     }
 
-    if (count > 0) {
-        const content = await zip.generateAsync({ type: "blob" });
-        const file = new File([content], "My-English-Lessons.zip", { type: "application/zip" });
+    const originalText = btn.innerHTML;
+    btn.innerHTML = "⏳ PREPARING...";
+    btn.disabled = true;
 
-        if (navigator.canShare && navigator.canShare({ files: [file] })) {
-            await navigator.share({ files: [file], title: 'My Recordings' });
-        } else {
-            alert("Share not supported. Please use Download.");
+    try {
+        let filesArray =[];
+        let count = 1;
+
+        // 1. Gather all the audio files directly (NO ZIPPING)
+        for (const pb of activeRecordings) {
+            const resp = await fetch(pb.dataset.audioUrl);
+            const blob = await resp.blob();
+            
+            // Create a recognizable audio file
+            const file = new File([blob], `Line-${count}-Recording.mp3`, { type: 'audio/mpeg' });
+            filesArray.push(file);
+            count++;
         }
-    } else {
-        alert("No recordings to share!");
+
+        // 2. Ask the browser to share the array of audio files
+        if (navigator.canShare && navigator.canShare({ files: filesArray })) {
+            await navigator.share({
+                files: filesArray,
+                title: 'My English Practice',
+                text: 'Here are my individual line recordings from today\'s lesson!'
+            });
+        } else {
+            // 3. Fallback: If the device doesn't support multi-file sharing, force a ZIP download
+            alert("Your device doesn't support sharing multiple files directly. Downloading as a ZIP instead.");
+            await forceZipDownload(filesArray);
+        }
+
+    } catch (e) {
+        // If the user manually closes the share menu, it throws an 'AbortError'. We can ignore that.
+        if (e.name !== 'AbortError') {
+            console.error("Sharing failed", e);
+            alert("Could not open share menu on this device.");
+        }
+    } finally {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
     }
 };
 
+// --- HELPER FUNCTION: Only used if Sharing fails ---
+async function forceZipDownload(filesArray) {
+    if (typeof JSZip === 'undefined') {
+        alert("Library error: JSZip not loaded.");
+        return;
+    }
+    
+    const zip = new JSZip();
+    // Put the gathered files into a ZIP
+    filesArray.forEach(file => zip.file(file.name, file));
+    
+    const content = await zip.generateAsync({ type: "blob" });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(content);
+    link.download = "My-English-Recordings.zip";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+// Helper function to trigger a clean download
+function triggerDownload(blob, name) {
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = name;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
 
 
 
