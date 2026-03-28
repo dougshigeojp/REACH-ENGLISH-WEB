@@ -996,7 +996,7 @@ window.initLesson({
                 {
                     title: "Narration - The Interconnected World",
                     audio: "TTS: The world is changing fast. Last year, a global research showed that international trade had hit a record high. Experts reported that companies were using new technology in order to connect with markets worldwide. They claimed that globalization had brought many benefits, like cheaper devices. However, they also warned that inequality could increase unless governments implemented better solutions. It is a complex issue that requires cooperation. || audio/em2-2-5/p6_text1.mp3",
-                    body: "The world is changing fast. Last year, a global research showed that international trade had hit a record high. Experts reported that companies were using new technology [in order to] connect with markets worldwide. They claimed that [globalization] had brought many benefits, like cheaper devices. However, they also [warned] that [inequality] could increase [unless] governments implemented better solutions. It is a complex [issue] that requires cooperation.",
+                    body: "The world is changing fast. Last year, a global research showed that international trade had [hit](tooltip:hit) a record high. Experts reported that companies were using new technology [in order to](tooltip:in-order-to) connect with markets worldwide. They claimed that [globalization](tooltip:globalization) had brought many benefits, like cheaper devices. However, they also [warned](tooltip:warn) that [inequality](tooltip:inequality) could increase [unless](tooltip:unless) governments implemented better solutions. It is a complex [issue](tooltip:issue) that requires cooperation.",
                     questions: [
                         {
                             q: "What did the research show about international trade last year?",
@@ -1031,7 +1031,7 @@ window.initLesson({
                 {
                     title: "Dialogue - Reporting a Lecture",
                     audio: "audio/em2-2-5/p6_text2.mp3",
-                    body: "<b>Albert:</b> Celine, did you hear what Mrs. Canales said in the lecture yesterday?<br><b>Celine:</b> No, I was offline. What did she mention?<br><b>Albert:</b> She said that [information overload] was becoming a [problem].<br><b>Celine:</b> Did she suggest a [solution]?<br><b>Albert:</b> Yes. She told us that we [had to] [check] our sources. She also asked if we [were] [addicted] to our [smartphones].<br><b>Celine:</b> I admit I spend too much time [online]. I will start a detox if you help me!",
+                    body: "<b>Albert:</b> Celine, did you hear what Mrs. Canales said in the [lecture](tooltip:lecture) yesterday?<br><b>Celine:</b> No, I was offline. What did she mention?<br><b>Albert:</b> She said that [information overload](tooltip:information-overload) was becoming a [problem](tooltip:problem).<br><b>Celine:</b> Did she suggest a [solution](tooltip:solution)?<br><b>Albert:</b> Yes. She told us that we [had to](tooltip:had-to) [check](tooltip:check) our sources. She also asked if we were [addicted](tooltip:addicted) to our [smartphones](tooltip:smartphone).<br><b>Celine:</b> I admit I spend too much time [online](tooltip:online). I will start a [detox](tooltip:detox) if you help me!",
                     questions: [
                         {
                             q: "What did Mrs. Canales say was becoming a problem in her lecture?",
@@ -1066,7 +1066,7 @@ window.initLesson({
                 {
                     title: "Description - The Expert's Warning",
                     audio: "TTS: Professor Silva is a famous expert. In his last interview, he explained how the pandemic had affected globalization. He said that borders had become more important that year. He asked why we hadn't protected our privacy better in the past. Furthermore, he claimed that the digital divide was a serious issue for society. He believes that we need international communication so that we can solve these challenges. || audio/em2-2-5/p6_text3.mp3",
-                    body: "Professor Silva is a famous expert. In his last interview, he explained how the [pandemic] had affected [globalization]. He said that borders had become more important [that year]. He asked why we hadn't protected our [privacy] better in the past. Furthermore, he claimed that the [digital divide] was a [serious issue] for [society]. He believes that we need [international] [communication] [so that] we can solve these [challenges].",
+                    body: "Professor Silva is a famous expert. In his last interview, he explained how the [pandemic](tooltip:pandemic) had affected [globalization](tooltip:globalization). He said that borders had become more important [that year](tooltip:that-year). He asked why we hadn't protected our [privacy](tooltip:privacy) better in the past. Furthermore, he claimed that the [digital divide](tooltip:digital-divide) was a serious [issue](tooltip:issue) for [society](tooltip:society). He believes that we need international communication [so that](tooltip:so-that) we can solve these [challenges](tooltip:challenge).",
                     questions: [
                         {
                             q: "How did the pandemic affect the world according to Professor Silva?",
@@ -2124,6 +2124,12 @@ window.initLesson({
         { topic: "Context", term: "permanent", definition: "Lasting or intended to last or remain unchanged indefinitely.", translation: "Permanente" },
         { topic: "Context", term: "wisely", definition: "In a way that shows experience, knowledge, and good judgment.", translation: "Sabiamente / Com sabedoria" },
         { topic: "Context", term: "slow-down", definition: "A decline in speed or activity.", translation: "Desacelerar / Diminuir o ritmo" },
+        { topic: "Context", term: "detox", definition: "A process or period of time in which one abstains from or rids the body of toxic or unhealthy substances.", translation: "Desintoxicação" },
+        { topic: "Context", term: "lecture", definition: "An educational talk to an audience, especially to students in a university.", translation: "Palestra / Aula" },
+        { topic: "Context", term: "online", definition: "Controlled by or connected to a computer or to the internet.", translation: "Online" },
+        { topic: "Context", term: "hit", definition: "To have a strong effect on someone or something.", translation: "Atingir / Impactar" },
+        { topic: "Context", term: "check", definition: "To examine something in order to determine its accuracy, quality, or condition.", translation: "Checar / Verificar" },
+        { topic: "Context", term: "had-to", definition: "Past tense of 'have to', indicating obligation in the past.", translation: "Tinha que" },
 
         // --- PAGE 2: GLOBALIZATION & SOCIETY ---
         { topic: "Globalization", term: "globalization", definition: "The process by which businesses develop international influence.", translation: "Globalização" },
@@ -2145,6 +2151,7 @@ window.initLesson({
         { topic: "Technology", term: "information-overload", definition: "Exposure to too much information or data at once.", translation: "Sobrecarga de informação" },
         { topic: "Technology", term: "fake-news", definition: "False stories spread as if they were true news.", translation: "Notícias falsas" },
         { topic: "Technology", term: "addiction", definition: "Being physically and mentally dependent on a substance or activity.", translation: "Vício" },
+        { topic: "Technology", term: "addicted", definition: "Physically and mentally dependent on a particular substance or activity.", translation: "Viciado" },
         { topic: "Technology", term: "device", definition: "A thing made or adapted for a particular purpose (like a phone).", translation: "Dispositivo" },
         { topic: "Technology", term: "privacy", definition: "The state of being free from public attention.", translation: "Privacidade" },
         { topic: "Technology", term: "isolation", definition: "The process or fact of being isolated or alone.", translation: "Isolamento" },
@@ -2187,6 +2194,17 @@ window.initLesson({
         // --- PAGE 5: GRAMMAR & LOGIC ---
         { topic: "Grammar", term: "reported-speech", definition: "A speaker's words reported in the past tense with shifts.", translation: "Discurso Indireto" },
         { topic: "Grammar", term: "adverb-shifts", definition: "The process of changing time and place words in reports.", translation: "Mudança de Advérbios" },
-        { topic: "Grammar", term: "linking-words", definition: "Words used to connect ideas (condition and purpose).", translation: "Conectivos" }
+        { topic: "Grammar", term: "tense-backshift", definition: "The change of verb tenses in reported speech.", translation: "Recuo Temporal" },
+        { topic: "Grammar", term: "reported-questions", definition: "The change of question structure in reported speech.", translation: "Perguntas Indiretas" },
+        { topic: "Grammar", term: "time-shift", definition: "The change of time expressions in reported speech.", translation: "Mudança de Tempo" },
+        { topic: "Grammar", term: "place-shift", definition: "The change of place expressions in reported speech.", translation: "Mudança de Lugar" },
+        { topic: "Grammar", term: "logic-shift", definition: "The change of logical connectors in reported speech.", translation: "Mudança de Lógica" },
+        { topic: "Grammar", term: "that-year", definition: "Used to refer to a specific year in the past. Time Shift", translation: "Aquele ano" },
+        { topic: "Grammar", term: "linking-words", definition: "Words used to connect ideas (condition and purpose).", translation: "Conectivos" },
+        { topic: "Grammar", term: "unless", definition: "Except if; used to introduce the case in which a statement is not true.", translation: "A menos que" },
+        { topic: "Grammar", term: "as-long-as", definition: "Provided that; on the condition that.", translation: "Contanto que" },
+        { topic: "Grammar", term: "if-not", definition: "Used to introduce a negative condition.", translation: "Se não" },
+        { topic: "Grammar", term: "in-order-to", definition: "Used to indicate the purpose of an action.", translation: "Para" },
+        { topic: "Grammar", term: "so-that", definition: "Used to indicate the purpose or result of an action.", translation: "Para que" }
     ]
 });
