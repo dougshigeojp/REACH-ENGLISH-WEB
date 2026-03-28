@@ -988,7 +988,8 @@ window.initLesson({
                     instruction: "Listen to the dialogue between Celine and a City Planner and choose the correct options.",
                     audio: "audio/em1-2-4/step5_drill2.mp3",
                     questions: [
-                        { q: "Celine: Excuse me, [will | shall | must] we discuss the new [renewable energy | waste | housing] plant?", a: "shall" },
+                        { q: "Celine: Excuse me, [will | shall | must] we discuss", a: "shall" },
+                        { q: "the new [renewable energy | waste | housing] plant?", a: "renewable energy" },
                         { q: "Planner: Yes! We [are starting | start | started] the construction next month.", a: "are starting" },
                         { q: "Celine: That's great! People [used to | use to | are using] rely on coal, but now we need better options.", a: "used to" }
                     ]
@@ -997,7 +998,7 @@ window.initLesson({
                 {
                     type: "audio-choice",
                     instruction: "Listen to the question and choose the logical response.",
-                    audio: "audio/em1-2-4/step5_drill3.mp3", // Question: Are you going to run out of materials for the park?
+                    audio: "TTS: Are you going to run out of materials for the park?", // Question: Are you going to run out of materials for the park?
                     options: [
                         { t: "Yes, I ran into my teacher.", c: false },
                         { t: "No, we have plenty of bricks and wood.", c: true },

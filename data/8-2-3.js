@@ -878,7 +878,7 @@ window.initLesson({
                 {
                     type: "audio-choice",
                     instruction: "Listen to the description and choose the correct person.<br><small style='color:#0077b6'>(Ouça a descrição e escolha a pessoa correta.)</small>",
-                    audio: "audio/8-2-3/step5_drill3.mp3",
+                    audio: "TTS: She is the activist whose speech inspired the world.",
                     options: [
                         { t: "A scientist in a lab.", c: false },
                         { t: "A person throwing trash.", c: false },

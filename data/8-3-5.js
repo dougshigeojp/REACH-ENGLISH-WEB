@@ -994,7 +994,7 @@ window.initLesson({
                 {
                     type: "audio-choice",
                     instruction: "Listen to the question and choose the correct answer.<br><small style='color:#0077b6'>(Ouça a pergunta e escolha a resposta correta.)</small>",
-                    audio: "audio/8-3-5/step5_drill3.mp3",
+                    audio: "TTS: I am looking for Sarah. I went to her house, but she wasn't there. Her mom said she went to the cinema ten minutes ago.",
                     options: [
                         { t: "She is offline.", c: false },
                         { t: "She has been online since 9 AM.", c: true },

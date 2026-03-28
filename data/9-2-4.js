@@ -904,7 +904,8 @@ window.initLesson({
                     audio: "audio/9-2-4/step5_drill2.mp3",
                     questions: [
                         { q: "Celine: Look at this [headline | photo], Albert.", a: "headline" },
-                        { q: "Albert: It looks [fake | real]. The source is [unreliable | good].", a: "fake" }, // Note: Both dropdowns on same line works if structured correctly, but for engine safety we use two entries if needed.
+                        { q: "Albert: It looks [fake | real].", a: "fake" },
+                        { q: "The source is [unreliable | good].", a: "unreliable" }, // Note: Both dropdowns on same line works if structured correctly, but for engine safety we use two entries if needed.
                         { q: "Celine: It [claims | asks] that aliens landed in the park.", a: "claims" },
                         { q: "Albert: We shouldn't [share | read] it.", a: "share" }
                     ]

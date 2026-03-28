@@ -1155,9 +1155,11 @@ window.initLesson({
                     instruction: "Listen to the dialogue between Celine and a UN Expert and choose the best options.",
                     audio: "audio/em1-2-5/step5_drill2.mp3",
                     questions: [
-                        { q: "Celine: How long [has | have | had] the UN [been working | worked | works] on No Poverty?", a: "has" },
+                        { q: "Celine: How long [has | have | had]", a: "has" },
+                        { q: "the UN [been working | worked | works] on No Poverty?", a: "been working" },
                         { q: "Expert: We [started | have started | starting] the new framework in 2015.", a: "started" },
-                        { q: "Celine: [Besides | And | But] that, [did | have | do] you [achieved | achieve | achieving] results in education?", a: "Besides" },
+                        { q: "Celine: [Besides | And | But] that,", a: "Besides" },
+                        { q: " have you [achieved | achieve | achieving] results in education?", a: "achieved" },
                         { q: "Expert: Yes, literacy rates [improved | have improved | improve] significantly.", a: "have improved" }
                     ]
                 },
@@ -1165,7 +1167,7 @@ window.initLesson({
                 {
                     type: "audio-choice",
                     instruction: "Listen to the question and choose the correct answer.",
-                    audio: "audio/em1-2-5/step5_drill3.mp3", // Question: Why are you so tired, Albert?
+                    audio: "TTS: Why are you so tired, Albert?", // Question: Why are you so tired, Albert?
                     options: [
                         { t: "Because I have achieved Goal 1.", c: false },
                         { t: "Because I have been planting trees in the forest all morning.", c: true },

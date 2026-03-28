@@ -1480,7 +1480,11 @@ window.initLesson({
                             a: "which" 
                         },
                         { 
-                            q: "Celine: People [who | which | that | whose] stay [optimistic | sad | worried | angry] always bounce back.", 
+                            q: "Celine: People [who | which | that | whose] stay ", 
+                            a: "who" 
+                        },
+                        { 
+                            q: " [optimistic | sad | worried | angry] always bounce back.", 
                             a: "optimistic" 
                         },
                         { 

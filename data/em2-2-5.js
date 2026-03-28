@@ -926,20 +926,48 @@ window.initLesson({
                     audio: "audio/em2-2-5/step5_drill2.mp3",
                     questions: [
                         { 
-                            q: "Celine: Albert, the teacher [told us | asked us | said us] that the [pandemic | global | border] had changed [everything | anything | nothing].", 
+                            q: "Celine: Albert, the teacher [told us | asked us | said us] that ", 
                             a: "told us" 
                         },
                         { 
-                            q: "Albert: I know. He [asked | said | claimed] [if | that | why] [interconnectedness | digital | divide] was permanent.", 
+                            q: " the [pandemic | global | border] ", 
+                            a: "pandemic" 
+                        },
+                        { 
+                            q: " had changed [everything | anything | nothing].", 
+                            a: "everything" 
+                        },                        
+                        { 
+                            q: "Albert: I know. He [asked | said | claimed] ", 
                             a: "asked" 
                         },
                         { 
-                            q: "Celine: He also [suggested | warned | questioned] that we [should | would | could] limit our [screen time | social media | smartphone].", 
+                            q: "[if | that | why] ", 
+                            a: "if" 
+                        },
+                        { 
+                            q: "[interconnectedness | digital | divide] was permanent.", 
+                            a: "interconnectedness" 
+                        },
+                        { 
+                            q: "Celine: He also [suggested | warned | questioned] that ", 
                             a: "suggested" 
                         },
                         { 
-                            q: "Albert: I agree. We need balance [so that | unless | although] we don't become [addicted | isolated | online].", 
+                            q: " we [should | would | could] limit ", 
+                            a: "should" 
+                        },
+                        { 
+                            q: " our [screen time | social media | smartphone].", 
+                            a: "screen time" 
+                        },
+                        { 
+                            q: "Albert: I agree. We need balance [so that | unless | although] ", 
                             a: "so that" 
+                        },
+                        { 
+                            q: " we don't become [addicted | isolated | online].", 
+                            a: "addicted" 
                         }
                     ]
                 },

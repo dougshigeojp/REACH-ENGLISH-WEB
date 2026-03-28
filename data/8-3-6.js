@@ -907,7 +907,7 @@ window.initLesson({
                 {
                     type: "audio-choice",
                     instruction: "Listen to the question and choose the correct answer.<br><small style='color:#0077b6'>(Ouça a pergunta e escolha a resposta correta.)</small>",
-                    audio: "audio/8-3-6/step5_drill3.mp3",
+                    audio: "TTS: How long has she been online?",
                     options: [
                         { t: "She is offline.", c: false },
                         { t: "She has been online since 9 AM.", c: true },

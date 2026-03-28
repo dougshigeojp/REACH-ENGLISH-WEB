@@ -887,7 +887,7 @@ window.initLesson({
                 {
                     type: "audio-choice",
                     instruction: "Listen to the description of a gesture and choose the correct meaning.<br><small style='color:#0077b6'>(Ouça a descrição de um gesto e escolha o significado correto.)</small>",
-                    audio: "audio/8-4-8/step5_drill3.mp3",
+                    audio: "TTS: In my culture, we nod our head up and down to say 'Yes'.",
                     options: [
                         { t: "To say 'No'.", c: false },
                         { t: "To say 'Yes'.", c: true },

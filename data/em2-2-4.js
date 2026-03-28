@@ -844,10 +844,13 @@ window.initLesson({
                             a: "had your eyes tested" 
                         },
                         { 
-                            q: "Celine: Not yet. I am [short-sighted | photographer | eye-catching], so I need to [wear glasses | edit photos | download apps].", 
+                            q: "Celine: Not yet. I am [short-sighted | photographer | eye-catching]...", 
                             a: "short-sighted" 
                         },
                         { 
+                            q: "Celine: So I need to [wear glasses | edit photos | download apps].", 
+                            a: "wear glasses" 
+                        },                        { 
                             q: "Albert: It is reported that the [optometrist | camera | flash] near the school is very good.", 
                             a: "optometrist" 
                         }
