@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <style>
+      body { font-family: sans-serif; padding: 20px; line-height: 1.5; background-color: #f4f4f9; }
+      .container { max-width: 450px; margin: auto; border: 1px solid #ccc; padding: 25px; border-radius: 12px; background: white; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+      label { display: block; margin-top: 15px; font-weight: bold; font-size: 0.9em; }
+      input, select, button { width: 100%; margin-top: 5px; padding: 12px; box-sizing: border-box; border: 1px solid #ddd; border-radius: 4px; }
+      button { background-color: #1a73e8; color: white; border: none; cursor: pointer; font-weight: bold; margin-top: 20px; }
+      button:hover { background-color: #1557b0; }
+      #status { margin-top: 20px; padding: 10px; border-radius: 4px; text-align: center; }
+      .loading { color: #666; font-style: italic; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2 style="text-align:center; margin-top:0;">ENGLISH Assignment Upload</h2>
+      
+      <label>Full Name - Nome Completo</label>
+      <input type="text" id="studentName" placeholder="Enter your full name / Escreva seu nome completo" required>
+
+      <label>Bimester</label>
+      <select id="bimester">
+        <option value="1st_Bimester">1st Bimester</option>
+        <option value="2nd_Bimester">2nd Bimester</option>
+        <option value="3rd_Bimester">3rd Bimester</option>
+        <option value="4th_Bimester">4th Bimester</option>
+      </select>
+
+      <label>Your Year/Grade - Seu Ano/Série</label>
+      <select id="studentYear">
+        <option value="6th">6th Year</option>
+        <option value="7th">7th Year</option>
+        <option value="8th">8th Year</option>
+        <option value="9th">9th Year</option>
+        <option value="EM1st">EM 1st Year</option>
+        <option value="EM2nd">EM 2nd Year</option>
+        <option value="EM3rd">EM 3rd Year</option>
+      </select>
+
+      <label>Select File - Selecione o Arquivo</label>
+      <input type="file" id="fileInput" required>
+
+      <button id="uploadBtn" onclick="startUpload()">Submit Assignment</button>
+      <div id="status"></div>
+    </div>
+
+    <script>
+      function startUpload() {
+  const fileInput = document.getElementById('fileInput');
+  const studentName = document.getElementById('studentName').value;
+  const bimester = document.getElementById('bimester').value;
+  const year = document.getElementById('studentYear').value;
+  const status = document.getElementById('status');
+  
+  // REPLACE THIS WITH YOUR DEPLOYED GOOGLE WEB APP URL
+  const scriptURL = "https://script.google.com/macros/s/AKfycbw7n0F6TOKlPYHKscRh4SyOrI0QefcJs__oM90-vZluHNgBCDqzYPYQJRyOM6OGlyPA/exec";
+
+  if (fileInput.files.length === 0 || !studentName) {
+    status.innerHTML = "Please fill all fields.";
+    return;
+  }
+
+  const file = fileInput.files[0];
+  const reader = new FileReader();
+  status.innerText = "Uploading to Drive...";
+  
+  reader.onload = function(e) {
+    const payload = {
+      base64: e.target.result,
+      fileName: file.name,
+      name: studentName,
+      bimester: bimester,
+      year: year
+    };
+
+    // This sends the data to your Code.gs mailbox
+    fetch(scriptURL, {
+      method: "POST",
+      body: JSON.stringify(payload)
+    })
+    .then(res => res.text())
+    .then(data => {
+      status.innerText = "Upload Successful!";
+      document.getElementById('fileInput').value = "";
+    })
+    .catch(err => {
+      status.innerText = "Error. Please try again.";
+      console.log(err);
+    });
+  };
+  reader.readAsDataURL(file);
+}
+    </script>
+  </body>
+</html>
