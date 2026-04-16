@@ -620,7 +620,7 @@ window.initLesson({
                 {
                     title: "6b: Dialogue - Planning a Workout",
                     audio: "audio/em1-4-11/p6_text2.mp3",
-                    body: "<b>Albert:</b> I want to [improve](tooltip:improve) my lifestyle. I wonder [if](tooltip:if) you can help me, Celine.<br><b>Celine:</b> Sure! I [got my friend to join](tooltip:causative-form) the [gym](tooltip:gym) last week. We can go together.<br><b>Albert:</b> I’ll go [provided that](tooltip:provided-that) it’s not too difficult. I avoid [feeling](tooltip:feel) exhausted.<br><b>Celine:</b> Don't worry. We will walk [towards](tooltip:towards) the hill and then run down to the park.<br><b>Albert:</b> Okay. I need to [get](tooltip:get) my water before we start.<br><b>Celine:</b> That’s a sensible [step](tooltip:step). I [had my health checked](tooltip:causative-form) by a doctor yesterday.",
+                    body: "<b>Albert:</b> I want to [improve](tooltip:improve) my lifestyle. I wonder [if](tooltip:if) you can help me, Celine.<br><b>Celine:</b> Sure! I [got my friend to join](tooltip:causative-form) the [gym](tooltip:gym) last week. We can go together.<br><b>Albert:</b> I’ll go [provided that](tooltip:provided-that) it’s not too difficult. I avoid [feeling](tooltip:feel) exhausted.<br><b>Celine:</b> Don't worry. We will walk [towards](tooltip:towards) the hill and then run down to the park.<br><b>Albert:</b> Okay. I need to get my water before we start.<br><b>Celine:</b> That’s a sensible [step](tooltip:step). I [had my health checked](tooltip:causative-form) by a doctor yesterday.",
                     questions:[
                         { 
                             q: "Who did Celine get to join the gym last week?", 
@@ -696,16 +696,16 @@ window.initLesson({
                 { type: "matching", instruction: "Match the verb with its pattern.<br><small style='color:#0077b6'>(Associe o verbo ao seu padrão.)</small>", pairs:[ {left: "Enjoy", right: "Gerund (-ing)", val: "1"}, {left: "Avoid", right: "Gerund (-ing)", val: "2"}, {left: "Want", right: "Infinitive (to + verb)", val: "3"}, {left: "Need", right: "Infinitive (to + verb)", val: "4"} ] },
                 
                 // 6-15: Dropdowns (with randomized * positions)
-                { type: "dropdown", instruction: "Select the correct preposition.<br>He jumped _______ the pool.", questions: [{ q: "He jumped [past | into* | out of] the pool.", a: "" }] },
-                { type: "dropdown", instruction: "Select the correct preposition.<br>We walked _______ the river.", questions: [{ q: "We walked[through | across | along*] the river.", a: "" }] },
-                { type: "dropdown", instruction: "Select the correct linking word.<br>Take an umbrella _______ it rains.", questions: [{ q: "Take an umbrella[unless | in case* | whether] it rains.", a: "" }] },
-                { type: "dropdown", instruction: "Select the correct linking word.<br>You won't get better _______ you change your diet.", questions: [{ q: "You won't get better[unless* | provided that | in case] you change your diet.", a: "" }] },
-                { type: "dropdown", instruction: "Select the correct passive form.<br>Healthy foods _______ here.", questions: [{ q: "Healthy foods[are sold* | is sold | sells] here.", a: "" }] },
-                { type: "dropdown", instruction: "Select the correct passive form.<br>The new gym _______ right now.", questions: [{ q: "The new gym[was built | is being built* | builds] right now.", a: "" }] },
-                { type: "dropdown", instruction: "Select the correct causative form.<br>I _______ the doctor check my eyes.", questions: [{ q: "I [made | got | had*] the doctor check my eyes.", a: "" }] },
-                { type: "dropdown", instruction: "Select the correct causative form.<br>She _______ her brother to join the gym.", questions: [{ q: "She[got* | let | had] her brother to join the gym.", a: "" }] },
-                { type: "dropdown", instruction: "Select the correct gerund/infinitive.<br>I enjoy _______ in the morning.", questions:[{ q: "I enjoy [exercising* | to exercise | exercise] in the morning.", a: "" }] },
-                { type: "dropdown", instruction: "Select the correct gerund/infinitive.<br>I want _______ my lifestyle.", questions:[{ q: "I want [improving | to improve* | improve] my lifestyle.", a: "" }] },
+                { type: "dropdown", instruction: "Select the correct preposition.<br>He jumped _______ the pool.", questions: [{ q: "He jumped [past | into | out of] the pool.", a: "into" }] },
+                { type: "dropdown", instruction: "Select the correct preposition.<br>We walked _______ the river.", questions: [{ q: "We walked[through | across | along] the river.", a: "along" }] },
+                { type: "dropdown", instruction: "Select the correct linking word.<br>Take an umbrella _______ it rains.", questions: [{ q: "Take an umbrella[unless | in case | whether] it rains.", a: "in case" }] },
+                { type: "dropdown", instruction: "Select the correct linking word.<br>You won't get better _______ you change your diet.", questions: [{ q: "You won't get better[unless | provided that | in case] you change your diet.", a: "unless" }] },
+                { type: "dropdown", instruction: "Select the correct passive form.<br>Healthy foods _______ here.", questions: [{ q: "Healthy foods[are sold | is sold | sells] here.", a: "are sold" }] },
+                { type: "dropdown", instruction: "Select the correct passive form.<br>The new gym _______ right now.", questions: [{ q: "The new gym[was built | is being built | builds] right now.", a: "is being built" }] },
+                { type: "dropdown", instruction: "Select the correct causative form.<br>I _______ the doctor check my eyes.", questions: [{ q: "I [made | got | had] the doctor check my eyes.", a: "had" }] },
+                { type: "dropdown", instruction: "Select the correct causative form.<br>She _______ her brother to join the gym.", questions: [{ q: "She[got | let | had] her brother to join the gym.", a: "got" }] },
+                { type: "dropdown", instruction: "Select the correct gerund/infinitive.<br>I enjoy _______ in the morning.", questions:[{ q: "I enjoy [exercising | to exercise | exercise] in the morning.", a: "exercising" }] },
+                { type: "dropdown", instruction: "Select the correct gerund/infinitive.<br>I want _______ my lifestyle.", questions:[{ q: "I want [improving | to improve | improve] my lifestyle.", a: "to improve" }] },
 
                 // 16-22: Word Order
                 { type: "word-order", instruction: "Unscramble the passive sentence.<br><small style='color:#0077b6'>(Coloque as palavras em ordem.)</small>", sentence: "built / gym / is / being / new / A / .", correct: "A new gym is being built ." },

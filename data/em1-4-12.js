@@ -619,7 +619,7 @@ window.initLesson({
                 {
                     title: "6c: Description - A Sustainable Startup",
                     audio: "TTS: A new startup in the city is trying to bring about a change. The company is being managed by two friends who have been working on this project for years. Both the clothes and the products are made from 100% recycled waste. Furthermore, they give back 10% of their profits to the community. Despite the high costs, they have already achieved great success. They act as though every small choice impacts the entire planet. || audio/em1-4-12/p6_text3.mp3",
-                    body: "A new startup in the city is trying to [bring about](tooltip:bring-about) a change. The company <b>is being [managed](tooltip:manage)</b> by two friends who <b>have been working</b> on this project for years. <b>Both</b> the clothes <b>and</b> the [products](tooltip:product) are made from 100% recycled [waste](tooltip:waste). <b>[Furthermore](tooltip: furthermore)</b>, they [give back](tooltip:give-back) 10% of their [profits](tooltip:profit) to the community. <b>[Despite](tooltip: despite)</b> the high costs, they <b>have already achieved</b> great success. They act <b>as though</b> every small [choice](tooltip:choice) [impacts](tooltip:impact) the entire planet.",
+                    body: "A new startup in the city is trying to [bring about](tooltip:bring-about) a change. The company <b>is being [managed](tooltip:manage)</b> by two friends who <b>have been working</b> on this project for years. <b>Both</b> the clothes <b>and</b> the [products](tooltip:product) are made from 100% recycled [waste](tooltip:waste). <b>[Furthermore](tooltip:furthermore)</b>, they [give back](tooltip:give-back) 10% of their [profits](tooltip:profit) to the community. <b>[Despite](tooltip:despite)</b> the high costs, they <b>have already achieved</b> great success. They act <b>as though</b> every small [choice](tooltip:choice) [impacts](tooltip:impact) the entire planet.",
                     questions:[
                         { 
                             q: "How long have the friends been working on the project?", 
@@ -881,6 +881,7 @@ window.initLesson({
         { topic: "Grammar", term: "because", definition: "Discourse marker used to explain the reason or cause.", translation: "Porque / Pois / Já que" },
         { topic: "Grammar", term: "due-to", definition: "Discourse marker followed by a noun to explain cause.", translation: "Devido a / Por causa de" },
         { topic: "Grammar", term: "moreover", definition: "Discourse marker used to add extra information to an argument.", translation: "Além disso / Ademais" },
+        { topic: "Grammar", term: "furthermore", definition: "Discourse marker used to add extra information to an argument.", translation: "Além disso / Ademais" },
         { topic: "Grammar", term: "both-and", definition: "Correlative conjunction used to join two balanced positive ideas.", translation: "Tanto... quanto" },
         { topic: "Grammar", term: "if", definition: "Discourse marker used to introduce a condition.", translation: "Se" },
         { topic: "Grammar", term: "provided-that", definition: "Discourse marker used to set a specific requirement.", translation: "Contanto que / Desde que" },

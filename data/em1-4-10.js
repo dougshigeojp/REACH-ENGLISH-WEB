@@ -1163,7 +1163,7 @@ window.initLesson({
                 {
                     title: "6c: Description - A Young Advocate",
                     audio: "TTS: Maria is a young activist. Two years ago, her community suffered a tragedy due to a flood. Many people wanted to give up, but Maria carried on. She asked the government if they could provide support. She called in experts to improve the infrastructure. She told the news that her people were strong. Maria is a true inspiration, isn't she? || audio/em1-4-10/p6_text3.mp3",
-                    body: "Maria is a young activist. Two years ago, her community suffered a [tragedy](tooltip:tragedy) due to a [flood](tooltip:flood). Many people wanted to give up, but Maria [carried on](tooltip:carry-on). She <b>asked the government if they could [provide](tooltip:provide) [support](tooltip:support)</b>. She [called in](tooltip:call-in) experts to [improve](tooltip:improve) the infrastructure. She <b>told the news that her people were strong</b>. Maria is a true [inspiration](tooltip:inspiration), isn't she?",
+                    body: "Maria is a young activist. Two years ago, her community suffered a [tragedy](tooltip:tragedy) due to a [flood](tooltip:flood). Many people wanted to give up, but Maria [carried on](tooltip:carry-on). She <b>asked the government if they could [provide](tooltip:provide) [support](tooltip:support)</b>. She [called in](tooltip:call-in) experts to [improve](tooltip:improve) the infrastructure. She <b>told the news that her people were strong</b>. Maria is a true inspiration, isn't she?",
                     questions:[
                         { 
                             q: "What happened to Maria's community?", 
