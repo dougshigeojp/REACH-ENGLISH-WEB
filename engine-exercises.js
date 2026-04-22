@@ -1085,7 +1085,7 @@ function renderExerciseDashboard() {
         <div class="dashboard-intro" style="padding-top: 15px;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
                 <h2 style="margin:0; color:var(--primary-blue); font-size:1.2rem;">Practice Portal</h2>
-                <a href="index.html?lesson=home" class="btn" style="background:var(--text-dark); margin:0; font-size:0.7rem; padding: 6px 12px;">⬅ Exit</a>
+                <a href="index.html?lesson=home" class="btn" style="background:var(--text-dark); margin:0; font-size:0.7rem; padding: 6px 12px;">⬅ Back to LESSONS</a>
             </div>
         </div>
 
