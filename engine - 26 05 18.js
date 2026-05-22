@@ -82,9 +82,9 @@ function renderHomeMode() {
     document.getElementById('display-bimester').textContent = "";
     document.getElementById('display-chapter').textContent = "";
     document.getElementById('menu-grade-label').textContent = "SELECT GRADE";
-document.getElementById('menu-chapter-label').innerHTML = `<a href="#" onclick="showCompleteSummary()" style="color: var(--accent-orange); text-decoration: none; font-weight: 900; cursor: pointer;">📖 Complete Summary</a>`;
-    
-// 3. Render the Home Menu (Grades List)
+    document.getElementById('menu-chapter-label').textContent = "Dashboard";
+
+    // 3. Render the Home Menu (Grades List)
     const navList = document.getElementById('nav-list');
     navList.innerHTML = '';
     
@@ -142,7 +142,6 @@ function loadGradeDashboard(gradeObj) {
         <div class="dashboard-tabs">
             <button class="dash-tab-btn active" onclick="switchDashTab('lessons')">Lessons</button>
             <button class="dash-tab-btn" onclick="switchDashTab('exercises')">Exercises</button>
-            <button class="dash-tab-btn" onclick="switchDashTab('summary')">Complete Summary</button>
         </div>
 
         <!-- LESSONS VIEW -->
@@ -152,19 +151,18 @@ function loadGradeDashboard(gradeObj) {
             </div>
         </div>
 
-        <!-- EXERCISES VIEW -->
+        <!-- EXERCISES VIEW (UPDATED) -->
         <div id="view-exercises" class="dashboard-container">
             <div class="area-box" style="text-align: center; padding: 40px 20px;">
                 <div style="font-size: 3rem; margin-bottom: 15px;">🏋️</div>
                 <h3 style="color: var(--primary-blue); margin-bottom: 10px;">${gradeObj.label} Exercises</h3>
-                <p style="color: #666; margin-bottom: 25px;">Access the dedicated practice area for extra grammar drills, vocabulary matching, and listening activities.</p>
-                <a href="exercises.html?id=ex-home" class="btn" style="text-decoration: none; display: inline-block;">OPEN EXERCISE PORTAL ➜</a>
+                <p style="color: #666; margin-bottom: 25px;">
+                    Access the dedicated practice area for extra grammar drills, vocabulary matching, and listening activities.
+                </p>
+                <a href="exercises.html?id=ex-home" class="btn" style="text-decoration: none; display: inline-block;">
+                    OPEN EXERCISE PORTAL ➜
+                </a>
             </div>
-        </div>
-        
-        <!-- COMPLETE SUMMARY VIEW (GLOBAL) -->
-        <div id="view-summary" class="dashboard-container">
-            ${buildCompleteSummaryHTML()}
         </div>
     `;
 }
@@ -178,12 +176,10 @@ function buildBimesterBoxes(gradeObj) {
         const chapters = structure[b]; // Array of chapter numbers e.g. [1, 2]
         
         let chaptersHtml = chapters.map(ch => {
+            // GENERATE LINK: index.html?lesson=GRADE-BIMESTER-CHAPTER
+            // Example: 6-1-1
             const linkId = `${gradeObj.id}-${b}-${ch}`;
-            return `
-            <div class="chapter-item-wrapper">
-                <a href="index.html?lesson=${linkId}" class="chapter-btn">Chapter ${ch}</a>
-                <button class="chapter-info-btn" onclick="openChapterInfo('${gradeObj.id}', '${b}', '${ch}')">❓</button>
-            </div>`;
+            return `<a href="index.html?lesson=${linkId}" class="chapter-btn">Chapter ${ch}</a>`;
         }).join('');
 
         html += `
@@ -205,46 +201,6 @@ window.switchDashTab = function(tabName) {
     });
     document.querySelectorAll('.dashboard-container').forEach(div => div.classList.remove('active'));
     document.getElementById(`view-${tabName}`).classList.add('active');
-};
-
-
-// Shows the overall Complete Summary when clicked from the Slide Menu
-window.showCompleteSummary = function() {
-    document.getElementById('display-grade').textContent = "ALL GRADES";
-    document.getElementById('menu-grade-label').textContent = "Global Index";
-    
-    const container = document.getElementById('lesson-content');
-    container.innerHTML = `
-        <div class="dashboard-tabs">
-            <button class="dash-tab-btn" onclick="location.reload()">⬅ Back to Home</button>
-            <button class="dash-tab-btn active">Complete Summary</button>
-        </div>
-
-        <div class="dashboard-container active">
-            ${buildCompleteSummaryHTML()}
-        </div>
-    `;
-    
-    document.getElementById('slide-menu').classList.remove('active');
-    document.getElementById('menu-toggle').classList.remove('open');
-};
-
-// Opens the small ? info box
-window.openChapterInfo = function(gradeId, bimester, chapter) {
-    const modal = document.getElementById('chapter-info-modal');
-    const title = document.getElementById('info-modal-title');
-    const body = document.getElementById('info-modal-body');
-
-    title.textContent = `Grade ${gradeId.toUpperCase()} - Bim ${bimester} - Chapter ${chapter}`;
-
-    // It checks if you added data in home.js, otherwise it shows a placeholder!
-    if (lessonData.chapterDetails && lessonData.chapterDetails[gradeId] && lessonData.chapterDetails[gradeId][chapter]) {
-        body.innerHTML = lessonData.chapterDetails[gradeId][chapter];
-    } else {
-        body.innerHTML = "<p><i>Details for this chapter will be added soon!</i></p>";
-    }
-
-    modal.style.display = 'flex';
 };
 
 
@@ -2092,56 +2048,3 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
-
-
-
-
-
-
-// Builds the HTML for the 3 Summary Tabs
-window.buildCompleteSummaryHTML = function() {
-    const content = lessonData.completeSummaryContent || {};
-    const topics = content.topics || "<p>Topics coming soon...</p>";
-    const vocab = content.vocabulary || "<p>Vocabulary coming soon...</p>";
-    const grammar = content.grammar || "<p>Grammar coming soon...</p>";
-
-    return `
-        <div class="area-box" style="padding: 30px 20px; text-align: left;">
-            <h3 style="color: var(--primary-blue); margin-bottom: 15px; text-align: center;">📖 Complete Course Summary</h3>
-            <p style="color: #666; margin-bottom: 20px; text-align: center;">Global Index for all Grades and Chapters.</p>
-            
-            <!-- INTERNAL TABS -->
-            <div class="internal-nav-container" style="position: relative; top: 0; margin-bottom: 20px; z-index: 1;">
-                <div class="internal-nav">
-                    <button class="internal-btn active" onclick="switchSummaryTab(this, 'summary-topics')">Main Topics</button>
-                    <button class="internal-btn" onclick="switchSummaryTab(this, 'summary-vocabulary')">Vocabulary</button>
-                    <button class="internal-btn" onclick="switchSummaryTab(this, 'summary-grammar')">Grammar</button>
-                </div>
-            </div>
-
-            <!-- TAB CONTENTS -->
-            <div id="summary-topics" class="summary-content-group" style="display: block; line-height: 1.6; color: var(--text-dark);">
-                ${topics}
-            </div>
-            <div id="summary-vocabulary" class="summary-content-group" style="display: none; line-height: 1.6; color: var(--text-dark);">
-                ${vocab}
-            </div>
-            <div id="summary-grammar" class="summary-content-group" style="display: none; line-height: 1.6; color: var(--text-dark);">
-                ${grammar}
-            </div>
-        </div>
-    `;
-};
-
-// Handles clicking the Summary Sub-Tabs
-window.switchSummaryTab = function(btn, tabId) {
-    const container = btn.closest('.area-box');
-    
-    // 1. Reset all buttons
-    container.querySelectorAll('.internal-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    
-    // 2. Hide all content, then show the targeted one
-    container.querySelectorAll('.summary-content-group').forEach(div => div.style.display = 'none');
-    container.querySelector('#' + tabId).style.display = 'block';
-};
