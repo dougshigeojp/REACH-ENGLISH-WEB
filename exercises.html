@@ -1,79 +1,417 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>REACH English | Exercises</title>
-    
+
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@400;600&display=swap"
+        rel="stylesheet">
+
     <!-- Shared Styles -->
     <link rel="stylesheet" href="style.css">
-    
+
     <!-- Exercise Specific Styles (Internal for now, move to CSS later if preferred) -->
     <style>
         /* Exercise Header Overrides */
         #ex-header {
-            position: fixed; top: 0; left: 0; width: 100%; height: 60px;
-            background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 0 20px; z-index: 1000;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 1000;
         }
-        .ex-meta { font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--primary-blue); font-size: 0.9rem; }
-        .timer-badge { background: #333; color: #fff; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-family: monospace; }
-        
+
+        .ex-meta {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--primary-blue);
+            font-size: 0.9rem;
+        }
+
+        .timer-badge {
+            background: #333;
+            color: #fff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-family: monospace;
+        }
+
         /* Sidebar Checkmarks */
         .nav-step-item.completed::after {
-            content: '✓'; color: var(--success-green); margin-left: 10px; font-weight: 900;
+            content: '✓';
+            color: var(--success-green);
+            margin-left: 10px;
+            font-weight: 900;
         }
 
         /* Result Page */
-        #result-page { display: none; text-align: center; padding: 40px; }
-        .stat-box { display: inline-block; margin: 15px; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .stat-num { font-size: 2.5rem; font-weight: 900; color: var(--primary-blue); }
+        #result-page {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .stat-box {
+            display: inline-block;
+            margin: 15px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-num {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary-blue);
+        }
+
+        /* Playlist Overlay Styles */
+        #playlist-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 9999;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            padding: 20px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .overlay-card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+            margin: auto;
+            flex-shrink: 0;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .overlay-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            color: var(--primary-blue);
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .overlay-subtitle {
+            color: #64748b;
+            font-size: 1.1rem;
+            margin-bottom: 35px;
+        }
+
+        .overlay-section {
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--accent-orange);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .playlist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 15px;
+        }
+
+        .playlist-btn {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 18px 12px;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .playlist-btn:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary-blue);
+            background: #f1f7fe;
+            box-shadow: 0 10px 15px -3px rgba(0, 119, 182, 0.1), 0 4px 6px -4px rgba(0, 119, 182, 0.1);
+        }
+
+        .playlist-btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-title {
+            font-weight: 700;
+            color: var(--primary-blue);
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn-desc {
+            font-size: 0.75rem;
+            color: #64748b;
+            line-height: 1.3;
+        }
+
+        /* Toggle Switch styling */
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 35px;
+            padding-top: 20px;
+            border-top: 2px solid #f1f5f9;
+        }
+
+        .toggle-label {
+            font-weight: 600;
+            color: #334155;
+            font-size: 1rem;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 28px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #cbd5e1;
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+        }
+
+        input:checked+.slider {
+            background-color: var(--success-green);
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(22px);
+        }
+
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+
+        /* Smaller Switch for Menu */
+        .switch.switch-sm {
+            width: 40px;
+            height: 22px;
+            margin: 0;
+            flex-shrink: 0;
+        }
+
+        .switch.switch-sm .slider:before {
+            height: 16px;
+            width: 16px;
+            left: 3px;
+            bottom: 3px;
+        }
+
+        .switch.switch-sm input:checked+.slider:before {
+            transform: translateX(18px);
+        }
+
+        /* Hiding Translations */
+        body.hide-translations .translation-field,
+        body.hide-translations .term-pt {
+            display: none !important;
+        }
     </style>
 </head>
+
 <body class="exercise-mode">
+
+    <!-- PLAYLIST OVERLAY -->
+    <div id="playlist-overlay">
+        <div class="overlay-card">
+            <h2 class="overlay-title">Select Your Playlist</h2>
+            <p class="overlay-subtitle">Choose a study mode to customize your practice session</p>
+
+            <div class="overlay-section">
+                <h3 class="section-title">⏱️ Time-Based Lists</h3>
+                <div class="playlist-grid">
+                    <button class="playlist-btn" onclick="selectPlaylist('1a')">
+                        <span class="btn-title">1a (Complete Mock - 45 min)</span>
+                        <span class="btn-desc">Types 1-15</span>
+                    </button>
+                    <button class="playlist-btn" onclick="selectPlaylist('1b')">
+                        <span class="btn-title">1b (Quick - 3 min)</span>
+                        <span class="btn-desc">Types 1, 3, 6</span>
+                    </button>
+                    <button class="playlist-btn" onclick="selectPlaylist('1c')">
+                        <span class="btn-title">1c (Homework - 12 min)</span>
+                        <span class="btn-desc">Types 2, 7, 9, 10, 14</span>
+                    </button>
+                    <button class="playlist-btn" onclick="selectPlaylist('1d')">
+                        <span class="btn-title">1d (Mock Test - 30 min)</span>
+                        <span class="btn-desc">Types 4, 5, 8, 11, 12, 13, 15</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="overlay-section">
+                <h3 class="section-title">🎯 Targeted Lists</h3>
+                <div class="playlist-grid">
+                    <button class="playlist-btn" onclick="selectPlaylist('2a')">
+                        <span class="btn-title">2a (Vocabulary)</span>
+                        <span class="btn-desc">Types 4, 6, 7, 8</span>
+                    </button>
+                    <button class="playlist-btn" onclick="selectPlaylist('2b')">
+                        <span class="btn-title">2b (Sentence Logic)</span>
+                        <span class="btn-desc">Types 1, 2, 3, 5, 10</span>
+                    </button>
+                    <button class="playlist-btn" onclick="selectPlaylist('2c')">
+                        <span class="btn-title">2c (Aural Tracking - Audio)</span>
+                        <span class="btn-desc">Types 9, 13, 15</span>
+                    </button>
+                    <button class="playlist-btn" onclick="selectPlaylist('2d')">
+                        <span class="btn-title">2d (Deep Synthesis - Textual)</span>
+                        <span class="btn-desc">Types 11, 12, 14</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="toggle-container">
+                <span class="toggle-label">Translate (for Brazilian students)</span>
+                <label class="switch">
+                    <input type="checkbox" id="translation-toggle" checked>
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+    </div>
 
     <!-- HEADER -->
     <header id="ex-header">
         <div style="display:flex; align-items:center; gap:15px;">
-             <!-- Menu Toggle -->
+            <!-- Menu Toggle -->
             <button id="menu-toggle" aria-label="Toggle Menu" style="position:relative; top:0; left:0; margin:0;">
                 <div class="bar"></div>
                 <div class="bar"></div>
                 <div class="bar"></div>
             </button>
             <div class="ex-meta">
-                EXERCISES • <span id="ex-grade">GRADE</span> • <span id="ex-bimester">BIMESTER</span> • <span id="ex-chapter">CHAPTER</span>
+                EXERCISES • <span id="ex-grade">GRADE</span> • <span id="ex-bimester">BIMESTER</span> • <span
+                    id="ex-chapter">CHAPTER</span>
             </div>
         </div>
         <div class="timer-badge" id="global-timer">00:00</div>
     </header>
 
     <!-- RETRACTABLE MENU -->
-<div id="menu-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1001;"></div>
-
-<nav id="slide-menu">
-    <!-- Close Button -->
-    <button id="menu-close-btn" style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:2rem; color:var(--primary-blue); cursor:pointer;">&times;</button>
-
-    <!-- Home Link Fixed -->
-    <a href="exercises.html?id=ex-home" class="home-link">🏠 EXIT EXERCISES</a>
-
-    <!-- Inside the nav id="slide-menu" in exercises.html -->
-<div class="menu-header">
-    <div class="menu-logo"><span class="orange-text">REACH</span>Practice</div>
-    <div id="menu-grade-label">GRADE LEVEL</div> <!-- Keep this -->
-    <div style="font-size:0.8rem; color:#666; margin-top:5px;">
-        <span id="ex-bimester"></span> • <span id="ex-chapter"></span> <!-- Add these IDs -->
+    <div id="menu-overlay"
+        style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1001;">
     </div>
-</div>
-    <ul id="nav-list">
-        <!-- Items injected by JS -->
-    </ul>
-</nav>
+
+    <nav id="slide-menu">
+        <!-- Close Button -->
+        <button id="menu-close-btn"
+            style="position:absolute; top:15px; right:15px; background:none; border:none; font-size:2rem; color:var(--primary-blue); cursor:pointer;">&times;</button>
+
+        <!-- Home Link Fixed -->
+        <a href="exercises.html?id=ex-home" class="home-link">🏠 EXIT EXERCISES</a>
+
+        <!-- Inside the nav id="slide-menu" in exercises.html -->
+        <div class="menu-header">
+            <div class="menu-logo"><span class="orange-text">REACH</span>Practice</div>
+            <div id="menu-grade-label">GRADE LEVEL</div> <!-- Keep this -->
+            <div style="font-size:0.8rem; color:#666; margin-top:5px;">
+                <span id="ex-bimester"></span> • <span id="ex-chapter"></span> <!-- Add these IDs -->
+            </div>
+        </div>
+
+        <!-- Translation Toggle inside Menu -->
+        <div
+            style="padding: 15px 20px; border-bottom: 1px solid var(--bg-alice-blue); display: flex; align-items: center; justify-content: space-between;">
+            <span style="font-size: 0.85rem; font-weight: 600; color: #444;">Translation (Portuguese)</span>
+            <label class="switch switch-sm">
+                <input type="checkbox" id="menu-translation-toggle" checked>
+                <span class="slider round"></span>
+            </label>
+        </div>
+
+        <ul id="nav-list">
+            <!-- Items injected by JS -->
+        </ul>
+    </nav>
 
     <!-- MAIN CONTENT -->
     <main id="main-container">
@@ -96,7 +434,7 @@
     <!-- SCRIPTS -->
     <script src="engine-exercises.js"></script>
 
-<!-- DATA LOADER -->
+    <!-- DATA LOADER -->
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const lessonId = urlParams.get('id');
@@ -119,9 +457,9 @@
         } else {
             const dataScript = document.createElement('script');
             dataScript.src = `data/exercises/${lessonId}.js`;
-            
+
             dataScript.onload = () => console.log("Exercise Data Loaded");
-            
+
             // EXERCISE FILE NOT FOUND
             dataScript.onerror = () => {
                 contentDiv.innerHTML = `
@@ -136,4 +474,5 @@
         }
     </script>
 </body>
+
 </html>

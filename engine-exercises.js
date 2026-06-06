@@ -17,6 +17,25 @@ let timerInterval;
 let startTime;
 let isSessionFinished = false;
 
+// Playlist filtering configurations
+const PlaylistMap = {
+    '1a': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+    '1b': [1, 3, 6],
+    '1c': [2, 7, 9, 10, 14],
+    '1d': [4, 5, 8, 11, 12, 13, 15],
+    '2a': [4, 6, 7, 8],
+    '2b': [1, 2, 3, 5, 10],
+    '2c': [9, 13, 15],
+    '2d': [11, 12, 14]
+};
+let playlistTypes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]; // Default sequence
+let translationPref = true;
+
+// Helper to get active type number for current step
+window.getCurrentType = function() {
+    return playlistTypes[currentPage - 1];
+};
+
 const MATCH_ORANGES = [
     { bg: '#fff3e0', border: '#ffb74d' }, // Shade 1
     { bg: '#ffe0b2', border: '#ffa726' }, // Shade 2
@@ -129,10 +148,38 @@ window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices(
 
 
 
+// Translation Preferences Logic
+window.setTranslationPref = function(val) {
+    translationPref = val;
+    localStorage.setItem('translationPref', val);
+    if (val) {
+        document.body.classList.remove('hide-translations');
+    } else {
+        document.body.classList.add('hide-translations');
+    }
+    
+    // Sync UI elements
+    const overlayToggle = document.getElementById('translation-toggle');
+    const menuToggle = document.getElementById('menu-translation-toggle');
+    if (overlayToggle) overlayToggle.checked = val;
+    if (menuToggle) menuToggle.checked = val;
+};
+
+// Listen for toggling changes
+document.addEventListener('change', (e) => {
+    if (e.target && (e.target.id === 'translation-toggle' || e.target.id === 'menu-translation-toggle')) {
+        window.setTranslationPref(e.target.checked);
+    }
+});
+
 // 2. INITIALIZATION (With Error Catching)
 window.initExercise = function(data) {
     exData = data;
     
+    // Set translation preference initially
+    const savedPref = localStorage.getItem('translationPref') !== 'false';
+    window.setTranslationPref(savedPref);
+
     // Check if we are in Dashboard Mode
     if (data.isDashboard) {
         document.body.classList.remove('exercise-mode');
@@ -142,9 +189,29 @@ window.initExercise = function(data) {
         const uiCluster = document.getElementById('ui-cluster');
         if (uiCluster) uiCluster.style.display = 'none';
 
+        // Hide overlay on dashboard
+        const overlay = document.getElementById('playlist-overlay');
+        if (overlay) overlay.style.display = 'none';
+
         renderExerciseDashboard();
         return;
     }
+
+    // Otherwise, show playlist selection overlay
+    const overlay = document.getElementById('playlist-overlay');
+    if (overlay) {
+        overlay.style.display = 'flex';
+        // Allow transition
+        setTimeout(() => {
+            overlay.style.opacity = '1';
+        }, 50);
+    }
+};
+
+window.selectPlaylist = function(choice) {
+    playlistTypes = PlaylistMap[choice] || [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+    totalPages = playlistTypes.length;
+    pageStatus = new Array(16).fill(false); // Reset completion status
 
     try {
         generateRandomSet(); 
@@ -153,6 +220,15 @@ window.initExercise = function(data) {
         startTimer();
         showPage(1);
         setupNavListeners();
+        
+        // Hide overlay with a smooth transition
+        const overlay = document.getElementById('playlist-overlay');
+        if (overlay) {
+            overlay.style.opacity = '0';
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 400);
+        }
     } catch (err) {
         console.error("Engine Crash:", err);
     }
@@ -182,13 +258,15 @@ function generateRandomSet() {
         return arr;
     };
 
-    for (let i = 1; i <= 15; i++) {
+    activeSet = {}; // Reset activeSet
+
+    playlistTypes.forEach(i => {
         let pool = (i <= 10) ? exData.simplePool[i] : exData.contextPool[i];
-        if (!pool || pool.length === 0) continue;
+        if (!pool || pool.length === 0) return;
 
         let count = (i > 10 || i === 6) ? 1 : (i === 4 ? 6 : 3);
         
-        // Randomly select 'count' items from the 40 (or 10) available in the pool
+        // Randomly select 'count' items from the pool
         let rawSelection = shuffle(pool).slice(0, count);
 
         activeSet[i] = rawSelection.map(item => {
@@ -228,8 +306,7 @@ function generateRandomSet() {
                 });
             }
             
-            // Note: Page 15 is entirely fill-in-the-blank (no options to shuffle), 
-            // but the outer shuffle ensures the text selected is 1 of 10 different possibilities.
+            // Note: Page 15 is entirely fill-in-the-blank (no options to shuffle)
 
             // Score Calc
             if(i === 6) maxPageScores[i] = 5;
@@ -239,73 +316,72 @@ function generateRandomSet() {
             
             return processed;
         });
-    }
+    });
 }
 
 // 4. RENDERING LOGIC
 function renderExercisePage(pageNum) {
-    if (pageNum === 16) return renderResultPage();
+    const typeNum = playlistTypes[pageNum - 1];
+    const data = activeSet[typeNum];
+    if (!data) return `<p>Error: No data for page step ${pageNum}</p>`;
 
-    const data = activeSet[pageNum];
-    if (!data) return `<p>Error: No data for page ${pageNum}</p>`;
-
-    const isGranular = [1,2,3,4,5,7,8,9,10,12,13].includes(pageNum);
+    const isGranular = [1,2,3,4,5,7,8,9,10,12,13].includes(typeNum);
     const boxClass = isGranular ? 'granular-mode' : '';
-    const isGlobalDone = isItemDone(pageNum, 0); 
+    const isGlobalDone = isItemDone(typeNum, 0); 
 
-    let html = `<div class="area-box ${boxClass} ${(!isGranular && isGlobalDone) ? 'disabled-mode' : ''}" data-page="${pageNum}">`;
-    html += `<h3>${pageNum}. ${getExerciseTitle(pageNum)}</h3>`;
+    let html = `<div class="area-box ${boxClass} ${(!isGranular && isGlobalDone) ? 'disabled-mode' : ''}" data-page="${typeNum}">`;
+    html += `<h3>${pageNum}. ${getExerciseTitle(typeNum)}</h3>`;
 
-    if (pageNum <= 10) {
-        if (pageNum === 6) {
+    if (typeNum <= 10) {
+        if (typeNum === 6) {
             html += renderType6(data[0], 0, isGlobalDone);
         } else {
             data.forEach((item, idx) => {
-                const isItemFinished = isItemDone(pageNum, idx);
-                html += `<div class="question-block ${isItemFinished ? 'disabled-mode' : ''}" id="q-${pageNum}-${idx}">`;
+                const isItemFinished = isItemDone(typeNum, idx);
+                html += `<div class="question-block ${isItemFinished ? 'disabled-mode' : ''}" id="q-${typeNum}-${idx}">`;
                 html += `<p class="q-number" style="color:var(--accent-orange); font-weight:bold;">Question ${idx+1}</p>`;
                 
-                if (pageNum === 1) html += renderType1(item, idx, isItemFinished);
-                else if (pageNum === 2) html += renderType2(item, idx, isItemFinished);
-                else if ([3, 7, 8].includes(pageNum)) html += renderType3(item, idx, isItemFinished);
-                else if (pageNum === 4) html += renderType4(item, idx, isItemFinished);
-                else if (pageNum === 5) html += renderType5(item, idx, isItemFinished);
-                else if (pageNum === 9) html += renderType9(item, idx, isItemFinished);
-                else if (pageNum === 10) html += renderType10(item, idx, isItemFinished);
+                if (typeNum === 1) html += renderType1(item, idx, isItemFinished);
+                else if (typeNum === 2) html += renderType2(item, idx, isItemFinished);
+                else if ([3, 7, 8].includes(typeNum)) html += renderType3(item, idx, isItemFinished);
+                else if (typeNum === 4) html += renderType4(item, idx, isItemFinished);
+                else if (typeNum === 5) html += renderType5(item, idx, isItemFinished);
+                else if (typeNum === 9) html += renderType9(item, idx, isItemFinished);
+                else if (typeNum === 10) html += renderType10(item, idx, isItemFinished);
                 
                 if (!isItemFinished) {
-                    html += `<button class="item-check-btn" onclick="checkIndividualItem(${pageNum}, ${idx})">Check</button>`;
+                    html += `<button class="item-check-btn" onclick="checkIndividualItem(${typeNum}, ${idx})">Check</button>`;
                 } else {
-                    html += getFeedbackHTML(pageNum, idx, item);
+                    html += getFeedbackHTML(typeNum, idx, item);
                 }
                 html += `</div>`;
             });
         }
     } else {
         const item = data[0];
-        html += renderContextHeader(item, pageNum);
+        html += renderContextHeader(item, typeNum);
         html += `<div class="context-body">`;
-        if ([12, 13].includes(pageNum)) {
+        if ([12, 13].includes(typeNum)) {
             item.questions.forEach((q, idx) => {
-                const isItemFinished = isItemDone(pageNum, idx);
-                html += `<div class="question-block ${isItemFinished ? 'disabled-mode' : ''}" id="q-${pageNum}-${idx}">`;
-                html += renderContextMCQItem(q, idx, isItemFinished, pageNum);
-                if (!isItemFinished) html += `<button class="item-check-btn" onclick="checkIndividualItem(${pageNum}, ${idx})">Check</button>`;
+                const isItemFinished = isItemDone(typeNum, idx);
+                html += `<div class="question-block ${isItemFinished ? 'disabled-mode' : ''}" id="q-${typeNum}-${idx}">`;
+                html += renderContextMCQItem(q, idx, isItemFinished, typeNum);
+                if (!isItemFinished) html += `<button class="item-check-btn" onclick="checkIndividualItem(${typeNum}, ${idx})">Check</button>`;
                 html += `</div>`;
             });
         } else {
-            if (pageNum === 11) html += renderType11(item, isGlobalDone);
-            else if (pageNum === 14) html += renderType14(item, isGlobalDone);
-            else if (pageNum === 15) html += renderType15(item, isGlobalDone);
+            if (typeNum === 11) html += renderType11(item, isGlobalDone);
+            else if (typeNum === 14) html += renderType14(item, isGlobalDone);
+            else if (typeNum === 15) html += renderType15(item, isGlobalDone);
         }
         html += `</div>`;
     }
 
     if (!isGranular && !isGlobalDone) {
-        html += `<button class="btn check-btn" onclick="checkGlobalPage(${pageNum})">CHECK PAGE</button>`;
+        html += `<button class="btn check-btn" onclick="checkGlobalPage(${typeNum})">CHECK PAGE</button>`;
     } 
     
-    if (checkIfPageComplete(pageNum)) {
+    if (checkIfPageComplete(typeNum)) {
         html += `<div style="text-align:center; color:var(--success-green); font-weight:bold; margin-top:20px;">✓ Page Completed</div>`;
     }
 
@@ -314,7 +390,7 @@ function renderExercisePage(pageNum) {
 
 // 5. HELPER COMPONENTS (Renderers)
 function renderType1(item, idx, isDone) {
-    const state = getState(currentPage, idx);
+    const state = getState(getCurrentType(), idx);
     let dropWords = state ? state.dropped : [];
     let bankWords = state ? state.bank : item.shuffledWords;
     let boxStyle = "min-height:50px; padding:10px; border: 2px dashed #ccc; border-radius: 8px; display: flex; flex-wrap: wrap; gap: 8px; background: white; margin-bottom: 10px;";
@@ -333,7 +409,7 @@ function renderType1(item, idx, isDone) {
 }
 
 function renderType2(item, idx, isDone) {
-    const state = getState(currentPage, idx);
+    const state = getState(getCurrentType(), idx);
     const correctStr = item.order.map(i => item.lines[i]).join('|'); 
     let bankLines = state ? state.bank : item.shuffledLines;
     let dropLines = state ? state.dropped : [];
@@ -347,10 +423,10 @@ function renderType2(item, idx, isDone) {
 }
 
 function renderType3(item, idx, isDone) {
-    const state = getState(currentPage, idx);
+    const state = getState(getCurrentType(), idx);
     const sel = state ? state.selected : null;
     let txt = item.q || item.sent || "";
-    if(currentPage === 8) txt = txt.replace(/\*\*(.*?)\*\*/g, '<span style="color:red; font-weight:bold;">$1</span>');
+    if(getCurrentType() === 8) txt = txt.replace(/\*\*(.*?)\*\*/g, '<span style="color:red; font-weight:bold;">$1</span>');
 
     return `<p><strong>${txt}</strong></p>
     <div class="options-container" data-answer="${item.a}">
@@ -404,7 +480,14 @@ function renderType4(item, idx, isDone) {
             return `<div class="option" style="${css}" onclick="selectOpt(this)">${opt}${icon}</div>`;
         }).join('')}
     </div>
-    ${isDone ? `<div style="margin-top:10px; font-style:italic; color:#666;">Def: ${item.def}</div>` : ''}`;
+    ${isDone ? `
+        <div style="margin-top:10px; font-style:italic; color:#666;">
+            Def: ${item.def}
+            <div class="translation-field" style="color: var(--primary-blue); font-weight: bold; margin-top: 5px; font-family: 'Poppins', sans-serif; font-size: 0.9rem;">
+                Translation: ${item.a}
+            </div>
+        </div>
+    ` : ''}`;
 }
 
 function renderType5(item, idx, isDone) {
@@ -724,7 +807,7 @@ window.checkGlobalPage = function(page) {
 
 // 7. NAVIGATION & STATE
 function showPage(p, shouldScroll = true) {
-    if(p < 1 || p > 16) return;
+    if(p < 1 || p > totalPages + 1) return;
     
     // Check if we are moving to a NEW page or just refreshing the CURRENT one
     const isNewPage = (p !== currentPage);
@@ -735,14 +818,14 @@ function showPage(p, shouldScroll = true) {
     if (!container) return;
 
     // Render content
-    container.innerHTML = (p === 16) ? renderResultPage() : renderExercisePage(p);
+    container.innerHTML = (p === totalPages + 1) ? renderResultPage() : renderExercisePage(p);
     
     // Setup Navigation Buttons
     const nextBtn = document.getElementById('next-btn');
     const prevBtn = document.getElementById('prev-btn');
 
     if (nextBtn) {
-        nextBtn.disabled = (p === 16);
+        nextBtn.disabled = (p === totalPages + 1);
         nextBtn.onclick = () => showPage(currentPage + 1, true); // Navigation ALWAYS scrolls
     }
     if (prevBtn) {
@@ -751,8 +834,8 @@ function showPage(p, shouldScroll = true) {
     }
     
     if (uiCluster) {
-        uiCluster.style.visibility = (p === 16) ? 'hidden' : 'visible';
-        uiCluster.style.pointerEvents = (p === 16) ? 'none' : 'auto';
+        uiCluster.style.visibility = (p === totalPages + 1) ? 'hidden' : 'visible';
+        uiCluster.style.pointerEvents = (p === totalPages + 1) ? 'none' : 'auto';
     }
     
     renderSidebar();
@@ -767,7 +850,9 @@ function showPage(p, shouldScroll = true) {
         menu.classList.remove('active');
     }
 
-    checkPageCompletion(p);
+    if (p <= totalPages) {
+        checkPageCompletion(playlistTypes[p - 1]);
+    }
 }
 
 function setItemDone(page, idx) {
@@ -814,8 +899,8 @@ function checkPageCompletion(page) {
         renderSidebar();
     }
     
-    // Check if everything (1-15) is finished
-    if(pageStatus.slice(1, 16).every(Boolean)) {
+    // Check if all active playlist types are finished
+    if(playlistTypes.every(t => pageStatus[t])) {
         clearInterval(timerInterval);
         isSessionFinished = true;
     }
@@ -868,17 +953,9 @@ function renderSidebar() {
     if (!list) return;
     list.innerHTML = '';
     
-    const labels = [
-        "Unscramble the Sentences", "Unscramble the Dialogues", "Quick Questions", 
-        "Find the Meaning", "Correct the Sentences", "Match the Pairs", 
-        "Choose the Best Answer", "Replace the Incorrect Vocabulary", "Listen & Answer", 
-        "Complete the Sentences", "Complete the Dialogue", "Read & Answer", 
-        "Listen & Answer (Context)", "Complete the Text", "Listen & Complete"
-    ];
-
-    labels.forEach((label, idx) => {
+    playlistTypes.forEach((typeNum, idx) => {
         const p = idx + 1;
-        const isDone = pageStatus[p];
+        const isDone = pageStatus[typeNum];
         const isActive = (currentPage === p);
         
         // Create the list item
@@ -888,7 +965,7 @@ function renderSidebar() {
         
         li.innerHTML = `
             <span class="nav-num">${isDone ? '✓' : p}</span>
-            <span class="nav-label">${label}</span>
+            <span class="nav-label">${getExerciseTitle(typeNum)}</span>
         `;
         
         list.appendChild(li);
@@ -1030,18 +1107,19 @@ function renderResultPage() {
     let totalQuestions = 0;
     let totalCorrect = 0;
 
-    // Loop through all pages and calculate totals
-    for (let p = 1; p <= 15; p++) {
+    // Loop through all active playlist types and calculate totals
+    playlistTypes.forEach(p => {
         if (itemScores[p]) {
             Object.keys(itemScores[p]).forEach(key => {
                 totalQuestions++;
                 totalCorrect += itemScores[p][key];
             });
         }
-    }
+    });
 
     const percentage = totalQuestions > 0 ? Math.round((totalCorrect / totalQuestions) * 100) : 0;
-    const pagesCompleted = pageStatus.filter(p => p === true).length;
+    const pagesCompleted = playlistTypes.filter(p => pageStatus[p] === true).length;
+    const playlistLength = playlistTypes.length;
 
     return `
         <div class="area-box" style="text-align:center; padding:50px 20px;">
@@ -1051,7 +1129,7 @@ function renderResultPage() {
             
             <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 40px;">
                 <div class="stat-box" style="width:120px;">
-                    <div class="stat-num">${pagesCompleted}/15</div>
+                    <div class="stat-num">${pagesCompleted}/${playlistLength}</div>
                     <div style="font-size:0.6rem; color:#999; font-weight:bold; text-transform:uppercase;">Steps Done</div>
                 </div>
                 <div class="stat-box" style="width:120px; border-color: var(--accent-orange);">
