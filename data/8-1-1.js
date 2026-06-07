@@ -706,8 +706,9 @@ window.initLesson({
                     instruction: "Listen to the conversation between Celine and the shop assistant. Choose the correct option.<br><small style='color:#0077b6'>(Ouça a conversa entre Celine e o vendedor. Escolha a opção correta.)</small>",
                     audio: "audio/8-1-1/step5_drill2.mp3",
                     questions: [
-                        { q: "Celine: I want to try this [dress | shirt]. Do you have a [bigger | smaller] size?", a: "dress" },
-                        { q: "Assistant: Yes, we do. Here is a [bigger | better] one.", a: "bigger" },
+                        { q: "Assistant: [Can | Do] I help you?", a: "Can" },
+                        { q: "Celine: Yes, I want to try this dress. Do you have a [bigger | smaller] size?", a: "bigger" },
+                        { q: "Assistant: Yes, we do. [Here | There] is a bigger one.", a: "Here" },
                         { q: "Celine: Thanks. This one is [more | less] comfortable.", a: "more" }
                     ]
                 },

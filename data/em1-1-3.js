@@ -680,7 +680,7 @@ window.initLesson({
                     audio: "audio/em1-1-3/step5_drill2.mp3",
                     questions: [
                         { 
-                            q: "Mrs. Canales: It's beautiful. I love the [fabric | factory | fabrication]. Is it silk?", 
+                            q: "Celine: Mrs. Canales, Look at this dress!<br>Mrs. Canales: It's beautiful. I love the [fabric | factory | fabrication]. Is it silk?", 
                             a: "fabric" 
                         },
                         { 
@@ -688,8 +688,12 @@ window.initLesson({
                             a: "bought" 
                         },
                         { 
-                            q: "Mrs. Canales: Didn't you make it yourself? <br> Celine: No, I [didn't use to | used to | use to] sew, but I stopped.", 
-                            a: "didn't use to" 
+                            q: "Mrs. Canales: [Did | Didn't | Doesn't] you make it yourself? <br>",
+                            a: "Didn't"
+                        },
+                        {    
+                            q:"Celine: No, I [didn't use to | used to | use to], but I stopped.", 
+                            a: "used to" 
                         }
                     ]
                 },

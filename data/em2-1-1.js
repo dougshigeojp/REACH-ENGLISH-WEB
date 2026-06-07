@@ -616,7 +616,7 @@ window.initLesson({
                         { q: "Celine: [Have*|Had|Will] you found any new [mutations*|fossils|genes] in the DNA samples?" },
                         { q: "Assistant: Not yet. But we [have just started*|had already started|will have started] the new experiment."},
                         { q: "Celine: If we had more data, [would*|will|have] we have understood the evolution process faster?"},
-                        { q: "Assistant: Definitely. Through genetic studies, everything becomes clearer. [Innovation*|Automation|Hardware] is our priority."}
+                        { q: "Assistant: Definitely. Through  [Innovation|Genetic*|Hardware] studies, everything becomes clearer."}
                     ]
                 },
                 // Drill 3: Audio Choice (TTS)

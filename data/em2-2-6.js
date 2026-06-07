@@ -33,7 +33,7 @@ window.initLesson({
         {
             title: "What’s up today?",
             context: "Albert and Celine are sitting in the school library. Albert is looking at a news report about the global economy.", 
-            contextAudio: "audio/em2-1-6/step1.mp3",
+            contextAudio: "audio/em2-2-6/step1.mp3",
             dialogue: [
                 { 
                     speaker: "Albert", 
@@ -1153,7 +1153,7 @@ window.initLesson({
             dialogueGroups: [
                 {
                     title: "Dialogue 1: Comparing Strength (Relative Clauses & Comparatives)",
-                    audio: "audio/em2-1-6/step3_dialogue1.mp3",
+                    audio: "audio/em2-2-6/step3_dialogue1.mp3",
                     lines: [
                         { 
                             speaker: "Albert", 
@@ -1169,7 +1169,7 @@ window.initLesson({
                 },
                 {
                     title: "Dialogue 2: Finding the Best Path (Superlatives)",
-                    audio: "audio/em2-1-6/step3_dialogue2.mp3",
+                    audio: "audio/em2-2-6/step3_dialogue2.mp3",
                     lines: [
                         { 
                             speaker: "Celine", 
@@ -1469,7 +1469,7 @@ window.initLesson({
                 {
                     type: "dropdown",
                     instruction: "Listen to the dialogue and choose the correct options.<br><small style='color:#0077b6'>(Ouça o diálogo e escolha as opções corretas.)</small>",
-                    audio: "audio/em2-1-6/step5_drill2.mp3",
+                    audio: "audio/em2-2-6/step5_drill2.mp3",
                     questions: [
                         { 
                             q: "Celine: Albert, did you see the [financial | economic | global | social] news?", 
@@ -1517,7 +1517,7 @@ window.initLesson({
                 // 6a: Narration - The 2008 Crisis
                 {
                     title: "Narration - The 2008 Crisis",
-                    audio: "TTS: The financial crisis of 2008, which started in the United States, affected the global economy for years. Many people who had invested in the market lost their savings. It was a time when unemployment was at its highest level. Families whose debt was too big struggled to keep their houses. However, this period also taught society about the importance of a budget. People learned that they had to be more sensible with their money than they were before. || audio/em2-1-6/p6_text1.mp3",
+                    audio: "TTS: The financial crisis of 2008, which started in the United States, affected the global economy for years. Many people who had invested in the market lost their savings. It was a time when unemployment was at its highest level. Families whose debt was too big struggled to keep their houses. However, this period also taught society about the importance of a budget. People learned that they had to be more sensible with their money than they were before. || audio/em2-2-6/p6_text1.mp3",
                     body: "The [financial crisis](tooltip:crisis) of 2008, which [started](tooltip:start) in the United States, [affected](tooltip:affect) the global [economy](tooltip:economy) for years. Many people who had [invested](tooltip:invest) in the [market](tooltip:market) lost their [savings](tooltip:savings). It was a time when [unemployment](tooltip:unemployment) was at its highest level. Families whose [debt](tooltip:debt) was too big [struggled](tooltip:struggle) to keep their houses. However, this period also taught [society](tooltip:society) about the importance of a [budget](tooltip:budget). People learned that they had to be more sensible with their [money](tooltip:money) than they were before.",
                     questions: [
                         {
@@ -1552,7 +1552,7 @@ window.initLesson({
                 // 6b: Dialogue - Facing a Setback
                 {
                     title: "Dialogue - Facing a Setback",
-                    audio: "audio/em2-1-6/p6_text2.mp3",
+                    audio: "audio/em2-2-6/p6_text2.mp3",
                     body: "<b>Celine:</b> Albert, I heard your [parents](tooltip:parents) had to take a [loan](tooltip:loan). Is everything okay?<br><b>Albert:</b> Yes, but it's a bit [difficult](tooltip:difficulty). The [cost of living](tooltip:cost-of-living), which is [increasing](tooltip:increase) daily, makes it hard to save.<br><b>Celine:</b> I understand. My family, who faced a similar [setback](tooltip:setback) last year, had to [limit](tooltip:limit) all [expenses](tooltip:expense).<br><b>Albert:</b> How did you find the [strength](tooltip:strength) to [cope](tooltip:cope)?<br><b>Celine:</b> We looked for the [silver lining](tooltip:silver-lining). We started [working](tooltip:work) together on a small business. It was more rewarding than our old [jobs](tooltip:job-loss).<br><b>Albert:</b> That’s the most [inspiring](tooltip:inspire) thing I’ve heard today!",
                     questions: [
                         {
@@ -1587,7 +1587,7 @@ window.initLesson({
                 // 6c: Description - The Resilient Town
                 {
                     title: "Description - The Resilient Town",
-                    audio: "TTS: Hopeville is a small town where a major factory closed two years ago. This tragedy led to a recession in the area. However, the people, who refused to give up, created a community garden. They developed a system where they share their food. This initiative, which nobody expected to work, is now the best part of the town. The resilience they showed is greater than any challenge they faced. || audio/em2-1-6/p6_text3.mp3",
+                    audio: "TTS: Hopeville is a small town where a major factory closed two years ago. This tragedy led to a recession in the area. However, the people, who refused to give up, created a community garden. They developed a system where they share their food. This initiative, which nobody expected to work, is now the best part of the town. The resilience they showed is greater than any challenge they faced. || audio/em2-2-6/p6_text3.mp3",
                     body: "\"Hopeville\" is a small town where a major [factory](tooltip:factory) [closed](tooltip:close) two years ago. This [tragedy](tooltip:tragedy) led to a [recession](tooltip:recession) in the area. However, the people, who refused to [give up](tooltip:give-up), created a [community](tooltip:community) garden. They [developed](tooltip:develop) a system where they [share](tooltip:share) their food. This initiative, which nobody expected to work, is now the best part of the town. The [resilience](tooltip:resilience) they showed is greater than any [challenge](tooltip:challenge) they faced.",
                     questions: [
                         {
@@ -2855,6 +2855,8 @@ window.initLesson({
         { topic: "Context", term: "innovation", definition: "The introduction of new ideas, methods, or products.", translation: "Inovação" },
         { topic: "Context", term: "plan", definition: "A detailed proposal for doing or achieving something.", translation: "Plano" },
         { topic: "Context", term: "lose", definition: "To be deprived of or cease to have something.", translation: "Perder" },
+        { topic: "Context", term: "parents", definition: "A person's father and mother.", translation: "Pais" },
+        { topic: "Context", term: "increase", definition: "To become or make greater in size, amount, or degree.", translation: "Aumentar" },
 
         // --- TOPIC 2: RESILIENCE VERBS (A-D) ---
         { topic: "Resilience Verbs", term: "adapt", definition: "To become adjusted to new conditions.", translation: "Adaptar-se" },
