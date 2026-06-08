@@ -603,9 +603,21 @@ window.initLesson({
                     audio: "TTS: These words show ownership and replace the noun. They stand alone at the end of a phrase. Mine, yours, his, hers, ours, theirs. This gift is mine.",
                     explanation: "These words show ownership (who something belongs to) and replace the noun. They stand alone at the end of a phrase.<br><br><span style='color:#0077b6; font-style:italic;'>(Estas palavras mostram posse e substituem o substantivo. Elas ficam sozinhas no final de uma frase.)</span>",
                     samples: [
+                        { en: "Mine, yours, his, hers, ours, theirs.", pt: "<span style='color:#0077b6'>(Meus, seus, dele, dela, nosso, deles.)</span>" },
+                        { en: "My > Mine.", pt: "<span style='color:#0077b6'>Meu (com objeto) > Meu (sem objeto).</span>" },
+                        { en: "Your > Yours.", pt: "<span style='color:#0077b6'>Seu (com objeto) > Seu (sem objeto).</span>" },
+                        { en: "His > His.", pt: "<span style='color:#0077b6'>Dele (com objeto) > Dele (sem objeto).</span>" },
+                        { en: "Her > Hers.", pt: "<span style='color:#0077b6'>Dela (com objeto) > Dela (sem objeto).</span>" },
+                        { en: "Our > Ours.", pt: "<span style='color:#0077b6'>Nosso (com objeto) > Nosso (sem objeto).</span>" },
+                        { en: "Their > Theirs.", pt: "<span style='color:#0077b6'>Deles (com objeto) > Deles (sem objeto).</span>" },
                         { en: "This is my gift. -> This gift is mine.", pt: "<span style='color:#0077b6'>Este presente é meu.</span>" },
                         { en: "Is this book yours?", pt: "<span style='color:#0077b6'>Este livro é seu?</span>" },
-                        { en: "It is not mine. Maybe it is hers?", pt: "<span style='color:#0077b6'>Não é minha. Talvez seja dela?</span>" }
+                        { en: "It is not mine. Maybe it is hers?", pt: "<span style='color:#0077b6'>Não é minha. Talvez seja dela?</span>" },
+                        { en: "The car is ours.", pt: "<span style='color:#0077b6'>O carro é nosso.</span>" },
+                        { en: "The house is theirs.", pt: "<span style='color:#0077b6'>A casa é deles.</span>" },
+                        { en: "Is this pen his?", pt: "<span style='color:#0077b6'>Esta caneta é dele?</span>" },
+                        { en: "The phone is hers.", pt: "<span style='color:#0077b6'>O telefone é dela.</span>" },
+                        { en: "The toys are ours.", pt: "<span style='color:#0077b6'>Os brinquedos são nossos.</span>" }
                     ]
                 },
                 {
