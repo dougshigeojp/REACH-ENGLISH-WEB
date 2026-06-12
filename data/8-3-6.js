@@ -898,9 +898,9 @@ window.initLesson({
                     instruction: "Listen to the conversation about a movie. Choose the correct option.<br><small style='color:#0077b6'>(Ouça a conversa sobre um filme. Escolha a opção correta.)</small>",
                     audio: "audio/8-3-6/step5_drill2.mp3",
                     questions: [
-                        { q: "Celine: Have you [seen | see | saw | seeing] the new sci-fi movie?", a: "seen" },
-                        { q: "Albert: No, I [haven't | have | didn't | has]. Have you?", a: "haven't" },
-                        { q: "Celine: Yes. It is the [best | worst | better | good] movie I have ever seen.", a: "best" }
+                        { q: "Celine: Have you seen the new sci-fi movie [ever | never | yet | since]?", a: "yet" },
+                        { q: "Albert: Yes, I have [yet | ever | for | already] seen it. Have you?", a: "already" },
+                        { q: "Celine: Yes, me too. It is the worst movie I have [never | ever | yet | since] seen. Too awful!", a: "ever" }
                     ]
                 },
                 // Drill 3: Audio Choice (MP3)
@@ -1535,11 +1535,11 @@ window.initLesson({
                     audioBack: "TTS: We have a dependence on tech." 
                 },
 
-                // --- TOPIC 4: PHRASES & GRAMMAR POINTS ---
+                // --- TOPIC 4: PHRASES & EXPRESSIONS ---
                 { 
                     term: "Have you ever...?", 
                     definition: "Question used to ask about life experiences at any time in the past.", 
-                    defTrans: "Você já...?",
+                    defTrans: "Você já...? (alguma vez na vida)",
                     example: "Have you ever been to Japan?", 
                     audioFront: "TTS: Have you ever?",
                     audioBack: "TTS: Have you ever been to Japan?" 
@@ -1554,58 +1554,76 @@ window.initLesson({
                 },
                 { 
                     term: "Not yet", 
-                    definition: "Used to say that something expected hasn't happened until now.", 
+                    definition: "Not up to the present time.", 
                     defTrans: "Ainda não",
                     example: "I haven't finished yet.", 
                     audioFront: "TTS: Not yet",
                     audioBack: "TTS: I haven't finished yet." 
                 },
+
+                // --- TOPIC 5: GRAMMAR POINTS ---
                 { 
-                    term: "Ever / Never", 
-                    definition: "Ever: at any time. Never: at no time in the past.", 
-                    defTrans: "Alguma vez / Nunca",
+                    term: "Ever (Present Perfect)", 
+                    definition: "At any time. Used in questions.", 
+                    defTrans: "Alguma vez / Já (em perguntas)",
+                    example: "Have you ever used VR?", 
+                    audioFront: "TTS: Ever",
+                    audioBack: "TTS: Have you ever used VR?" 
+                },
+                { 
+                    term: "Never (Present Perfect)", 
+                    definition: "At no time in the past or future.", 
+                    defTrans: "Nunca (experiência de vida)",
                     example: "I have never broken a bone.", 
-                    audioFront: "TTS: Ever. Never.",
+                    audioFront: "TTS: Never",
                     audioBack: "TTS: I have never broken a bone." 
                 },
                 { 
-                    term: "Just", 
-                    definition: "Used for actions that happened a very short time ago.", 
-                    defTrans: "Acabou de",
+                    term: "Just (Present Perfect)", 
+                    definition: "Very recently; in the immediate past.", 
+                    defTrans: "Acabou de (ação recente)",
                     example: "I have just arrived.", 
                     audioFront: "TTS: Just",
                     audioBack: "TTS: I have just arrived." 
                 },
                 { 
-                    term: "Already", 
-                    definition: "Used for actions that happened sooner than expected.", 
+                    term: "Already (Present Perfect)", 
+                    definition: "Before the time in question; sooner than expected.", 
                     defTrans: "Já (antes do esperado)",
                     example: "I have already done it.", 
                     audioFront: "TTS: Already",
                     audioBack: "TTS: I have already done it." 
                 },
                 { 
-                    term: "Yet", 
-                    definition: "Used in negative sentences and questions to mean 'until now'.", 
-                    defTrans: "Ainda / Já (final de frase)",
+                    term: "Yet (Present Perfect)", 
+                    definition: "Up until the present time.", 
+                    defTrans: "Ainda / Já (final da frase negativa/pergunta)",
                     example: "Has he called yet?", 
                     audioFront: "TTS: Yet",
                     audioBack: "TTS: Has he called yet?" 
                 },
                 { 
-                    term: "For / Since", 
-                    definition: "For: period of time. Since: starting point in time.", 
-                    defTrans: "Por / Desde",
-                    example: "I have waited for an hour since 2 PM.", 
-                    audioFront: "TTS: For. Since.",
-                    audioBack: "TTS: I have waited for an hour since 2 PM." 
+                    term: "For (Duration)", 
+                    definition: "Preposition used to indicate the duration of an action.", 
+                    defTrans: "Por / Há (período de tempo)",
+                    example: "I have waited for an hour.", 
+                    audioFront: "TTS: For",
+                    audioBack: "TTS: I have waited for an hour." 
                 },
                 { 
-                    term: "Superlative + Ever", 
-                    definition: "Structure used to emphasize a unique or extreme experience.", 
-                    defTrans: "O mais... que eu já...",
+                    term: "Since (Duration)", 
+                    definition: "Preposition used to indicate the starting point of an action.", 
+                    defTrans: "Desde (ponto no tempo)",
+                    example: "I have been here since 2 PM.", 
+                    audioFront: "TTS: Since",
+                    audioBack: "TTS: I have been here since 2 PM." 
+                },
+                { 
+                    term: "Present Perfect + Superlative", 
+                    definition: "Structure used to emphasize a unique experience.", 
+                    defTrans: "Presente Perfeito + Superlativo",
                     example: "This is the best game I have ever played.", 
-                    audioFront: "TTS: Superlative and Ever",
+                    audioFront: "TTS: Present Perfect and Superlative",
                     audioBack: "TTS: This is the best game I have ever played." 
                 }
             ]

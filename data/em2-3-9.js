@@ -38,7 +38,7 @@ window.initLesson({
                 },
                 { 
                     speaker: "Albert", 
-                    text: "You're right, Celine. I [read](tooltip:read) that the [drought](tooltip:drought) is getting worse. The [government](tooltip:government) [has to](tooltip:have-to) [impose](tooltip:impose) strict [restrictions](tooltip:restrictions). Wec[had better](tooltip:had-better) [start](tooltip:start) [conserving](tooltip:conserve) right now." 
+                    text: "You're right, Celine. I [read](tooltip:read) that the [drought](tooltip:drought) is getting worse. The [government](tooltip:government) [has to](tooltip:have-to) [impose](tooltip:impose) strict [restrictions](tooltip:restrictions). We [had better](tooltip:had-better) [start](tooltip:start) [conserving](tooltip:conserve) right now." 
                 },
                 { 
                     speaker: "Celine", 

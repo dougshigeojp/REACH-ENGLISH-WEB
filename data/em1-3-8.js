@@ -592,12 +592,12 @@ window.initLesson({
                     lines: [
                         { 
                             speaker: "Celine", 
-                            text: "Albert, I think Nelson Mandela’s impact was **greater than** most leaders'.", 
+                            text: "Albert, I think Nelson Mandela’s impact was <b>greater than</b> most leaders'.", 
                             pt: "<span style='color:#0077b6'>(Albert, eu acho que o impacto de Nelson Mandela foi maior do que o da maioria dos líderes.)</span>" 
                         },
                         { 
                             speaker: "Albert", 
-                            text: "I agree. However, Malala’s message is **as powerful as** his for our generation.", 
+                            text: "I agree. However, Malala’s message is <b>as powerful as</b> his for our generation.", 
                             pt: "<span style='color:#0077b6'>(Eu concordo. No entanto, a mensagem de Malala é tão poderosa quanto a dele para a nossa geração.)</span>" 
                         }
                     ]
@@ -608,12 +608,12 @@ window.initLesson({
                     lines: [
                         { 
                             speaker: "Mrs. Canales", 
-                            text: "Class, what is **the most important** trait for inclusion?", 
+                            text: "Class, what is <b>the most important</b> trait for inclusion?", 
                             pt: "<span style='color:#0077b6'>(Classe, qual é a característica mais importante para a inclusão?)</span>" 
                         },
                         { 
                             speaker: "Celine", 
-                            text: "I believe kindness is **the best** way to start, even if it feels like **the least** difficult action.", 
+                            text: "I believe kindness is <b>the best</b> way to start, even if it feels like <b>the least</b> difficult action.", 
                             pt: "<span style='color:#0077b6'>(Eu acredito que a gentileza é a melhor maneira de começar, mesmo que pareça a ação menos difícil.)</span>" 
                         }
                     ]
@@ -624,12 +624,12 @@ window.initLesson({
                     lines: [
                         { 
                             speaker: "Albert", 
-                            text: "Did you see the new student? She has **beautiful long dark** hair.", 
+                            text: "Did you see the new student? She has <b>beautiful long dark</b> hair.", 
                             pt: "<span style='color:#0077b6'>(Você viu a aluna nova? Ela tem um lindo cabelo longo e escuro.)</span>" 
                         },
                         { 
                             speaker: "Celine", 
-                            text: "Yes! And she wears a **nice blue cotton** uniform. She seems very sensible.", 
+                            text: "Yes! And she wears a <b>nice blue cotton</b> uniform. She seems very sensible.", 
                             pt: "<span style='color:#0077b6'>(Sim! E ela usa um belo uniforme de algodão azul. Ela parece ser muito sensata.)</span>" 
                         }
                     ]

@@ -504,24 +504,24 @@ window.initLesson({
                     title: "Dialogue 1: Location and Time",
                     audio: "audio/em1-3-7/step3_dialogue1.mp3",
                     lines: [
-                        { speaker: "Albert", text: "Celine, where are you? I’m **at** the library.", pt: "<span style='color:#0077b6'>(Celine, onde você está? Estou na biblioteca.)</span>" },
-                        { speaker: "Celine", text: "I’m **in** the cafeteria. I’ll meet you **at** 2 PM **on** Tuesday to work **on** our project.", pt: "<span style='color:#0077b6'>(Estou na cafeteria. Te encontro às 14h na terça-feira para trabalhar no nosso projeto.)</span>" }
+                        { speaker: "Albert", text: "Celine, where are you? I’m <b>at</b> the library.", pt: "<span style='color:#0077b6'>(Celine, onde você está? Estou na biblioteca.)</span>" },
+                        { speaker: "Celine", text: "I’m <b>in</b> the cafeteria. I’ll meet you <b>at</b> 2 PM <b>on</b> Tuesday to work <b>on</b> our project.", pt: "<span style='color:#0077b6'>(Estou na cafeteria. Te encontro às 14h na terça-feira para trabalhar no nosso projeto.)</span>" }
                     ]
                 },
                 {
                     title: "Dialogue 2: Counting the Digital World",
                     audio: "audio/em1-3-7/step3_dialogue2.mp3",
                     lines: [
-                        { speaker: "Albert", text: "Do you have **much** information about that influencer?", pt: "<span style='color:#0077b6'>(Você tem muita informação sobre aquela influenciadora?)</span>" },
-                        { speaker: "Celine", text: "No, but there are **a few** comments on her profile. **Few** people actually know her.", pt: "<span style='color:#0077b6'>(Não, mas há alguns comentários no perfil dela. Poucas pessoas realmente a conhecem.)</span>" }
+                        { speaker: "Albert", text: "Do you have <b>much</b> information about that influencer?", pt: "<span style='color:#0077b6'>(Você tem muita informação sobre aquela influenciadora?)</span>" },
+                        { speaker: "Celine", text: "No, but there are <b>a few</b> comments on her profile. <b>Few</b> people actually know her.", pt: "<span style='color:#0077b6'>(Não, mas há alguns comentários no perfil dela. Poucas pessoas realmente a conhecem.)</span>" }
                     ]
                 },
                 {
                     title: "Dialogue 3: Finding Somebody Online",
                     audio: "audio/em1-3-7/step3_dialogue3.mp3",
                     lines: [
-                        { speaker: "Celine", text: "**Everyone** loves this new meme! Has **anybody** shared it with you?", pt: "<span style='color:#0077b6'>(Todo mundo ama esse meme novo! Alguém compartilhou com você?)</span>" },
-                        { speaker: "Albert", text: "No, **nobody** sent it to me, but I saw **something** similar **on** Twitter.", pt: "<span style='color:#0077b6'>(Não, ninguém me mandou, mas vi algo parecido no Twitter.)</span>" }
+                        { speaker: "Celine", text: "<b>Everyone</b> loves this new meme! Has <b>anybody</b> shared it with you?", pt: "<span style='color:#0077b6'>(Todo mundo ama esse meme novo! Alguém compartilhou com você?)</span>" },
+                        { speaker: "Albert", text: "No, <b>nobody</b> sent it to me, but I saw <b>something</b> similar <b>on</b> Twitter.", pt: "<span style='color:#0077b6'>(Não, ninguém me mandou, mas vi algo parecido no Twitter.)</span>" }
                     ]
                 }
             ],
@@ -647,10 +647,10 @@ window.initLesson({
                 {
                     title: "Dialogue - Digital Detox",
                     audio: "audio/em1-3-7/p6_text2.mp3",
-                    body: "<b>Celine:</b> Albert, you look tired. Did you [get up](tooltip:get-up) late?<br><b>Albert:</b> Yes, I stayed up until 2 AM [scrolling through](tooltip:scroll-through) memes. I think I have a screen [addiction](tooltip:addiction).<br><b>Celine:</b> That’s not good! There is too much [waste](tooltip:waste) of time online. You need to [get away](tooltip:get-away-from) from your phone.<br><b>Albert:</b> I know. Nobody in my family talks anymore because we are [always](tooltip:always) on the [internet](tooltip:internet).<br><b>Celine:</b> Let’s [get together](tooltip:get-together) at the [park](tooltip:park) tomorrow. We can see the [leaves](tooltip:leaves) falling and talk in person.<br><b>Albert:</b> [That makes sense](tooltip:that-makes-sense). I'll [unfollow](tooltip:unfollow) some [accounts](tooltip:account) and join you!",
+                    body: "<b>Albert:</b> Celine, you look tired. Did you [get up](tooltip:get-up) late?<br><b>Celine:</b> Yes, I stayed up until 2 AM [scrolling through](tooltip:scroll-through) memes. I think I have a screen [addiction](tooltip:addiction).<br><b>Albert:</b> That’s not good! There is too much [waste](tooltip:waste) of time online. You need to [get away](tooltip:get-away-from) from your phone.<br><b>Celine:</b> I know. Nobody in my family talks anymore because we are [always](tooltip:always) on the [internet](tooltip:internet).<br><b>Albert:</b> Let’s [get together](tooltip:get-together) at the [park](tooltip:park) tomorrow. We can see the [leaves](tooltip:leaves) falling and talk in person.<br><b>Celine:</b> [That makes sense](tooltip:that-makes-sense). I'll [unfollow](tooltip:unfollow) some [accounts](tooltip:account) and join you!",
                     questions: [
-                        { q: "Why is Albert tired?", options: [{t: "He was working at Google.", c: false}, {t: "He was scrolling through memes all night.", c: true}, {t: "He was running in the park.", c: false}] },
-                        { q: "What does Celine suggest?", options: [{t: "Buying a new phone.", c: false}, {t: "Getting away from the phone.", c: true}, {t: "Posting more stories.", c: false}] },
+                        { q: "Why is Celine tired?", options: [{t: "She was working at Google.", c: false}, {t: "She was scrolling through memes all night.", c: true}, {t: "She was running in the park.", c: false}] },
+                        { q: "What does Albert suggest?", options: [{t: "Buying a new phone.", c: false}, {t: "Getting away from the phone.", c: true}, {t: "Posting more stories.", c: false}] },
                         { q: "Where will they meet tomorrow?", options: [{t: "On a platform.", c: false}, {t: "At school.", c: false}, {t: "At the park.", c: true}] }
                     ]
                 },

@@ -866,10 +866,10 @@ window.initLesson({
                     instruction: "Listen to the dialogue between Celine and an Older Citizen and choose the correct options.<br><small style='color:#0077b6'>(Ouça o diálogo entre Celine e um Cidadão Idoso e escolha as opções corretas.)</small>",
                     audio: "audio/em2-3-8/p5_dialogue.mp3 | TTS: Celine: Sir, do you wish you lived in the Digital Age when you were young? Citizen: Not really. I wish young people would talk face-to-face more. Celine: I see. Technology brought about convenience, but also isolation. Citizen: Exactly. I wish we had kept some of the old behaviors.",
                     questions:[
-                        { q: "Celine: Sir, do you wish you [lived* | had lived | would live] in the Digital Age when you were young?", a: "lived" },
-                        { q: "Citizen: Not really. I wish young people[would talk* | talked | had talked] face-to-face more.", a: "would talk" },
+                        { q: "Celine: Sir, do you wish you [lived | had lived* | would live] in the Digital Age when you were young?", a: "lived" },
+                        { q: "Citizen: Not really. I wish young people[would talk | talked* | had talked] face-to-face more.", a: "would talk" },
                         { q: "Celine: I see. Technology [brought about* | brought up | brought in] convenience, but also isolation.", a: "brought about" },
-                        { q: "Citizen: Exactly. I wish we [had kept* | keep | would keep] some of the old behaviors.", a: "had kept" }
+                        { q: "Citizen: Exactly. I wish we [had kept | keep | would keep*] some of the old behaviors.", a: "had kept" }
                     ]
                 },
                 {

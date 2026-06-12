@@ -975,31 +975,31 @@ window.initLesson({
                 // Drill 1: Typing (TTS)
                 {
                     type: "typing",
-                    instruction: "Listen to Albert talking about his new computer. Type the missing words.<br><small style='color:#0077b6'>(Ouça Albert falando sobre o computador novo dele. Digite as palavras que faltam.)</small>",
-                    audio: "TTS: I have bought a new computer. I have used it for two weeks. It is very fast.",
-                    text: "I have [bought] a new computer. I have [used] it [for] two weeks. It is very [fast]."
+                    instruction: "Listen to Albert talking about his grandfather. Type the missing words.<br><small style='color:#0077b6'>(Ouça Albert falando sobre o avô dele. Digite as palavras que faltam.)</small>",
+                    audio: "TTS: My grandfather is learning about technology. He has bought a tablet. He has created an email account. He says he has entered the digital world.",
+                    text: "My grandfather is learning about technology. He [has bought] a tablet. He [has created] an email account. He says he [has entered] the digital world."
                 },
                 // Drill 2: Dropdown (MP3)
                 {
                     type: "dropdown",
-                    instruction: "Listen to the conversation about a movie. Choose the correct option.<br><small style='color:#0077b6'>(Ouça a conversa sobre um filme. Escolha a opção correta.)</small>",
-                    audio: "audio/8-3-5/step5_drill2.mp3",
+                    instruction: "Listen to the conversation between Celine and Albert about a game. Choose the correct option.<br><small style='color:#0077b6'>(Ouça a conversa entre Celine e Albert sobre um jogo. Escolha a opção correta.)</small>",
+                    audio: "audio/8-3-5/step5_drill2.mp3", // Use proper audio path for this dialogue
                     questions: [
-                        { q: "Celine: Have you [seen | see] the new sci-fi movie?", a: "seen" },
-                        { q: "Albert: No, I [haven't | have]. Have you?", a: "haven't" },
-                        { q: "Celine: Yes. It is the [best | worst] movie I have ever seen.", a: "best" }
+                        { q: "Celine: Have you [played | watched] 'Space Jump'?", a: "played" },
+                        { q: "Albert: No, I [haven't | have]. Is it good?", a: "haven't" },
+                        { q: "Celine: It's amazing. I have [downloaded | uploaded] it on my phone.", a: "downloaded" }
                     ]
                 },
                 // Drill 3: Audio Choice (MP3)
                 {
                     type: "audio-choice",
-                    instruction: "Listen to the question and choose the correct answer.<br><small style='color:#0077b6'>(Ouça a pergunta e escolha a resposta correta.)</small>",
+                    instruction: "Listen to the situation and choose the correct sentence.<br><small style='color:#0077b6'>(Ouça a situação e escolha a frase correta.)</small>",
                     audio: "TTS: I am looking for Sarah. I went to her house, but she wasn't there. Her mom said she went to the cinema ten minutes ago.",
                     options: [
-                        { t: "She is offline.", c: false },
-                        { t: "She has been online since 9 AM.", c: true },
-                        { t: "She was online yesterday.", c: false },
-                        { t: "She goes online every day.", c: false }
+                        { t: "Sarah has been to the cinema.", c: false },
+                        { t: "Sarah has gone to the cinema.", c: true },
+                        { t: "Sarah hasn't gone to the cinema.", c: false },
+                        { t: "Sarah is at home.", c: false }
                     ]
                 }
             ]
@@ -1012,103 +1012,103 @@ window.initLesson({
             title: "Get the story",
             texts: [
                 {
-                    title: "Narration: The Digital Detox",
-                    audio: "TTS: The Digital Detox. Last month, I decided to try a digital detox. I have used smartphones since I was 10, so it was hard. For one week, I didn't use any social media. At first, I felt disconnected and bored. But after a few days, I noticed a change. I have read three books this week! I have also slept better. I have learned that life is good offline too. || audio/8-3-5/p6_text1.mp3",
-                    body: "Last month, I decided to try a \"digital detox\". I have used smartphones since I was 10, so it was hard. For one week, I didn't use any social media. At first, I felt disconnected and bored. But after a few days, I noticed a change. I have read three books this week! I have also slept better. I have learned that life is good offline too.",
+                    title: "Narration: The Viral Video",
+                    audio: "TTS: The Viral Video. Last week, my brother filmed our cat dancing. He uploaded it to a video site. In just two days, something amazing has happened. The video has gone viral! Millions of people have watched it. Many users have shared it on their profiles. My brother has received many messages from new followers. He has become an influencer overnight! || audio/8-3-5/p6_text1.mp3",
+                    body: "Last week, my brother filmed our cat dancing. He uploaded it to a video site. In just two days, something amazing has happened. The video has gone viral! Millions of people have watched it. Many users have shared it on their profiles. My brother has received many messages from new followers. He has become an influencer overnight!",
                     questions: [
                         { 
-                            q: "How long has the writer used smartphones?", 
+                            q: "What did the brother upload?", 
                             options: [ 
-                                {t: "Since last month", c: false}, 
-                                {t: "Since he was 10", c: true}, 
-                                {t: "For one week", c: false}, 
-                                {t: "Never", c: false}
+                                {t: "A photo of a dog", c: false}, 
+                                {t: "A video of a cat", c: true}, 
+                                {t: "A song", c: false}, 
+                                {t: "A selfie", c: false}
                             ] 
                         },
                         { 
-                            q: "How long was the digital detox?", 
+                            q: "What has happened to the video?", 
                             options: [ 
-                                {t: "One month", c: false}, 
-                                {t: "One day", c: false}, 
-                                {t: "One week", c: true}, 
-                                {t: "Three days", c: false}
+                                {t: "It has been deleted.", c: false}, 
+                                {t: "It has gone viral.", c: true}, 
+                                {t: "Nobody has watched it.", c: false}, 
+                                {t: "It has stopped working.", c: false}
                             ] 
                         },
                         { 
-                            q: "What has he done during the detox?", 
+                            q: "How many people have watched it?", 
                             options: [ 
-                                {t: "Played video games", c: false}, 
-                                {t: "Read three books", c: true}, 
-                                {t: "Watched TV", c: false}, 
-                                {t: "Used social media", c: false}
+                                {t: "Millions", c: true}, 
+                                {t: "Ten", c: false}, 
+                                {t: "One hundred", c: false}, 
+                                {t: "None", c: false}
                             ] 
                         }
                     ]
                 },
                 {
-                    title: "Dialogue: Tech Trouble",
+                    title: "Dialogue: The New App",
                     audio: "audio/8-3-5/p6_text2.mp3",
-                    body: "<b>Albert:</b> Hi Celine. You look frustrated. What's wrong?<br><b>Celine:</b> My laptop is so slow! I have had it for five years.<br><b>Albert:</b> That is a long time for a laptop. Have you updated the software?<br><b>Celine:</b> Yes, I have already updated everything, but it is still slow.<br><b>Albert:</b> Maybe you need a new one. I have just bought a new tablet, and it is very fast.<br><b>Celine:</b> I haven't saved enough money yet. I need to wait.",
+                    body: "<b>Albert:</b> Have you tried the new photo app, Celine?<br><b>Celine:</b> No, I haven't. What does it do?<br><b>Albert:</b> It edits your photos automatically. I have used it for all my holiday pictures.<br><b>Celine:</b> That sounds cool. Has it got good reviews?<br><b>Albert:</b> Yes, it has. Many people have downloaded it.<br><b>Celine:</b> Okay, I will try it. I have taken some bad photos recently!",
                     questions: [
                         { 
-                            q: "How long has Celine had her laptop?", 
+                            q: "Has Celine tried the app?", 
                             options: [ 
-                                {t: "For one year", c: false}, 
-                                {t: "Since yesterday", c: false}, 
-                                {t: "For five years", c: true}, 
-                                {t: "She doesn't have one", c: false}
+                                {t: "Yes, she has.", c: false}, 
+                                {t: "No, she hasn't.", c: true}, 
+                                {t: "She created it.", c: false}, 
+                                {t: "She deleted it.", c: false}
                             ] 
                         },
                         { 
-                            q: "Has she updated the software?", 
+                            q: "What does Albert use the app for?", 
                             options: [ 
-                                {t: "No, she hasn't.", c: false}, 
-                                {t: "Yes, she has.", c: true}, 
-                                {t: "She never updates.", c: false}, 
-                                {t: "She doesn't know how.", c: false}
+                                {t: "To play games.", c: false}, 
+                                {t: "To edit photos.", c: true}, 
+                                {t: "To send messages.", c: false}, 
+                                {t: "To watch movies.", c: false}
                             ] 
                         },
                         { 
-                            q: "Why doesn't she buy a new one?", 
+                            q: "Why does Celine want to try it?", 
                             options: [ 
-                                {t: "She hasn't saved enough money.", c: true}, 
-                                {t: "She doesn't like tablets.", c: false}, 
-                                {t: "She has already bought one.", c: false}, 
-                                {t: "She prefers slow laptops.", c: false}
+                                {t: "She has taken bad photos.", c: true}, 
+                                {t: "She is bored.", c: false}, 
+                                {t: "She has a new phone.", c: false}, 
+                                {t: "She is an influencer.", c: false}
                             ] 
                         }
                     ]
                 },
                 {
-                    title: "Description: The Smart Home",
-                    audio: "TTS: The Smart Home. My uncle lives in a smart home. It is the most convenient house I have ever visited. He has connected everything to the internet. He can control the lights and the temperature with his phone. He has used this system since 2020. He says it has improved his quality of life. However, when the internet goes down, nothing works! That is a big hindrance. || audio/8-3-5/p6_text3.mp3",
-                    body: "My uncle lives in a \"smart home\". It is the most convenient house I have ever visited. He has connected everything to the internet. He can control the lights and the temperature with his phone. He has used this system since 2020. He says it has improved his quality of life. However, when the internet goes down, nothing works! That is a big hindrance.",
+                    title: "Description: Generation Z",
+                    audio: "TTS: Generation Z. I am part of Generation Z. We are called digital natives because we have grown up with the internet. We have never known a world without smartphones. We use social media to connect with friends and express ourselves. Unlike our parents, we haven't read many physical newspapers; we get our news online. Technology has shaped our lives completely. || audio/8-3-5/p6_text3.mp3",
+                    body: "I am part of Generation Z. We are called \"digital natives\" because we have grown up with the internet. We have never known a world without smartphones. We use social media to connect with friends and express ourselves. Unlike our parents, we haven't read many physical newspapers; we get our news online. Technology has shaped our lives completely.",
                     questions: [
                         { 
-                            q: "What kind of house does the uncle live in?", 
+                            q: "What is another name for Generation Z?", 
                             options: [ 
-                                {t: "An old house", c: false}, 
-                                {t: "A smart home", c: true}, 
-                                {t: "A disconnected house", c: false}, 
-                                {t: "A small apartment", c: false}
+                                {t: "Millennials", c: false}, 
+                                {t: "Digital Natives", c: true}, 
+                                {t: "Baby Boomers", c: false}, 
+                                {t: "Offline Generation", c: false}
                             ] 
                         },
                         { 
-                            q: "How long has he used the system?", 
+                            q: "What have they grown up with?", 
                             options: [ 
-                                {t: "For 2020 years", c: false}, 
-                                {t: "Since 2020", c: true}, 
-                                {t: "Since yesterday", c: false}, 
-                                {t: "For two months", c: false}
+                                {t: "The internet", c: true}, 
+                                {t: "No technology", c: false}, 
+                                {t: "Only newspapers", c: false}, 
+                                {t: "Typewriters", c: false}
                             ] 
                         },
                         { 
-                            q: "What is the hindrance (problem)?", 
+                            q: "Where do they get their news?", 
                             options: [ 
-                                {t: "It is too expensive.", c: false}, 
-                                {t: "It is too hot.", c: false}, 
-                                {t: "Nothing works without the internet.", c: true}, 
-                                {t: "The lights are broken.", c: false}
+                                {t: "From TV only", c: false}, 
+                                {t: "From physical newspapers", c: false}, 
+                                {t: "Online", c: true}, 
+                                {t: "From the radio", c: false}
                             ] 
                         }
                     ]
@@ -1122,70 +1122,70 @@ window.initLesson({
         {
             title: "Monkey see, Monkey do",
             drills: [
-                // Drill 1: Matching the Meanings (Time Words)
+                // Drill 1: Matching the Meanings (Internet Terms)
                 {
                     type: "matching",
-                    instruction: "Match the time word with its usage.<br><small style='color:#0077b6'>(Combine a palavra de tempo com seu uso.)</small>",
+                    instruction: "Match the term with its definition.<br><small style='color:#0077b6'>(Combine o termo com sua definição.)</small>",
                     pairs: [
-                        { left: "Since", right: "Starting point", val: "1" },
-                        { left: "For", right: "Duration", val: "2" },
-                        { left: "Ever", right: "At any time", val: "3" },
-                        { left: "Just", right: "Very short time ago", val: "4" }
+                        { left: "Download", right: "Save a file from the internet", val: "1" },
+                        { left: "Upload", right: "Put a file on the internet", val: "2" },
+                        { left: "Viral", right: "Spreads very fast online", val: "3" },
+                        { left: "Meme", right: "Funny image or video", val: "4" }
                     ]
                 },
-                // Drill 2: Unscramble the Sentences (Present Perfect)
+                // Drill 2: Unscramble the Sentences
                 {
                     type: "word-order",
                     instruction: "Put the words in the correct order to form a Present Perfect sentence.<br><small style='color:#0077b6'>(Coloque as palavras na ordem correta para formar uma frase no Present Perfect.)</small>",
-                    sentence: "lived / here / have / I / for / years / ten / .",
-                    correct: "I have lived here for ten years ."
+                    sentence: "has / She / a / blog / created / .",
+                    correct: "She has created a blog ."
                 },
                 {
                     type: "word-order",
                     instruction: "Put the words in the correct order.",
-                    sentence: "she / Has / seen / ever / movie / that / ?",
-                    correct: "Has she ever seen that movie ?"
+                    sentence: "you / Have / eaten / ever / sushi / ?",
+                    correct: "Have you ever eaten sushi ?"
                 },
                 {
                     type: "word-order",
                     instruction: "Put the words in the correct order.",
-                    sentence: "best / This / the / is / app / ever / have / used / I / .",
-                    correct: "This is the best app I have ever used ."
+                    sentence: "never / I / used / have / VR / .",
+                    correct: "I have never used VR ."
                 },
                 {
                     type: "word-order",
                     instruction: "Put the words in the correct order.",
-                    sentence: "updated / haven't / We / software / the / yet / .",
-                    correct: "We haven't updated the software yet ."
+                    sentence: "gone / to / He / has / school / .",
+                    correct: "He has gone to school ."
                 },
                 // Drill 3: Odd One Out
                 {
                     type: "odd-one-out",
                     instruction: "Choose the word that does not belong in the group.<br><small style='color:#0077b6'>(Escolha a palavra que não pertence ao grupo.)</small>",
                     options: [
-                        { t: "Since", c: false },
-                        { t: "For", c: false },
-                        { t: "Already", c: false },
-                        { t: "Tomorrow", c: true }
+                        { t: "Smartphone", c: false },
+                        { t: "Tablet", c: false },
+                        { t: "Laptop", c: false },
+                        { t: "Meme", c: true }
                     ]
                 },
                 {
                     type: "odd-one-out",
                     instruction: "Choose the word that does not belong in the group.",
                     options: [
-                        { t: "Convenient", c: false },
-                        { t: "Fast", c: false },
-                        { t: "Easy", c: false },
-                        { t: "Hindrance", c: true }
+                        { t: "Click", c: false },
+                        { t: "Scroll", c: false },
+                        { t: "Type", c: false },
+                        { t: "Happy", c: true }
                     ]
                 },
                 {
                     type: "odd-one-out",
                     instruction: "Choose the word that does not belong in the group.",
                     options: [
-                        { t: "Downloaded", c: false },
-                        { t: "Uploaded", c: false },
-                        { t: "Clicked", c: false },
+                        { t: "Has", c: false },
+                        { t: "Have", c: false },
+                        { t: "Had", c: false },
                         { t: "Go", c: true }
                     ]
                 },
@@ -1193,10 +1193,10 @@ window.initLesson({
                     type: "odd-one-out",
                     instruction: "Choose the word that does not belong in the group.",
                     options: [
-                        { t: "Smartphone", c: false },
-                        { t: "Tablet", c: false },
-                        { t: "Laptop", c: false },
-                        { t: "Internet", c: true }
+                        { t: "Instagram", c: false },
+                        { t: "TikTok", c: false },
+                        { t: "YouTube", c: false },
+                        { t: "Keyboard", c: true }
                     ]
                 },
                 // Drill 4: Fill in the Blanks (Drag and Drop)
@@ -1204,10 +1204,10 @@ window.initLesson({
                     type: "dropdown",
                     instruction: "Drag the correct word to complete the sentence.<br><small style='color:#0077b6'>(Arraste a palavra correta para completar a frase.)</small>",
                     questions: [
-                        { q: "I have known him [since | for | ever | never] school started.", a: "since" },
-                        { q: "She has [never | ever | for | since] used a VR headset.", a: "never" },
-                        { q: "Have you [ever | never | for | since] clicked a bad link?", a: "ever" },
-                        { q: "We have waited [for | since | ever | never] two hours.", a: "for" }
+                        { q: "They [have | has | gone | been] bought a new computer.", a: "have" },
+                        { q: "She [has | have | gone | been] never seen Star Wars.", a: "has" },
+                        { q: "Where is Tom? He has [gone | been | have | has] home.", a: "gone" },
+                        { q: "I have [been | gone | have | has] to London (and I am back).", a: "been" }
                     ]
                 }
             ]

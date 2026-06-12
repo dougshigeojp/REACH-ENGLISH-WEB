@@ -871,7 +871,7 @@ window.initLesson({
                     audio: "audio/9-3-6/step5_drill2.mp3",
                     questions: [
                         { q: "Celine: Would you spend a night in that old [house | hotel]?", a: "house" },
-                        { q: "Albert: No way! If I [went | go] in, I [would be | will be] terrified.", a: "went" },
+                        { q: "Albert: No way! If I [went* | go] in, I [would be* | will be] terrified.", a: "went" },
                         { q: "Celine: Really? I [would | will] investigate it.", a: "would" }
                     ]
                 },
@@ -933,7 +933,7 @@ window.initLesson({
                 {
                     title: "Dialogue: The Strange Sound",
                     audio: "audio/9-3-6/p6_text2.mp3",
-                    body: "<b>Albert:</b> Did you hear that noise?<br><b>Celine:</b> Yes. It sounded like footsteps upstairs.<br><b>Albert:</b> But we are alone in the house.<br><b>Celine:</b> If I were brave, I would go look.<br><b>Albert:</b> I am curious. I will look into it.<br><b>Celine:</b> Be careful! What if it is a ghost?<br><b>Albert:</b> If it were a ghost, it wouldn't make noise. It's probably just the cat.<br><b>Celine:</b> Oh, look! The cat just turned up in the hallway. You were right.",
+                    body: "<b>Celine:</b> Did you hear that noise?<br><b>Albert:</b> Yes. It sounded like footsteps upstairs.<br><b>Celine:</b> But we are alone in the house.<br><b>Albert:</b> If I were brave, I would go look.<br><b>Celine:</b> I am curious. I will look into it.<br><b>Albert:</b> Be careful! What if it is a ghost?<br><b>Celine:</b> If it were a ghost, it wouldn't make noise. It's probably just the cat.<br><b>Albert:</b> Oh, look! The cat just turned up in the hallway. You were right.",
                     questions: [
                         { 
                             q: "What did they hear?", 
@@ -945,7 +945,7 @@ window.initLesson({
                             ] 
                         },
                         { 
-                            q: "What would Celine do if she were brave?", 
+                            q: "What would Albert do if he were brave?", 
                             options: [ 
                                 {t: "Run away", c: false}, 
                                 {t: "Call the police", c: false}, 

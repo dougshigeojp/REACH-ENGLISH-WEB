@@ -622,12 +622,12 @@ window.initLesson({
                     lines: [
                         { 
                             speaker: "Albert", 
-                            text: "Celine, if you **were** a famous musician, **would** you still study?", 
+                            text: "Celine, if you <b>were</b> a famous musician, <b>would</b> you still study?", 
                             pt: "<span style='color:#0077b6'>(Celine, se você fosse uma musicista famosa, você ainda estudaria?)</span>" 
                         },
                         { 
                             speaker: "Celine", 
-                            text: "Yes! If I **succeed**, I **will** use my wealth to support others.", 
+                            text: "Yes! If I <b>succeed</b>, I <b>will</b> use my wealth to support others.", 
                             pt: "<span style='color:#0077b6'>(Sim! Se eu tiver sucesso, usarei minha riqueza para apoiar os outros.)</span>" 
                         }
                     ]
@@ -638,12 +638,12 @@ window.initLesson({
                     lines: [
                         { 
                             speaker: "Mrs. Canales", 
-                            text: "Albert, if you **had focused** more, you **would have understood** the puzzle.", 
+                            text: "Albert, if you <b>had focused</b> more, you <b>would have understood</b> the puzzle.", 
                             pt: "<span style='color:#0077b6'>(Albert, se você tivesse focado mais, você teria entendido o quebra-cabeça.)</span>" 
                         },
                         { 
                             speaker: "Albert", 
-                            text: "I know. I’ll join a study group **so that** I can get smarter.", 
+                            text: "I know. I’ll join a study group <b>so that</b> I can get smarter.", 
                             pt: "<span style='color:#0077b6'>(Eu sei. Vou entrar em um grupo de estudos para que eu possa ficar mais inteligente.)</span>" 
                         }
                     ]
@@ -654,12 +654,12 @@ window.initLesson({
                     lines: [
                         { 
                             speaker: "Celine", 
-                            text: "You can **either** complain **or** act. It's your choice.", 
+                            text: "You can <b>either</b> complain <b>or</b> act. It's your choice.", 
                             pt: "<span style='color:#0077b6'>(Você pode ou reclamar ou agir. É sua escolha.)</span>" 
                         },
                         { 
                             speaker: "Albert", 
-                            text: "I'll act! I want to **turn** my hobby **into** a talent.", 
+                            text: "I'll act! I want to <b>turn</b> my hobby <b>into</b> a talent.", 
                             pt: "<span style='color:#0077b6'>(Vou agir! Quero transformar meu hobby em um talento.)</span>" 
                         }
                     ]

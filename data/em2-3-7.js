@@ -310,29 +310,29 @@ window.initLesson({
     {
         title: "Dialogue 1: Lab Decisions",
         lines: [
-            { speaker: "Mrs. Canales", text: "Albert, did you finish writing the report?" },
-            { speaker: "Albert", text: "Not yet. I stopped to check the breakdown of the costs first. I plan to finish it tonight." }
+            { speaker: "Mrs. Canales", text: "Albert, did you finish writing the report?", pt: "<span style='color:#0077b6'>(Albert, você terminou de escrever o relatório?)</span>" },
+            { speaker: "Albert", text: "Not yet. I stopped to check the breakdown of the costs first. I plan to finish it tonight.", pt: "<span style='color:#0077b6'>(Ainda não. Eu parei para verificar a divisão dos custos primeiro. Planejo terminar hoje à noite.)</span>" }
         ]
     },
     {
         title: "Dialogue 2: Ethical Advice",
         lines: [
-            { speaker: "Celine", text: "The teacher advised us to be careful with our opinions." },
-            { speaker: "Albert", text: "I agree. We must avoid making moral mistakes. I remember hearing that gene editing is very controversial." }
+            { speaker: "Celine", text: "The teacher advised us to be careful with our opinions.", pt: "<span style='color:#0077b6'>(A professora nos aconselhou a ter cuidado com nossas opiniões.)</span>" },
+            { speaker: "Albert", text: "I agree. We must avoid making moral mistakes. I remember hearing that gene editing is very controversial.", pt: "<span style='color:#0077b6'>(Eu concordo. Devemos evitar cometer erros morais. Lembro-me de ter ouvido que a edição de genes é muito controversa.)</span>" }
         ]
     },
     {
         title: "Dialogue 3: Lab Safety & Future Goals",
         lines: [
-            { speaker: "Albert", text: "Do you think science will carry us through the climate crisis?" },
-            { speaker: "Celine", text: "I hope so! We need to keep researching new solutions every day." }
+            { speaker: "Albert", text: "Do you think science will carry us through the climate crisis?", pt: "<span style='color:#0077b6'>(Você acha que a ciência nos ajudará a superar a crise climática?)</span>" },
+            { speaker: "Celine", text: "I hope so! We need to keep researching new solutions every day.", pt: "<span style='color:#0077b6'>(Espero que sim! Precisamos continuar pesquisando novas soluções todos os dias.)</span>" }
         ]
     },
     {
         title: "Dialogue 4: Looking Back",
         lines: [
-            { speaker: "Celine", text: "I wish the scientists had stopped to consider the risks earlier." },
-            { speaker: "Albert", text: "True, but they were so eager to break through barriers that they didn't look back." }
+            { speaker: "Celine", text: "I wish the scientists had stopped to consider the risks earlier.", pt: "<span style='color:#0077b6'>(Gostaria que os cientistas tivessem parado para considerar os riscos antes.)</span>" },
+            { speaker: "Albert", text: "True, but they were so eager to break through barriers that they didn't look back.", pt: "<span style='color:#0077b6'>(Verdade, mas eles estavam tão ansiosos para ultrapassar barreiras que não olharam para trás.)</span>" }
         ]
     }
 ]
@@ -431,14 +431,14 @@ window.initLesson({
         // Drill 2: Dropdown
         {
             type: "dropdown",
-            instruction: "Listen to the dialogue between Celine and a Water Expert and choose the correct options.",
-            audio: "TTS: Albert: Sir, do we have to worry about water scarcity? Expert: Yes. You must be aware of your water footprint. Albert: I see. Should people take shorter showers? Expert: Definitely. You had better start today in order to save our natural resources.",
-            questions: [
-                { q: "Albert: Sir, do we [have to* | should | needn't] worry about [water scarcity* | flood | rain]?", a: "have to" },
-                { q: "Expert: You [must* | don't have to | may] be aware of your [water footprint* | bill | tap].", a: "must" },
-                { q: "Albert: Should people [take* | drink | waste] shorter showers?", a: "take" },
-                { q: "Expert: You [had better* | needn't | used to] start today [in order to* | so that | because] save our natural resources.", a: "had better" }
-            ]
+                    instruction: "(Instructions: Listen to a conversation about de-extinction and choose the correct options. | Instruções: Ouça uma conversa sobre desextinção e escolha as opções corretas.)",
+                    audio: "audio/em2-3-7/step5_drill2.mp3",
+                    questions: [
+                        { q: "Celine: Some labs plan [to resurrect* | resurrecting | resurrected] the mammoth.", a: "to resurrect" },
+                        { q: "Albert: I imagine [to see | seeing* | saw] one would be amazing, but we need [consider | to consider* | considering] the ecosystem.", a: "seeing" },
+                        { q: "Celine: Critics advise [scientists to stop* | scientists stopping | scientists stop] the project.", a: "scientists to stop" },
+                        { q: "Albert: Well, let's keep [to research | researching* | researched] the potential benefits.", a: "researching" }
+                    ]
         },
         // Drill 3: Audio Choice
         {
