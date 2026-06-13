@@ -53,7 +53,7 @@ window.initLesson({
                 },
                 { 
                     speaker: "Celine", 
-                    text: "Yes. She told me that she had [focused on](tooltip:focus-on) her [mistakes](tooltip:mistake) instead of the [failure](tooltip:failure). She said that her mother had advised her tov[embrace](tooltip:embrace) those errors." 
+                    text: "Yes. She told me that she had [focused on](tooltip:focus-on) her [mistakes](tooltip:mistake) instead of the [failure](tooltip:failure). She said that her mother had advised her to [embrace](tooltip:embrace) those errors." 
                 },
                 { 
                     speaker: "Albert", 
@@ -1060,19 +1060,19 @@ window.initLesson({
                     audio: "audio/em1-4-10/step5_drill2.mp3",
                     questions:[
                         { 
-                            q: "Celine: Albert, [could you tell me why*| why you could tell me | do you know why] you are [struggling*| struggle | struggled]?", 
+                            q: "Celine: Albert, [could you tell me why*| why you could tell me | do you know why] you are [struggle| struggling* | struggled]?", 
                             a: "could you tell me why" 
                         },
                         { 
-                            q: "Albert: I don't know. The counselor [asked if*| asked that | asked me] I [needed* | need | needing] help.", 
+                            q: "Albert: I don't know. The counselor [asked me| asked that | asked if*] I [needed* | need | needing] help.", 
                             a: "asked if" 
                         },
                         { 
-                            q: "Celine: You [will carry on*| carry on | carried on], [won't you*| will you | don't you]?", 
+                            q: "Celine: You [will carry on*| carry on | carried on], [don't you| will you | won't you*]?", 
                             a: "will carry on" 
                         },
                         { 
-                            q: "Albert: Yes, I will. I won't [call off*| call back | call in] my dreams.", 
+                            q: "Albert: Yes, I will. I won't [call back | call off* | call in] my dreams.", 
                             a: "call off" 
                         }
                     ]

@@ -416,7 +416,7 @@ window.initLesson({
                     lines:[
                         { 
                             speaker: "Celine", 
-                            text: "Our design is beautiful.[However](tooltip:however), it lacks symmetry. [Therefore](tooltip:therefore), we need to recalculate the angles.", 
+                            text: "Our design is beautiful. [However](tooltip:however), it lacks symmetry. [Therefore](tooltip:therefore), we need to recalculate the angles.", 
                             pt: "<span style='color:#0077b6'>(Nosso design é bonito. No entanto, falta simetria. Portanto, precisamos recalcular os ângulos.)</span>" 
                         },
                         { 
@@ -546,9 +546,9 @@ window.initLesson({
                     instruction: "Listen to the dialogue and choose the correct options.<br><small style='color:#0077b6'>(Ouça o diálogo e escolha as opções corretas.)</small>",
                     audio: "audio/em2-4-11/step5_drill2.mp3",
                     questions:[
-                        { q: "Celine: Professor, [could* | must | can't] this be a [fractal* | sequence | hexagon]?", a: "" },
-                        { q: "Professor: It [might be* | must have | couldn't].[However* | Moreover | Consequently], we need a precise [measurement* | pattern | sequence] to be sure.", a: "" },
-                        { q: "Celine: If the calculation is wrong, I[must have made* | can't made | will made] a mistake earlier.", a: "" }
+                        { q: "Celine: Professor, [must | could* | can't] this be a [hexagon | sequence | fractal*]?", a: "" },
+                        { q: "Professor: It [might be* | must have | couldn't]. [Moreover | However* | Consequently], we need a precise [sequence | pattern | measurement*] to be sure.", a: "" },
+                        { q: "Celine: If the calculation is wrong, I [can't make | must have made* | will made] a mistake earlier.", a: "" }
                     ]
                 },
                 // Drill 3: Audio Choice

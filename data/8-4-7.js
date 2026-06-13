@@ -57,7 +57,7 @@ window.initLesson({
                 },
                 { 
                     speaker: "Celine", 
-                    text: "Yes! I am so happy. I [feel great](tooltip:feel-great)." 
+                    text: "Yes! I am so happy. And the weather [feels great](tooltip:feel-great)." 
                 },
                 { 
                     speaker: "Albert", 
@@ -877,7 +877,7 @@ window.initLesson({
                     questions: [
                         { q: "Celine: Have you seen the new movie [yet | just]?", a: "yet" },
                         { q: "Albert: No, I [haven't | have]. Was it good?", a: "haven't" },
-                        { q: "Celine: No, it was [boring | bored]. I was [bored | boring] the whole time.", a: "boring" } // Celine says it was boring (cause) and she was bored (feeling)
+                        { q: "Celine: No, it was [boring* | bored]. I was [boring | bored*] the whole time.", a: "boring" } // Celine says it was boring (cause) and she was bored (feeling)
                     ]
                 },
                 // Drill 3: Audio Choice (TTS)

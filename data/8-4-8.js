@@ -878,9 +878,9 @@ window.initLesson({
                     instruction: "Listen to the tour guide and choose the correct option.<br><small style='color:#0077b6'>(Ouça o guia turístico e escolha a opção correta.)</small>",
                     audio: "audio/8-4-8/step5_drill2.mp3",
                     questions: [
-                        { q: "Guide: This castle [was built | built] in 1500.", a: "was built" },
+                        { q: "Guide: This castle [built | was built] in 1500 (fifteen hundred = one thousand five hundred).", a: "was built" },
                         { q: "Tourist: Who [lived | live] here?", a: "lived" },
-                        { q: "Guide: It [was used | used] by the Royal Family. Now, it is [visited | visit] by tourists.", a: "was used" }
+                        { q: "Guide: It [was used* | used] by the Royal Family. Now, it [is visit | is visited*] by tourists.", a: "was used" }
                     ]
                 },
                 // Drill 3: Audio Choice (MP3)

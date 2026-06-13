@@ -54,7 +54,7 @@ window.initLesson({
                 },
                 { 
                     speaker: "Albert", 
-                    text: "Don't worry. Last month, I [had my tablet fixed](tooltip:have-something-done) at this same store. I [got the technician to explain](tooltip:get-someone-to-do-something) the problem, and they were very [rely on](tooltip:rely-on) them." 
+                    text: "Don't worry. Last month, I [had my tablet fixed](tooltip:have-something-done) at this same store. I [got the technician to explain](tooltip:get-someone-to-do-something) the problem, and they were very nice. You can [rely on](tooltip:rely-on) them." 
                 },
                 { 
                     speaker: "Celine", 
@@ -827,8 +827,11 @@ window.initLesson({
                     instruction: "Listen to the conversation between Celine and the Clerk about a return. Choose the correct option.<br><small style='color:#0077b6'>(Ouça a conversa entre Celine e o balconista sobre uma devolução. Escolha a opção correta.)</small>",
                     audio: "audio/9-4-7/step5_drill2.mp3",
                     questions: [
+                        { q: "Celine: Excuse me, [I had liked | I would like | I would rather] to return this shirt.", a: "I would like" },
                         { q: "Clerk: Do you have the [receipt | recipe | refund]?", a: "receipt" },
-                        { q: "Celine: No, I just changed my mind. I'd like a [discount | refund | brand].", a: "refund" }
+                        { q: "Celine: Yes, [here they are | here is it | here it is].", a: "here it is" },
+                        { q: "Clerk: Is there any [problem | receipt | refund] with it?", a: "problem" },
+                        { q: "Celine: No, I just changed my mind. I'd like a [discount | refund | brand].", a: "refund" },
                     ]
                 },
                 // Drill 3: Audio Choice (TTS)

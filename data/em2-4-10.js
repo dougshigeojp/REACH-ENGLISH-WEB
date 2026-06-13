@@ -367,7 +367,7 @@ window.initLesson({
                     lines:[
                         { 
                             speaker: "Albert", 
-                            text: "Mrs. Canales, I was reading about [3D printing](tooltip:3d-printing).[Could you tell me](tooltip:could-you-tell-me) what material it uses?", 
+                            text: "Mrs. Canales, I was reading about [3D printing](tooltip:3d-printing). [Could you tell me](tooltip:could-you-tell-me) what material it uses?", 
                             pt: "<span style='color:#0077b6'>(Sra. Canales, eu estava lendo sobre impressão 3D. Você poderia me dizer que material ela usa?)</span>" 
                         },
                         { 
@@ -518,10 +518,10 @@ window.initLesson({
                     instruction: "Listen to a dialogue between Celine and a Scientist and choose the correct options.<br><small style='color:#0077b6'>(Ouça o diálogo entre Celine e um Cientista e escolha as opções corretas.)</small>",
                     audio: "audio/em2-4-10/step5_drill2.mp3",
                     questions:[
-                        { q: "Celine: Could you tell me [if* | why | what][biodegradable* | disposable | reusable] plastic is the best [breakthrough | landfill | solution*]?", a: "" },
-                        { q: "Scientist: It’s a [controversial* | disposable | lightweight] topic. People often[call back | call for* | call out] more research.", a: "" },
-                        { q: "Celine: I'd like to know [how | why | whether*] it can [decompose | recycle | contaminate*] regular[recycling* | durable | polymer] systems.", a: "" },
-                        { q: "Scientist: Yes, it can. We must[get through | get by | get together*] to discuss better sorting methods.", a: "" }
+                        { q: "Celine: Could you tell me [why | if* | what] [biodegradable* | disposable | reusable] plastic is the best [breakthrough | landfill | solution*]?", a: "" },
+                        { q: "Scientist: It’s a [controversial* | disposable | lightweight] topic. People often [call back | call for* | call out] more research.", a: "" },
+                        { q: "Celine: I'd like to know [how | why | whether*] it can [decompose | recycle | contaminate*] regular [recycling* | durable | polymer] systems.", a: "" },
+                        { q: "Scientist: Yes, it can. We must [get through | get by | get together*] to discuss better sorting methods.", a: "" }
                     ]
                 },
                 // Drill 3: Audio Choice

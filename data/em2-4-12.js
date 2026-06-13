@@ -498,7 +498,7 @@ window.initLesson({
                         },
                         { 
                             speaker: "Celine", 
-                            text: "Don't worry. If you study this weekend, you[will be able to](tooltip:be-able-to) understand the formulas. Remember, last year you[couldn't](tooltip:could-ability) even do fractions, and now you are great at them!", 
+                            text: "Don't worry. If you study this weekend, you [will be able to](tooltip:be-able-to) understand the formulas. Remember, last year you [couldn't](tooltip:could-ability) even do fractions, and now you are great at them!", 
                             pt: "<span style='color:#0077b6'>(Não se preocupe. Se você estudar neste fim de semana, você será capaz de entender as fórmulas. Lembre-se, no ano passado você não conseguia nem fazer frações, e agora você é ótimo nelas!)</span>" 
                         }
                     ]
@@ -535,7 +535,7 @@ window.initLesson({
                         },
                         { 
                             speaker: "Celine", 
-                            text: "Sure![Can](tooltip:can-request) you pass me that pencil first?", 
+                            text: "Sure! [Can](tooltip:can-request) you pass me that pencil first?", 
                             pt: "<span style='color:#0077b6'>(Claro! Pode me passar aquele lápis primeiro?)</span>" 
                         }
                     ]
@@ -660,10 +660,10 @@ window.initLesson({
                     instruction: "Listen to Mrs. Canales giving advice to the class and choose the correct options.<br><small style='color:#0077b6'>(Ouça a Sra. Canales dando conselhos à turma e escolha as opções corretas.)</small>",
                     audio: "audio/em2-4-12/step5_drill2.mp3",
                     questions:[
-                        { q: "Mrs. Canales: Class, remember step number 4: Build a network.", a: "" },
+                        { q: "Mrs. Canales: Class, remember step number 4: Build a [vocation | designer | network*].", a: "" },
                         { q: "Student:[How do we do that?* | Can we do that? | May we do that?]", a: "" },
-                        { q: "Mrs. Canales: You[should* | must not | can't] talk to people who inspire you.", a: "" },
-                        { q: "Student:[May* | Must | Will] I invite a professional to interview?", a: "" },
+                        { q: "Mrs. Canales: You [may not | should* | can't] talk to people who inspire you.", a: "" },
+                        { q: "Student:[Might | Must | May*] I invite a professional to interview?", a: "" },
                         { q: "Mrs. Canales: Yes, you [can* | could | will]. That is a great way to learn!", a: "" }
                     ]
                 },

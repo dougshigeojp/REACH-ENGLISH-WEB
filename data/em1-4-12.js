@@ -53,7 +53,7 @@ window.initLesson({
                 },
                 { 
                     speaker: "Celine", 
-                    text: "That's a good point. If we don't [give in](tooltip:give-in) to every sale, we [make](tooltip:make) a more [conscious](tooltip:conscious) [choice](tooltip:choice).[Therefore](tooltip:therefore), the planet [will benefit](tooltip:will-benefit)." 
+                    text: "That's a good point. If we don't [give in](tooltip:give-in) to every sale, we [make](tooltip:make) a more [conscious](tooltip:conscious) [choice](tooltip:choice). [Therefore](tooltip:therefore), the planet [will benefit](tooltip:will-benefit)." 
                 },
                 { 
                     speaker: "Albert", 
@@ -376,12 +376,12 @@ window.initLesson({
                     lines:[
                         { 
                             speaker: "Celine", 
-                            text: "Albert, I[have been reading](tooltip:present-perfect-continuous) a lot about the [impact](tooltip:impact) of clothing. [Although](tooltip:although) fast fashion is cheap, it creates too much [waste](tooltip:waste).", 
+                            text: "Albert, I [have been reading](tooltip:present-perfect-continuous) a lot about the [impact](tooltip:impact) of clothing. [Although](tooltip:although) fast fashion is cheap, it creates too much [waste](tooltip:waste).", 
                             pt: "<span style='color:#0077b6'>(Albert, tenho lido muito sobre o impacto do vestuário. Embora a moda descartável seja barata, ela cria muito lixo.)</span>" 
                         },
                         { 
                             speaker: "Albert", 
-                            text: "I agree. [In fact](tooltip:in-fact), I[had already decided](tooltip:past-perfect) to stop buying low-quality [products](tooltip:product) before we met. [Either](tooltip:either-or) we buy less or we destroy the [environment](tooltip:environment).", 
+                            text: "I agree. [In fact](tooltip:in-fact), I [had already decided](tooltip:past-perfect) to stop buying low-quality [products](tooltip:product) before we met. [Either](tooltip:either-or) we buy less or we destroy the [environment](tooltip:environment).", 
                             pt: "<span style='color:#0077b6'>(Eu concordo. Na verdade, eu já tinha decidido parar de comprar produtos de baixa qualidade antes de nos conhecermos. Ou compramos menos ou destruímos o meio ambiente.)</span>" 
                         }
                     ]
@@ -397,7 +397,7 @@ window.initLesson({
                         },
                         { 
                             speaker: "Albert", 
-                            text: "No, thanks. I won't buy anything [until](tooltip:until) I [look up](tooltip:look-up) the company's history. [Due to](tooltip:due-to) recent news, I want to be more[conscious](tooltip:conscious).", 
+                            text: "No, thanks. I won't buy anything [until](tooltip:until) I [look up](tooltip:look-up) the company's history. [Due to](tooltip:due-to) recent news, I want to be more [conscious](tooltip:conscious).", 
                             pt: "<span style='color:#0077b6'>(Não, obrigado. Não comprarei nada até pesquisar a história da empresa. Devido às notícias recentes, quero ser mais consciente.)</span>" 
                         }
                     ]
@@ -527,10 +527,10 @@ window.initLesson({
                     instruction: "Listen to the dialogue between Celine and a Store Clerk and choose the correct options.<br><small style='color:#0077b6'>(Ouça o diálogo e escolha as opções corretas.)</small>",
                     audio: "audio/em1-4-12/step5_drill2.mp3",
                     questions:[
-                        { q: "Celine: Hello! I am[looking for* | looking after | looking into] a jacket. Is this one [wasteful | sustainable* | misleading]?", a: "" },
+                        { q: "Celine: Hello! I am [looking for* | looking after | looking into] a jacket. Is this one [wasteful | sustainable* | misleading]?", a: "" },
                         { q: "Clerk: Yes! We [brought in | bring in | are bringing in*] new items made from organic cotton.", a: "" },
-                        { q: "Celine: That's great![Moreover* | Since | However], I noticed you [give back | give off | give out*] recycled bags.", a: "" },
-                        { q: "Clerk: Exactly. We want to [recycle | reduce* | purchase] our[habit | impact* | brand] on the environment.", a: "" }
+                        { q: "Celine: That's great! [Moreover* | Since | However], I noticed you [give back | give off | give out*] recycled bags.", a: "" },
+                        { q: "Clerk: Exactly. We want to [recycle | reduce* | purchase] our [habit | impact* | brand] on the environment.", a: "" }
                     ]
                 },
                 // Drill 3: Audio Choice (TTS)

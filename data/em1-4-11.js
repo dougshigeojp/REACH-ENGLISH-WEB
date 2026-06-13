@@ -418,7 +418,7 @@ window.initLesson({
                     audio: "audio/em1-4-11/step3_dialogue2.mp3",
                     lines:[
                         { speaker: "Albert", text: "I [want to start](tooltip:infinitives) swimming, but I don't know [whether](tooltip:whether) I have time.", pt: "<span style='color:#0077b6'>(Quero começar a nadar, mas não sei se tenho tempo.)</span>" },
-                        { speaker: "Celine", text: "I[suggest practicing](tooltip:gerunds) in the morning. You won't feel [active](tooltip:active) [unless](tooltip:unless) you try!", pt: "<span style='color:#0077b6'>(Sugiro praticar de manhã. Você não se sentirá ativo a menos que tente!)</span>" }
+                        { speaker: "Celine", text: "I [suggest practicing](tooltip:gerunds) in the morning. You won't feel [active](tooltip:active) [unless](tooltip:unless) you try!", pt: "<span style='color:#0077b6'>(Sugiro praticar de manhã. Você não se sentirá ativo a menos que tente!)</span>" }
                     ]
                 },
                 {
@@ -560,9 +560,9 @@ window.initLesson({
                     audio: "audio/em1-4-11/step5_drill2.mp3",
                     questions:[
                         { q: "Albert: I need to [have | let | get*] my brother [exercise | exercising | to exercise*] with me.", a: "" },
-                        { q: "Celine: That’s a good idea! You will feel[stressed | active* | anxious] as long as you keep a routine.", a: "" },
+                        { q: "Celine: That’s a good idea! You will feel [stressed | active* | anxious] as long as you keep a routine.", a: "" },
                         { q: "Albert: I also had my diet [review | reviewed* | reviewing] by a specialist.", a: "" },
-                        { q: "Celine: Great! A new gym [builds | is built | is being built*][past | around | across*] the street from my house.", a: "" }
+                        { q: "Celine: Great! A new gym [builds | is built | is being built*] [past | around | across*] the street from my house.", a: "" }
                     ]
                 },
                 // Drill 3: Audio Choice
@@ -620,7 +620,7 @@ window.initLesson({
                 {
                     title: "6b: Dialogue - Planning a Workout",
                     audio: "audio/em1-4-11/p6_text2.mp3",
-                    body: "<b>Albert:</b> I want to [improve](tooltip:improve) my lifestyle. I wonder [if](tooltip:if) you can help me, Celine.<br><b>Celine:</b> Sure! I [got my friend to join](tooltip:causative-form) the [gym](tooltip:gym) last week. We can go together.<br><b>Albert:</b> I’ll go [provided that](tooltip:provided-that) it’s not too difficult. I avoid [feeling](tooltip:feel) exhausted.<br><b>Celine:</b> Don't worry. We will walk [towards](tooltip:towards) the hill and then run down to the park.<br><b>Albert:</b> Okay. I need to get my water before we start.<br><b>Celine:</b> That’s a sensible [step](tooltip:step). I [had my health checked](tooltip:causative-form) by a doctor yesterday.",
+                    body: "<b>Albert:</b> I want to [improve](tooltip:improve) my lifestyle. I wonder [if](tooltip:if) you can help me, Celine.<br><b>Celine:</b> Sure! I [got my friend to join](tooltip:causative-form) the [gym](tooltip:gym) last week. We can go together.<br><b>Albert:</b> I’ll go [provided that](tooltip:provided-that) it’s not too difficult. I avoid [feeling](tooltip:feel) exhausted.<br><b>Celine:</b> Don't worry. We will walk [towards](tooltip:towards) the hill and then run down to the park.<br><b>Albert:</b> Okay. I need to get my water before we start.<br><b>Celine:</b> That’s a sensible [step](tooltip:step). I [had my health checked](tooltip:causative-form) by a doctor yesterday. He told me to drink more water.",
                     questions:[
                         { 
                             q: "Who did Celine get to join the gym last week?", 
