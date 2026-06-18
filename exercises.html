@@ -299,67 +299,113 @@
 
 <body class="exercise-mode">
 
-    <!-- PLAYLIST OVERLAY -->
-    <div id="playlist-overlay">
-        <div class="overlay-card">
-            <h2 class="overlay-title">Select Your Playlist</h2>
-            <p class="overlay-subtitle">Choose a study mode to customize your practice session</p>
+    <!-- SESSION CONFIGURATOR OVERLAY (Unifies A and B) -->
+    <div id="session-configurator-overlay">
+        <div id="session-configurator-modal">
+            <div class="sc-header">
+                <div class="sc-icon">⚙️</div>
+                <h2 class="sc-title">Session Configurator</h2>
+                <p class="sc-subtitle">Select your practice parameters</p>
+            </div>
+            
+            <div class="sc-tabs" role="tablist">
+                <button class="sc-tab active" id="sc-tab-time" onclick="switchConfigTab('time')">⏱️ By Time</button>
+                <button class="sc-tab" id="sc-tab-category" onclick="switchConfigTab('category')">🎯 By Target</button>
+                <button class="sc-tab" id="sc-tab-custom" onclick="switchConfigTab('custom')">🛠️ Custom</button>
+            </div>
 
-            <div class="overlay-section">
-                <h3 class="section-title">⏱️ Time-Based Lists</h3>
-                <div class="playlist-grid">
-                    <button class="playlist-btn" onclick="selectPlaylist('1a')">
-                        <span class="btn-title">1a (Complete Mock - 45 min)</span>
-                        <span class="btn-desc">Types 1-15</span>
-                    </button>
-                    <button class="playlist-btn" onclick="selectPlaylist('1b')">
-                        <span class="btn-title">1b (Quick - 3 min)</span>
-                        <span class="btn-desc">Types 1, 3, 6</span>
-                    </button>
-                    <button class="playlist-btn" onclick="selectPlaylist('1c')">
-                        <span class="btn-title">1c (Homework - 12 min)</span>
-                        <span class="btn-desc">Types 2, 7, 9, 10, 14</span>
-                    </button>
-                    <button class="playlist-btn" onclick="selectPlaylist('1d')">
-                        <span class="btn-title">1d (Mock Test - 30 min)</span>
-                        <span class="btn-desc">Types 4, 5, 8, 11, 12, 13, 15</span>
-                    </button>
+            <div class="sc-panel active" id="sc-panel-time">
+                <div class="sc-radio-group">
+                    <label class="sc-radio-card">
+                        <div class="sc-radio-dot"></div>
+                        <input type="radio" name="sc-time" value="complete" hidden onclick="selectPreset('time', this.parentElement)">
+                        <div class="sc-radio-info">
+                            <strong>Complete Mock</strong><span class="sc-badge sc-badge-time">45 Min</span>
+                        </div>
+                        <div class="sc-radio-desc">The ultimate full-spectrum challenge.</div>
+                    </label>
+                    <label class="sc-radio-card">
+                        <div class="sc-radio-dot"></div>
+                        <input type="radio" name="sc-time" value="mock" hidden onclick="selectPreset('time', this.parentElement)">
+                        <div class="sc-radio-info">
+                            <strong>Standard Mock</strong><span class="sc-badge sc-badge-time">30 Min</span>
+                        </div>
+                        <div class="sc-radio-desc">A balanced test across multiple skills.</div>
+                    </label>
+                    <label class="sc-radio-card">
+                        <div class="sc-radio-dot"></div>
+                        <input type="radio" name="sc-time" value="homework" hidden onclick="selectPreset('time', this.parentElement)">
+                        <div class="sc-radio-info">
+                            <strong>Homework</strong><span class="sc-badge sc-badge-time">12 Min</span>
+                        </div>
+                        <div class="sc-radio-desc">Perfect for daily repetition.</div>
+                    </label>
+                    <label class="sc-radio-card">
+                        <div class="sc-radio-dot"></div>
+                        <input type="radio" name="sc-time" value="quick" hidden onclick="selectPreset('time', this.parentElement)">
+                        <div class="sc-radio-info">
+                            <strong>Quick Refresh</strong><span class="sc-badge sc-badge-time">3 Min</span>
+                        </div>
+                        <div class="sc-radio-desc">A rapid burst of focused practice.</div>
+                    </label>
                 </div>
+                <button class="sc-launch-btn" id="sc-launch-time" disabled onclick="launchSession('time')">Select a Preset</button>
             </div>
 
-            <div class="overlay-section">
-                <h3 class="section-title">🎯 Targeted Lists</h3>
-                <div class="playlist-grid">
-                    <button class="playlist-btn" onclick="selectPlaylist('2a')">
-                        <span class="btn-title">2a (Vocabulary)</span>
-                        <span class="btn-desc">Types 4, 6, 7, 8</span>
-                    </button>
-                    <button class="playlist-btn" onclick="selectPlaylist('2b')">
-                        <span class="btn-title">2b (Sentence Logic)</span>
-                        <span class="btn-desc">Types 1, 2, 3, 5, 10</span>
-                    </button>
-                    <button class="playlist-btn" onclick="selectPlaylist('2c')">
-                        <span class="btn-title">2c (Aural Tracking - Audio)</span>
-                        <span class="btn-desc">Types 9, 13, 15</span>
-                    </button>
-                    <button class="playlist-btn" onclick="selectPlaylist('2d')">
-                        <span class="btn-title">2d (Deep Synthesis - Textual)</span>
-                        <span class="btn-desc">Types 11, 12, 14</span>
-                    </button>
+            <div class="sc-panel" id="sc-panel-category">
+                <div class="sc-radio-group">
+                    <label class="sc-radio-card">
+                        <div class="sc-radio-dot"></div>
+                        <input type="radio" name="sc-category" value="receptive" hidden onclick="selectPreset('category', this.parentElement)">
+                        <div class="sc-radio-info">
+                            <strong>Vocabulary & Receptive</strong><span class="sc-badge sc-badge-cat">Input</span>
+                        </div>
+                        <div class="sc-radio-desc">Focus on understanding meaning and matching.</div>
+                    </label>
+                    <label class="sc-radio-card">
+                        <div class="sc-radio-dot"></div>
+                        <input type="radio" name="sc-category" value="structural" hidden onclick="selectPreset('category', this.parentElement)">
+                        <div class="sc-radio-info">
+                            <strong>Sentence Logic</strong><span class="sc-badge sc-badge-cat">Structure</span>
+                        </div>
+                        <div class="sc-radio-desc">Focus on grammar, order, and correction.</div>
+                    </label>
+                    <label class="sc-radio-card">
+                        <div class="sc-radio-dot"></div>
+                        <input type="radio" name="sc-category" value="acoustic" hidden onclick="selectPreset('category', this.parentElement)">
+                        <div class="sc-radio-info">
+                            <strong>Aural Tracking</strong><span class="sc-badge sc-badge-cat">Audio</span>
+                        </div>
+                        <div class="sc-radio-desc">Listening comprehension and tracking drills.</div>
+                    </label>
+                    <label class="sc-radio-card">
+                        <div class="sc-radio-dot"></div>
+                        <input type="radio" name="sc-category" value="generative" hidden onclick="selectPreset('category', this.parentElement)">
+                        <div class="sc-radio-info">
+                            <strong>Deep Synthesis</strong><span class="sc-badge sc-badge-cat">Output</span>
+                        </div>
+                        <div class="sc-radio-desc">Production, speaking, and text completion.</div>
+                    </label>
                 </div>
+                <button class="sc-launch-btn" id="sc-launch-category" disabled onclick="launchSession('category')">Select a Preset</button>
             </div>
 
-            <div class="toggle-container">
-                <span class="toggle-label">Translate (for Brazilian students)</span>
-                <label class="switch">
-                    <input type="checkbox" id="translation-toggle" checked>
-                    <span class="slider round"></span>
-                </label>
+            <div class="sc-panel" id="sc-panel-custom">
+                <div class="sc-custom-header">
+                    <span class="sc-custom-count" id="sc-custom-count">0 selected</span>
+                    <button class="sc-toggle-all-btn" id="sc-toggle-all" onclick="toggleAllCustom()">Select All</button>
+                </div>
+                <div class="sc-checkbox-list" id="sc-checkbox-list">
+                    <!-- Populated by JS -->
+                </div>
+                <button class="sc-launch-btn" id="sc-launch-custom" disabled onclick="launchSession('custom')">Select at least 1 exercise</button>
             </div>
+            
         </div>
     </div>
 
     <!-- HEADER -->
+<!-- HEADER -->
     <header id="ex-header">
         <div style="display:flex; align-items:center; gap:15px;">
             <!-- Menu Toggle -->
@@ -373,8 +419,25 @@
                     id="ex-chapter">CHAPTER</span>
             </div>
         </div>
-        <div class="timer-badge" id="global-timer">00:00</div>
+        
+        <!-- Timer & Exit Button Wrapper -->
+        <div style="display:flex; align-items:center; gap:10px;">
+            <div class="timer-badge" id="global-timer">00:00</div>
+            <button id="exit-session-btn" onclick="document.getElementById('exit-modal').style.display='flex'">🚪 EXIT</button>
+        </div>
     </header>
+
+    <!-- EXIT CONFIRMATION MODAL -->
+    <div id="exit-modal" style="display:none;">
+        <div class="exit-modal-content">
+            <h3>Return to Home?</h3>
+            <p>Are you sure you want to exit? Your progress in this session will be lost.</p>
+            <div class="exit-modal-buttons">
+                <button class="exit-btn-cancel" onclick="document.getElementById('exit-modal').style.display='none'">CANCEL</button>
+                <button class="exit-btn-confirm" onclick="window.location.href='exercises.html?id=ex-home'">CONFIRM</button>
+            </div>
+        </div>
+    </div>
 
     <!-- RETRACTABLE MENU -->
     <div id="menu-overlay"
@@ -396,16 +459,6 @@
             <div style="font-size:0.8rem; color:#666; margin-top:5px;">
                 <span id="ex-bimester"></span> • <span id="ex-chapter"></span> <!-- Add these IDs -->
             </div>
-        </div>
-
-        <!-- Translation Toggle inside Menu -->
-        <div
-            style="padding: 15px 20px; border-bottom: 1px solid var(--bg-alice-blue); display: flex; align-items: center; justify-content: space-between;">
-            <span style="font-size: 0.85rem; font-weight: 600; color: #444;">Translation (Portuguese)</span>
-            <label class="switch switch-sm">
-                <input type="checkbox" id="menu-translation-toggle" checked>
-                <span class="slider round"></span>
-            </label>
         </div>
 
         <ul id="nav-list">
@@ -431,10 +484,7 @@
     <!-- AUDIO ENGINE -->
     <audio id="global-audio-player"></audio>
 
-    <!-- SCRIPTS -->
-    <script src="engine-exercises.js"></script>
-
-    <!-- DATA LOADER -->
+<!-- DYNAMIC ENGINE & DATA LOADER -->
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const lessonId = urlParams.get('id');
@@ -455,22 +505,27 @@
                     ${getExBackBtn()}
                 </div>`;
         } else {
-            const dataScript = document.createElement('script');
-            dataScript.src = `data/exercises/${lessonId}.js`;
+            // 1. Determine which Engine to load (If ID ends with 'b', load Type B)
+            const engineScript = document.createElement('script');
+            const isTypeB = lessonId.endsWith('b');
+            engineScript.src = isTypeB ? 'engine-exercises-b.js' : 'engine-exercises.js';
 
-            dataScript.onload = () => console.log("Exercise Data Loaded");
-
-            // EXERCISE FILE NOT FOUND
-            dataScript.onerror = () => {
-                contentDiv.innerHTML = `
-                    <div style="text-align:center; padding:50px; color: red;">
-                        <h2>❌ Exercise File Not Found</h2>
-                        <p>Could not load: <b>data/exercises/${lessonId}.js</b></p>
-                        ${getExBackBtn()}
-                    </div>`;
+            // 2. Once the engine is loaded, load the actual data
+            engineScript.onload = () => {
+                const dataScript = document.createElement('script');
+                dataScript.src = `data/exercises/${lessonId}.js`;
+                dataScript.onload = () => console.log("Exercise Data Loaded");
+                dataScript.onerror = () => {
+                    contentDiv.innerHTML = `
+                        <div style="text-align:center; padding:50px; color: red;">
+                            <h2>❌ Exercise File Not Found</h2>
+                            <p>Could not load: <b>data/exercises/${lessonId}.js</b></p>
+                            ${getExBackBtn()}
+                        </div>`;
+                };
+                document.body.appendChild(dataScript);
             };
-
-            document.body.appendChild(dataScript);
+            document.body.appendChild(engineScript);
         }
     </script>
 </body>

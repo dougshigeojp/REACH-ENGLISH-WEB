@@ -148,22 +148,6 @@ window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices(
 
 
 
-// Translation Preferences Logic
-window.setTranslationPref = function(val) {
-    translationPref = val;
-    localStorage.setItem('translationPref', val);
-    if (val) {
-        document.body.classList.remove('hide-translations');
-    } else {
-        document.body.classList.add('hide-translations');
-    }
-    
-    // Sync UI elements
-    const overlayToggle = document.getElementById('translation-toggle');
-    const menuToggle = document.getElementById('menu-translation-toggle');
-    if (overlayToggle) overlayToggle.checked = val;
-    if (menuToggle) menuToggle.checked = val;
-};
 
 // Listen for toggling changes
 document.addEventListener('change', (e) => {
@@ -172,65 +156,193 @@ document.addEventListener('change', (e) => {
     }
 });
 
+// ============================================================
+// SESSION CONFIGURATOR & INITIALIZATION
+// ============================================================
+
+// Lock scroll immediately on load
+document.body.classList.add('sc-modal-open');
+
+// Labels for the Custom Checkbox list
+const SC_LABELS_A = [
+    "Unscramble the Sentences", "Unscramble the Dialogues", "Quick Questions", 
+    "Find the Meaning", "Correct the Sentences", "Match the Pairs", 
+    "Choose the Best Answer", "Replace the Incorrect Vocabulary", "Listen & Answer", 
+    "Complete the Sentences", "Complete the Dialogue", "Read & Answer", 
+    "Listen & Answer (Context)", "Complete the Text", "Listen & Complete"
+];
+
+(function populateCheckboxesA() {
+    const list = document.getElementById('sc-checkbox-list');
+    if (!list) return;
+    for (let i = 1; i <= 15; i++) {
+        const item = document.createElement('div');
+        item.className = 'sc-checkbox-item';
+        item.dataset.page = i;
+        item.onclick = function () { toggleCustomCheckbox(this); };
+        item.innerHTML =
+            `<span class="sc-checkbox-box">✓</span>` +
+            `<span class="sc-checkbox-num">${i}</span>` +
+            `<span class="sc-checkbox-label">${SC_LABELS_A[i - 1]}</span>`;
+        list.appendChild(item);
+    }
+})();
+
+window.switchConfigTab = function (key) {
+    document.querySelectorAll('.sc-tab').forEach(t => t.classList.toggle('active', t.id === `sc-tab-${key}`));
+    document.querySelectorAll('.sc-panel').forEach(p => p.classList.toggle('active', p.id === `sc-panel-${key}`));
+};
+
+window.selectPreset = function (group, card) {
+    card.closest('.sc-radio-group').querySelectorAll('.sc-radio-card').forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+    card.querySelector('input').checked = true;
+    const btn = document.getElementById(`sc-launch-${group}`);
+    btn.disabled = false;
+    btn.textContent = '🚀 Launch Session';
+};
+
+window.toggleCustomCheckbox = function (item) {
+    item.classList.toggle('checked');
+    updateCustomCount();
+};
+
+window.toggleAllCustom = function () {
+    const items = document.querySelectorAll('.sc-checkbox-item');
+    const allChecked = [...items].every(i => i.classList.contains('checked'));
+    items.forEach(i => i.classList.toggle('checked', !allChecked));
+    document.getElementById('sc-toggle-all').textContent = allChecked ? 'Select All' : 'Clear All';
+    updateCustomCount();
+};
+
+function updateCustomCount() {
+    const checked = document.querySelectorAll('.sc-checkbox-item.checked');
+    const btn = document.getElementById('sc-launch-custom');
+    btn.disabled = (checked.length === 0);
+    btn.textContent = checked.length === 0 ? 'Select at least 1 exercise' : `🚀 Launch ${checked.length} Exercise${checked.length > 1 ? 's' : ''}`;
+    document.getElementById('sc-custom-count').textContent = `${checked.length} selected`;
+}
+
+window.launchSession = function (group) {
+    // Map Type A Playlists
+    const SC_PLAYLISTS_A = {
+        time: { 
+            complete: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15], 
+            mock: [4,5,8,11,12,13,15], 
+            homework: [2,7,9,10,14], 
+            quick: [1,3,6] 
+        },
+        category: { 
+            receptive: [4,6,7,8], 
+            structural: [1,2,3,5,10], 
+            acoustic: [9,13,15], 
+            generative: [11,12,14] 
+        }
+    };
+
+    if (group === 'time') {
+        playlistTypes = SC_PLAYLISTS_A.time[document.querySelector('input[name="sc-time"]:checked').value];
+    } else if (group === 'category') {
+        playlistTypes = SC_PLAYLISTS_A.category[document.querySelector('input[name="sc-category"]:checked').value];
+    } else if (group === 'custom') {
+        playlistTypes = [];
+        document.querySelectorAll('.sc-checkbox-item.checked').forEach(item => playlistTypes.push(parseInt(item.dataset.page, 10)));
+        playlistTypes.sort((a, b) => a - b);
+    }
+
+    if (playlistTypes.length === 0) return;
+
+    totalPages = playlistTypes.length;
+    pageStatus = new Array(16).fill(false); // Reset completion status
+
+    // Animate overlay out
+    const overlay = document.getElementById('session-configurator-overlay');
+    overlay.classList.add('sc-closing');
+    setTimeout(() => { 
+        overlay.remove(); 
+        document.body.classList.remove('sc-modal-open'); 
+    }, 340);
+
+    if (typeof window._scPendingInit === 'function') window._scPendingInit();
+};
+
 // 2. INITIALIZATION (With Error Catching)
 window.initExercise = function(data) {
     exData = data;
     
-    // Set translation preference initially
-    const savedPref = localStorage.getItem('translationPref') !== 'false';
-    window.setTranslationPref(savedPref);
-
     // Check if we are in Dashboard Mode
     if (data.isDashboard) {
         document.body.classList.remove('exercise-mode');
         document.body.classList.add('dashboard-view'); 
         
-        // EXPLICITLY HIDE NAVIGATION CLUSTER
         const uiCluster = document.getElementById('ui-cluster');
         if (uiCluster) uiCluster.style.display = 'none';
 
-        // Hide overlay on dashboard
-        const overlay = document.getElementById('playlist-overlay');
-        if (overlay) overlay.style.display = 'none';
+        // >>> FIX: THIS SUCCESSFULLY HIDES THE MODAL ON THE DASHBOARD <<<
+        const overlay = document.getElementById('session-configurator-overlay');
+        if (overlay) overlay.remove();
+        document.body.classList.remove('sc-modal-open');
 
         renderExerciseDashboard();
         return;
     }
 
-    // Otherwise, show playlist selection overlay
-    const overlay = document.getElementById('playlist-overlay');
-    if (overlay) {
-        overlay.style.display = 'flex';
-        // Allow transition
-        setTimeout(() => {
-            overlay.style.opacity = '1';
-        }, 50);
+    // Store the boot sequence
+// Restores the original Type A Text to the Configurator Modal
+    function applyTypeAText() {
+        const title = document.querySelector('.sc-title');
+        const sub = document.querySelector('.sc-subtitle');
+        if (title) title.textContent = "Select Your Playlist";
+        if (sub) sub.textContent = "Choose a study mode to customize your practice session";
+
+        const updateCard = (val, t, b, d) => {
+            const input = document.querySelector(`input[value="${val}"]`);
+            if (!input) return;
+            const card = input.closest('.sc-radio-card');
+            if (card) {
+                const strong = card.querySelector('.sc-radio-info strong');
+                const badge = card.querySelector('.sc-badge');
+                const desc = card.querySelector('.sc-radio-desc');
+                if (strong) strong.textContent = t;
+                if (badge) badge.textContent = b;
+                if (desc) desc.textContent = d;
+            }
+        };
+
+        // Old Time-Based Lists
+        updateCard('complete', '1a (Complete Mock)', '45 Min', 'Types 1-15');
+        updateCard('quick', '1b (Quick)', '3 Min', 'Types 1, 3, 6');
+        updateCard('homework', '1c (Homework)', '12 Min', 'Types 2, 7, 9, 10, 14');
+        updateCard('mock', '1d (Mock Test)', '30 Min', 'Types 4, 5, 8, 11, 12, 13, 15');
+
+        // Old Targeted Lists
+        updateCard('receptive', '2a (Vocabulary)', 'Types 4-8', 'Types 4, 6, 7, 8');
+        updateCard('structural', '2b (Sentence Logic)', 'Types 1-10', 'Types 1, 2, 3, 5, 10');
+        updateCard('acoustic', '2c (Aural Tracking)', 'Audio', 'Types 9, 13, 15');
+        updateCard('generative', '2d (Deep Synthesis)', 'Textual', 'Types 11, 12, 14');
     }
-};
 
-window.selectPlaylist = function(choice) {
-    playlistTypes = PlaylistMap[choice] || [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-    totalPages = playlistTypes.length;
-    pageStatus = new Array(16).fill(false); // Reset completion status
-
-    try {
-        generateRandomSet(); 
-        renderHeaderInfo();
-        renderSidebar();
-        startTimer();
-        showPage(1);
-        setupNavListeners();
-        
-        // Hide overlay with a smooth transition
-        const overlay = document.getElementById('playlist-overlay');
-        if (overlay) {
-            overlay.style.opacity = '0';
-            setTimeout(() => {
-                overlay.style.display = 'none';
-            }, 400);
+    // Store the boot sequence
+    function bootEngine() {
+        try {
+            generateRandomSet(); 
+            renderHeaderInfo();
+            renderSidebar();
+            startTimer();
+            showPage(1); // Start page
+            setupNavListeners();
+        } catch (err) {
+            console.error("Engine Crash:", err);
         }
-    } catch (err) {
-        console.error("Engine Crash:", err);
+    }
+
+    // If overlay is active, apply text and wait for user selection. Otherwise boot immediately.
+    const overlay = document.getElementById('session-configurator-overlay');
+    if (overlay) {
+        applyTypeAText(); // Change the text to Type A layout
+        window._scPendingInit = bootEngine;
+    } else {
+        bootEngine();
     }
 };
 
@@ -1211,14 +1323,22 @@ function renderGradeBimesters(grade) {
         `;
 
         for (let c = 1; c <= chaptersPerBim; c++) {
-    // 1. ADD THIS LINE: This calculates the continuous number (1, 2, 3, 4...)
-    const displayNum = (b - 1) * chaptersPerBim + c;
 
-    const fileId = `${grade.id}-${b}-${c}`;
-    const link = `exercises.html?id=${fileId}`;
-    
-    // 2. CHANGE THIS LINE: Replace "Chapter ${c}" with "Chapter ${displayNum}"
-    html += `<a href="${link}" class="chapter-btn" style="text-decoration:none; background:white; padding:10px; border-radius:5px; border:1px solid var(--gray-light); color:var(--text-dark); font-weight:700; font-size:0.85rem; text-align:center;">Chapter ${displayNum}</a>`;
+const displayNum = (b - 1) * chaptersPerBim + c;
+    const fileIdA = `${grade.id}-${b}-${c}`;
+    const fileIdB = `${grade.id}-${b}-${c}b`;
+
+    html += `
+        <div style="display:flex; gap:5px; width:100%;">
+            <a href="exercises.html?id=${fileIdA}" class="chapter-btn" style="flex:1; text-decoration:none; background:white; padding:10px 5px; border-radius:5px; border:1px solid var(--gray-light); color:var(--text-dark); font-weight:700; font-size:0.8rem; text-align:center;">Ch. ${displayNum} A</a>
+            
+            <!-- TYPE B DEFAULT LOCKED STATE -->
+            <a id="btn-${fileIdB}" title="Coming soon" class="chapter-btn" onclick="return false;" style="flex:1; text-decoration:none; background:#f4f4f4; padding:10px 5px; border-radius:5px; border:1px solid #ddd; color:#bbb; font-weight:700; font-size:0.8rem; text-align:center; cursor:not-allowed;">Ch. ${displayNum} B</a>
+        </div>
+    `;
+
+    // Tells the browser to silently check if the file exists
+    setTimeout(() => checkTypeBAvailability(fileIdB), 100);
 }
 
         html += `</div></div>`;
@@ -1226,4 +1346,26 @@ function renderGradeBimesters(grade) {
 
     html += `</div>`;
     return html;
+}
+
+
+// Checks if a Type B file actually exists in the folder. If it does, it unlocks the button!
+async function checkTypeBAvailability(id) {
+    const btn = document.getElementById(`btn-${id}`);
+    if (!btn) return;
+    try {
+        const response = await fetch(`data/exercises/${id}.js`, { method: 'HEAD' });
+        if (response.ok) {
+            // THE FILE EXISTS! UNLOCK IT!
+            btn.href = `exercises.html?id=${id}`;
+            btn.onclick = null; // Removes the click-blocker
+            btn.title = '';     // Removes the "Coming soon" hover text
+            btn.style.background = 'var(--bg-alice-blue)';
+            btn.style.color = 'var(--primary-blue)';
+            btn.style.borderColor = 'var(--primary-blue)';
+            btn.style.cursor = 'pointer';
+        }
+    } catch(e) {
+        // If the file doesn't exist, it safely stays locked. Do nothing.
+    }
 }
