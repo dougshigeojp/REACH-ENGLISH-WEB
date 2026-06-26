@@ -2233,3 +2233,83 @@ body.dashboard-view #global-timer {
     background: #b71c1c;
     transform: translateY(-2px);
 }
+
+
+
+
+
+
+
+
+
+/* ============================================================
+   TYPE B: NEW EXERCISE MECHANICS
+   ============================================================ */
+
+/* Ex 1. Block Harvesting */
+.harvest-chunk {
+    display: inline-block; 
+    padding: 4px 8px; 
+    margin: 4px 2px;
+    border-radius: 6px; 
+    background: #f1f5f9; 
+    cursor: pointer; 
+    transition: 0.2s;
+    border: 1px solid transparent;
+}
+.harvest-chunk:hover { 
+    background: var(--bg-alice-blue); 
+    border-color: var(--primary-blue); 
+}
+.harvest-chunk.harvested { 
+    background: var(--selected-orange); 
+    border: 1px solid var(--accent-orange); 
+    color: var(--text-dark); 
+}
+
+/* Ex 3. Categorization Buckets */
+.bucket-container { display: flex; gap: 15px; margin-top: 20px; }
+.sort-bucket {
+    flex: 1; min-height: 120px; border: 2px dashed var(--primary-blue);
+    border-radius: 8px; padding: 10px; background: var(--bg-alice-blue);
+    display: flex; flex-direction: column; gap: 8px; align-items: center;
+}
+
+/* Ex 4. Deconstruction Drill */
+.deconstruct-chunk {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red"><text x="0" y="15" font-size="15">✂️</text></svg>'), auto;
+    padding: 3px 6px; border-radius: 4px; transition: 0.3s; display: inline-block; margin: 2px;
+}
+.deconstruct-chunk:hover { background: #ffebee; }
+.deconstruct-chunk.deleted {
+    text-decoration: line-through; text-decoration-color: var(--error-red); text-decoration-thickness: 3px;
+    opacity: 0.5; pointer-events: none;
+}
+
+/* Ex 11. Echo-Shadow Waveform */
+.waveform-box {
+    height: 60px; background: #222; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center; gap: 2px; margin-bottom: 15px;
+}
+.wave-bar { width: 4px; background: var(--primary-blue); border-radius: 2px; transition: height 0.1s; }
+
+/* Highlights the correct answer if the user clicked the wrong one */
+.missed-field {
+    background-color: #e3f2fd !important; /* Very light blue */
+    border: 2px solid var(--primary-blue) !important;
+    color: var(--primary-blue) !important;
+    font-weight: bold;
+}
+
+/* Strikethrough for Ex 4 Deconstruction checking */
+.correct-deleted {
+    text-decoration: line-through;
+    text-decoration-color: var(--success-green);
+    text-decoration-thickness: 3px;
+    opacity: 0.5;
+}
+.incorrect-deleted {
+    text-decoration: line-through;
+    text-decoration-color: var(--error-red);
+    text-decoration-thickness: 3px;
+}

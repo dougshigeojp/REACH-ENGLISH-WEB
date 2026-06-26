@@ -12,23 +12,23 @@
 
 /** Global: ordered list of page numbers the student will navigate.
  *  Default = all 15 pages. Overwritten when a track is selected. */
-let activePageList = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+let activePageList = [1,2,3,4,5,6,7,8,9,10,11,12,13];//14,15 hidden//
 
 /* ---------- Playlist Definitions ---------- */
 const SC_PLAYLISTS = {
     // Group 1 — By Time
     time: {
-        complete:  [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
+        complete:  [1,2,3,4,5,6,7,8,9,10,11,12,13],//14,15 hidden//
         quick:     [2,5,9],
-        homework:  [1,3,6,11,14],
-        mock:      [4,7,8,10,12,13,15]
+        homework:  [1,3,6,11],//14 hidden//
+        mock:      [4,7,8,10,12,13]//15 hidden//
     },
     // Group 2 — By Category
     category: {
         receptive:  [1,3,4,5],
-        structural: [2,6,9,10],
-        acoustic:   [11,12,13],
-        generative: [7,8,14,15]
+        structural: [2,6,9],
+        acoustic:   [10,11,12,13],
+        generative: [7,8]//14,15 hidden//
     }
 };
 
@@ -38,7 +38,7 @@ const SC_LABELS = [
     "The Deconstruction Drill", "The Block Detective", "Contextual Assembly",
     "Block Swapping", "The Expansion Drill", "The Connector Bridge",
     "The Block Jumble", "The Echo-Shadow", "Backchaining",
-    "The Rhythmic Pulse", "The Free Build", "The Next Chapter"
+    "The Rhythmic Pulse"//14,15 hidden//, "The Free Build", "The Next Chapter"
 ];
 
 /* ---------- Populate Custom Checkbox List ---------- */
@@ -47,7 +47,7 @@ const SC_LABELS = [
     // so the element exists by the time this runs.
     const list = document.getElementById('sc-checkbox-list');
     if (!list) return;
-    for (let i = 1; i <= 15; i++) {
+    for (let i = 1; i <= 13; i++) {//14,15 hidden >> "(let i = 1; i <= 15; i++)"//
         const item = document.createElement('div');
         item.className = 'sc-checkbox-item';
         item.dataset.page = i;
@@ -274,36 +274,19 @@ window.initExercise = function(data) {
 };
 
 // --- HEADER & METADATA RENDERER ---
+// --- HEADER & METADATA RENDERER ---
 function renderHeaderInfo() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const lessonId = urlParams.get('id');
-    
-    let lessonName = "PRACTICE EXERCISE";
-
-    // Bulletproof extraction: Try to match the URL ID. 
-    // If it fails (or if file was renamed), just grab the first available name in the data!
-    if (exData.lessonNames) {
-        if (lessonId && exData.lessonNames[lessonId]) {
-            lessonName = exData.lessonNames[lessonId];
-        } else {
-            const availableNames = Object.values(exData.lessonNames);
-            if (availableNames.length > 0) {
-                lessonName = availableNames[0];
-            }
-        }
-    }
-
     // Helper to safely update HTML text
-    const update = (id, val) => { 
-        const el = document.getElementById(id); 
-        if (el) el.textContent = val; 
+    const update = (id, val) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = val;
     };
-    
-    // Update the Top Header
-    update('display-topic', lessonName);
-    
-    // Update the Sidebar Menu subtitle
-    update('menu-topic-label', lessonName);
+
+    // Update the Top Header & Menu using REACH COURSE IDs
+    update('ex-grade', exData.grade);
+    update('ex-bimester', "BIM " + exData.bimester);
+    update('ex-chapter', "CH " + exData.chapter);
+    update('menu-grade-label', exData.grade ? exData.grade.toUpperCase() : "");
 }
 
 // --- 4. RANDOMIZER ---

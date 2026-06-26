@@ -1,9 +1,9 @@
 window.exData = {
-    grade: "Upper A2 - Lower B1",
+    grade: "TYPEB - 6th Grade",
     bimester: 1,
     chapter: 1,
     lessonNames: {
-        "ex-01": "1 - Introductions and Greetings"
+        "6-1-1b": "1 - Introductions and Greetings"
     },
     
     simplePool: {
