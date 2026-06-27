@@ -53,7 +53,7 @@ window.initLesson({
         // ======================================================
         {
             title: "Say the word",
-            audio2b: "TTS: I am happy today. I want to meet my new neighbors. The children are playing. People are nice here. We live in a big world. She is a good student. Albert is my friend. This is our teacher. My name is Celine. The cat is small. The dog is happy. This is my English book. Nice to meet you, Albert! My name is Mr. D. How are you? I am good. I am fine, thanks. And you? Where are you from? Brazil. I am from Japan. I am 12 years old. Hello! Are you new? Goodbye! See you tomorrow. He is from Brazil. He is Brazilian. She is from the USA. She is American. I have ten pens. She is twenty years old. She is my sister. We are family.",
+            audio2b: "TTS: I am happy today. I want to meet my new neighbors. The children are playing. People are nice here. We live in a big world. She is a good student. Albert is my friend. This is our teacher. My name is Celine. The cat is small. The dog is happy. This is my English book. Nice to meet you, Albert! My name is Mr. D. How are you? / How are you doing? / How is it going? I am good. I am fine, thanks. And you? Where are you from? Brazil. I am from Japan. I am 12 years old. Hello! Are you new? Goodbye! See you tomorrow. He is from Brazil. He is Brazilian. She is from the USA. She is American. I have ten pens. She is twenty years old. She is my sister. We are family.",
             
             subPages: [
                 { id: "step2a", label: "2A: New Words" },
@@ -73,9 +73,9 @@ window.initLesson({
                 },
                 {
                     title: "Vocabularies",
-                    audio: "TTS: Children. People. World. Student. Friend. Teacher. Name. Cat. Dog. Book.",
+                    audio: "TTS: Kids / Children. People. World. Student. Friend. Teacher. Name. Cat. Dog. Book.",
                     items: [
-                        { term: "Children", trans: "crianças" },
+                        { term: "Kids / Children", trans: "crianças" },
                         { term: "People", trans: "pessoas" },
                         { term: "World", trans: "mundo" },
                         { term: "Student", trans: "estudante" },
@@ -89,25 +89,29 @@ window.initLesson({
                 },
                 {
                     title: "Phrases & Expressions",
-                    audio: "TTS: Nice to meet you. My name is... How are you? I am fine, thanks. Where are you from? I am from... years old. Hello! Hi! Goodbye! Bye!",
+                    audio: "TTS: Nice to meet you. What's your name? My name is... How are you? How are you doing? What's up? How is it going? I am fine, thanks. I am doing well, thanks. Not bad, thanks. Not much, thanks. Where are you from? I am from... years old. Hello! Hi! Goodbye! Bye! See you! See you tomorrow! See you later! See you soon! See you next class!",
                     items: [
                         { term: "Nice to meet you", trans: "Prazer em conhecer você." },
+                        { term: "What's your name?", trans: "Qual é o seu nome?" },
                         { term: "My name is...", trans: "Meu nome é..." },
-                        { term: "How are you?", trans: "Como você está?" },
-                        { term: "I am fine, thanks", trans: "Eu estou bem, obrigado(a)." },
+                        { term: "How are you? / How are you doing?", trans: "Como você está?" },
+                        { term: "What's up? / How's it going?", trans: "E aí? / Como vai?" },
+                        { term: "I am fine, thanks. / I am doing well, thanks", trans: "Eu estou bem, obrigado(a)." },
+                        { term: "Not bad, thanks. / Not much, thanks", trans: "Nada mal, obrigado(a) / Nada de mais, obrigado(a)."},
                         { term: "Where are you from?", trans: "De onde você é?" },
                         { term: "I am from...", trans: "Eu sou de..." },
                         { term: "... years old", trans: "... anos de idade." },
                         { term: "Hello! / Hi!", trans: "Olá! / Oi!" },
-                        { term: "Goodbye / Bye!", trans: "Adeus / Tchau!" }
+                        { term: "Goodbye! / Bye!", trans: "Adeus! / Tchau!" },
+                        { term: "See you! / See you tomorrow! / See you later! / See you soon! / See you next class!", trans: "Até logo / Até amanhã / Até mais tarde / Até breve / Até a próxima aula" },
                     ]
                 },
                 {
                     title: "Countries & Nationalities",
-                    audio: "TTS: Brazil, Brazilian. USA, American. England, English. France, French. Canada, Canadian. Germany, German. China, Chinese. Japan, Japanese. Spain, Spanish. Italy, Italian.",
+                    audio: "TTS: Brazil, Brazilian. the USA, American. England, English. France, French. Canada, Canadian. Germany, German. China, Chinese. Japan, Japanese. Spain, Spanish. Italy, Italian.",
                     items: [
                         { term: "Brazil - Brazilian", trans: "Brasil - Brasileiro(a)" },
-                        { term: "USA - American", trans: "EUA - Americano(a)" },
+                        { term: "the USA - American", trans: "EUA - Americano(a)" },
                         { term: "England - English", trans: "Inglaterra - Inglês(a)" },
                         { term: "France - French", trans: "França - Francês(a)" },
                         { term: "Canada - Canadian", trans: "Canadá - Canadense" },
@@ -136,7 +140,7 @@ window.initLesson({
                         { term: "You", trans: "Você / Vocês (pointing to you)" },
                         { term: "He", trans: "Ele (pointing to a boy)" },
                         { term: "She", trans: "Ela (pointing to a girl)" },
-                        { term: "It", trans: "Ele/Ela (pointing to an object/animal)" },
+                        { term: "It", trans: "Ele/Ela (pointing to an object/animal, not a person)" },
                         { term: "We", trans: "Nós (group including self)" },
                         { term: "They", trans: "Eles / Elas (pointing to a group)" }
                     ]
@@ -189,15 +193,21 @@ window.initLesson({
                 },
                 {
                     title: "Numbers & Age",
-                    audio: "TTS: I am twelve years old. She is twenty years old. My father is thirty-eight years old. There are forty-four students in class. I have fifty-six books. My house is number seventy-seven. I have one hundred pens.",
+                    audio: "TTS: I have one pen. You have two pencils. He has three books. The cat has four legs. My mother has five friends. We have six chairs. They have seven dogs. There are eight birds. I have nine apples. She has ten notebooks. I am eleven years old, John is twelve years old, and my sister is thirteen years old. There are 14 turtles, 15 cats, 16 dogs, 17 fish, 18 rabbits, and 19 birds on the farm. She is twenty-one years old. My father is thirty-eight years old. There are forty-four students in class. I have fifty-six books. Look! My sister is number sixty-two. My house is number seventy-seven. There are eighty-nine chairs in the room. I have ninety-five pencils. I have one hundred pens.",
                     items: [
-                        { term: "12", sent: "I am twelve years old.", trans: "<span style='color:#0077b6'>Eu tenho doze anos de idade.</span>" },
-                        { term: "20", sent: "She is twenty years old.", trans: "<span style='color:#0077b6'>Ela tem vinte anos de idade.</span>" },
+                        { term: "1, 2, 3, 4, 5, 6, 7, 8, 9, 10", sent: "I have one pen. You have two pencils. He has three books. The cat has four legs. My mother has five friends. We have six chairs. They have seven dogs. There are eight birds. I have nine apples. She has ten notebooks.", trans: "<span style='color:#0077b6'>Eu tenho uma caneta. Você tem dois lápis. Ele tem três livros. O gato tem quatro patas. Minha mãe tem cinco amigos. Nós temos seis cadeiras. Eles têm sete cachorros. Há oito pássaros. Eu tenho nove maçãs. Ela tem dez cadernos.</span>" },
+                        { term: "11, 12, 13", sent: "I am eleven years old, John is twelve years old, and my sister is thirteen years old.", trans: "<span style='color:#0077b6'>Eu tenho onze anos de idade, John tem doze anos de idade e minha irmã tem treze anos de idade.</span>" },
+                        { term: "14, 15, 16, 17, 18, 19", sent: "There are 14 turtles, 15 cats, 16 dogs, 17 fish, 18 rabbits, and 19 birds on the farm.", trans: "<span style='color:#0077b6'>Há 14 tartarugas, 15 gatos, 16 cães, 17 peixes, 18 coelhos e 19 pássaros na fazenda.</span>" },
+                        { term: "21", sent: "She is twenty-one years old.", trans: "<span style='color:#0077b6'>Ela tem vinte e um anos de idade.</span>" },
                         { term: "38", sent: "My father is thirty-eight years old.", trans: "<span style='color:#0077b6'>Meu pai tem trinta e oito anos de idade.</span>" },
                         { term: "44", sent: "There are forty-four students in class.", trans: "<span style='color:#0077b6'>Há quarenta e quatro alunos na aula.</span>" },
                         { term: "56", sent: "I have fifty-six books.", trans: "<span style='color:#0077b6'>Eu tenho cinquenta e seis livros.</span>" },
+                        { term: "62", sent: "Look! My sister is number sixty-two.", trans: "<span style='color:#0077b6'>Olhe! Minha irmã é a número sessenta e dois.</span>" },
                         { term: "77", sent: "My house is number seventy-seven.", trans: "<span style='color:#0077b6'>Minha casa é número setenta e sete.</span>" },
-                        { term: "100", sent: "I have one hundred pens.", trans: "<span style='color:#0077b6'>Eu tenho cem canetas.</span>" }
+                        { term: "89", sent: "There are eighty-nine chairs in the room.", trans: "<span style='color:#0077b6'>Há oitenta e nove cadeiras na sala.</span>" },
+                        { term: "95", sent: "I have ninety-five pencils.", trans: "<span style='color:#0077b6'>Eu tenho noventa e cinco lápis.</span>" },
+                        { term: "100", sent: "I have one hundred pens.", trans: "<span style='color:#0077b6'>Eu tenho cem canetas.</span>" },
+                        { term: "195", sent: "There are one hundred and ninety-five countries in the world.", trans: "<span style='color:#0077b6'>Há cento e noventa e cinco países no mundo.</span>" }
                     ]
                 },
                 {

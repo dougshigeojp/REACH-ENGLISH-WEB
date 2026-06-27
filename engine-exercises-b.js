@@ -274,7 +274,6 @@ window.initExercise = function(data) {
 };
 
 // --- HEADER & METADATA RENDERER ---
-// --- HEADER & METADATA RENDERER ---
 function renderHeaderInfo() {
     // Helper to safely update HTML text
     const update = (id, val) => {
@@ -377,7 +376,7 @@ function renderExercisePage(pageNum) {
         else if (pageNum === 15) html += renderType15(item, idx, isItemFinished);
         
         // Dynamic Check Button or TTS Button
-        if (!isItemFinished && ![7, 8].includes(pageNum)) {
+        if (!isItemFinished && ![7, 8, 11, 12, 13].includes(pageNum)) {
             html += `<button class="item-check-btn" onclick="checkIndividualItem(${pageNum}, ${idx})">Check</button>`;
         } else if (isItemFinished && [1, 2, 3, 4, 5, 6, 9, 10, 14, 15].includes(pageNum)) {
             html += getTTSButtonForPage(pageNum, item, idx);
@@ -963,18 +962,59 @@ function renderType11(item, idx, isDone) {
 
 function renderType12(item, idx, isDone) {
     let html = `<div style="display:flex; flex-direction:column; gap:10px; background:#f9f9f9; padding:15px; border-radius:8px;">`;
-    item.phonetic_chunks.forEach((chunkText) => {
-        html += `<div style="padding:10px; border-bottom:1px solid #ddd; display:flex; justify-content:space-between; align-items:center;">
-                    <span style="font-size:1.1rem; font-weight:bold; color:var(--text-dark);">${chunkText}</span>
-                    <button class="tts-btn" onclick="playTTS('${chunkText}')">🔊</button>
-                 </div>`;
+    
+    item.phonetic_chunks.forEach((chunkText, i) => {
+        let isLast = (i === item.phonetic_chunks.length - 1);
+        // Only show the first chunk initially, unless the exercise is already finished
+        let display = (i === 0 || isDone) ? 'flex' : 'none'; 
+        
+        html += `
+        <div id="chunk-12-${idx}-${i}" style="display:${display}; flex-direction:column; padding:10px; border-bottom:1px solid #ddd;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span style="font-size:1.1rem; font-weight:bold; color:var(--text-dark);">${chunkText}</span>
+                <button class="tts-btn" onclick="playTTS12('${chunkText.replace(/'/g, "\\'")}', ${idx}, ${i})">🔊 Listen</button>
+            </div>
+            
+            <!-- Actions Container (Hidden until audio is played) -->
+            <div id="actions-12-${idx}-${i}" style="display:${isDone ? 'flex' : 'none'}; margin-top:15px; justify-content:center; gap:10px; flex-wrap:wrap;">
+                ${!isLast ? 
+                    `<button class="tts-btn" style="background:var(--error-red);" onclick="toggleRecording(this, 12, '${idx}-${i}')">🎙️ Record Practice</button>
+                     <button id="play-rec-12-${idx}-${i}" class="tts-btn" style="background:#d4edda; color:var(--success-green); border:2px solid var(--success-green); font-weight:bold; display:${window.userRecordings[`12-${idx}-${i}`] ? 'inline-block' : 'none'};" onclick="playUserRecording(12, '${idx}-${i}')">▶️ Play Yours</button>
+                     <button class="tts-btn" id="next-btn-12-${idx}-${i}" style="background:var(--primary-blue);" onclick="revealNextChunk12(${idx}, ${i})">Next Line ⬇️</button>`
+                : 
+                    `<button class="tts-btn" style="background:var(--error-red);" onclick="toggleRecording(this, 12, ${idx})">🎙️ Record Final</button>
+                     <button id="play-rec-12-${idx}" class="tts-btn" style="background:#d4edda; color:var(--success-green); border:2px solid var(--success-green); font-weight:bold; display:${window.userRecordings[`12-${idx}`] ? 'inline-block' : 'none'};" onclick="playUserRecording(12, ${idx})">▶️ Play Yours</button>`
+                }
+            </div>
+        </div>`;
     });
-    html += `<div style="margin-top:15px; display:flex; justify-content:center; gap:10px;">
-                <button class="tts-btn" style="background:var(--error-red);" onclick="toggleRecording(this, 12, ${idx})">🎙️ Record Final</button>
-                <button id="play-rec-12-${idx}" class="tts-btn" style="background:#d4edda; color:var(--success-green); border:2px solid var(--success-green); font-weight:bold; display:${window.userRecordings[`12-${idx}`] ? 'inline-block' : 'none'};" onclick="playUserRecording(12, ${idx})">▶️ Play Yours</button>
-             </div></div>`;
+    
+    html += `</div>`;
     return html;
 }
+
+// --- HELPER FUNCTIONS FOR TYPE 12 PROGRESSIVE REVEAL ---
+window.playTTS12 = function(text, idx, step) {
+    playTTS(text); // Play the audio
+    // Reveal the Record and Next buttons for this specific line
+    const actions = document.getElementById(`actions-12-${idx}-${step}`);
+    if (actions) {
+        actions.style.display = 'flex';
+    }
+};
+
+window.revealNextChunk12 = function(idx, step) {
+    // Reveal the next line
+    const nextChunk = document.getElementById(`chunk-12-${idx}-${step + 1}`);
+    if (nextChunk) {
+        nextChunk.style.display = 'flex';
+    }
+    // Hide the "Next" button so they can't click it multiple times
+    const nextBtn = document.getElementById(`next-btn-12-${idx}-${step}`);
+    if (nextBtn) {
+        nextBtn.style.display = 'none'; 
+    }
+};
 
 function renderType13(item, idx, isDone) {
     let cuesHtml = item.cue_pool.map(c => `<div style="padding:10px; background:white; border:2px solid var(--primary-blue); border-radius:8px; font-weight:bold; text-align:center;">${c}</div>`).join('');
@@ -1364,21 +1404,21 @@ function getExerciseTitle(n) {
 
 function getExerciseInstructions(n) {
     const instructions = [
-        "Read the provided passage. Click to highlight the specific, high-frequency functional chunks requested by the prompt.",
-        "You will be presented with a sentence that contains a structural error. Click the specific block (Actor, Action, Detail, or Connector) that is 'breaking' the equation.",
-        "Click a block from the word bank, then click the correct functional bucket to sort it.",
-        "Read the highly complex sentence provided. Click to cross out all the extra Connector and Detail blocks until only the absolute core Actor and Action blocks remain visible.",
-        "One key functional block has been replaced by a 'nonsense' placeholder word. Look at the surrounding context clues and click the correct meaning that logically completes the equation.",
-        "Read the situational cue provided. Click the blocks from the pool in the correct order to build a coherent response.",
-        "You are given a base sentence and a 'cue'. Type the replacement block into the correct slot to change the meaning while keeping the structural frame intact.",
-        "Start by reading the 'kernel' block. For each subsequent stage, a new block is provided. Type the growing sentence progressively to stretch your working memory.",
-        "Read the two independent sentences. Click the correct connector that logically bridges the two clauses together.",
-        "A complete sentence has been shattered into blocks. Click the blocks to assemble them in the strict, correct grammatical order.",
-        "Play the Master Audio. Read the sentence aloud simultaneously with the audio, doing your best to perfectly mimic the speaker's exact prosody and rhythm.",
-        "Look at the phonetic chunks structured from the end of the sentence to the beginning. Unlock each chunk, play the audio, and repeat it to build natural intonation.",
-        "Start the metronome. Speak each target phrase aloud, forcing yourself to land strictly on the beat to build speed and reflex.",
-        "Read the scenario prompt. Type a flawless written sentence to resolve the scenario, strictly using only the blocks provided in your inventory.",
-        "Read the story prompt. Choose and click one of the 'branching starters', then independently finish typing the sentence to decide the next beat of the story."
+        "Read the provided passage. Click to highlight the specific, high-frequency functional chunks requested by the prompt.<br><span style='color:#0077b6; font-style:italic;'>Leia a passagem. Selecione os blocos funcionais mais frequentes.</span>",
+        "You will be presented with a sentence that contains a structural error. Click the specific block (Actor, Action, Detail, or Connector) that is 'breaking' the equation.<br><span style='color:#0077b6; font-style:italic;'>Você será apresentado com uma frase que contém um erro estrutural. Clique no bloco específico (Ator, Ação, Detalhe ou Conector) que está 'quebrando' a sentença.</span>",
+        "Click a block from the word bank, then click the correct functional bucket to sort it.<br><span style='color:#0077b6; font-style:italic;'>Clique em um bloco da lista de palavras e depois clique no balde funcional correto para classificá-lo.</span>",
+        "Read the highly complex sentence provided. Click to cross out all the extra Connector and Detail blocks until only the absolute core Actor and Action blocks remain visible.<br><span style='color:#0077b6; font-style:italic;'>Leia a frase altamente complexa fornecida. Clique para riscar todos os blocos de Conector e Detalhe extras até que apenas os blocos centrais de Ator(sujeito) e Ação(verbo) permaneçam visíveis.</span>",
+        "One key functional block has been replaced by a 'nonsense' placeholder word. Look at the surrounding context clues and click the correct meaning that logically completes the equation.<br><span style='color:#0077b6; font-style:italic;'>Um bloco funcional chave foi substituído por uma palavra sem sentido. Olhe para as pistas do contexto ao redor e clique na opção correta que completa logicamente a sentença.</span>",
+        "Read the situational cue provided. Click the blocks from the pool in the correct order to build a coherent response.<br><span style='color:#0077b6; font-style:italic;'>Leia a pista situacional fornecida. Clique nos blocos da lista na ordem correta para construir uma resposta coerente.</span>",
+        "You are given a base sentence and a 'cue'. Type the replacement block into the correct slot to change the meaning while keeping the structural frame intact. Read/Write the new sentence.<br><span style='color:#0077b6; font-style:italic;'>Você recebeu uma frase base e um 'sinal'. Subistitua este 'sinal' no lugar correto para mudar o significado lembrando de manter a estrutura intacta. Leia/Escreva a nova frase.</span>",
+        "Start by reading the 'kernel' block. For each subsequent stage, a new block is provided. Type the growing sentence progressively to stretch your working memory.<br><span style='color:#0077b6; font-style:italic;'>Comece lendo/escrevendo o bloco de 'núcleo'. Para cada etapa seguinte, um novo bloco é fornecido. Digite a frase crescente progressivamente para aumentar sua memória.</span>",
+        "Read the two independent sentences. Click the correct connector that logically bridges the two clauses together.<br><span style='color:#0077b6; font-style:italic;'>Leia as duas partes independentes. Clique no conector correto que lógicamente conecta as duas cláusulas.</span>",
+        "A complete sentence has been shattered into blocks. Click the blocks to assemble them in the strict, correct grammatical order.<br><span style='color:#0077b6; font-style:italic;'>Uma frase completa foi quebrada em blocos. Clique nos blocos para montá-los na ordem gramatical correta.</span>",
+        "Play the Master Audio. Read the sentence aloud simultaneously with the audio, doing your best to perfectly mimic the speaker's exact prosody and rhythm. Record and compare.<br><span style='color:#0077b6; font-style:italic;'>Toque o áudio principal. Leia a frase em voz alta simultaneamente com o áudio, fazendo o seu melhor para imitar perfeitamente a entonação e o ritmo do falante. Grave e compare.</span>",
+        "Look at the phonetic chunks structured from the end of the sentence to the beginning. Unlock each chunk, play the audio, and repeat it to build natural intonation.<br><span style='color:#0077b6; font-style:italic;'>Olhe os pedaços fonéticos estruturados do final da frase até o início. Desbloqueie cada pedaço, toque o áudio e repita para construir uma entonação natural.</span>",
+        "Start the metronome. Speak each target phrase aloud, forcing yourself to land strictly on the beat to build speed and reflex.<br><span style='color:#0077b6; font-style:italic;'>Inicie o metrônomo. Fale cada frase-alvo em voz alta, forçando-se a falar estritamente no sinal para criar velocidade e reflexo.</span>",
+        "Read the scenario prompt. Type a flawless written sentence to resolve the scenario, strictly using only the blocks provided in your inventory.<br><span style='color:#0077b6; font-style:italic;'>Leia o prompt do cenário. Digite uma frase escrita perfeita para resolver o cenário, usando estritamente apenas os blocos fornecidos em seu inventário.</span>",
+        "Read the story prompt. Choose and click one of the 'branching starters', then independently finish typing the sentence to decide the next beat of the story.<br><span style='color:#0077b6; font-style:italic;'>Leia o prompt da história. Escolha e clique em um dos 'inícios ramificados', depois complete a frase independentemente para decidir o próximo batimento da história.</span>"
     ];
     return instructions[n - 1] || "";
 }

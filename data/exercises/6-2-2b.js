@@ -3,7 +3,7 @@ window.exData = {
     bimester: 2,
     chapter: 4,
     lessonNames: {
-        "6-2-4b": "Chapter 4: Celebrating the Year (Practice B)"
+        "6-2-2b": "Chapter 4 (Practice B)"
     },
     simplePool: {
         // EXERCISE 1: Block Harvesting (Target: IN/ON, The, Possessive Pronouns, Ordinals)
