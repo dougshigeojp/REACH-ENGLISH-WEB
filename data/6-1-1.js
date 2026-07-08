@@ -88,25 +88,6 @@ window.initLesson({
                     ]
                 },
                 {
-                    title: "Phrases & Expressions",
-                    audio: "TTS: Nice to meet you. What's your name? My name is... How are you? How are you doing? What's up? How is it going? I am fine, thanks. I am doing well, thanks. Not bad, thanks. Not much, thanks. Where are you from? I am from... years old. Hello! Hi! Goodbye! Bye! See you! See you tomorrow! See you later! See you soon! See you next class!",
-                    items: [
-                        { term: "Nice to meet you", trans: "Prazer em conhecer você." },
-                        { term: "What's your name?", trans: "Qual é o seu nome?" },
-                        { term: "My name is...", trans: "Meu nome é..." },
-                        { term: "How are you? / How are you doing?", trans: "Como você está?" },
-                        { term: "What's up? / How's it going?", trans: "E aí? / Como vai?" },
-                        { term: "I am fine, thanks. / I am doing well, thanks", trans: "Eu estou bem, obrigado(a)." },
-                        { term: "Not bad, thanks. / Not much, thanks", trans: "Nada mal, obrigado(a) / Nada de mais, obrigado(a)."},
-                        { term: "Where are you from?", trans: "De onde você é?" },
-                        { term: "I am from...", trans: "Eu sou de..." },
-                        { term: "... years old", trans: "... anos de idade." },
-                        { term: "Hello! / Hi!", trans: "Olá! / Oi!" },
-                        { term: "Goodbye! / Bye!", trans: "Adeus! / Tchau!" },
-                        { term: "See you! / See you tomorrow! / See you later! / See you soon! / See you next class!", trans: "Até logo / Até amanhã / Até mais tarde / Até breve / Até a próxima aula" },
-                    ]
-                },
-                {
                     title: "Countries & Nationalities",
                     audio: "TTS: Brazil, Brazilian. the USA, American. England, English. France, French. Canada, Canadian. Germany, German. China, Chinese. Japan, Japanese. Spain, Spanish. Italy, Italian.",
                     items: [
@@ -130,6 +111,26 @@ window.initLesson({
                         { term: "11-19: Eleven, Twelve, Thirteen, Fourteen, Fifteen, Sixteen, Seventeen, Eighteen, Nineteen", trans: "Onze, Doze, Treze, Quatorze, Quinze, Dezesseis, Dezessete, Dezoito, Dezenove" },
                         { term: "Tens (20-90): Twenty, Thirty, Forty, Fifty, Sixty, Seventy, Eighty, Ninety", trans: "Vinte, Trinta, Quarenta, Cinquenta, Sessenta, Setenta, Oitenta, Noventa" },
                         { term: "100", trans: "One hundred" }
+                    ]
+                },
+                {
+                    title: "Phrases & Expressions",
+                    audio: "TTS: Nice to meet you. What's your name? My name is... How are you? How are you doing? How is it going? What's up? I am fine, thanks. I am doing well, thanks. Not bad, thanks. Not much, thanks. Where are you from? I am from... years old. Hello! Hi! Goodbye! Bye! See you! See you tomorrow! See you later! See you soon! See you next class!",
+                    items: [
+                        { term: "Nice to meet you", trans: "Prazer em conhecer você." },
+                        { term: "What's your name?", trans: "Qual é o seu nome?" },
+                        { term: "My name is...", trans: "Meu nome é..." },
+                        { term: "How are you? / How are you doing? / How is it going?", trans: "Como você está? / Como vai?" },
+                        { term: "What's up?", trans: "E aí?" },
+                        { term: "I am fine, thanks. / I am doing well, thanks", trans: "Eu estou bem, obrigado(a)." },
+                        { term: "Not bad, thanks. / Not much, thanks", trans: "Nada mal, obrigado(a) / Nada de mais, obrigado(a)."},
+                        { term: "Where are you from?", trans: "De onde você é?" },
+                        { term: "I am from...", trans: "Eu sou de..." },
+                        { term: "How old are you?", trans: "Quantos anos você tem?"},
+                        { term: "... years old", trans: "... anos de idade." },
+                        { term: "Hello! / Hi!", trans: "Olá! / Oi!" },
+                        { term: "Goodbye! / Bye!", trans: "Adeus! / Tchau!" },
+                        { term: "See you! / See you tomorrow! / See you later! / See you soon! / See you next class!", trans: "Até logo / Até amanhã / Até mais tarde / Até breve / Até a próxima aula" },
                     ]
                 },
                 {
@@ -208,6 +209,26 @@ window.initLesson({
                         { term: "95", sent: "I have ninety-five pencils.", trans: "<span style='color:#0077b6'>Eu tenho noventa e cinco lápis.</span>" },
                         { term: "100", sent: "I have one hundred pens.", trans: "<span style='color:#0077b6'>Eu tenho cem canetas.</span>" },
                         { term: "195", sent: "There are one hundred and ninety-five countries in the world.", trans: "<span style='color:#0077b6'>Há cento e noventa e cinco países no mundo.</span>" }
+                    ]
+                },
+                {
+                    title: "Phrases & Expressions",
+                    audio: "TTS: Nice to meet you, Albert! My name is Mr. D. How are you? / How are you doing? / How is it going? I am good. I am fine, thanks. And you? Where are you from? Brazil. I am from Japan. I am 12 years old. Hello! Are you new? Goodbye! See you tomorrow.",
+                    items: [
+                        { term: "Nice to meet you", sent: "Nice to meet you, Albert!", trans: "<span style='color:#0077b6'>Prazer em conhecer você, Albert!</span>" },
+                        { term: "What's your name?", sent: "Hello! What's your name?", trans: "<span style='color:#0077b6'>Olá! Qual é o seu nome?</span>" },
+                        { term: "My name is...", sent: "My name is Mr. D.", trans: "<span style='color:#0077b6'>Meu nome é Sr. D.</span>" },
+                        { term: "How are you? / How are you doing? / How is it going?", sent: "Hey John! How are you doing?", trans: "<span style='color:#0077b6'>Hey John! Como você está?</span>" },
+                        { term: "What's up?", sent: "Hey friend! What's up?", trans: "<span style='color:#0077b6'>E aí?</span>" },
+                        { term: "I am fine, thanks. / I am doing well, thanks", sent: "I am fine, thanks. And you?", trans: "<span style='color:#0077b6'>Eu estou bem, obrigado(a). E você?</span>" },
+                        { term: "Not bad, thanks. / Not much, thanks", sent: "Not bad, thanks. How about you?", trans: "<span style='color:#0077b6'>Nada mal, obrigado(a). E você?</span>" },
+                        { term: "Where are you from?", sent: "Where are you from?", trans: "<span style='color:#0077b6'>De onde você é?</span>" },
+                        { term: "I am from...", sent: "I am from Japan.", trans: "<span style='color:#0077b6'>Eu sou do Japão.</span>" },
+                        { term: "How old are you?", sent: "How old are you?", trans: "<span style='color:#0077b6'>Quantos anos você tem?</span>" },
+                        { term: "... years old", sent: "I am 12 years old.", trans: "<span style='color:#0077b6'>Eu tenho 12 anos de idade.</span>" },
+                        { term: "Hello! / Hi!", sent: "Hello! Are you new?", trans: "<span style='color:#0077b6'>Olá! Você é novo(a)?</span>" },
+                        { term: "Goodbye! / Bye!", sent: "Goodbye! See you tomorrow.", trans: "<span style='color:#0077b6'>Adeus! Até amanhã.</span>" },
+                        { term: "See you! / See you tomorrow! / See you later! / See you soon! / See you next class!", sent: "See you tomorrow, my friend!", trans: "<span style='color:#0077b6'>Até amanhã, meu amigo!</span>" }   
                     ]
                 },
                 {
@@ -949,7 +970,7 @@ window.initLesson({
                 // --- Verbs ---
                 { 
                     term: "To be", 
-                    definition: "To be", 
+                    definition: "To be - Am / Is / Are", 
                     defTrans: "Ser / Estar",
                     example: "I am happy today.", 
                     exTrans: "Eu estou feliz hoje.",
@@ -968,12 +989,12 @@ window.initLesson({
 
                 // --- Vocabularies ---
                 { 
-                    term: "Children", 
-                    definition: "Children", 
+                    term: "Children/Kids", 
+                    definition: "Children/Kids", 
                     defTrans: "Crianças",
                     example: "The children are playing.", 
                     exTrans: "As crianças estão brincando.",
-                    audioFront: "TTS: Children",
+                    audioFront: "TTS: Children, Kids",
                     audioBack: "TTS: The children are playing." 
                 },
                 { 
@@ -1041,23 +1062,95 @@ window.initLesson({
                     audioFront: "TTS: Nice to meet you",
                     audioBack: "TTS: Nice to meet you, Albert!" 
                 },
-                { 
-                    term: "How are you?", 
-                    definition: "How are you?", 
-                    defTrans: "Como você está?",
-                    example: "How are you? I am good.", 
-                    exTrans: "Como você está? Eu estou bem.",
-                    audioFront: "TTS: How are you?",
-                    audioBack: "TTS: How are you? I am good." 
+                {
+                    term: "What is your name? My name is...", 
+                    definition: "What is your name? My name is...", 
+                    defTrans: "Qual é o seu nome? Meu nome é...",
+                    example: "What is your name? My name is Celine.", 
+                    exTrans: "Qual é o seu nome? Meu nome é Celine.",
+                    audioFront: "TTS: What is your name? My name is...",
+                    audioBack: "TTS: What is your name? My name is Celine."
                 },
                 { 
-                    term: "Where are you from?", 
-                    definition: "Where are you from?", 
-                    defTrans: "De onde você é?",
-                    example: "Where are you from? Brazil.", 
-                    exTrans: "De onde você é? Brasil.",
+                    term: "How are you? / How are you doing?", 
+                    definition: "How are you? / How are you doing?", 
+                    defTrans: "Como você está?",
+                    example: "How are you doing? I am good.", 
+                    exTrans: "Como você está? Eu estou bem.",
+                    audioFront: "TTS: How are you? How are you doing?",
+                    audioBack: "TTS: How are you doing? I am good." 
+                },
+                {
+                    term: "What's up? / How's it going?", 
+                    definition: "What's up? / How's it going?", 
+                    defTrans: "E aí? / Como vai?",
+                    example: "What's up? I am fine.", 
+                    exTrans: "E aí? Eu estou bem.",
+                    audioFront: "TTS: What's up? How's it going?",
+                    audioBack: "TTS: What's up? I am fine."
+                },
+                {
+                    term: "I am fine, thanks. / I am doing well, thanks.",
+                    definition: "I am fine, thanks. / I am doing well, thanks.",
+                    defTrans: "Estou bem, obrigado.",
+                    example: "How are you doing? > I am doing well, thanks.",
+                    exTrans: "Como você está? > Estou bem, obrigado. ",
+                    audioFront: "TTS: I am fine, thanks. I am doing well, thanks.",
+                    audioBack: "TTS: How are you doing? I am doing well, thanks."
+                },
+                {
+                    term: "Not bad. / Not much.",
+                    definition: "Not bad. / Not much.",
+                    defTrans: "Nada mal. / Nada de mais.",
+                    example: "How is it going? > Not bad.",
+                    exTrans: "Como está indo? > Nada mal.",
+                    audioFront: "TTS: Not bad. Not much.",
+                    audioBack: "TTS: How is it going? Not bad."
+                },
+                {  
+                    term: "How old are you?", 
+                    definition: "How old are you?", 
+                    defTrans: "Quantos anos você tem?",
+                    example: "How old are you? I am 12 years old.", 
+                    exTrans: "Quantos anos você tem? Eu tenho 12 anos.",
+                    audioFront: "TTS: How old are you?",
+                    audioBack: "TTS: How old are you? I am 12 years old."
+                },
+                { 
+                    term: "Where are you from? I am from...", 
+                    definition: "Where are you from? I am from...", 
+                    defTrans: "De onde você é? Eu sou de...",
+                    example: "Where are you from? I am from Brazil.", 
+                    exTrans: "De onde você é? Eu sou do Brasil.",
                     audioFront: "TTS: Where are you from?",
-                    audioBack: "TTS: Where are you from? Brazil." 
+                    audioBack: "TTS: Where are you from? I am from Brazil." 
+                },
+                {
+                    term: "Hello! / Hi! / Hey!", 
+                    definition: "Hello! / Hi! / Hey!", 
+                    defTrans: "Olá! / Oi! / E aí!",
+                    example: "Hello, Albert!", 
+                    exTrans: "Olá, Albert!",
+                    audioFront: "TTS: Hello! Hi! Hey!",
+                    audioBack: "TTS: Hello, Albert!"
+                },
+                {
+                    term: "Goodbye! / Bye!",
+                    definition: "Goodbye! / Bye!",
+                    defTrans: "Adeus! / Tchau!",
+                    example: "Goodbye, Celine!",
+                    exTrans: "Adeus, Celine!",
+                    audioFront: "TTS: Goodbye! Bye!",
+                    audioBack: "TTS: Goodbye, Celine!"  
+                },
+                {
+                    term: "See you! / See you tomorrow! / See you later! / See you soon! / See you next class!",
+                    definition: "See you! / See you tomorrow! / See you later! / See you soon! / See you next class!",
+                    defTrans: "Até mais! / Até amanhã! / Até depois! / Até breve! / Até a próxima aula!",
+                    example: "See you tomorrow, Maria!",
+                    exTrans: "Até amanhã, Maria!",
+                    audioFront: "TTS: See you! See you tomorrow! See you later! See you soon! See you next class!",
+                    audioBack: "TTS: See you tomorrow, Maria!"  
                 },
                 // --- Countries & Nationalities (Part 2) ---
                 { 
@@ -1243,29 +1336,29 @@ window.initLesson({
                 },
                 { 
                     term: "Numbers 1-10", 
-                    definition: "Numbers 1-10", 
-                    defTrans: "Um a Dez",
+                    definition: "One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten", 
+                    defTrans: "Um, Dois, Três, Quatro, Cinco, Seis, Sete, Oito, Nove, Dez",
                     example: "I have one cat and two dogs.", 
                     exTrans: "Eu tenho um gato e dois cachorros.",
-                    audioFront: "TTS: Numbers one to ten",
+                    audioFront: "TTS: Numbers, one to ten",
                     audioBack: "TTS: I have one cat and two dogs." 
                 },
                 { 
                     term: "Numbers 11-20", 
-                    definition: "Numbers 11-20", 
-                    defTrans: "Onze a Vinte",
+                    definition: "Eleven, Twelve, Thirteen, Fourteen, Fifteen, Sixteen, Seventeen, Eighteen, Nineteen, Twenty", 
+                    defTrans: "Onze, Doze, Treze, Quatorze, Quinze, Dezesseis, Dezessete, Dezoito, Dezenove, Vinte",
                     example: "She is twelve years old.", 
                     exTrans: "Ela tem doze anos de idade.",
-                    audioFront: "TTS: Numbers eleven to twenty",
+                    audioFront: "TTS: Numbers, eleven to twenty",
                     audioBack: "TTS: She is twelve years old." 
                 },
                 { 
-                    term: "Tens (30-90)", 
-                    definition: "Tens (30, 40... 90)", 
-                    defTrans: "Dezenas (Trinta a Noventa)",
+                    term: "Numbers - Tens (20-90)", 
+                    definition: "Twenty, Thirty, Forty, Fifty, Sixty, Seventy, Eighty, Ninety", 
+                    defTrans: "Vinte, Trinta, Quarenta, Cinquenta, Sessenta, Setenta, Oitenta, Noventa",
                     example: "My father is forty years old.", 
                     exTrans: "Meu pai tem quarenta anos de idade.",
-                    audioFront: "TTS: Thirty, forty, fifty, sixty, seventy, eighty, ninety",
+                    audioFront: "TTS: Numbers, tens, twenty to ninety",
                     audioBack: "TTS: My father is forty years old." 
                 },
                 { 
@@ -1497,6 +1590,12 @@ window.initLesson({
             definition: "A polite phrase used when meeting someone for the first time.", 
             translation: "Prazer em conhecer você." 
         },
+        {
+            topic: "Phrases", 
+            term: "What is your name?", 
+            definition: "A question used to ask someone for their name.", 
+            translation: "Qual é o seu nome?"
+        },
         { 
             topic: "Phrases", 
             term: "My name is...", 
@@ -1509,11 +1608,47 @@ window.initLesson({
             definition: "A common greeting question to ask about someone's well-being.", 
             translation: "Como você está?" 
         },
+        {
+            topic: "Phrases", 
+            term: "How are you doing?", 
+            definition: "Another way to ask about someone's well-being.", 
+            translation: "Como você está?" 
+        },
+        {
+            topic: "Phrases",
+            term: "How's it going?",
+            definition: "A casual way to ask how someone is doing.",
+            translation: "Como vai?"
+        },
+        {
+            topic: "Phrases",
+            term: "What's up?",
+            definition: "A casual greeting used to ask what someone is doing or how they are.",
+            translation: "E aí?"
+        },
         { 
             topic: "Phrases", 
             term: "I am fine, thanks", 
             definition: "A polite response to the greeting 'How are you?'.", 
             translation: "Eu estou bem, obrigado(a)." 
+        },
+        {
+            topic: "Phrases",
+            term: "I am doing well, thanks",
+            definition: "Another polite response to the greeting 'How are you?'.",
+            translation: "Eu estou indo bem, obrigado(a)."
+        },
+        {
+            topic: "Phrases",
+            term: "Not bad.",
+            definition: "A casual response to 'How are you?' indicating that things are okay.",
+            translation: "Nada mal."
+        },
+        {
+            topic: "Phrases",
+            term: "Not much.",
+            definition: "A casual response to 'What's up?' indicating that nothing significant is happening.",
+            translation: "Nada de mais."
         },
         { 
             topic: "Phrases", 
@@ -1527,6 +1662,12 @@ window.initLesson({
             definition: "Used to state your origin or country.", 
             translation: "Eu sou de..." 
         },
+        {
+            topic: "Phrases",
+            term: "How old are you?",
+            definition: "A question used to ask about someone's age.",
+            translation: "Quantos anos você tem?"
+        },
         { 
             topic: "Phrases", 
             term: "... years old", 
@@ -1535,16 +1676,58 @@ window.initLesson({
         },
         { 
             topic: "Phrases", 
-            term: "Hello! / Hi!", 
+            term: "Hello!", 
             definition: "Common greetings used to say hello.", 
             translation: "Olá! / Oi!" 
         },
+        {
+            topic: "Phrases",
+            term: "Hi!",
+            definition: "Informal greetings used to say hello.",
+            translation: "Oi!"
+        },
         { 
             topic: "Phrases", 
-            term: "Goodbye / Bye!", 
+            term: "Bye! / bye-bye!", 
             definition: "Words used when leaving or ending a conversation.", 
-            translation: "Adeus / Tchau!" 
+            translation: "Tchau!" 
         },
+        {
+            topic: "Phrases",
+            term: "Goodbye!",
+            definition: "A formal way to say farewell.",
+            translation: "Tchau! / Adeus!"
+        },
+        {
+            topic: "Phrases",
+            term: "See you!",
+            definition: "A casual way to say goodbye, implying you will meet again.",
+            translation: "Até mais!"
+        },
+        {
+            topic: "Phrases",
+            term: "See you tomorrow!",
+            definition: "A phrase used to say goodbye when you expect to meet the person the next day.",
+            translation: "Até amanhã!"
+        },
+        {
+            topic: "Phrases",
+            term: "See you later!",
+            definition: "A phrase used to say goodbye when you expect to meet the person later in the day.",
+            translation: "Até depois!"
+        },
+        {
+            topic: "Phrases",
+            term: "See you soon!",
+            definition: "A phrase used to say goodbye when you expect to meet the person in the near future.",
+            translation: "Até breve!"
+        },
+        {
+            topic: "Phrases",
+            term: "See you next class!",
+            definition: "A phrase used to say goodbye when you expect to meet the person in the next class session.",
+            translation: "Até a próxima aula!"
+        }, 
         // --- TOPIC 4: COUNTRIES & NATIONALITIES (Split for Tooltips) ---
         { topic: "Nationalities", term: "Australia", definition: "A country and continent in the Oceania region.", translation: "Austrália" },
         { topic: "Nationalities", term: "Australian", definition: "A person from Australia.", translation: "Australiano(a)" },

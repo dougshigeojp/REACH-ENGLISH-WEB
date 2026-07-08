@@ -3,7 +3,7 @@ window.exData = {
     bimester: 4,
     chapter: 7,
     lessonNames: {
-        "6-4-7b": "Chapter 7: Our Planet is Calling (Practice B)"
+        "6-4-1b": "Chapter 7 (Practice B)"
     },
     simplePool: {
         // EXERCISE 1: Block Harvesting (Target: Present Continuous, Environment Vocab)
