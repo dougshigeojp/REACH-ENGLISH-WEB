@@ -3,7 +3,7 @@ window.exData = {
     bimester: 1,
     chapter: 2,
     lessonNames: {
-        "9-1-2b": "Chapter 2: Journeys Without Boundaries (Practice B)"
+        "9-1-2b": "Chapter 2 (Practice B)"
     },
     simplePool: {
         // EXERCISE 1: Block Harvesting (Target: Must, Have to, Wish, If only, Vocab)
